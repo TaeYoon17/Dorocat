@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		632721862B9F2E5C007E3206 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 632721852B9F2E5C007E3206 /* .gitignore */; };
 		63C124D42B9EF93D000A6D35 /* DorocatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C124D32B9EF93D000A6D35 /* DorocatApp.swift */; };
 		63C124D62B9EF93D000A6D35 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C124D52B9EF93D000A6D35 /* ContentView.swift */; };
 		63C124D82B9EF93D000A6D35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C124D72B9EF93D000A6D35 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		632721852B9F2E5C007E3206 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		63C124D02B9EF93D000A6D35 /* Dorocat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dorocat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C124D32B9EF93D000A6D35 /* DorocatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DorocatApp.swift; sourceTree = "<group>"; };
 		63C124D52B9EF93D000A6D35 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				63C124D52B9EF93D000A6D35 /* ContentView.swift */,
 				63C124D72B9EF93D000A6D35 /* Assets.xcassets */,
 				63C124D92B9EF93D000A6D35 /* Preview Content */,
+				632721852B9F2E5C007E3206 /* .gitignore */,
 			);
 			path = Dorocat;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63C124DB2B9EF93D000A6D35 /* Preview Assets.xcassets in Resources */,
+				632721862B9F2E5C007E3206 /* .gitignore in Resources */,
 				63C124D82B9EF93D000A6D35 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
