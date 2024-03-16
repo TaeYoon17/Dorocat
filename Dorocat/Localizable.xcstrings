@@ -1,19 +1,49 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld" : {
+
+    },
+    "00" : {
+
+    },
     "Add a widget" : {
 
     },
     "Analyze" : {
 
     },
+    "Cancel" : {
+
+    },
+    "Cycle" : {
+
+    },
+    "Cycle nums" : {
+
+    },
+    "Done" : {
+
+    },
+    "Go to timer setting" : {
+
+    },
     "Haptics" : {
 
     },
-    "Hello world!!" : {
+    "Hello world" : {
+
+    },
+    "Long Break" : {
 
     },
     "Memebership" : {
+
+    },
+    "min" : {
+
+    },
+    "Pomodoro Mode" : {
 
     },
     "Rate app" : {
@@ -22,10 +52,19 @@
     "Settings" : {
 
     },
+    "Short Break" : {
+
+    },
     "Sound" : {
 
     },
+    "Stop" : {
+
+    },
     "Support" : {
+
+    },
+    "하이" : {
 
     }
   },

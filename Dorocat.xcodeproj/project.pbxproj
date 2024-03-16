@@ -10,6 +10,8 @@
 		632721862B9F2E5C007E3206 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 632721852B9F2E5C007E3206 /* .gitignore */; };
 		635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 635BD5582B9F56CA004480D1 /* Localizable.xcstrings */; };
 		635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 635BD55B2B9F5708004480D1 /* ComposableArchitecture */; };
+		63A9C3F62BA574830076D42C /* TimerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3F52BA574830076D42C /* TimerDependency.swift */; };
+		63A9C3F92BA5A3F10076D42C /* NumberPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3F82BA5A3F10076D42C /* NumberPickerView.swift */; };
 		63AD70522BA4297300DBD6B9 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70512BA4297300DBD6B9 /* TimerView.swift */; };
 		63AD70542BA429E300DBD6B9 /* DorocatFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70532BA429E300DBD6B9 /* DorocatFeature.swift */; };
 		63AD70562BA42A6E00DBD6B9 /* DoroMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70552BA42A6E00DBD6B9 /* DoroMainView.swift */; };
@@ -28,6 +30,8 @@
 /* Begin PBXFileReference section */
 		632721852B9F2E5C007E3206 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		635BD5582B9F56CA004480D1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		63A9C3F52BA574830076D42C /* TimerDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDependency.swift; sourceTree = "<group>"; };
+		63A9C3F82BA5A3F10076D42C /* NumberPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPickerView.swift; sourceTree = "<group>"; };
 		63AD70512BA4297300DBD6B9 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		63AD70532BA429E300DBD6B9 /* DorocatFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DorocatFeature.swift; sourceTree = "<group>"; };
 		63AD70552BA42A6E00DBD6B9 /* DoroMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroMainView.swift; sourceTree = "<group>"; };
@@ -69,8 +73,25 @@
 		635BD55F2B9F5764004480D1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				63A9C3F72BA5A3E30076D42C /* CustomUIs */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		63A9C3F72BA5A3E30076D42C /* CustomUIs */ = {
+			isa = PBXGroup;
+			children = (
+				63A9C3F82BA5A3F10076D42C /* NumberPickerView.swift */,
+			);
+			path = CustomUIs;
+			sourceTree = "<group>";
+		};
+		63A9C3FA2BA5AAC20076D42C /* TimerSetting */ = {
+			isa = PBXGroup;
+			children = (
+				63AD70592BA439D600DBD6B9 /* TimerSettingView.swift */,
+			);
+			path = TimerSetting;
 			sourceTree = "<group>";
 		};
 		63AD70502BA4292D00DBD6B9 /* Features */ = {
@@ -86,8 +107,8 @@
 		63AD705B2BA43A3C00DBD6B9 /* TimerViews */ = {
 			isa = PBXGroup;
 			children = (
+				63A9C3FA2BA5AAC20076D42C /* TimerSetting */,
 				63AD70512BA4297300DBD6B9 /* TimerView.swift */,
-				63AD70592BA439D600DBD6B9 /* TimerSettingView.swift */,
 			);
 			path = TimerViews;
 			sourceTree = "<group>";
@@ -140,7 +161,7 @@
 				635BD55D2B9F573D004480D1 /* Scenes */,
 				63C124E32B9EFAF1000A6D35 /* Cores */,
 				63C124E22B9EFAE6000A6D35 /* Resources */,
-				63C124E12B9EFAD5000A6D35 /* Services */,
+				63C124E12B9EFAD5000A6D35 /* Dependencies */,
 				63C124D32B9EF93D000A6D35 /* DorocatApp.swift */,
 				635BD55F2B9F5764004480D1 /* Helpers */,
 				63C124D72B9EF93D000A6D35 /* Assets.xcassets */,
@@ -159,11 +180,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		63C124E12B9EFAD5000A6D35 /* Services */ = {
+		63C124E12B9EFAD5000A6D35 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				63A9C3F52BA574830076D42C /* TimerDependency.swift */,
 			);
-			path = Services;
+			path = Dependencies;
 			sourceTree = "<group>";
 		};
 		63C124E22B9EFAE6000A6D35 /* Resources */ = {
@@ -265,7 +287,9 @@
 				63AD70522BA4297300DBD6B9 /* TimerView.swift in Sources */,
 				63AD70622BA43EB800DBD6B9 /* SettingFeature.swift in Sources */,
 				63AD70562BA42A6E00DBD6B9 /* DoroMainView.swift in Sources */,
+				63A9C3F92BA5A3F10076D42C /* NumberPickerView.swift in Sources */,
 				63C124D42B9EF93D000A6D35 /* DorocatApp.swift in Sources */,
+				63A9C3F62BA574830076D42C /* TimerDependency.swift in Sources */,
 				63AD70642BA43F6D00DBD6B9 /* TimerSettingFeature.swift in Sources */,
 				63AD705E2BA43A5900DBD6B9 /* SettingView.swift in Sources */,
 				63AD70582BA437EB00DBD6B9 /* TimerFeature.swift in Sources */,

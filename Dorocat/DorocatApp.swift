@@ -12,7 +12,8 @@ struct DorocatApp: App {
     var body: some Scene {
         WindowGroup {
             WithPerceptionTracking {   
-                DoroMainView(store: Store(initialState: DorocatFeature.State(), reducer: {
+                DoroMainView(store: Store(initialState: DorocatFeature.State(),
+                                          reducer: {
                     DorocatFeature()
                 }))
             }

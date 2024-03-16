@@ -25,7 +25,6 @@ struct DorocatFeature{
         Reduce{ state, action in
             switch action{
             case .pageMove(let type):
-//                print("changed type \(type)")
                 state.pageSelection = type
                 return .none
             }

@@ -12,10 +12,24 @@ struct TimerView: View {
     @Perception.Bindable var store: StoreOf<TimerFeature>
     var body: some View {
         WithPerceptionTracking{
-            Button {
-                print("Hello world")
-            } label: {
-                Text("Hello world!!")
+            VStack(content: {
+                HStack(content: {
+                    Text(store.timer).font(.largeTitle)
+                })
+                Button{
+                    store.send(.goTimerSetting)
+                }label: {
+                    Text("Go to timer setting")
+                }
+                Button(action: {
+                    store.send(.stopTapped)
+                }, label: {
+                    Text("Stop")
+                })
+            }).sheet(item: $store.scope(state: \.timerSetting, action: \.timerSetting)) { timerSettingStore in
+                NavigationStack {
+                    TimerSettingView(store: timerSettingStore)
+                }
             }
         }
     }
