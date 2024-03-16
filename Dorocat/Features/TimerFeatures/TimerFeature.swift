@@ -7,11 +7,12 @@
 
 import Foundation
 import ComposableArchitecture
-
+// MARK: -- Dorocat Tab과 Feature를 완전히 분리해서 구현해보기
 @Reducer struct TimerFeature{
     @ObservableState struct State: Equatable{
         var count = 0
         var isTimerRunning = false
+//        @Presents var timerSetting: 
     }
     enum Action{
         case stopTapped

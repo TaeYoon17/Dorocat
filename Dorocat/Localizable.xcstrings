@@ -1,5 +1,33 @@
 {
   "sourceLanguage" : "en",
-  "strings" : {},
+  "strings" : {
+    "Add a widget" : {
+
+    },
+    "Analyze" : {
+
+    },
+    "Haptics" : {
+
+    },
+    "Hello world!!" : {
+
+    },
+    "Memebership" : {
+
+    },
+    "Rate app" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Sound" : {
+
+    },
+    "Support" : {
+
+    }
+  },
   "version" : "1.0"
 }

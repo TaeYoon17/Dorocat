@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
-
+import ComposableArchitecture
 @main
 struct DorocatApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WithPerceptionTracking {   
+                DoroMainView(store: Store(initialState: DorocatFeature.State(), reducer: {
+                    DorocatFeature()
+                }))
+            }
         }
     }
 }

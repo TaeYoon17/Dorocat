@@ -8,17 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		632721862B9F2E5C007E3206 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 632721852B9F2E5C007E3206 /* .gitignore */; };
+		635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 635BD5582B9F56CA004480D1 /* Localizable.xcstrings */; };
+		635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 635BD55B2B9F5708004480D1 /* ComposableArchitecture */; };
+		63AD70522BA4297300DBD6B9 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70512BA4297300DBD6B9 /* TimerView.swift */; };
+		63AD70542BA429E300DBD6B9 /* DorocatFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70532BA429E300DBD6B9 /* DorocatFeature.swift */; };
+		63AD70562BA42A6E00DBD6B9 /* DoroMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70552BA42A6E00DBD6B9 /* DoroMainView.swift */; };
+		63AD70582BA437EB00DBD6B9 /* TimerFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70572BA437EB00DBD6B9 /* TimerFeature.swift */; };
+		63AD705A2BA439D600DBD6B9 /* TimerSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70592BA439D600DBD6B9 /* TimerSettingView.swift */; };
+		63AD705E2BA43A5900DBD6B9 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD705D2BA43A5900DBD6B9 /* SettingView.swift */; };
+		63AD70622BA43EB800DBD6B9 /* SettingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70612BA43EB800DBD6B9 /* SettingFeature.swift */; };
+		63AD70642BA43F6D00DBD6B9 /* TimerSettingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70632BA43F6D00DBD6B9 /* TimerSettingFeature.swift */; };
 		63C124D42B9EF93D000A6D35 /* DorocatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C124D32B9EF93D000A6D35 /* DorocatApp.swift */; };
-		63C124D62B9EF93D000A6D35 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C124D52B9EF93D000A6D35 /* ContentView.swift */; };
 		63C124D82B9EF93D000A6D35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C124D72B9EF93D000A6D35 /* Assets.xcassets */; };
 		63C124DB2B9EF93D000A6D35 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C124DA2B9EF93D000A6D35 /* Preview Assets.xcassets */; };
+		63C969EE2B9FD509004E79C6 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 63C969ED2B9FD509004E79C6 /* Realm */; };
+		63C969F02B9FD509004E79C6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 63C969EF2B9FD509004E79C6 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		632721852B9F2E5C007E3206 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		635BD5582B9F56CA004480D1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		63AD70512BA4297300DBD6B9 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		63AD70532BA429E300DBD6B9 /* DorocatFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DorocatFeature.swift; sourceTree = "<group>"; };
+		63AD70552BA42A6E00DBD6B9 /* DoroMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroMainView.swift; sourceTree = "<group>"; };
+		63AD70572BA437EB00DBD6B9 /* TimerFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFeature.swift; sourceTree = "<group>"; };
+		63AD70592BA439D600DBD6B9 /* TimerSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSettingView.swift; sourceTree = "<group>"; };
+		63AD705D2BA43A5900DBD6B9 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		63AD70612BA43EB800DBD6B9 /* SettingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFeature.swift; sourceTree = "<group>"; };
+		63AD70632BA43F6D00DBD6B9 /* TimerSettingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSettingFeature.swift; sourceTree = "<group>"; };
 		63C124D02B9EF93D000A6D35 /* Dorocat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dorocat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C124D32B9EF93D000A6D35 /* DorocatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DorocatApp.swift; sourceTree = "<group>"; };
-		63C124D52B9EF93D000A6D35 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		63C124D72B9EF93D000A6D35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63C124DA2B9EF93D000A6D35 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -28,12 +47,76 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63C969F02B9FD509004E79C6 /* RealmSwift in Frameworks */,
+				63C969EE2B9FD509004E79C6 /* Realm in Frameworks */,
+				635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		635BD55D2B9F573D004480D1 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				63AD705C2BA43A4F00DBD6B9 /* SettingViews */,
+				63AD705B2BA43A3C00DBD6B9 /* TimerViews */,
+				63AD70552BA42A6E00DBD6B9 /* DoroMainView.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		635BD55F2B9F5764004480D1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		63AD70502BA4292D00DBD6B9 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				63AD70532BA429E300DBD6B9 /* DorocatFeature.swift */,
+				63AD705F2BA43AE200DBD6B9 /* TimerFeatures */,
+				63AD70602BA43E9900DBD6B9 /* SettingFeatures */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		63AD705B2BA43A3C00DBD6B9 /* TimerViews */ = {
+			isa = PBXGroup;
+			children = (
+				63AD70512BA4297300DBD6B9 /* TimerView.swift */,
+				63AD70592BA439D600DBD6B9 /* TimerSettingView.swift */,
+			);
+			path = TimerViews;
+			sourceTree = "<group>";
+		};
+		63AD705C2BA43A4F00DBD6B9 /* SettingViews */ = {
+			isa = PBXGroup;
+			children = (
+				63AD705D2BA43A5900DBD6B9 /* SettingView.swift */,
+			);
+			path = SettingViews;
+			sourceTree = "<group>";
+		};
+		63AD705F2BA43AE200DBD6B9 /* TimerFeatures */ = {
+			isa = PBXGroup;
+			children = (
+				63AD70572BA437EB00DBD6B9 /* TimerFeature.swift */,
+				63AD70632BA43F6D00DBD6B9 /* TimerSettingFeature.swift */,
+			);
+			path = TimerFeatures;
+			sourceTree = "<group>";
+		};
+		63AD70602BA43E9900DBD6B9 /* SettingFeatures */ = {
+			isa = PBXGroup;
+			children = (
+				63AD70612BA43EB800DBD6B9 /* SettingFeature.swift */,
+			);
+			path = SettingFeatures;
+			sourceTree = "<group>";
+		};
 		63C124C72B9EF93D000A6D35 = {
 			isa = PBXGroup;
 			children = (
@@ -53,14 +136,17 @@
 		63C124D22B9EF93D000A6D35 /* Dorocat */ = {
 			isa = PBXGroup;
 			children = (
+				63AD70502BA4292D00DBD6B9 /* Features */,
+				635BD55D2B9F573D004480D1 /* Scenes */,
 				63C124E32B9EFAF1000A6D35 /* Cores */,
 				63C124E22B9EFAE6000A6D35 /* Resources */,
 				63C124E12B9EFAD5000A6D35 /* Services */,
 				63C124D32B9EF93D000A6D35 /* DorocatApp.swift */,
-				63C124D52B9EF93D000A6D35 /* ContentView.swift */,
+				635BD55F2B9F5764004480D1 /* Helpers */,
 				63C124D72B9EF93D000A6D35 /* Assets.xcassets */,
 				63C124D92B9EF93D000A6D35 /* Preview Content */,
 				632721852B9F2E5C007E3206 /* .gitignore */,
+				635BD5582B9F56CA004480D1 /* Localizable.xcstrings */,
 			);
 			path = Dorocat;
 			sourceTree = "<group>";
@@ -110,6 +196,11 @@
 			dependencies = (
 			);
 			name = Dorocat;
+			packageProductDependencies = (
+				635BD55B2B9F5708004480D1 /* ComposableArchitecture */,
+				63C969ED2B9FD509004E79C6 /* Realm */,
+				63C969EF2B9FD509004E79C6 /* RealmSwift */,
+			);
 			productName = Dorocat;
 			productReference = 63C124D02B9EF93D000A6D35 /* Dorocat.app */;
 			productType = "com.apple.product-type.application";
@@ -136,8 +227,13 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 63C124C72B9EF93D000A6D35;
+			packageReferences = (
+				635BD55A2B9F5708004480D1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				63C969EC2B9FD509004E79C6 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 63C124D12B9EF93D000A6D35 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -154,6 +250,7 @@
 			files = (
 				63C124DB2B9EF93D000A6D35 /* Preview Assets.xcassets in Resources */,
 				632721862B9F2E5C007E3206 /* .gitignore in Resources */,
+				635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */,
 				63C124D82B9EF93D000A6D35 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,8 +262,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63C124D62B9EF93D000A6D35 /* ContentView.swift in Sources */,
+				63AD70522BA4297300DBD6B9 /* TimerView.swift in Sources */,
+				63AD70622BA43EB800DBD6B9 /* SettingFeature.swift in Sources */,
+				63AD70562BA42A6E00DBD6B9 /* DoroMainView.swift in Sources */,
 				63C124D42B9EF93D000A6D35 /* DorocatApp.swift in Sources */,
+				63AD70642BA43F6D00DBD6B9 /* TimerSettingFeature.swift in Sources */,
+				63AD705E2BA43A5900DBD6B9 /* SettingView.swift in Sources */,
+				63AD70582BA437EB00DBD6B9 /* TimerFeature.swift in Sources */,
+				63AD70542BA429E300DBD6B9 /* DorocatFeature.swift in Sources */,
+				63AD705A2BA439D600DBD6B9 /* TimerSettingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +329,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -282,7 +386,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -382,6 +486,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		635BD55A2B9F5708004480D1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.2;
+			};
+		};
+		63C969EC2B9FD509004E79C6 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		635BD55B2B9F5708004480D1 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 635BD55A2B9F5708004480D1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		63C969ED2B9FD509004E79C6 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63C969EC2B9FD509004E79C6 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		63C969EF2B9FD509004E79C6 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63C969EC2B9FD509004E79C6 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 63C124C82B9EF93D000A6D35 /* Project object */;
 }

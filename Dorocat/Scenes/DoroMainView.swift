@@ -6,13 +6,23 @@
 //
 
 import SwiftUI
-
-struct DoroView: View {
+import ComposableArchitecture
+struct DoroMainView: View {
+    @Perception.Bindable var store: StoreOf<DorocatFeature>
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        WithPerceptionTracking {
+            TabView(selection: .init(get: { store.pageSelection }, set: { store.send(.pageMove($0)) }), content:  {
+                Text("Analyze").tag(DorocatFeature.PageType.analyze)
+                TimerView(store: Store(initialState: TimerFeature.State(), reducer: {
+                    TimerFeature()
+                })).tag(DorocatFeature.PageType.timer)
+                SettingView().tag(DorocatFeature.PageType.setting)
+            }).tabViewStyle(.page(indexDisplayMode: .never))
+        }
     }
+    
 }
 
-#Preview {
-    DoroView()
-}
+//#Preview {
+//    DoroMainView()
+//}

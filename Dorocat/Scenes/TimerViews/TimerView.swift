@@ -9,13 +9,20 @@ import SwiftUI
 import ComposableArchitecture
 
 struct TimerView: View {
+    @Perception.Bindable var store: StoreOf<TimerFeature>
     var body: some View {
         WithPerceptionTracking{
-            Text("Timer View!")
+            Button {
+                print("Hello world")
+            } label: {
+                Text("Hello world!!")
+            }
         }
     }
 }
 
 #Preview {
-    TimerView()
+    TimerView(store: Store(initialState: TimerFeature.State(), reducer: {
+        TimerFeature()
+    }))
 }

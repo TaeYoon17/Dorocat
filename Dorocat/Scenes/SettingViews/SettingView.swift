@@ -6,10 +6,20 @@
 //
 
 import SwiftUI
-
+import ComposableArchitecture
 struct SettingView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        WithPerceptionTracking{
+            ScrollView {
+                Text("Settings")
+                Text("Memebership")
+                Text("Add a widget")
+                Text("Sound")
+                Text("Haptics")
+                Text("Support")
+                Text("Rate app")
+            }
+        }
     }
 }
 
