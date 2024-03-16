@@ -15,7 +15,7 @@ struct TimerSettingFeature{
         var isPomodoroMode: Bool = false
     }
     
-    enum Action{ // 키패드 접근을 어떻게 할 것인지...
+    enum Action:Equatable{ // 키패드 접근을 어떻게 할 것인지...
         case cancelTapped
         case doneTapped
         case setTime(String)

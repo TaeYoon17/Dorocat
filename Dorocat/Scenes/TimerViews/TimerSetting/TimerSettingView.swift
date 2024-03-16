@@ -10,9 +10,7 @@ import ComposableArchitecture
 
 struct TimerSettingView:View {
     @Perception.Bindable var store: StoreOf<TimerSettingFeature>
-//    @State private var hour = ""
     @State private var minutes = ""
-    @State private var isToggle = false
     @State private var selectedColor = ""
     var body: some View {
         WithPerceptionTracking{

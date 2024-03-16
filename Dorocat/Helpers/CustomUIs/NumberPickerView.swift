@@ -17,9 +17,7 @@ struct NumberPickerView: UIViewRepresentable{
         let view = UIPickerView()
         return view
     }
-    func updateUIView(_ uiView: UIPickerView, context: Context) {
-        
-    }
+    func updateUIView(_ uiView: UIPickerView, context: Context) { }
 }
 extension NumberPickerView{
     final class Coodrinator: NSObject{

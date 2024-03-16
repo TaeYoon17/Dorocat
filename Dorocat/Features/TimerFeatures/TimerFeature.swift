@@ -15,7 +15,8 @@ import ComposableArchitecture
         var isTimerRunning = false
         @Presents var timerSetting: TimerSettingFeature.State?
     }
-    enum Action{
+    
+    enum Action:Equatable{
         case stopTapped
         case timerTick
         case setTimer(Int)
@@ -31,6 +32,7 @@ import ComposableArchitecture
                 return .cancel(id: CancelID.timer)
             case .timerTick:
                 state.count -= 1
+                print("Next Timer tick \(state.count)")
                 if state.count > 0{
                     return .run {[intTimer = state.count] send in
                         await send(.setTimer(intTimer))

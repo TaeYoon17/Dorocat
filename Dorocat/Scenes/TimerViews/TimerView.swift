@@ -17,6 +17,7 @@ struct TimerView: View {
                     Text(store.timer).font(.largeTitle)
                 })
                 Button{
+                    print("timersetting이 눌림!!")
                     store.send(.goTimerSetting)
                 }label: {
                     Text("Go to timer setting")
@@ -31,6 +32,10 @@ struct TimerView: View {
                     TimerSettingView(store: timerSettingStore)
                 }
             }
+//            .onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect(), perform: { _ in
+//                print("타이머가 돌아간다...")
+//            })
+            
         }
     }
 }
@@ -40,3 +45,10 @@ struct TimerView: View {
         TimerFeature()
     }))
 }
+
+// 기존 타이머 앱에서 타이머를 구현하는 방법...
+//.onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect(), perform: { _ in
+//    if pomodoroModel.isStarted{
+//        pomodoroModel.updateTimer()
+//    }
+//})

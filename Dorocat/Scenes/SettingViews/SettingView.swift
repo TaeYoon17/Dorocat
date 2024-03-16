@@ -8,6 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 struct SettingView: View {
+    @Perception.Bindable var store: StoreOf<SettingFeature>
     var body: some View {
         WithPerceptionTracking{
             ScrollView {
@@ -24,5 +25,8 @@ struct SettingView: View {
 }
 
 #Preview {
-    SettingView()
+    SettingView(store: Store(initialState: SettingFeature.State(), reducer: {
+        SettingFeature()
+    }))
 }
+
