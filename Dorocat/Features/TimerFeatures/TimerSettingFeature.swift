@@ -37,7 +37,7 @@ struct TimerSettingFeature{
                 }
             case .doneTapped:
                 return .run {[strTime = state.time] send in
-                    await send(.delegate(.triggerTimer(Int(strTime)!)))
+                    await send(.delegate(.triggerTimer(Int(strTime) ?? 0)))
                     await self.dismiss()
                 }
             case .setTime(let time):
