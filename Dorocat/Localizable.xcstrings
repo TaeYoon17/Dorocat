@@ -10,6 +10,12 @@
     "Add a widget" : {
 
     },
+    "analyze" : {
+
+    },
+    "Analyze Title" : {
+
+    },
     "Cancel" : {
 
     },
@@ -22,6 +28,12 @@
     "Done" : {
 
     },
+    "Enter address" : {
+
+    },
+    "Enter title" : {
+
+    },
     "Go to timer setting" : {
 
     },
@@ -29,9 +41,6 @@
 
     },
     "Hello world" : {
-
-    },
-    "Hello, World!" : {
 
     },
     "Long Break" : {
@@ -43,10 +52,22 @@
     "min" : {
 
     },
+    "New List" : {
+
+    },
+    "No items found." : {
+
+    },
     "Pomodoro Mode" : {
 
     },
     "Rate app" : {
+
+    },
+    "Save" : {
+
+    },
+    "Setting" : {
 
     },
     "Settings" : {
@@ -62,6 +83,9 @@
 
     },
     "Support" : {
+
+    },
+    "Timer" : {
 
     },
     "하이" : {

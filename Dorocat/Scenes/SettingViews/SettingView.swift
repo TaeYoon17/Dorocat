@@ -11,15 +11,17 @@ struct SettingView: View {
     @Perception.Bindable var store: StoreOf<SettingFeature>
     var body: some View {
         WithPerceptionTracking{
-            ScrollView {
-                Text("Settings")
-                Text("Memebership")
-                Text("Add a widget")
-                Text("Sound")
-                Text("Haptics")
-                Text("Support")
-                Text("Rate app")
-            }
+            NavigationView {
+                ScrollView {
+                    Text("Settings")
+                    Text("Memebership")
+                    Text("Add a widget")
+                    Text("Sound")
+                    Text("Haptics")
+                    Text("Support")
+                    Text("Rate app")
+                }
+            }.navigationTitle("Settings")
         }
     }
 }
