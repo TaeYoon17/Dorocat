@@ -20,7 +20,7 @@ struct TimerView: View {
                     print("timersetting이 눌림!!")
                     store.send(.goTimerSetting)
                 }label: {
-                    Text("Go to timer setting")
+                    Text("Go to timer setting").font(.title)
                 }
                 Button(action: {
                     store.send(.stopTapped)

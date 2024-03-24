@@ -15,15 +15,28 @@ struct AnalyzeView: View {
         WithPerceptionTracking {
             NavigationStack(path: $store.scope(state: \.path,action: \.path)) {
                 List {
-                    ForEach(shoppingLists, id: \.id) { shoppingList in
-                        NavigationLink(state: ShoppingListItemFeature.State()) {
-                            VStack(alignment: .leading) {
-                                Text(shoppingList.title)
-                                Text(shoppingList.address)
-                                    .opacity(0.4)
+                    Section {
+                        HStack {
+                            Text("Append Shopping Lists")
+                            Spacer()
+                            Button {
+                                self.store.send(.addShoppingListTapped)
+                            } label: {
+                                Image(systemName: "plus")
                             }
                         }
-                    }.onDelete(perform: $shoppingLists.remove)
+                    }
+                    Section {
+                        ForEach(shoppingLists, id: \.id) { shoppingList in
+                            NavigationLink(state: ShoppingListItemFeature.State()) {
+                                VStack(alignment: .leading) {
+                                    Text(shoppingList.title)
+                                    Text(shoppingList.address)
+                                        .opacity(0.4)
+                                }
+                            }
+                        }.onDelete(perform: $shoppingLists.remove)
+                    }
                 }
                 .onAppear(){
                     self.store.send(.initShoppingLists)
@@ -38,6 +51,7 @@ struct AnalyzeView: View {
                     }
                 }
                 .navigationTitle("Analyze Title")
+                .toolbar(.hidden, for: .navigationBar)
             } destination: { store in
                 ShoppingListItemsScreen(store: store)
             }.sheet(item: $store.scope(state: \.addShoppingList, action: \.addShoppingList), content: { addShoppingListStore in

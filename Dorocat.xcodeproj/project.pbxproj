@@ -32,6 +32,21 @@
 		63AD705E2BA43A5900DBD6B9 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD705D2BA43A5900DBD6B9 /* SettingView.swift */; };
 		63AD70622BA43EB800DBD6B9 /* SettingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70612BA43EB800DBD6B9 /* SettingFeature.swift */; };
 		63AD70642BA43F6D00DBD6B9 /* TimerSettingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70632BA43F6D00DBD6B9 /* TimerSettingFeature.swift */; };
+		63B3FC322BB04A6600277576 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC242BB04A6600277576 /* Rubik-Medium.ttf */; };
+		63B3FC332BB04A6600277576 /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC252BB04A6600277576 /* Rubik-BlackItalic.ttf */; };
+		63B3FC342BB04A6600277576 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC262BB04A6600277576 /* Rubik-MediumItalic.ttf */; };
+		63B3FC352BB04A6600277576 /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC272BB04A6600277576 /* Rubik-SemiBold.ttf */; };
+		63B3FC362BB04A6600277576 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC282BB04A6600277576 /* Rubik-Light.ttf */; };
+		63B3FC372BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC292BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf */; };
+		63B3FC382BB04A6600277576 /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2A2BB04A6600277576 /* Rubik-LightItalic.ttf */; };
+		63B3FC392BB04A6600277576 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2B2BB04A6600277576 /* Rubik-Bold.ttf */; };
+		63B3FC3A2BB04A6600277576 /* Rubik-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2C2BB04A6600277576 /* Rubik-ExtraBold.ttf */; };
+		63B3FC3B2BB04A6600277576 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2D2BB04A6600277576 /* Rubik-Black.ttf */; };
+		63B3FC3C2BB04A6600277576 /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2E2BB04A6600277576 /* Rubik-BoldItalic.ttf */; };
+		63B3FC3D2BB04A6600277576 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2F2BB04A6600277576 /* Rubik-Italic.ttf */; };
+		63B3FC3E2BB04A6600277576 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC302BB04A6600277576 /* Rubik-Regular.ttf */; };
+		63B3FC3F2BB04A6600277576 /* Rubik-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC312BB04A6600277576 /* Rubik-SemiBoldItalic.ttf */; };
+		63B3FC422BB04B2500277576 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3FC412BB04B2500277576 /* FontExtension.swift */; };
 		63C124D42B9EF93D000A6D35 /* DorocatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C124D32B9EF93D000A6D35 /* DorocatApp.swift */; };
 		63C124D82B9EF93D000A6D35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C124D72B9EF93D000A6D35 /* Assets.xcassets */; };
 		63C124DB2B9EF93D000A6D35 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C124DA2B9EF93D000A6D35 /* Preview Assets.xcassets */; };
@@ -64,6 +79,22 @@
 		63AD705D2BA43A5900DBD6B9 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		63AD70612BA43EB800DBD6B9 /* SettingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFeature.swift; sourceTree = "<group>"; };
 		63AD70632BA43F6D00DBD6B9 /* TimerSettingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSettingFeature.swift; sourceTree = "<group>"; };
+		63B3FC242BB04A6600277576 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Medium.ttf"; path = "Rubik/static/Rubik-Medium.ttf"; sourceTree = SOURCE_ROOT; };
+		63B3FC252BB04A6600277576 /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-BlackItalic.ttf"; path = "Rubik/static/Rubik-BlackItalic.ttf"; sourceTree = SOURCE_ROOT; };
+		63B3FC262BB04A6600277576 /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-MediumItalic.ttf"; path = "Rubik/static/Rubik-MediumItalic.ttf"; sourceTree = SOURCE_ROOT; };
+		63B3FC272BB04A6600277576 /* Rubik-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-SemiBold.ttf"; path = "Rubik/static/Rubik-SemiBold.ttf"; sourceTree = SOURCE_ROOT; };
+		63B3FC282BB04A6600277576 /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Light.ttf"; path = "Rubik/static/Rubik-Light.ttf"; sourceTree = SOURCE_ROOT; };
+		63B3FC292BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-ExtraBoldItalic.ttf"; path = "Rubik/static/Rubik-ExtraBoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
+		63B3FC2A2BB04A6600277576 /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-LightItalic.ttf"; path = "Rubik/static/Rubik-LightItalic.ttf"; sourceTree = SOURCE_ROOT; };
+		63B3FC2B2BB04A6600277576 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Bold.ttf"; path = "Rubik/static/Rubik-Bold.ttf"; sourceTree = SOURCE_ROOT; };
+		63B3FC2C2BB04A6600277576 /* Rubik-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-ExtraBold.ttf"; path = "Rubik/static/Rubik-ExtraBold.ttf"; sourceTree = SOURCE_ROOT; };
+		63B3FC2D2BB04A6600277576 /* Rubik-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Black.ttf"; path = "Rubik/static/Rubik-Black.ttf"; sourceTree = SOURCE_ROOT; };
+		63B3FC2E2BB04A6600277576 /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-BoldItalic.ttf"; path = "Rubik/static/Rubik-BoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
+		63B3FC2F2BB04A6600277576 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Italic.ttf"; path = "Rubik/static/Rubik-Italic.ttf"; sourceTree = SOURCE_ROOT; };
+		63B3FC302BB04A6600277576 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Regular.ttf"; path = "Rubik/static/Rubik-Regular.ttf"; sourceTree = SOURCE_ROOT; };
+		63B3FC312BB04A6600277576 /* Rubik-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-SemiBoldItalic.ttf"; path = "Rubik/static/Rubik-SemiBoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
+		63B3FC412BB04B2500277576 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
+		63B3FC432BB04CED00277576 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		63C124D02B9EF93D000A6D35 /* Dorocat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dorocat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C124D32B9EF93D000A6D35 /* DorocatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DorocatApp.swift; sourceTree = "<group>"; };
 		63C124D72B9EF93D000A6D35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +156,7 @@
 		63A9C3F72BA5A3E30076D42C /* CustomUIs */ = {
 			isa = PBXGroup;
 			children = (
+				63B3FC402BB04B1700277576 /* Font+ */,
 				63A9C3F82BA5A3F10076D42C /* NumberPickerView.swift */,
 			);
 			path = CustomUIs;
@@ -205,6 +237,35 @@
 			path = SettingFeatures;
 			sourceTree = "<group>";
 		};
+		63B3FC232BB04A4B00277576 /* FontAssets */ = {
+			isa = PBXGroup;
+			children = (
+				63B3FC2D2BB04A6600277576 /* Rubik-Black.ttf */,
+				63B3FC252BB04A6600277576 /* Rubik-BlackItalic.ttf */,
+				63B3FC2B2BB04A6600277576 /* Rubik-Bold.ttf */,
+				63B3FC2E2BB04A6600277576 /* Rubik-BoldItalic.ttf */,
+				63B3FC2C2BB04A6600277576 /* Rubik-ExtraBold.ttf */,
+				63B3FC292BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf */,
+				63B3FC2F2BB04A6600277576 /* Rubik-Italic.ttf */,
+				63B3FC282BB04A6600277576 /* Rubik-Light.ttf */,
+				63B3FC2A2BB04A6600277576 /* Rubik-LightItalic.ttf */,
+				63B3FC242BB04A6600277576 /* Rubik-Medium.ttf */,
+				63B3FC262BB04A6600277576 /* Rubik-MediumItalic.ttf */,
+				63B3FC302BB04A6600277576 /* Rubik-Regular.ttf */,
+				63B3FC272BB04A6600277576 /* Rubik-SemiBold.ttf */,
+				63B3FC312BB04A6600277576 /* Rubik-SemiBoldItalic.ttf */,
+			);
+			path = FontAssets;
+			sourceTree = "<group>";
+		};
+		63B3FC402BB04B1700277576 /* Font+ */ = {
+			isa = PBXGroup;
+			children = (
+				63B3FC412BB04B2500277576 /* FontExtension.swift */,
+			);
+			path = "Font+";
+			sourceTree = "<group>";
+		};
 		63C124C72B9EF93D000A6D35 = {
 			isa = PBXGroup;
 			children = (
@@ -224,12 +285,13 @@
 		63C124D22B9EF93D000A6D35 /* Dorocat */ = {
 			isa = PBXGroup;
 			children = (
+				63B3FC432BB04CED00277576 /* Info.plist */,
 				63AD70502BA4292D00DBD6B9 /* Features */,
 				635BD55D2B9F573D004480D1 /* Scenes */,
 				63C124E32B9EFAF1000A6D35 /* Cores */,
-				63C124E22B9EFAE6000A6D35 /* Resources */,
 				63C124E12B9EFAD5000A6D35 /* Dependencies */,
 				63C124D32B9EF93D000A6D35 /* DorocatApp.swift */,
+				63C124E22B9EFAE6000A6D35 /* Resources */,
 				635BD55F2B9F5764004480D1 /* Helpers */,
 				63C124D72B9EF93D000A6D35 /* Assets.xcassets */,
 				63C124D92B9EF93D000A6D35 /* Preview Content */,
@@ -259,6 +321,7 @@
 		63C124E22B9EFAE6000A6D35 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				63B3FC232BB04A4B00277576 /* FontAssets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -339,9 +402,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				63C124DB2B9EF93D000A6D35 /* Preview Assets.xcassets in Resources */,
+				63B3FC3A2BB04A6600277576 /* Rubik-ExtraBold.ttf in Resources */,
+				63B3FC392BB04A6600277576 /* Rubik-Bold.ttf in Resources */,
 				632721862B9F2E5C007E3206 /* .gitignore in Resources */,
+				63B3FC332BB04A6600277576 /* Rubik-BlackItalic.ttf in Resources */,
+				63B3FC382BB04A6600277576 /* Rubik-LightItalic.ttf in Resources */,
 				635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */,
+				63B3FC362BB04A6600277576 /* Rubik-Light.ttf in Resources */,
+				63B3FC342BB04A6600277576 /* Rubik-MediumItalic.ttf in Resources */,
+				63B3FC3F2BB04A6600277576 /* Rubik-SemiBoldItalic.ttf in Resources */,
 				63C124D82B9EF93D000A6D35 /* Assets.xcassets in Resources */,
+				63B3FC3C2BB04A6600277576 /* Rubik-BoldItalic.ttf in Resources */,
+				63B3FC3B2BB04A6600277576 /* Rubik-Black.ttf in Resources */,
+				63B3FC3D2BB04A6600277576 /* Rubik-Italic.ttf in Resources */,
+				63B3FC3E2BB04A6600277576 /* Rubik-Regular.ttf in Resources */,
+				63B3FC322BB04A6600277576 /* Rubik-Medium.ttf in Resources */,
+				63B3FC372BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf in Resources */,
+				63B3FC352BB04A6600277576 /* Rubik-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +447,7 @@
 				63AD705E2BA43A5900DBD6B9 /* SettingView.swift in Sources */,
 				63AD70582BA437EB00DBD6B9 /* TimerFeature.swift in Sources */,
 				6373408D2BA7478A00B2A10F /* ShoppingListItemFeature.swift in Sources */,
+				63B3FC422BB04B2500277576 /* FontExtension.swift in Sources */,
 				636E9F6A2BAD0A880006FE56 /* AddShoppingListFeature.swift in Sources */,
 				63AD70542BA429E300DBD6B9 /* DorocatFeature.swift in Sources */,
 				63AD705A2BA439D600DBD6B9 /* TimerSettingView.swift in Sources */,
@@ -511,6 +589,7 @@
 				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Dorocat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -545,6 +624,7 @@
 				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Dorocat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

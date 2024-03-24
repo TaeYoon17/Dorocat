@@ -30,7 +30,8 @@ struct DoroMainView: View {
                         Label("Setting",systemImage: "paperplane").tint(.black)
                     })
             })
-//            .tabViewStyle(.page(indexDisplayMode: .always))
+            .tabViewStyle(.page(indexDisplayMode: .always))
+            .ignoresSafeArea(.container,edges: .bottom)
         }
     }
     
