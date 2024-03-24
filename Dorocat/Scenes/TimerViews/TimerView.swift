@@ -14,23 +14,22 @@ struct TimerView: View {
         WithPerceptionTracking{
             VStack(content: {
                 HStack(content: {
-                    Text(store.timer).font(.largeTitle)
+                    Text(store.timer).font(.header01)
+                        .foregroundStyle(.grey02)
+                        .onTapGesture {
+                            print("timersetting이 눌림!!")
+                            store.send(.goTimerSetting)
+                        }
                 })
-                Button{
-                    print("timersetting이 눌림!!")
-                    store.send(.goTimerSetting)
-                }label: {
-                    Text("Go to timer setting").font(.title)
-                }
-                Button(action: {
-                    store.send(.stopTapped)
-                }, label: {
-                    Text("Stop")
-                })
+//                Button(action: {
+//                    store.send(.stopTapped)
+//                }, label: {
+//                    Text("Stop")
+//                })
             }).sheet(item: $store.scope(state: \.timerSetting, action: \.timerSetting)) { timerSettingStore in
                 NavigationStack {
                     TimerSettingView(store: timerSettingStore)
-                }
+                }.presentationDetents([.medium,.large])
             }
 //            .onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect(), perform: { _ in
 //                print("타이머가 돌아간다...")

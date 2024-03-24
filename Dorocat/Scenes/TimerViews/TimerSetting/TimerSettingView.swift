@@ -24,13 +24,13 @@ struct TimerSettingView:View {
                     HStack(content: {
                         Text("Pomodoro Mode")
                         // Custom Toggler 만들기
-                        Toggle("하이", isOn: $store.isPomodoroMode.sending(\.setPomodoroMode))
+                        Toggle("하이", isOn: $store.isPomodoroMode.sending(\.setPomodoroMode)).backgroundStyle(.blue)
                     })
                     if store.isPomodoroMode{
                         VStack(content: {
-                            fiedls().frame(height:64)
-                            Text("Short Break")
-                            Text("Long Break")
+                            fiedls(type:.cycle)
+                            fiedls(type:.shortBreak)
+                            fiedls(type: .longBreak)
                         })
                     }
                     Button(action: {
@@ -52,17 +52,43 @@ struct TimerSettingView:View {
             })
         }
     }
+}    
+enum FieldType{
+    case cycle
+    case shortBreak
+    case longBreak
+    var title:String{
+        switch self{
+        case .cycle: "Cycle"
+        case .longBreak: "Long Break"
+        case .shortBreak: "Short Break"
+        }
+    }
+    
 }
 extension TimerSettingView{
-    @ViewBuilder func fiedls() -> some View{
+    @ViewBuilder func fiedls(type:FieldType) -> some View{
+        let wow:Binding<Int> = switch type{
+        case .cycle:
+            $store.cycleTime.sending(\.setCycleTime)
+        case .longBreak:
+            $store.longBreak.sending(\.setLongBreak)
+        case .shortBreak:
+            $store.shortBreak.sending(\.setShortBreak)
+        }
         HStack(content: {
-            Text("Cycle")
+            Text(type.title)
             Spacer()
-            Picker("Cycle nums",selection: $selectedColor){
-                ForEach(1...10,id:\.self){
-                    Text("\($0)")
+            HStack {
+                Picker("Cycle nums",selection: wow ){
+                    ForEach(1...10,id:\.self){
+                        Text("\($0)").tag($0)
+                    }
+                }.pickerStyle(.wheel).frame(width: 44)
+                if type != .cycle{
+                    Text("min")
                 }
-            }.pickerStyle(.wheel).frame(width: 44)
+            }.font(.paragraph02(.bold))
         })
     }
 }

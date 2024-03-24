@@ -12,20 +12,25 @@ struct SettingView: View {
     var body: some View {
         WithPerceptionTracking{
             NavigationStack {
-                ScrollView {
-                    VStack{
-                        Text("Settings")
-                        Text("Memebership")
-                        Text("Add a widget")
-                        Text("Sound")
-                        Text("Haptics")
-                        Text("Support")
-                        Text("Rate app")
+                ZStack{
+                    Color.grey04
+                    ScrollView {
+                        VStack{
+                            Text("Settings")
+                            Text("Memebership")
+                            Text("Add a widget")
+                            Text("Sound")
+                            Text("Haptics")
+                            Text("Support")
+                            Text("Rate app")
+                        }
                     }
-                }.tint(.black)
+                }
+            }
+                .tint(.black)
                     .foregroundStyle(.black)
                     .toolbar(.hidden, for: .navigationBar)
-            }
+                    .background(.grey04)
         }
     }
 }
