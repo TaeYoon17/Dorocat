@@ -1,0 +1,73 @@
+//
+//  ViewReducers.swift
+//  Dorocat
+//
+//  Created by Developer on 3/29/24.
+//
+
+import Foundation
+import ComposableArchitecture
+extension TimerFeature{
+    func timerFieldTapped(state:inout TimerFeature.State) ->  Effect<TimerFeature.Action>{
+        switch state.timerStatus{
+        case .running:
+            return .run { send in
+                await send(.setStatus(.pause))
+            }
+        case .pause:
+            return .run { send in
+                await send(.setStatus(.running))
+            }
+        case .standBy: // standby일때 탭하면 세팅하는 화면으로 설정한다.
+            state.timerSetting = TimerSettingFeature.State()
+            return .none
+        case .completed,.shortBreak,.longBreak: return .none
+        }
+    }
+
+    func catTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
+        switch state.timerStatus{
+        case .standBy:
+            return .run { send in
+                await send(.setStatus(.running))
+            }.cancellable(id: CancelID.timer)
+        case .running: return .run { send in
+            await send(.setStatus(.pause))
+        }
+        case .pause: return .run { send in
+            await send(.setStatus(.running))
+        }
+        case .completed: return .run{ send in
+            await send(.setStatus(.standBy))
+        }
+        case .shortBreak,.longBreak: return .none
+        }
+    }
+
+    func circleTimerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
+        switch state.timerStatus{
+        case .running:
+            return .run { send in
+                await send(.setStatus(.pause))
+            }
+        default: return .none
+        }
+    }
+
+    func resetTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
+        switch state.timerStatus{
+        case .shortBreak,.longBreak,.pause: return .run{ send in
+            await send(.setStatus(.standBy))
+        }
+        default: return .none
+        }
+    }
+    func completeTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
+        switch state.timerStatus{
+        case .completed: return .run{ send in
+            await send(.setStatus(.standBy))
+        }
+        default: return .none
+        }
+    }
+}

@@ -11,7 +11,7 @@ import RealmSwift
 @Reducer struct AnalyzeFeature{
     @ObservableState struct State:Equatable{
         @Presents var addShoppingList:AddShoppingListFeature.State?
-        var shoppingLists: [ShoppingList] = []
+        var shoppingLists: IdentifiedArrayOf<ShoppingList> = []
         var path = StackState<ShoppingListItemFeature.State>()
     }
     enum Action: Equatable{
@@ -22,7 +22,7 @@ import RealmSwift
         case path(StackAction<ShoppingListItemFeature.State,ShoppingListItemFeature.Action>)
         case addShoppingList(PresentationAction<AddShoppingListFeature.Action>)
     }
-    @Dependency(\.numbersAPIClient) var apiClient
+    @DBActor @Dependency(\.dbAPIClients) var apiClient
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
@@ -33,18 +33,30 @@ import RealmSwift
                 return .none
             case .path:
                 return .none
-//            case .addShoppingList(.presented(.delegate(.appendShoppingListCompleted))): return .none
-            case .initShoppingLists:
+            case .addShoppingList(.presented(.delegate(.appendShoppingListCompleted))):
                 return .run { send in
+//                    var li:[ShoppingList] = []
+//                    for v in await apiClient.getShoppingLists(){
+//                        await li.append(ShoppingList(table: v))
+//                    }
+                    let li = await apiClient.getShoppingLists().asyncMap{ 
+                        await ShoppingList(table: $0)
+                    }
+                    await send(.updateShoppingLists(li))
+                }
+            case .initShoppingLists:
+                return .run {@DBActor send in
                     do{
-                        let rawList = try await apiClient.getShoppingLists()
-                        await send(.updateShoppingLists(rawList))
+                        try await apiClient.initRealm()
+                        let list = apiClient.getShoppingLists().map{ShoppingList(table: $0)}
+                        await send(.updateShoppingLists(list))
                     }catch{
                         fatalError("get error!!")
                     }
                 }
             case .updateShoppingLists(let list):
-                state.shoppingLists = list
+                state.shoppingLists.removeAll()
+                state.shoppingLists.append(contentsOf: list)
                 return .none
             case .addShoppingList:
                 return .none
@@ -55,5 +67,14 @@ import RealmSwift
         .ifLet(\.$addShoppingList, action: \.addShoppingList){
             AddShoppingListFeature()
         }
+    }
+}
+extension Sequence{
+    func asyncMap<T>(_ transform: (Element) async throws -> T ) async rethrows -> [T]{
+        var values = [T]()
+        for element in self{
+            try await values.append(transform(element))
+        }
+        return values
     }
 }

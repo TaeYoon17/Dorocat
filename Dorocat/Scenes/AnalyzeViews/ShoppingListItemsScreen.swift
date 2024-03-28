@@ -11,7 +11,7 @@ import ComposableArchitecture
 
 struct ShoppingListItemsScreen: View {
     @Perception.Bindable var store: StoreOf<ShoppingListItemFeature>
-    @State var shoppingList:ShoppingList = .init()
+    @State var shoppingList:ShoppingListTable = .init()
     @State private var isPresented: Bool = false
     @State private var selectedItemIds: [ObjectId] = []
     @State private var selectedCategory: String = "All"

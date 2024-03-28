@@ -10,22 +10,30 @@ import ComposableArchitecture
 
 struct TimerSettingView:View {
     @Perception.Bindable var store: StoreOf<TimerSettingFeature>
-    @State private var minutes = ""
-    @State private var selectedColor = ""
     var body: some View {
         WithPerceptionTracking{
             ScrollView {
-                VStack(alignment:.center,content: {
+                VStack(alignment: .center, content: {
                     HStack(content: {
+                        Spacer()
                         TextField("00", text: $store.time.sending(\.setTime))
+                            .font(.title)
                             .keyboardType(.numberPad)
+                            .frame(width: 120).background(.red)
+                            .font(.title)
                         Text("min")
-                    })
+                        Spacer()
+                    }).padding()
                     HStack(content: {
+                        Spacer()
                         Text("Pomodoro Mode")
                         // Custom Toggler 만들기
-                        Toggle("하이", isOn: $store.isPomodoroMode.sending(\.setPomodoroMode)).backgroundStyle(.blue)
+                        Toggle("하이", isOn: $store.isPomodoroMode.sending(\.setPomodoroMode))
+                            .backgroundStyle(.blue)
+                        Spacer()
                     })
+                    .font(.title3)
+                    .padding()
                     if store.isPomodoroMode{
                         VStack(content: {
                             fiedls(type:.cycle)
@@ -39,20 +47,11 @@ struct TimerSettingView:View {
                         Text("Done")
                     })
                 })
+                .padding()
             }
-            .padding(.horizontal)
-            .toolbar(content: {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        store.send(.cancelTapped)
-                    }, label: {
-                        Text("Cancel")
-                    })
-                }
-            })
         }
     }
-}    
+}
 enum FieldType{
     case cycle
     case shortBreak
@@ -89,7 +88,7 @@ extension TimerSettingView{
                     Text("min")
                 }
             }.font(.paragraph02(.bold))
-        })
+        }).frame(height:66).background(.yellow)
     }
 }
 struct CustomPicker:View{

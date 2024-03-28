@@ -10,7 +10,6 @@ import ComposableArchitecture
 import RealmSwift
 struct AnalyzeView: View {
     @Perception.Bindable var store: StoreOf<AnalyzeFeature>
-    @ObservedResults(ShoppingList.self) var shoppingLists
     var body: some View {
         WithPerceptionTracking {
             NavigationStack(path: $store.scope(state: \.path,action: \.path)) {
@@ -27,7 +26,7 @@ struct AnalyzeView: View {
                         }
                     }
                     Section {
-                        ForEach(shoppingLists, id: \.id) { shoppingList in
+                        ForEach(store.shoppingLists, id: \.id) { shoppingList in
                             NavigationLink(state: ShoppingListItemFeature.State()) {
                                 VStack(alignment: .leading) {
                                     Text(shoppingList.title)
@@ -35,11 +34,12 @@ struct AnalyzeView: View {
                                         .opacity(0.4)
                                 }
                             }
-                        }.onDelete(perform: $shoppingLists.remove)
+                        }
+//                        .onDelete(perform: $shoppingLists.remove)
                     }
                 }
                 .onAppear(){
-                    self.store.send(.initShoppingLists)
+                        self.store.send(.initShoppingLists)
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {

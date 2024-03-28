@@ -18,12 +18,13 @@ import ComposableArchitecture
         case addShoppingListTapped
         case setTitle(String)
         case setAddress(String)
+        case delegate(Delegate)
         enum Delegate: Equatable{
             case appendShoppingListCompleted
         }
     }
     @Dependency(\.dismiss) var dismiss
-    @DBActor @Dependency(\.numbersAPIClient) var api
+    @DBActor @Dependency(\.dbAPIClients) var api
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
@@ -34,7 +35,7 @@ import ComposableArchitecture
                 state.address = address
                 return .none
             case .addShoppingListTapped:
-                let shoppingList = ShoppingList()
+                let shoppingList = ShoppingListTable()
                 shoppingList.title = state.title
                 shoppingList.address = state.address
                 state.title = ""
@@ -45,10 +46,10 @@ import ComposableArchitecture
                     }catch{
                         print("append shoppinglist error")
                     }
-//                    await send(.delegate(.appendShoppingListCompleted))
+                    await send(.delegate(.appendShoppingListCompleted))
                     await self.dismiss()
                 }
-//            case .delegate: return .none
+            case .delegate: return .none
             }
         }
     }
