@@ -21,7 +21,10 @@ extension TimerFeature{
         }
         case .standBy: // standby일때 탭하면 세팅하는 화면으로 설정한다.
             state.timerSetting = TimerSettingFeature.State()
-            return .none
+            return .run {[info = state.timerInformation] send in
+                print(info)
+                await send(.timerSetting(.presented(.setDefaultValues(info))))
+            }
         default: return .none
         }
     }

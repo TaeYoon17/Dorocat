@@ -60,7 +60,6 @@ import ComposableArchitecture
                     return .none
                 }
             case .setAppState(let appState):
-                print("AppState state... \(appState)")
                 let prevState = state.appState
                 state.appState = appState
                 switch appState{
@@ -70,7 +69,7 @@ import ComposableArchitecture
                 }
                 case .inActive:
                     if prevState == .background{ // 현재 시간과 background 시간 비교...
-                        return onAppearEffect
+                        return diskToMemory
                     }else{
             // 현재 진행상황 저장 - background로 이동시 무조건 타이머 상태는 pause가 되도록 설정한다.
                         let prevStatus = state.timerStatus
@@ -94,10 +93,9 @@ import ComposableArchitecture
                     }
                 }.cancellable(id: CancelID.timer)
             case .initAction:
-                print("initAction")
                 if !state.isAppLaunched {
                     state.isAppLaunched = true
-                    return onAppearEffect
+                    return diskToMemory
                 }else{ return .none }
             case .setDefaultValues(let value):
                 guard let info = value.information else {
@@ -116,35 +114,6 @@ import ComposableArchitecture
         }
         .ifLet(\.$timerSetting, action: \.timerSetting){
             TimerSettingFeature()
-        }
-    }
-}
-extension TimerFeature{
-    var onAppearEffect:Effect<TimerFeature.Action>{
-        .run { send in
-            // 시간 설정
-            guard let prevDate = await timeBackground.date else {return }
-            let difference = Int(Date().timeIntervalSince(prevDate))
-            await timeBackground.set(date: nil)
-            let prevStatus = await timeBackground.timerStatus
-            let savedValues = await pomoDefaults.getAll()
-            await send(.setDefaultValues(savedValues))
-            switch (prevStatus,savedValues.status){
-            case (_,.completed),(_,.standBy): break
-            case (_,.focus),(_,.longBreak),(_,.shortBreak): fatalError("왜 돌아가...")
-            case (.pause,.pause): break
-            case (.focus,.pause(.focusPause)):
-                let restTime = savedValues.count - difference
-                if restTime > 0{
-                    await send(.setStatus(.focus, isRequiredSetTimer: false))
-                    await send(.setTimerRunning(restTime))
-                }else{
-                    await send(.setStatus(.completed))
-                }
-            case (.shortBreak,.pause(.shortBreakPause)): break
-            case (.longBreak,.pause(.longBreakPause)): break
-            default: print("알 수 없는 상태 \(prevStatus) \(savedValues.status)")
-            }
         }
     }
 }

@@ -13,15 +13,24 @@ struct TimerSettingFeature{
     @ObservableState struct State: Equatable{
         var time:String = ""
         var isPomodoroMode: Bool = false
-        var cycleTime:Int = 0
-        var shortBreak:Int = 0
-        var longBreak:Int = 0
+        var cycleTime:Int = 1
+        var shortBreak:Int = 1
+        var longBreak:Int = 1
         var timerInfo = TimerInformation()
+//        init(info:TimerInformation){
+//            self.isPomodoroMode = info.isPomoMode
+//            self.cycleTime = info.cycle
+//            self.shortBreak = info.shortBreak
+//            self.longBreak = info.longBreak
+//            self.timerInfo = info
+//            self.time = "\(info.timeSeconds / 60)"
+//        }
     }
     
     enum Action:Equatable{ // 키패드 접근을 어떻게 할 것인지...
         // View Action...
         case doneTapped
+        case setDefaultValues(TimerInformation)
         case setTime(String)
         case setPomodoroMode(Bool)
         case setCycleTime(Int)
@@ -65,6 +74,15 @@ struct TimerSettingFeature{
                 state.timerInfo.longBreak = num
                 return .none
             case .delegate: return .none
+            case .setDefaultValues(let info):
+                state.timerInfo = info
+                state.cycleTime = info.cycle
+                state.isPomodoroMode = info.isPomoMode
+                state.longBreak = info.longBreak
+                state.shortBreak = info.shortBreak
+                state.time = "\(info.timeSeconds)"
+//                "\(info.timeSeconds / 60)"
+                return .none
             }
         }
     }
