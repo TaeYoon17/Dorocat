@@ -19,6 +19,10 @@ extension TimerFeature{
         var timer:String {
             "\(count / 60 < 10 ? "0" : "")\(count / 60) : \((count % 60) < 10 ? "0":"")\(count % 60)"
         }
+        var cycleNote:String{
+            "\(cycle) / \(timerInformation.cycle)"
+        }
         @Presents var timerSetting: TimerSettingFeature.State?
+        var appState = DorocatFeature.AppStateType.active
     }
 }

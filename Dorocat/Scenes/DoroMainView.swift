@@ -36,7 +36,6 @@ struct DoroMainView: View {
                 .ignoresSafeArea(.container,edges: .bottom)
                 Text("one two three")
             }
-            .background(.grey04)
         }
     }
     

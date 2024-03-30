@@ -50,6 +50,7 @@ struct TimerSettingFeature{
                 return .none
             case .setPomodoroMode(let isPomodoro):
                 state.isPomodoroMode = isPomodoro
+                state.timerInfo.isPomoMode = isPomodoro
                 return .none
             case .setCycleTime(let num):
                 state.cycleTime = num

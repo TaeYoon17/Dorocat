@@ -9,6 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 struct TimerView: View {
     @Perception.Bindable var store: StoreOf<TimerFeature>
+    @Environment(\.scenePhase) var phase
     var body: some View {
         WithPerceptionTracking{
             VStack(content: {
@@ -21,23 +22,33 @@ struct TimerView: View {
                         Text("Well done!").font(.title2).bold()
                         Text("You've completed successfully")
                         Text("2h 30m")
-                    }
+                    }.background(.yellow)
                 }
+                if store.timerInformation.isPomoMode{
+                    Text(store.cycleNote).font(.title2).bold().background(.blue)
+                }
+
                 doroCat
-                if store.timerStatus == .running{
+                if store.timerStatus == .pomoing{
                     circleTimer
                 }
                 switch store.timerStatus{
-                case .standBy,.running,.pause: numberFieldTimer
+                case .standBy,.pomoing,.pause: numberFieldTimer
                 case .completed: completeBtn
                 case .shortBreak:
                     VStack {
                         Text("Short Break")
+                            .font(.title2)
+                            .padding()
+                            .background(.white)
                         numberFieldTimer
                     }
                 case .longBreak:
                     VStack {
                         Text("Long Break")
+                            .font(.title2)
+                            .padding()
+                            .background(.white)
                         numberFieldTimer
                     }
                 }
@@ -81,7 +92,7 @@ extension TimerView{
         Button(action: {
             store.send(.catTapped)
         }, label: {
-            Text("고양이").font(.title)
+            Text("고양이").font(.largeTitle)
         })
     }
     var resetBtn: some View{

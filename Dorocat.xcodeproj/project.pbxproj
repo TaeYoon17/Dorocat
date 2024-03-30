@@ -58,6 +58,7 @@
 		63C124DB2B9EF93D000A6D35 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C124DA2B9EF93D000A6D35 /* Preview Assets.xcassets */; };
 		63C969EE2B9FD509004E79C6 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 63C969ED2B9FD509004E79C6 /* Realm */; };
 		63C969F02B9FD509004E79C6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 63C969EF2B9FD509004E79C6 /* RealmSwift */; };
+		63E63AB42BB709EA00A601E3 /* TimeBackgroundDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E63AB32BB709EA00A601E3 /* TimeBackgroundDependency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,7 @@
 		63C124D32B9EF93D000A6D35 /* DorocatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DorocatApp.swift; sourceTree = "<group>"; };
 		63C124D72B9EF93D000A6D35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63C124DA2B9EF93D000A6D35 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		63E63AB32BB709EA00A601E3 /* TimeBackgroundDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBackgroundDependency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,10 +161,11 @@
 		635BD55D2B9F573D004480D1 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				63C124D32B9EF93D000A6D35 /* DorocatApp.swift */,
+				63AD70552BA42A6E00DBD6B9 /* DoroMainView.swift */,
 				63A9C3FE2BA5E2CA0076D42C /* AnalyzeViews */,
 				63AD705C2BA43A4F00DBD6B9 /* SettingViews */,
 				63AD705B2BA43A3C00DBD6B9 /* TimerViews */,
-				63AD70552BA42A6E00DBD6B9 /* DoroMainView.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -339,7 +342,6 @@
 				635BD55D2B9F573D004480D1 /* Scenes */,
 				63C124E32B9EFAF1000A6D35 /* Cores */,
 				63C124E12B9EFAD5000A6D35 /* Dependencies */,
-				63C124D32B9EF93D000A6D35 /* DorocatApp.swift */,
 				63C124E22B9EFAE6000A6D35 /* Resources */,
 				635BD55F2B9F5764004480D1 /* Helpers */,
 				63C124D72B9EF93D000A6D35 /* Assets.xcassets */,
@@ -361,6 +363,7 @@
 		63C124E12B9EFAD5000A6D35 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				63E63AB22BB709C100A601E3 /* TimeBackgroundDependencies */,
 				635C9D3B2BB082A600BFD46D /* PomoDependencies */,
 				6373407E2BA743CD00B2A10F /* DBDependencies */,
 				63A9C3F52BA574830076D42C /* TimerDependency.swift */,
@@ -381,6 +384,14 @@
 			children = (
 			);
 			path = Cores;
+			sourceTree = "<group>";
+		};
+		63E63AB22BB709C100A601E3 /* TimeBackgroundDependencies */ = {
+			isa = PBXGroup;
+			children = (
+				63E63AB32BB709EA00A601E3 /* TimeBackgroundDependency.swift */,
+			);
+			path = TimeBackgroundDependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -479,6 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63E63AB42BB709EA00A601E3 /* TimeBackgroundDependency.swift in Sources */,
 				63AD70522BA4297300DBD6B9 /* TimerView.swift in Sources */,
 				63AD70622BA43EB800DBD6B9 /* SettingFeature.swift in Sources */,
 				637340892BA7463200B2A10F /* CategoryFilterView.swift in Sources */,

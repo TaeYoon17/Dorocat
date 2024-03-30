@@ -10,14 +10,15 @@ import ComposableArchitecture
 extension TimerFeature{
     func timerFieldTapped(state:inout TimerFeature.State) ->  Effect<TimerFeature.Action>{
         switch state.timerStatus{
-        case .running:
+        case .pomoing:
             return .run { send in
                 await send(.setStatus(.pause))
             }
         case .pause:
-            return .run { send in
-                await send(.setStatus(.running))
-            }
+            return .run {[count = state.count] send in
+            await send(.setStatus(.pomoing,isRequiredSetTimer: false))
+            await send(.setTimerRunning(count))
+        }
         case .standBy: // standby일때 탭하면 세팅하는 화면으로 설정한다.
             state.timerSetting = TimerSettingFeature.State()
             return .none
@@ -29,13 +30,15 @@ extension TimerFeature{
         switch state.timerStatus{
         case .standBy:
             return .run { send in
-                await send(.setStatus(.running))
-            }.cancellable(id: CancelID.timer)
-        case .running: return .run { send in
+                await send(.setStatus(.pomoing))
+            }
+        case .pomoing: return .run { send in
             await send(.setStatus(.pause))
         }
-        case .pause: return .run { send in
-            await send(.setStatus(.running))
+        case .pause: 
+            return .run {[count = state.count] send in
+            await send(.setStatus(.pomoing,isRequiredSetTimer: false))
+            await send(.setTimerRunning(count))
         }
         case .completed: return .run{ send in
             await send(.setStatus(.standBy))
@@ -46,7 +49,7 @@ extension TimerFeature{
 
     func circleTimerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         switch state.timerStatus{
-        case .running:
+        case .pomoing:
             return .run { send in
                 await send(.setStatus(.pause))
             }
