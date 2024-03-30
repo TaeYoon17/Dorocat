@@ -26,6 +26,9 @@
 		637340892BA7463200B2A10F /* CategoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637340882BA7463200B2A10F /* CategoryFilterView.swift */; };
 		6373408B2BA7464700B2A10F /* ShoppingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6373408A2BA7464700B2A10F /* ShoppingItemCell.swift */; };
 		6373408D2BA7478A00B2A10F /* ShoppingListItemFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6373408C2BA7478A00B2A10F /* ShoppingListItemFeature.swift */; };
+		6373504C2BB7E3AE00221F20 /* TimeFeature+TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6373504B2BB7E3AE00221F20 /* TimeFeature+TimerStatus.swift */; };
+		6373504E2BB7E3E500221F20 /* TimerFeature+TimerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6373504D2BB7E3E500221F20 /* TimerFeature+TimerInformation.swift */; };
+		637350512BB7EEE300221F20 /* BackgroundLogicReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637350502BB7EEE300221F20 /* BackgroundLogicReducers.swift */; };
 		63A9C3F62BA574830076D42C /* TimerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3F52BA574830076D42C /* TimerDependency.swift */; };
 		63A9C3F92BA5A3F10076D42C /* NumberPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3F82BA5A3F10076D42C /* NumberPickerView.swift */; };
 		63A9C3FD2BA5E21A0076D42C /* AnalyzeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3FC2BA5E21A0076D42C /* AnalyzeFeature.swift */; };
@@ -80,6 +83,10 @@
 		637340882BA7463200B2A10F /* CategoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterView.swift; sourceTree = "<group>"; };
 		6373408A2BA7464700B2A10F /* ShoppingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemCell.swift; sourceTree = "<group>"; };
 		6373408C2BA7478A00B2A10F /* ShoppingListItemFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListItemFeature.swift; sourceTree = "<group>"; };
+		6373504A2BB7D5B600221F20 /* TimeFeature 기능 명세.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "TimeFeature 기능 명세.md"; sourceTree = "<group>"; };
+		6373504B2BB7E3AE00221F20 /* TimeFeature+TimerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeFeature+TimerStatus.swift"; sourceTree = "<group>"; };
+		6373504D2BB7E3E500221F20 /* TimerFeature+TimerInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerFeature+TimerInformation.swift"; sourceTree = "<group>"; };
+		637350502BB7EEE300221F20 /* BackgroundLogicReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundLogicReducers.swift; sourceTree = "<group>"; };
 		63A9C3F52BA574830076D42C /* TimerDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDependency.swift; sourceTree = "<group>"; };
 		63A9C3F82BA5A3F10076D42C /* NumberPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPickerView.swift; sourceTree = "<group>"; };
 		63A9C3FC2BA5E21A0076D42C /* AnalyzeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeFeature.swift; sourceTree = "<group>"; };
@@ -132,10 +139,12 @@
 		632F89372BB56E0900F2DC0B /* TimerFeature */ = {
 			isa = PBXGroup;
 			children = (
+				6373504F2BB7E3EF00221F20 /* Models */,
 				632F89422BB5C49600F2DC0B /* Reducers */,
 				63AD70572BA437EB00DBD6B9 /* TimerFeature.swift */,
 				632F89382BB5716400F2DC0B /* TimerFeature+State.swift */,
 				632F893A2BB5717D00F2DC0B /* TimerFeature+Action.swift */,
+				6373504A2BB7D5B600221F20 /* TimeFeature 기능 명세.md */,
 			);
 			path = TimerFeature;
 			sourceTree = "<group>";
@@ -154,6 +163,7 @@
 			children = (
 				632F89432BB5C49E00F2DC0B /* ViewReducers.swift */,
 				632F89452BB5C52300F2DC0B /* TimerLogicReducers.swift */,
+				637350502BB7EEE300221F20 /* BackgroundLogicReducers.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -203,6 +213,15 @@
 				637340822BA7449F00B2A10F /* ShoppingItem.swift */,
 			);
 			path = Tables;
+			sourceTree = "<group>";
+		};
+		6373504F2BB7E3EF00221F20 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6373504B2BB7E3AE00221F20 /* TimeFeature+TimerStatus.swift */,
+				6373504D2BB7E3E500221F20 /* TimerFeature+TimerInformation.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		63A9C3F72BA5A3E30076D42C /* CustomUIs */ = {
@@ -493,6 +512,8 @@
 				63E63AB42BB709EA00A601E3 /* TimeBackgroundDependency.swift in Sources */,
 				63AD70522BA4297300DBD6B9 /* TimerView.swift in Sources */,
 				63AD70622BA43EB800DBD6B9 /* SettingFeature.swift in Sources */,
+				6373504E2BB7E3E500221F20 /* TimerFeature+TimerInformation.swift in Sources */,
+				6373504C2BB7E3AE00221F20 /* TimeFeature+TimerStatus.swift in Sources */,
 				637340892BA7463200B2A10F /* CategoryFilterView.swift in Sources */,
 				63A9C4002BA5E2D60076D42C /* AnalyzeView.swift in Sources */,
 				636E9F662BA818000006FE56 /* DBActor.swift in Sources */,
@@ -513,6 +534,7 @@
 				63AD705E2BA43A5900DBD6B9 /* SettingView.swift in Sources */,
 				63AD70582BA437EB00DBD6B9 /* TimerFeature.swift in Sources */,
 				6373408D2BA7478A00B2A10F /* ShoppingListItemFeature.swift in Sources */,
+				637350512BB7EEE300221F20 /* BackgroundLogicReducers.swift in Sources */,
 				632F89462BB5C52300F2DC0B /* TimerLogicReducers.swift in Sources */,
 				63B3FC422BB04B2500277576 /* FontExtension.swift in Sources */,
 				636E9F6A2BAD0A880006FE56 /* AddShoppingListFeature.swift in Sources */,

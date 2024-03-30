@@ -27,13 +27,12 @@ struct TimerView: View {
                 if store.timerInformation.isPomoMode{
                     Text(store.cycleNote).font(.title2).bold().background(.blue)
                 }
-
                 doroCat
-                if store.timerStatus == .pomoing{
+                if store.timerStatus == .focus{
                     circleTimer
                 }
                 switch store.timerStatus{
-                case .standBy,.pomoing,.pause: numberFieldTimer
+                case .standBy,.focus,.pause: numberFieldTimer
                 case .completed: completeBtn
                 case .shortBreak:
                     VStack {
@@ -56,6 +55,9 @@ struct TimerView: View {
             .sheet(item: $store.scope(state: \.timerSetting, action: \.timerSetting)) { timerSettingStore in
                 TimerSettingView(store: timerSettingStore)
                     .presentationDetents([.medium,.large])
+            }
+            .onAppear(){
+                store.send(.initAction)
             }
         }
     }

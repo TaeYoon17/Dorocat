@@ -8,23 +8,6 @@
 import Foundation
 import ComposableArchitecture
 
-enum TimerFeatureStatus{
-    case standBy
-    case pomoing
-    case pause
-    case completed
-    case shortBreak
-    case longBreak
-}
-
-struct TimerInformation:Codable,Equatable{
-    var timeSeconds: Int = 0
-    var cycle: Int = 0
-    var shortBreak: Int = 0
-    var longBreak: Int = 0
-    var isPomoMode = false
-    
-}
 // MARK: -- Dorocat Tab과 Feature를 완전히 분리해서 구현해보기
 @Reducer struct TimerFeature{
     enum CancelID { case timer }
@@ -36,6 +19,8 @@ struct TimerInformation:Codable,Equatable{
         case resetTapped
         case completeTapped
         // 내부 로직 Action
+        case initAction
+        case setDefaultValues(PomoValues)
         case setTimerRunning(Int)
         case timerTick
         case setStatus(TimerFeatureStatus,isRequiredSetTimer: Bool = true)
@@ -55,15 +40,15 @@ struct TimerInformation:Codable,Equatable{
             case .completeTapped: return self.completeTapped(state: &state)
                 // 화면 전환 Action 처리
             case .timerSetting(.presented(.delegate(.cancel))):
-                state.timerSetting = nil
+                //                state.timerSetting = nil
                 return .none
             case .timerSetting(.presented(.delegate(.setTimerInfo(let info)))):
-                state.timerInformation = info
-                state.cycle = 0
-                state.shortBreak = info.shortBreak
-                state.longBreak = info.longBreak
-                state.count = info.timeSeconds
-                return .none
+                let count = info.timeSeconds
+                let pomoValues = PomoValues(status: state.timerStatus, information: info, cycle: 0, count: count)
+                return .run { send in
+                    await send(.setDefaultValues(pomoValues))
+                    await pomoDefaults.setAll(pomoValues)
+                }
             case .timerSetting: return .none
             case .timerTick: return self.timerTick(state: &state)
                 // 내부 로직 Action 처리
@@ -75,67 +60,30 @@ struct TimerInformation:Codable,Equatable{
                     return .none
                 }
             case .setAppState(let appState):
-                print("state 전파...")
+                print("AppState state... \(appState)")
                 let prevState = state.appState
                 state.appState = appState
                 switch appState{
-                case .active:
-                    // background 시간 없애기
+                case .active:// background 시간 없애주기...
                     return .run { send in
                         await timeBackground.set(date: nil)
-                    }
+                }
                 case .inActive:
-                    if prevState == .background{
-                        // 현재 시간과 background 시간 비교...
-                        let prevTimerState = state.timerStatus
-                        let prevCount = state.count
-                        let prevCycle = state.cycle
-                        let isPomo = state.timerInformation.isPomoMode
-                        let targetCycle = state.timerInformation.cycle
-                        let targetLongBreak = state.timerInformation.longBreak
+                    if prevState == .background{ // 현재 시간과 background 시간 비교...
+                        return onAppearEffect
+                    }else{
+            // 현재 진행상황 저장 - background로 이동시 무조건 타이머 상태는 pause가 되도록 설정한다.
+                        let prevStatus = state.timerStatus
+                        let pauseStatus = TimerFeatureStatus.getPause(state.timerStatus) ?? state.timerStatus
+                        let values = PomoValues(status: pauseStatus, information: state.timerInformation, cycle: state.cycle, count: state.count)
                         return .run { send in
-                            guard let prevDate = await timeBackground.date else {return }
-                            let difference = Int(Date().timeIntervalSince(prevDate))
-                            await timeBackground.set(date: nil)
-                            print("timeBackground 실행해보기 \(difference)")
-//                            let resetTime = difference - prevCount
-                            if prevCount - difference >= 0 {
-                                await send(.setTimerRunning(prevCount - difference))
-                            }else{
-                                if isPomo{
-                                    let restCount = difference - prevCount
-                                    var nowCycle = prevCycle + 1
-                                    if nowCycle >= targetCycle{ // 사이클 자체를 다 돌았다...
-                                        let isCompletedLongBreak = targetLongBreak - restCount <= 0
-                                        if isCompletedLongBreak{
-                                            await send(.setStatus(.completed))
-                                        }else{
-                                            await send(.setStatus(.longBreak, isRequiredSetTimer: false))
-                                            await send(.setTimerRunning(targetLongBreak - restCount))
-                                        }
-                                    }else{
-                                        let restCycle = targetCycle - nowCycle
-                                        
-                                    }
-                                }else{
-                                    await send(.setStatus(.completed))
-                                }
-                            }
-                        }
-                    }
-                    print("inActive")
-                    // background 시간 없애기
-                    return .run { send in
-                        await timeBackground.set(date: nil)
-                    }
-                case .background:
-                    print("background")
-                    return Effect.concatenate([
-                        .cancel(id:CancelID.timer),
-                        .run { send in
                             await timeBackground.set(date: Date())
+                            await timeBackground.set(timerStatus: prevStatus)
+                            await send(.setStatus(pauseStatus, isRequiredSetTimer: true))
+                            await pomoDefaults.setAll(values)
                         }
-                    ])
+                    }
+                case .background: return .none
                 }
             case .setTimerRunning(let count):
                 state.count = count
@@ -145,10 +93,58 @@ struct TimerInformation:Codable,Equatable{
                         await send(.timerTick)
                     }
                 }.cancellable(id: CancelID.timer)
+            case .initAction:
+                print("initAction")
+                if !state.isAppLaunched {
+                    state.isAppLaunched = true
+                    return onAppearEffect
+                }else{ return .none }
+            case .setDefaultValues(let value):
+                guard let info = value.information else {
+                    state.timerInformation = TimerInformation.defaultCreate()
+                    state.count = 25 * 60
+                    state.timerStatus = value.status
+                    state.cycle = value.cycle
+                    return .none
+                }
+                state.timerInformation = info
+                state.count = value.count
+                state.cycle = value.cycle
+                state.timerStatus = value.status
+                return .none
             }
         }
         .ifLet(\.$timerSetting, action: \.timerSetting){
             TimerSettingFeature()
+        }
+    }
+}
+extension TimerFeature{
+    var onAppearEffect:Effect<TimerFeature.Action>{
+        .run { send in
+            // 시간 설정
+            guard let prevDate = await timeBackground.date else {return }
+            let difference = Int(Date().timeIntervalSince(prevDate))
+            await timeBackground.set(date: nil)
+            let prevStatus = await timeBackground.timerStatus
+            let savedValues = await pomoDefaults.getAll()
+            await send(.setDefaultValues(savedValues))
+            switch (prevStatus,savedValues.status){
+            case (_,.completed),(_,.standBy): break
+            case (_,.focus),(_,.longBreak),(_,.shortBreak): fatalError("왜 돌아가...")
+            case (.pause,.pause): break
+            case (.focus,.pause(.focusPause)):
+                let restTime = savedValues.count - difference
+                if restTime > 0{
+                    await send(.setStatus(.focus, isRequiredSetTimer: false))
+                    await send(.setTimerRunning(restTime))
+                }else{
+                    await send(.setStatus(.completed))
+                }
+            case (.shortBreak,.pause(.shortBreakPause)): break
+            case (.longBreak,.pause(.longBreakPause)): break
+            default: print("알 수 없는 상태 \(prevStatus) \(savedValues.status)")
+            }
         }
     }
 }

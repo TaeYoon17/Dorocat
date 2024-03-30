@@ -14,7 +14,7 @@ extension TimerFeature{
             state.cycle = 0
             state.count = state.timerInformation.timeSeconds
             return .none
-        case .pomoing:
+        case .focus:
             state.count = state.timerInformation.timeSeconds
             return .run {[count = state.timerInformation.timeSeconds] send in
                 await send(.setTimerRunning(count))
@@ -45,7 +45,7 @@ extension TimerFeature{
             return .none
         }else{
             switch state.timerStatus{
-            case .pomoing:
+            case .focus:
                 state.cycle += 1
                 // trigger 역할을 수행한다.
                 let cycleEffect:Effect<TimerFeature.Action> = state.cycle >= state.timerInformation.cycle ?
@@ -72,7 +72,7 @@ extension TimerFeature{
                 return Effect.concatenate([
                     .cancel(id: CancelID.timer),
                     .run { send in
-                        await send(.setStatus(.pomoing))
+                        await send(.setStatus(.focus))
                     }
                 ])
             default: return .cancel(id: CancelID.timer)
@@ -80,7 +80,7 @@ extension TimerFeature{
         }
     }
     private func defaultTick(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
-        guard state.timerStatus == .pomoing else{ return .cancel(id: CancelID.timer)}
+        guard state.timerStatus == .focus else{ return .cancel(id: CancelID.timer)}
         let num = state.count - 1
         if num > 0{
             state.count = num

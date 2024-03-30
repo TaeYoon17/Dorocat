@@ -37,7 +37,7 @@ struct DorocatFeature{
             case .pageMove(let type):
                 state.pageSelection = type
                 return .none
-            case .timer:return .none
+            case .timer: return .none
             case .analyze:return .none
             case .setting: return .none
             case .setAppState(let appState):
