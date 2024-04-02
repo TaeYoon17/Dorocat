@@ -32,6 +32,7 @@ extension TimerFeature{
     func catTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         switch state.timerStatus{
         case .standBy:
+            guard state.count != 0 else {return .none}
             return .run { send in
                 await send(.setStatus(.focus))
             }

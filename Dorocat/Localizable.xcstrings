@@ -43,6 +43,9 @@
     "Hello world" : {
 
     },
+    "Left" : {
+
+    },
     "Long Break" : {
 
     },
@@ -70,6 +73,9 @@
     "Reset" : {
 
     },
+    "Right" : {
+
+    },
     "Save" : {
 
     },
@@ -85,7 +91,13 @@
     "Sound" : {
 
     },
+    "Start" : {
+
+    },
     "Support" : {
+
+    },
+    "Tap to change timer" : {
 
     },
     "Timer" : {

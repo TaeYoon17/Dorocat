@@ -17,14 +17,6 @@ struct TimerSettingFeature{
         var shortBreak:Int = 1
         var longBreak:Int = 1
         var timerInfo = TimerInformation()
-//        init(info:TimerInformation){
-//            self.isPomodoroMode = info.isPomoMode
-//            self.cycleTime = info.cycle
-//            self.shortBreak = info.shortBreak
-//            self.longBreak = info.longBreak
-//            self.timerInfo = info
-//            self.time = "\(info.timeSeconds / 60)"
-//        }
     }
     
     enum Action:Equatable{ // 키패드 접근을 어떻게 할 것인지...

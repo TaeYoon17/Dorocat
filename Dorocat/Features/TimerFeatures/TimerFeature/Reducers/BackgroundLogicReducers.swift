@@ -9,7 +9,7 @@ import Foundation
 import ComposableArchitecture
 
 extension TimerFeature{
-    var diskToMemory:Effect<TimerFeature.Action>{
+    var diskTimerInfoToMemory:Effect<TimerFeature.Action>{
         .run { send in
             // 시간 설정
             guard let prevDate = await timeBackground.date else { return }

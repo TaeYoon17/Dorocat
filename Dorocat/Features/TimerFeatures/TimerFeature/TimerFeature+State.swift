@@ -11,6 +11,7 @@ extension TimerFeature{
     @ObservableState struct State: Equatable{
         var timerStatus = TimerFeatureStatus.standBy
         var timerInformation = TimerInformation() // 앱에서 설정한 정보...
+        var guideInformation = Guides()
         // 앱에서 running일 때 사용할 정보들
         var count = 0
         var cycle = 0

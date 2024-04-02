@@ -26,8 +26,10 @@ import ComposableArchitecture
         case setStatus(TimerFeatureStatus,isRequiredSetTimer: Bool = true)
         case timerSetting(PresentationAction<TimerSettingFeature.Action>)
         case setAppState(DorocatFeature.AppStateType)
+        case setGuideState(Guides)
     }
     @Dependency(\.pomoDefaults) var pomoDefaults
+    @Dependency(\.guideDefaults) var guideDefaults
     @Dependency(\.timeBackground) var timeBackground
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
@@ -69,7 +71,7 @@ import ComposableArchitecture
                 }
                 case .inActive:
                     if prevState == .background{ // 현재 시간과 background 시간 비교...
-                        return diskToMemory
+                        return diskTimerInfoToMemory
                     }else{
             // 현재 진행상황 저장 - background로 이동시 무조건 타이머 상태는 pause가 되도록 설정한다.
                         let prevStatus = state.timerStatus
@@ -95,7 +97,7 @@ import ComposableArchitecture
             case .initAction:
                 if !state.isAppLaunched {
                     state.isAppLaunched = true
-                    return diskToMemory
+                    return diskTimerInfoToMemory
                 }else{ return .none }
             case .setDefaultValues(let value):
                 guard let info = value.information else {
@@ -109,6 +111,9 @@ import ComposableArchitecture
                 state.count = value.count
                 state.cycle = value.cycle
                 state.timerStatus = value.status
+                return .none
+            case .setGuideState(let guides):
+                state.guideInformation = guides
                 return .none
             }
         }

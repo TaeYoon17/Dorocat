@@ -32,7 +32,11 @@ struct TimerView: View {
                     circleTimer
                 }
                 switch store.timerStatus{
-                case .standBy,.focus,.pause: numberFieldTimer
+                case .standBy,.focus,.pause:
+                    VStack{
+                        numberFieldTimer
+                        timerBtn
+                    }
                 case .completed: completeBtn
                 case .shortBreak:
                     VStack {
@@ -50,6 +54,19 @@ struct TimerView: View {
                             .background(.white)
                         numberFieldTimer
                     }
+                }
+            }).frame(maxWidth: .infinity)
+            .overlay(content: {
+                if store.timerStatus == .standBy{
+                    HStack {
+                        if !store.guideInformation.goLeft{
+                            Text("Left")
+                        }
+                        Spacer()
+                        if !store.guideInformation.goRight{
+                            Text("Right")
+                        }
+                    }.frame(maxWidth: .infinity).background(.yellow)
                 }
             })
             .sheet(item: $store.scope(state: \.timerSetting, action: \.timerSetting)) { timerSettingStore in
@@ -77,7 +94,16 @@ extension TimerView{
                 .onTapGesture {
                     store.send(.timerFieldTapped)
                 }
+            
         })
+        .overlay(alignment: .bottom) {
+            if store.timerStatus == .standBy{
+                Text("Tap to change timer")
+                    .font(.title2)
+                    .background(.thinMaterial)
+                    .offset(y:44)
+            }
+        }
     }
     
     var circleTimer: some View{
@@ -96,6 +122,11 @@ extension TimerView{
         }, label: {
             Text("고양이").font(.largeTitle)
         })
+    }
+    var timerBtn: some View{
+        Button("Start"){
+            print("스타트!!")
+        }
     }
     var resetBtn: some View{
         Button{
