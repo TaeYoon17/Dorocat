@@ -1,25 +1,25 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%lld" : {
+    "" : {
 
     },
-    "00" : {
+    "%lld" : {
 
     },
     "2h 30m" : {
 
     },
-    "Add a widget" : {
+    "2h 40m" : {
+
+    },
+    "3:53PM" : {
+
+    },
+    "25m" : {
 
     },
     "analyze" : {
-
-    },
-    "Analyze Title" : {
-
-    },
-    "Append Shopping Lists" : {
 
     },
     "Complete" : {
@@ -31,22 +31,31 @@
     "Done" : {
 
     },
+    "Dorocat" : {
+
+    },
     "Enter address" : {
 
     },
     "Enter title" : {
 
     },
-    "Haptics" : {
+    "H" : {
 
     },
     "Hello world" : {
 
     },
+    "Learn More" : {
+
+    },
     "Long Break" : {
 
     },
-    "Memebership" : {
+    "M" : {
+
+    },
+    "Meow..." : {
 
     },
     "min" : {
@@ -58,16 +67,19 @@
     "No items found." : {
 
     },
-    "one two three" : {
+    "Pomodoro mode" : {
 
     },
-    "Pomodoro Mode" : {
+    "Purrs" : {
 
     },
-    "Rate app" : {
+    "Remove ads and unlock all future features." : {
 
     },
     "Reset" : {
+
+    },
+    "Restore Purchases" : {
 
     },
     "Save" : {
@@ -76,19 +88,22 @@
     "Setting" : {
 
     },
-    "Settings" : {
-
-    },
     "Short Break" : {
 
     },
-    "Sound" : {
+    "Start" : {
 
     },
-    "Support" : {
+    "Terms & Privacy\n1.6.0 (2)" : {
 
     },
     "Timer" : {
+
+    },
+    "Today, Mar 22" : {
+
+    },
+    "Total Time" : {
 
     },
     "Well done!" : {
@@ -101,9 +116,6 @@
 
     },
     "원형 타이머" : {
-
-    },
-    "하이" : {
 
     }
   },

@@ -9,7 +9,9 @@ import Foundation
 import ComposableArchitecture
 @Reducer
 struct DorocatFeature{
-    enum PageType:Hashable,Equatable{
+    enum PageType:String, Hashable,Equatable,CaseIterable,Identifiable{
+        var id:String{ self.rawValue }
+        
         case analyze
         case timer
         case setting

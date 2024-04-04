@@ -42,8 +42,7 @@ extension TimerFeature{
                     fatalError("여기에는 정보가 있어야한다.")
                 }
                 await self.longBreakFocus(send, info: info, timeDiff: difference)
-            default:
-                print("알 수 없는 상태 \(prevStatus) \(savedValues.status)")
+            default: print("알 수 없는 상태 \(prevStatus) \(savedValues.status)")
             }
         }
     }

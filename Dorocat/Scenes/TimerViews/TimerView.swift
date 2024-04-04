@@ -51,10 +51,12 @@ struct TimerView: View {
                         numberFieldTimer
                     }
                 }
+                triggerBtn
             })
             .sheet(item: $store.scope(state: \.timerSetting, action: \.timerSetting)) { timerSettingStore in
                 TimerSettingView(store: timerSettingStore)
-                    .presentationDetents([.medium,.large])
+                    .presentationDetents([.fraction(0.8)])
+                    
             }
             .onAppear(){
                 store.send(.initAction)
@@ -73,7 +75,7 @@ extension TimerView{
         HStack(content: {
             Text(store.timer)
                 .font(.header01)
-                .foregroundStyle(.grey02)
+                .foregroundStyle(.white)
                 .onTapGesture {
                     store.send(.timerFieldTapped)
                 }
@@ -110,6 +112,20 @@ extension TimerView{
             store.send(.completeTapped)
         }label:{
             Text("Complete")
+        }
+    }
+    var triggerBtn: some View{
+        Button {
+            print("Hello world")
+        } label: {
+            Text("Start")
+                .padding(.vertical,19.5)
+                .padding(.horizontal,28)
+                .background(.grey04)
+                .overlay(content: {
+                    Capsule().stroke(lineWidth: 1).fill(.grey02)
+                }).shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 6)
+                
         }
     }
 }

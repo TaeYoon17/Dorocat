@@ -16,6 +16,8 @@ struct DorocatApp: App {
         WindowGroup {
             WithPerceptionTracking {   
                 DoroMainView(store: store)
+                    .background(.grey04)
+                    .preferredColorScheme(.dark)
             }
         }.onChange(of: phase) { newValue in
             switch newValue{

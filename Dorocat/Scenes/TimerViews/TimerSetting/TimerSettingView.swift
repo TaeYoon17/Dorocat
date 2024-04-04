@@ -14,41 +14,51 @@ struct TimerSettingView:View {
         WithPerceptionTracking{
             ScrollView {
                 VStack(alignment: .center, content: {
-                    HStack(content: {
-                        Spacer()
-                        TextField("00", text: $store.time.sending(\.setTime))
-                            .font(.title)
-                            .keyboardType(.numberPad)
-                            .frame(width: 120).background(.red)
-                            .font(.title)
-                        Text("min")
-                        Spacer()
-                    }).padding()
-                    HStack(content: {
-                        Spacer()
-                        Text("Pomodoro Mode")
-                        // Custom Toggler 만들기
-                        Toggle("하이", isOn: $store.isPomodoroMode.sending(\.setPomodoroMode))
-                            .backgroundStyle(.blue)
-                        Spacer()
-                    })
-                    .font(.title3)
-                    .padding()
-                    if store.isPomodoroMode{
-                        VStack(content: {
-                            fiedls(type:.cycle)
-                            fiedls(type:.shortBreak)
-                            fiedls(type: .longBreak)
+                    Rectangle().fill(.clear).frame(height:56)
+                    TimerSettingViewComponent.Field()
+//                    HStack(content: {
+//                        Spacer()
+//                        TextField("00", text: $store.time.sending(\.setTime))
+//                            .font(.title)
+//                            .keyboardType(.numberPad)
+//                            .frame(width: 120).background(.red)
+//                            .font(.title)
+//                        Text("min")
+//                        Spacer()
+//                    }).padding()
+//                    HStack(content: {
+//                        Spacer()
+//                        Text("Pomodoro Mode")
+//
+//                        // Custom Toggler 만들기
+//                        Toggle("하이", isOn: $store.isPomodoroMode.sending(\.setPomodoroMode))
+//                            .backgroundStyle(.blue)
+//                        Spacer()
+//                    })
+//                    .font(.title3)
+//                    .padding()
+                    if !store.isPomodoroMode{
+                        VStack(spacing:8,content: {
+                            TimerSettingViewComponent.ListItem(title: "Cycles Amount", type: .cycle)
+                            TimerSettingViewComponent.ListItem(title: "Break Duration", type: .breakDuration)
                         })
+                    }else{
+                        Rectangle().fill(.clear).frame(height:53)
                     }
+                    Spacer()
                     Button(action: {
                         store.send(.doneTapped)
                     }, label: {
-                        Text("Done")
+                        Text("Done").font(.paragraph02(.bold))
+                            .padding()
+                            .background(.white)
+                            .clipShape(Capsule())
+                            .foregroundStyle(.black)
                     })
                 })
                 .padding()
-            }
+            }.frame(maxWidth: .infinity)
+            .background(.grey04)
         }
     }
 }
@@ -96,3 +106,9 @@ struct CustomPicker:View{
         Text("Hello world")
     }
 }
+
+#Preview(body: {
+    TimerSettingView(store: Store(initialState: TimerSettingFeature.State(), reducer: {
+        TimerSettingFeature()
+    }))
+})

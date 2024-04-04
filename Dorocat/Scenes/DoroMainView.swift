@@ -15,6 +15,7 @@ struct DoroMainView: View {
                 TabView(selection: $store.pageSelection.sending(\.pageMove), content:  {
                     AnalyzeView(store: self.store.scope(state: \.anylzeState, action: \.analyze))
                         .tag(DorocatFeature.PageType.analyze)
+                        .background(.grey04)
                         .tabItem({
                             Label("analyze", systemImage: "pencil.circle").tint(.black)
                         })
@@ -31,9 +32,9 @@ struct DoroMainView: View {
                             Label("Setting",systemImage: "paperplane").tint(.black)
                         })
                 })
-                .tabViewStyle(.page(indexDisplayMode: .always))
+                .tabViewStyle(.page(indexDisplayMode: .never))
                 .ignoresSafeArea(.container,edges: .bottom)
-                Text("one two three")
+                PageIndicatorView(itemCount: DorocatFeature.PageType.allCases,selectedIndex: store.pageSelection)
             }
         }
     }
