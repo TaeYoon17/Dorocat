@@ -12,6 +12,8 @@
 		630285452BBD1D39009C32AE /* SettingTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630285442BBD1D39009C32AE /* SettingTitleView.swift */; };
 		630285472BBD1E1D009C32AE /* SettingListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630285462BBD1E1D009C32AE /* SettingListItem.swift */; };
 		63088F202BBEC24600BF654D /* TriggerBtnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088F1F2BBEC24600BF654D /* TriggerBtnStyle.swift */; };
+		631058892BC17A5A008611AD /* TimerViewComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631058882BC17A5A008611AD /* TimerViewComponents.swift */; };
+		6310588B2BC17D26008611AD /* TimerViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310588A2BC17D26008611AD /* TimerViewModifiers.swift */; };
 		632721862B9F2E5C007E3206 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 632721852B9F2E5C007E3206 /* .gitignore */; };
 		632F89392BB5716400F2DC0B /* TimerFeature+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89382BB5716400F2DC0B /* TimerFeature+State.swift */; };
 		632F893B2BB5717D00F2DC0B /* TimerFeature+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F893A2BB5717D00F2DC0B /* TimerFeature+Action.swift */; };
@@ -85,6 +87,8 @@
 		630285442BBD1D39009C32AE /* SettingTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTitleView.swift; sourceTree = "<group>"; };
 		630285462BBD1E1D009C32AE /* SettingListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingListItem.swift; sourceTree = "<group>"; };
 		63088F1F2BBEC24600BF654D /* TriggerBtnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerBtnStyle.swift; sourceTree = "<group>"; };
+		631058882BC17A5A008611AD /* TimerViewComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewComponents.swift; sourceTree = "<group>"; };
+		6310588A2BC17D26008611AD /* TimerViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModifiers.swift; sourceTree = "<group>"; };
 		632721852B9F2E5C007E3206 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		632F89382BB5716400F2DC0B /* TimerFeature+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerFeature+State.swift"; sourceTree = "<group>"; };
 		632F893A2BB5717D00F2DC0B /* TimerFeature+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerFeature+Action.swift"; sourceTree = "<group>"; };
@@ -174,6 +178,15 @@
 				630285462BBD1E1D009C32AE /* SettingListItem.swift */,
 			);
 			path = SettingComponents;
+			sourceTree = "<group>";
+		};
+		631058852BC17A1A008611AD /* TimerComponents */ = {
+			isa = PBXGroup;
+			children = (
+				631058882BC17A5A008611AD /* TimerViewComponents.swift */,
+				6310588A2BC17D26008611AD /* TimerViewModifiers.swift */,
+			);
+			path = TimerComponents;
 			sourceTree = "<group>";
 		};
 		632F89372BB56E0900F2DC0B /* TimerFeature */ = {
@@ -335,6 +348,7 @@
 		63AD705B2BA43A3C00DBD6B9 /* TimerViews */ = {
 			isa = PBXGroup;
 			children = (
+				631058852BC17A1A008611AD /* TimerComponents */,
 				63A9C3FA2BA5AAC20076D42C /* TimerSetting */,
 				63AD70512BA4297300DBD6B9 /* TimerView.swift */,
 			);
@@ -624,6 +638,7 @@
 				635C9D3D2BB082E400BFD46D /* PomoDependency.swift in Sources */,
 				638EAB082BBFD1C7007F8CAC /* DoroNumberPad.swift in Sources */,
 				63AD705E2BA43A5900DBD6B9 /* SettingView.swift in Sources */,
+				631058892BC17A5A008611AD /* TimerViewComponents.swift in Sources */,
 				63AD70582BA437EB00DBD6B9 /* TimerFeature.swift in Sources */,
 				63088F202BBEC24600BF654D /* TriggerBtnStyle.swift in Sources */,
 				638EAB062BBF7FDE007F8CAC /* DragGesture+Swipe.swift in Sources */,
@@ -638,6 +653,7 @@
 				63FD447B2BBC4C1100FA528F /* TimerGuideReducers.swift in Sources */,
 				63AD70542BA429E300DBD6B9 /* DorocatFeature.swift in Sources */,
 				63AD705A2BA439D600DBD6B9 /* TimerSettingView.swift in Sources */,
+				6310588B2BC17D26008611AD /* TimerViewModifiers.swift in Sources */,
 				632F89442BB5C49E00F2DC0B /* ViewReducers.swift in Sources */,
 				636E9F682BA819520006FE56 /* DBDependency.swift in Sources */,
 				637340872BA7460900B2A10F /* AddShoppingListItemScreen.swift in Sources */,
