@@ -17,7 +17,7 @@ struct TimerSettingFeature{
         var range: Range<Int>{
             switch self{
             case .cycle: Range<Int>(2...4)
-            case .breakDuration: Range<Int>(1...60)
+            case .breakDuration: Range<Int>(1...20)
             }
         }
         var title:String{
