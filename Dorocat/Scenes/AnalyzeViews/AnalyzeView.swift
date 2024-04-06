@@ -12,53 +12,34 @@ struct AnalyzeView: View {
     @Perception.Bindable var store: StoreOf<AnalyzeFeature>
     var body: some View {
         WithPerceptionTracking {
-            NavigationStack(path: $store.scope(state: \.path,action: \.path)) {
-                List {
-                    Section {
-                        HStack {
-                            Text("Append Shopping Lists")
-                            Spacer()
-                            Button {
-                                self.store.send(.addShoppingListTapped)
-                            } label: {
-                                Image(systemName: "plus")
-                            }
-                        }
-                    }
-                    Section {
-                        ForEach(store.shoppingLists, id: \.id) { shoppingList in
-                            NavigationLink(state: ShoppingListItemFeature.State()) {
-                                VStack(alignment: .leading) {
-                                    Text(shoppingList.title)
-                                    Text(shoppingList.address)
-                                        .opacity(0.4)
+//            NavigationStack {
+                ZStack{
+                    Image(.defaultBg).resizable(resizingMode: .tile)
+                    ScrollView {
+                        VStack{
+                            Rectangle().fill(.clear).frame(height:40)
+                            LazyVStack(alignment: .center, pinnedViews: [.sectionHeaders], content: {
+                                Section {
+                                    VStack(spacing:16) {
+                                        AnalyzeDurationView.Day()
+                                        VStack(spacing:8) {
+                                            ForEach(1...10, id: \.self) { count in
+                                                AnalyzeListItemView()
+                                            }
+                                        }
+                                    }.padding(.horizontal, 16)
+                                } header: {
+                                        DurationPickerView()
+                                            .padding(.vertical,8)
+                                            .background(DefaultBG())
                                 }
-                            }
+                            })
+                            Rectangle().fill(.clear).frame(height:40)
                         }
-//                        .onDelete(perform: $shoppingLists.remove)
+                        
+                        
                     }
-                }
-                .onAppear(){
-                        self.store.send(.initShoppingLists)
-                }
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            self.store.send(.addShoppingListTapped)
-                        } label: {
-                            Image(systemName: "plus")
-                        }
-                    }
-                }
-                .navigationTitle("Analyze Title")
-                .toolbar(.hidden, for: .navigationBar)
-            } destination: { store in
-                ShoppingListItemsScreen(store: store)
-            }.sheet(item: $store.scope(state: \.addShoppingList, action: \.addShoppingList), content: { addShoppingListStore in
-                NavigationStack {
-                    AddShoppingListItemScreen(store: addShoppingListStore)
-                }
-            })
+                }.toolbar(.hidden, for: .navigationBar)
         }
     }
 }

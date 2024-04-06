@@ -17,7 +17,7 @@ extension TimerFeature{
         var cycle = 0
         var isAppLaunched = false
         var timer:String {
-            "\(count / 60 < 10 ? "0" : "")\(count / 60) : \((count % 60) < 10 ? "0":"")\(count % 60)"
+            "\(count / 60 < 10 ? "0" : "")\(count / 60):\((count % 60) < 10 ? "0":"")\(count % 60)"
         }
         var cycleNote:String{
             "\(cycle) / \(timerInformation.cycle)"

@@ -32,12 +32,11 @@ struct TimerView: View {
                     circleTimer
                 }
                 switch store.timerStatus{
-                case .standBy,.focus,.pause:
-                    VStack{
-                        numberFieldTimer
-                        timerBtn
-                    }
-                case .completed: completeBtn
+                case .standBy,.focus,.pause: numberFieldTimer
+                case .completed:
+                    Button("Break"){
+                        print("Button is pressed!!")
+                    }.triggerStyle
                 case .shortBreak:
                     VStack {
                         Text("Short Break")
@@ -55,6 +54,7 @@ struct TimerView: View {
                         numberFieldTimer
                     }
                 }
+                triggerBtn
             }).frame(maxWidth: .infinity)
             .overlay(content: {
                 if store.timerStatus == .standBy{
@@ -70,8 +70,7 @@ struct TimerView: View {
                 }
             })
             .sheet(item: $store.scope(state: \.timerSetting, action: \.timerSetting)) { timerSettingStore in
-                TimerSettingView(store: timerSettingStore)
-                    .presentationDetents([.medium,.large])
+                TimerSettingView(store: timerSettingStore).presentationDetents([.large])
             }
             .onAppear(){
                 store.send(.initAction)
@@ -90,7 +89,7 @@ extension TimerView{
         HStack(content: {
             Text(store.timer)
                 .font(.header01)
-                .foregroundStyle(.grey02)
+                .foregroundStyle(.doroWhite)
                 .onTapGesture {
                     store.send(.timerFieldTapped)
                 }
@@ -121,6 +120,8 @@ extension TimerView{
             store.send(.catTapped)
         }, label: {
             Text("고양이").font(.largeTitle)
+                .frame(width: 304,height: 304)
+                .background(.yellow)
         })
     }
     var timerBtn: some View{
@@ -133,7 +134,11 @@ extension TimerView{
             store.send(.resetTapped)
         }label: {
             Text("Reset")
-                .padding().background(.white)
+                .font(.button)
+                .foregroundStyle(.doroWhite)
+                .padding()
+                .background(.grey03)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
         }
     }
     var completeBtn: some View{
@@ -143,6 +148,11 @@ extension TimerView{
             Text("Complete")
         }
     }
+    var triggerBtn: some View{
+        Button("Start"){
+            print("Button is pressed!!")
+        }.triggerStyle
+    }
 }
 // 기존 타이머 앱에서 타이머를 구현하는 방법...
 //.onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect(), perform: { _ in
@@ -150,3 +160,4 @@ extension TimerView{
 //        pomodoroModel.updateTimer()
 //    }
 //})
+

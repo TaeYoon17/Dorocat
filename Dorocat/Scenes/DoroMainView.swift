@@ -31,9 +31,9 @@ struct DoroMainView: View {
                             Label("Setting",systemImage: "paperplane").tint(.black)
                         })
                 })
-                .tabViewStyle(.page(indexDisplayMode: .always))
+                .tabViewStyle(.page(indexDisplayMode: .never))
                 .ignoresSafeArea(.container,edges: .bottom)
-                Text("one two three")
+                PageIndicatorView(itemCount: DorocatFeature.PageType.allCases,selectedIndex: store.pageSelection)
             }
         }
     }
