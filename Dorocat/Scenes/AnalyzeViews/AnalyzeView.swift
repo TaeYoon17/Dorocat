@@ -14,7 +14,7 @@ struct AnalyzeView: View {
         WithPerceptionTracking {
 //            NavigationStack {
                 ZStack{
-                    Color.grey04
+                    Image(.defaultBg).resizable(resizingMode: .tile)
                     ScrollView {
                         VStack{
                             Rectangle().fill(.clear).frame(height:40)
@@ -29,9 +29,9 @@ struct AnalyzeView: View {
                                         }
                                     }.padding(.horizontal, 16)
                                 } header: {
-                                    DurationPickerView()
-                                        .padding(.vertical,8)
-                                        .background(.grey04)
+                                        DurationPickerView()
+                                            .padding(.vertical,8)
+                                            .background(DefaultBG())
                                 }
                             })
                             Rectangle().fill(.clear).frame(height:40)
@@ -40,9 +40,6 @@ struct AnalyzeView: View {
                         
                     }
                 }.toolbar(.hidden, for: .navigationBar)
-//            }
-//            .toolbar(.hidden, for: .navigationBar)
-//            .background(.grey04)
         }
     }
 }

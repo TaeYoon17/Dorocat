@@ -1,10 +1,10 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
+    "%lld" : {
 
     },
-    "%lld" : {
+    "00" : {
 
     },
     "2h 30m" : {
@@ -20,6 +20,9 @@
 
     },
     "analyze" : {
+
+    },
+    "Break" : {
 
     },
     "Complete" : {

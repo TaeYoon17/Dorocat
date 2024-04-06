@@ -34,7 +34,7 @@ struct DurationPickerView: View{
                             .font(.paragraph02())
                             .padding(.vertical,8)
                             .padding(.horizontal,16)
-                            .foregroundStyle(type == selectedDuration ? .white : .grey01)
+                            .foregroundStyle(type == selectedDuration ? .doroWhite : .grey01)
                             .background(type == selectedDuration ? .black : .clear)
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                     })

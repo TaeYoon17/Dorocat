@@ -14,11 +14,13 @@ struct DorocatApp: App {
                       reducer: { DorocatFeature()})
     var body: some Scene {
         WindowGroup {
-            WithPerceptionTracking {   
-                DoroMainView(store: store)
-                    .background(.grey04)
-                    .preferredColorScheme(.dark)
+            WithPerceptionTracking {
+                ZStack {
+                    DefaultBG()
+                    DoroMainView(store: store)
+                }.preferredColorScheme(.dark)
             }
+//            TempView()
         }.onChange(of: phase) { newValue in
             switch newValue{
             case .active: store.send(.setAppState(.active))
@@ -27,5 +29,13 @@ struct DorocatApp: App {
             @unknown default: fatalError("이게 생기나?")
             }
         }
+    }
+}
+struct DefaultBG: View{
+    var body: some View{
+        ZStack{
+            Color.grey04
+            Image(.defaultBg).resizable(resizingMode: .tile)
+        }.ignoresSafeArea(.all,edges: .all)
     }
 }

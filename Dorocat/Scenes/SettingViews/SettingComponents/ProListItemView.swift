@@ -14,7 +14,7 @@ struct ProListItemView: View {
                 HStack(spacing:6,content: {
                     Text("Dorocat")
                         .font(.paragraph02(.bold))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.doroWhite)
                     Text("Purrs")
                         .frame(height:20)
                         .font(.paragraph03(.bold))
@@ -31,7 +31,7 @@ struct ProListItemView: View {
                     Text("Learn More")
                         .font(.paragraph03(.bold))
                         .frame(height: 20)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.doroWhite)
                         .padding(.vertical,12)
                         .padding(.horizontal,16)
                         .background(.black)

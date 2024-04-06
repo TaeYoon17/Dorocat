@@ -15,7 +15,6 @@ struct DoroMainView: View {
                 TabView(selection: $store.pageSelection.sending(\.pageMove), content:  {
                     AnalyzeView(store: self.store.scope(state: \.anylzeState, action: \.analyze))
                         .tag(DorocatFeature.PageType.analyze)
-                        .background(.grey04)
                         .tabItem({
                             Label("analyze", systemImage: "pencil.circle").tint(.black)
                         })

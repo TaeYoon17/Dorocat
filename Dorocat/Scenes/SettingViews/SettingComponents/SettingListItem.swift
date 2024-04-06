@@ -17,7 +17,7 @@ enum SettingListItem{
                 VStack(alignment:.leading) {
                     Text(title)
                         .font(.paragraph02())
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.doroWhite)
                     if let description{
                         Text(description)
                             .font(.paragraph04)
@@ -25,8 +25,7 @@ enum SettingListItem{
                     }
                 }
                 Spacer()
-                Toggle("", isOn: $isOn).frame(width: 27)
-                    .padding(.trailing,17)
+                DoroTogglerView(isOn: $isOn,toggleSize: .medium).frame(width: 50, height: 30)
             })
             .frame(height: 68)
             .padding(.leading,23)
@@ -45,7 +44,7 @@ enum SettingListItem{
             }, label: {
                 HStack(content: {
                     VStack {
-                        Text(title).font(.paragraph02()).foregroundStyle(.white)
+                        Text(title).font(.paragraph02()).foregroundStyle(.doroWhite)
                         if let description{
                             Text(description)
                                 .font(.paragraph04)

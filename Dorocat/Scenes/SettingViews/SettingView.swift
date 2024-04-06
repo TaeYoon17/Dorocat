@@ -14,8 +14,9 @@ struct SettingView: View {
         WithPerceptionTracking{
             NavigationStack {
                 ZStack{
-                    Color.grey04
+                    DefaultBG()
                     ScrollView {
+                        Rectangle().fill(.clear).frame(height:30)
                         LazyVStack(alignment: .center, pinnedViews: [.sectionHeaders], content: {
                             Section {
                                 VStack(spacing:0) {
@@ -46,13 +47,15 @@ struct SettingView: View {
                                             }
                                         }
                                     }
-                                }.padding(.horizontal,16)
+                                }
+                                .padding(.top,8)
+                                .padding(.horizontal,16)
                             } header: {
                                 SettingTitleView()
+                                    .padding(.top,4)
                                     .padding(.horizontal,16)
-                                    .padding(.top,34)
-                                    .padding(.bottom,16)
-                                    .background(.grey04)
+                                    .padding(.bottom,8)
+                                    .background(DefaultBG())
                             }
                         })
                     }

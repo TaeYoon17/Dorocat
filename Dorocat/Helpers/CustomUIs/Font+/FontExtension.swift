@@ -9,8 +9,9 @@ import SwiftUI
 
 extension Font{
     static var header01:Self { .custom("Rubik-Regular", size: 86) }
-    static var header02: Self { .custom("Rubik-Regular", size: 36) }
-    static var header03: Self { .custom("Rubik-Regular", size: 24) }
+    static var header02: Self { .custom("Rubik-Regular", size: 56) }
+    static var header03: Self { .custom("Rubik-Regular", size: 36) }
+    static var header04: Self { .custom("Rubik-Regular", size: 24) }
     static var button: Self { .custom("Rubik-Medium", size: 18) }
     static func paragraph02(_ weight: FontWeight = .regular) -> Self {
         return switch weight{

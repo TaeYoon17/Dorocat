@@ -32,8 +32,8 @@ enum AnalyzeDurationView{
                     VStack(alignment:.leading,spacing:4) {
                         Text("Total Time").font(.paragraph04).foregroundStyle(.grey02)
                         Text("2h 40m")
-                            .font(.header02)
-                            .foregroundStyle(.white)
+                            .font(.header03)
+                            .foregroundStyle(.doroWhite)
                     }
                     Spacer()
                 }).padding(.bottom,4)

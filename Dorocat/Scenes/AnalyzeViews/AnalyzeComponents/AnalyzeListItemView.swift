@@ -13,7 +13,7 @@ struct AnalyzeListItemView:View{
         HStack {
             HStack {
                 Image(.haptic).resizable().frame(width: 20,height:20)
-                Text("25m").font(.paragraph03()).foregroundStyle(.white)
+                Text("25m").font(.paragraph03()).foregroundStyle(.doroWhite)
             }
             Spacer()
             Text("3:53PM").font(.paragraph03()).foregroundStyle(.grey02)

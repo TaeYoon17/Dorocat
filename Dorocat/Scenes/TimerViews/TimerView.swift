@@ -33,7 +33,10 @@ struct TimerView: View {
                 }
                 switch store.timerStatus{
                 case .standBy,.focus,.pause: numberFieldTimer
-                case .completed: completeBtn
+                case .completed:
+                    Button("Break"){
+                        print("Button is pressed!!")
+                    }.triggerStyle
                 case .shortBreak:
                     VStack {
                         Text("Short Break")
@@ -54,9 +57,7 @@ struct TimerView: View {
                 triggerBtn
             })
             .sheet(item: $store.scope(state: \.timerSetting, action: \.timerSetting)) { timerSettingStore in
-                TimerSettingView(store: timerSettingStore)
-                    .presentationDetents([.fraction(0.8)])
-                    
+                TimerSettingView(store: timerSettingStore).presentationDetents([.large])
             }
             .onAppear(){
                 store.send(.initAction)
@@ -75,7 +76,7 @@ extension TimerView{
         HStack(content: {
             Text(store.timer)
                 .font(.header01)
-                .foregroundStyle(.white)
+                .foregroundStyle(.doroWhite)
                 .onTapGesture {
                     store.send(.timerFieldTapped)
                 }
@@ -97,6 +98,8 @@ extension TimerView{
             store.send(.catTapped)
         }, label: {
             Text("고양이").font(.largeTitle)
+                .frame(width: 304,height: 304)
+                .background(.yellow)
         })
     }
     var resetBtn: some View{
@@ -104,7 +107,11 @@ extension TimerView{
             store.send(.resetTapped)
         }label: {
             Text("Reset")
-                .padding().background(.white)
+                .font(.button)
+                .foregroundStyle(.doroWhite)
+                .padding()
+                .background(.grey03)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
         }
     }
     var completeBtn: some View{
@@ -115,18 +122,9 @@ extension TimerView{
         }
     }
     var triggerBtn: some View{
-        Button {
-            print("Hello world")
-        } label: {
-            Text("Start")
-                .padding(.vertical,19.5)
-                .padding(.horizontal,28)
-                .background(.grey04)
-                .overlay(content: {
-                    Capsule().stroke(lineWidth: 1).fill(.grey02)
-                }).shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 6)
-                
-        }
+        Button("Start"){
+            print("Button is pressed!!")
+        }.triggerStyle
     }
 }
 // 기존 타이머 앱에서 타이머를 구현하는 방법...
@@ -135,3 +133,4 @@ extension TimerView{
 //        pomodoroModel.updateTimer()
 //    }
 //})
+

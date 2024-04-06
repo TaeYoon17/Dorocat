@@ -11,8 +11,8 @@ struct SettingTitleView: View {
     var body: some View {
         HStack {
             Text("Meow...")
-                .foregroundStyle(.white)
-                .font(.header02)
+                .foregroundStyle(.doroWhite)
+                .font(.header03)
             Spacer()
         }.frame(height: 48)
     }

@@ -7,60 +7,44 @@
 
 import SwiftUI
 import ComposableArchitecture
-
 struct TimerSettingView:View {
     @Perception.Bindable var store: StoreOf<TimerSettingFeature>
     var body: some View {
         WithPerceptionTracking{
-            ScrollView {
-                VStack(alignment: .center, content: {
-                    Rectangle().fill(.clear).frame(height:56)
-                    TimerSettingViewComponent.Field()
-//                    HStack(content: {
-//                        Spacer()
-//                        TextField("00", text: $store.time.sending(\.setTime))
-//                            .font(.title)
-//                            .keyboardType(.numberPad)
-//                            .frame(width: 120).background(.red)
-//                            .font(.title)
-//                        Text("min")
-//                        Spacer()
-//                    }).padding()
-//                    HStack(content: {
-//                        Spacer()
-//                        Text("Pomodoro Mode")
-//
-//                        // Custom Toggler 만들기
-//                        Toggle("하이", isOn: $store.isPomodoroMode.sending(\.setPomodoroMode))
-//                            .backgroundStyle(.blue)
-//                        Spacer()
-//                    })
-//                    .font(.title3)
-//                    .padding()
-                    if !store.isPomodoroMode{
-                        VStack(spacing:8,content: {
-                            TimerSettingViewComponent.ListItem(title: "Cycles Amount", type: .cycle)
-                            TimerSettingViewComponent.ListItem(title: "Break Duration", type: .breakDuration)
-                        })
-                    }else{
-                        Rectangle().fill(.clear).frame(height:53)
-                    }
-                    Spacer()
+            VStack {
+                Rectangle().fill(.clear).frame(height:56)
+                VStack(alignment: .center,spacing:0, content: {
+                        TimerSettingViewComponent.Field().padding(.bottom,41)
+                        if !store.isPomodoroMode{
+                            VStack(spacing:8,content: {
+                                TimerSettingViewComponent.ListItem(title: "Cycles Amount", type: .cycle)
+                                TimerSettingViewComponent.ListItem(title: "Break Duration", type: .breakDuration)
+                            })
+                        }else{
+                            Rectangle().fill(.clear).frame(height:53)
+                        }
+                        Spacer()
+                    })
+                .padding()
+                Spacer()
+                VStack (spacing:24){
                     Button(action: {
                         store.send(.doneTapped)
                     }, label: {
-                        Text("Done").font(.paragraph02(.bold))
-                            .padding()
-                            .background(.white)
-                            .clipShape(Capsule())
+                        Text("Done").font(.button)
+                            .padding(.vertical,19.5)
+                            .padding(.horizontal,28)
                             .foregroundStyle(.black)
+                            .background(.doroWhite)
+                            .clipShape(Capsule())
+                            
                     })
-                })
-                .padding()
+                    DoroNumberPad().frame(maxWidth: .infinity)
+                }
+            }
             }.frame(maxWidth: .infinity)
             .background(.grey04)
         }
-    }
 }
 enum FieldType{
     case cycle
@@ -112,3 +96,24 @@ struct CustomPicker:View{
         TimerSettingFeature()
     }))
 })
+//                    HStack(content: {
+//                        Spacer()
+//                        TextField("00", text: $store.time.sending(\.setTime))
+//                            .font(.title)
+//                            .keyboardType(.numberPad)
+//                            .frame(width: 120).background(.red)
+//                            .font(.title)
+//                        Text("min")
+//                        Spacer()
+//                    }).padding()
+//                    HStack(content: {
+//                        Spacer()
+//                        Text("Pomodoro Mode")
+//
+//                        // Custom Toggler 만들기
+//                        Toggle("하이", isOn: $store.isPomodoroMode.sending(\.setPomodoroMode))
+//                            .backgroundStyle(.blue)
+//                        Spacer()
+//                    })
+//                    .font(.title3)
+//                    .padding()
