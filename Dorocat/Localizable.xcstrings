@@ -4,6 +4,9 @@
     "%lld" : {
 
     },
+    "0" : {
+
+    },
     "00" : {
 
     },
@@ -20,12 +23,6 @@
 
     },
     "analyze" : {
-
-    },
-    "Break" : {
-
-    },
-    "Complete" : {
 
     },
     "Cycle nums" : {
@@ -50,9 +47,6 @@
 
     },
     "Learn More" : {
-
-    },
-    "Long Break" : {
 
     },
     "M" : {
@@ -91,16 +85,10 @@
     "Setting" : {
 
     },
-    "Short Break" : {
-
-    },
     "Start" : {
 
     },
-    "Start" : {
-
-    },
-    "Support" : {
+    "Terms & Privacy\n1.6.0 (2)" : {
 
     },
     "Timer" : {

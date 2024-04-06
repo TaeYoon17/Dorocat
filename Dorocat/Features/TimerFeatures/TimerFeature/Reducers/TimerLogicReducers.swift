@@ -8,6 +8,7 @@
 import Foundation
 import ComposableArchitecture
 extension TimerFeature{
+    // 앱의 상태가 바뀐 뒤 타이머 구성
     func setTimer(state:inout TimerFeature.State,status:TimerFeatureStatus) -> Effect<TimerFeature.Action>{
         switch status{
         case .standBy:
@@ -23,14 +24,10 @@ extension TimerFeature{
         case .completed:
             // 여기에 DB 데이터 추가..?
             return .cancel(id: CancelID.timer)
-        case .shortBreak:
-            return .run{[count = state.timerInformation.shortBreak] send in
+        case .breakTime:
+            return .run{[count = state.timerInformation.breakTime] send in
                 await send(.setTimerRunning(count))
-            }
-        case .longBreak:
-            return .run{[count = state.timerInformation.longBreak] send in
-                await send(.setTimerRunning(count))
-            }
+           }
         }
     }
 }
@@ -38,6 +35,7 @@ extension TimerFeature{
     func timerTick(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         return state.timerInformation.isPomoMode ? pomoTick(state: &state) : defaultTick(state: &state)
     }
+    // 포모도로 모드일 때 and 타이머에서 1초가 줄어들 때
     private func pomoTick(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         let num = state.count - 1
         if num > 0{
@@ -50,25 +48,17 @@ extension TimerFeature{
                 // trigger 역할을 수행한다.
                 let cycleEffect:Effect<TimerFeature.Action> = state.cycle >= state.timerInformation.cycle ?
                         .run{ send in
-                            await send(.setStatus(.longBreak))
+                            await send(.setStatus(.completed))
                         }
                     : .run{ send in
-                        await send(.setStatus(.shortBreak))
+                        await send(.setStatus(.breakTime))
                     }
                 return Effect.concatenate([
                 .cancel(id: CancelID.timer),
                 cycleEffect
             ])
-            case .longBreak:
-                state.count = state.timerInformation.longBreak
-                return Effect.concatenate([
-                    .cancel(id: CancelID.timer),
-                    .run(operation: { send in
-                        await send(.setStatus(.completed))
-                    })
-                ])
-            case .shortBreak: // shortBreak 시간이 끝남...
-                state.count = state.timerInformation.shortBreak
+            case .breakTime: // breakTime 시간이 끝남...
+                state.count = state.timerInformation.breakTime
                 return Effect.concatenate([
                     .cancel(id: CancelID.timer),
                     .run { send in

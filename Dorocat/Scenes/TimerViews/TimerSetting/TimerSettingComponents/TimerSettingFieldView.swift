@@ -9,51 +9,47 @@ import SwiftUI
 import ComposableArchitecture
 enum TimerSettingViewComponent{
     struct Field:View{
-        @State var text = ""
-        @State var isOn = false
-        @FocusState private var keyboardFocused: Bool
+        var text:String
+        @Binding var isOn:Bool
         var body: some View{
             VStack(spacing: 21) {
                 HStack{
-//                    TextField("", text: $text)
-//                        .tint(.black)
-//                        .keyboardType(.numberPad)
-//                        .focused($keyboardFocused)
-//                        .frame(minWidth: 43,maxWidth: 62)
-                    Text("00")
+                    if text.isEmpty{
+                        Text("00").foregroundStyle(.grey03)
+                    }else{
+                        if text.count == 2{
+                            Text(text).foregroundStyle(.doroWhite)
+                        }else if text.count == 1{
+                            (Text("0").foregroundColor(.grey03) + Text(text).foregroundColor(.doroWhite))
+                        }
+                    }
+                    Spacer()
                     Text("min")
                 }
+                .frame(width:178)
                 .font(.header02)
                 .foregroundStyle(.doroWhite)
                 HStack(content: {
                     Text("Pomodoro mode")
                         .foregroundStyle(.grey01)
                         .font(.paragraph03(.bold))
-                    DoroTogglerView(isOn: $isOn,toggleSize: .small).frame(width: 40,height:22)
+                    DoroTogglerView(isOn: $isOn,toggleSize: .small)
+                        .frame(width: 40,height:22)
                 })
-            }.onAppear(){
-                Task{@MainActor in
-                    try await Task.sleep(for: .seconds(0.1))
-                    keyboardFocused = true
-                }
             }
         }
     }
     struct ListItem:View{
-        enum SettingType{
-            case cycle
-            case breakDuration
-        }
         let title:String
-        let type: SettingType
-        @State private var selectedIdx = 1
+        let type: TimerSettingFeature.SettingType
+        @Binding var selectedIdx:Int
         var body: some View{
             HStack {
                 Text(title).font(.paragraph02()).foregroundStyle(.doroWhite)
                 Spacer()
                 HStack(spacing:0,content: {
                     Picker("Cycle nums",selection: $selectedIdx){
-                        ForEach(1...10,id:\.self){
+                        ForEach(type.range,id:\.self){
                             Text("\($0)")
                                 .font(.paragraph02(.bold)).foregroundStyle(.doroWhite)
                                 .tag($0)
@@ -83,4 +79,4 @@ struct ListItemBgModifier:ViewModifier{
         TimerSettingFeature()
     }))
 })
- 
+

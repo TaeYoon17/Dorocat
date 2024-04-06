@@ -17,6 +17,7 @@ import ComposableArchitecture
         case catTapped
         case resetTapped
         case completeTapped
+        case triggerTapped
         // 내부 로직 Action
         case initAction
         case setDefaultValues(PomoValues)
@@ -39,9 +40,9 @@ import ComposableArchitecture
             case .catTapped: return self.catTapped(state: &state)
             case .resetTapped: return self.resetTapped(state: &state)
             case .completeTapped: return self.completeTapped(state: &state)
+            case .triggerTapped: return self.triggerTapped(state: &state)
                 // 화면 전환 Action 처리
             case .timerSetting(.presented(.delegate(.cancel))):
-                //                state.timerSetting = nil
                 return .none
             case .timerSetting(.presented(.delegate(.setTimerInfo(let info)))):
                 let count = info.timeSeconds
@@ -67,14 +68,15 @@ import ComposableArchitecture
                 case .active:// background 시간 없애주기...
                     return .run { send in
                         await timeBackground.set(date: nil)
-                }
+                    }
                 case .inActive:
                     if prevState == .background{ // 현재 시간과 background 시간 비교...
                         return diskTimerInfoToMemory
                     }else{
-            // 현재 진행상황 저장 - background로 이동시 무조건 타이머 상태는 pause가 되도록 설정한다.
-                        let prevStatus = state.timerStatus
+                        // 현재 진행상황 저장 - background로 이동시 무조건 타이머 상태는 pause가 되도록 설정한다.
+                        let prevStatus = state.timerStatus // 이전에 갖고 있던 상태를 그대로 저장
                         let pauseStatus = TimerFeatureStatus.getPause(state.timerStatus) ?? state.timerStatus
+                        // 이전에 갖고 있던 상태에서 Pause로 이동한 상태를 저장
                         let values = PomoValues(status: pauseStatus, information: state.timerInformation, cycle: state.cycle, count: state.count)
                         return .run { send in
                             await timeBackground.set(date: Date())

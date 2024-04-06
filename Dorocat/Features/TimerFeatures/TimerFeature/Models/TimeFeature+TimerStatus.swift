@@ -8,16 +8,14 @@
 import Foundation
 enum PauseStatus:Equatable{
     case focusPause
-    case shortBreakPause
-    case longBreakPause
+    case breakPause
 }
 enum TimerFeatureStatus:Equatable{
     case standBy
     case focus
     case pause(PauseStatus)
     case completed
-    case shortBreak
-    case longBreak
+    case breakTime
 }
 extension TimerFeatureStatus{
     static func create(name:String) -> Self{
@@ -25,11 +23,9 @@ extension TimerFeatureStatus{
         case "standBy": .standBy
         case "focus": .focus
         case "pauseFocus": .pause(.focusPause)
-        case "puaseShort": .pause(.shortBreakPause)
-        case "pauseLong": .pause(.longBreakPause)
+        case "pauseBreak": .pause(.breakPause)
+        case "breakTime": .breakTime
         case "completed": .completed
-        case "shortBreak": .shortBreak
-        case "longBreak" : .longBreak
         default: .standBy
         }
     }
@@ -39,19 +35,15 @@ extension TimerFeatureStatus{
         case .standBy: "standBy"
         case .focus: "focus"
         case .pause(.focusPause): "pauseFocus"
-        case .pause(.longBreakPause): "pauseLong"
-        case .pause(.shortBreakPause): "puaseShort"
-        case .shortBreak: "shortBreak"
-        case .longBreak: "longBreak"
+        case .pause(.breakPause): "pauseBreak"
+        case .breakTime: "breakTime"
         }
     }
     static func getPause(_ prevStatus:Self)->Self?{
         switch prevStatus{
-        case .longBreak: return .pause(.longBreakPause)
-        case .shortBreak: return .pause(.shortBreakPause)
+        case .breakTime: return .pause(.breakPause)
         case .focus: return .pause(.focusPause)
         default:
-            print("pause로 변경할 필요가 없다!!")
             return nil
         }
     }

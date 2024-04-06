@@ -12,19 +12,22 @@ struct TimerSettingView:View {
     var body: some View {
         WithPerceptionTracking{
             VStack {
-                Rectangle().fill(.clear).frame(height:56)
+                if store.isPomodoroMode{
+                    Rectangle().fill(.clear).frame(height:56)
+                }else{
+                    Spacer()
+                    Spacer()
+                }
                 VStack(alignment: .center,spacing:0, content: {
-                        TimerSettingViewComponent.Field().padding(.bottom,41)
-                        if !store.isPomodoroMode{
-                            VStack(spacing:8,content: {
-                                TimerSettingViewComponent.ListItem(title: "Cycles Amount", type: .cycle)
-                                TimerSettingViewComponent.ListItem(title: "Break Duration", type: .breakDuration)
-                            })
-                        }else{
-                            Rectangle().fill(.clear).frame(height:53)
-                        }
-                        Spacer()
-                    })
+                    TimerSettingViewComponent.Field(text: store.time,isOn: $store.isPomodoroMode.sending(\.setPomodoroMode))
+                        .padding(.bottom,41)
+                    if store.isPomodoroMode{
+                        VStack(spacing:8,content: {
+                            TimerSettingViewComponent.ListItem(title: "Cycles Amount", type: .cycle, selectedIdx: $store.cycleTime.sending(\.setCycleTime))
+                            TimerSettingViewComponent.ListItem(title: "Break Duration", type: .breakDuration, selectedIdx: $store.breakTime.sending(\.setBreakTime))
+                        })
+                    }
+                })
                 .padding()
                 Spacer()
                 VStack (spacing:24){
@@ -37,44 +40,29 @@ struct TimerSettingView:View {
                             .foregroundStyle(.black)
                             .background(.doroWhite)
                             .clipShape(Capsule())
-                            
+                        
                     })
-                    DoroNumberPad().frame(maxWidth: .infinity)
+                    DoroNumberPad(text: $store.time.sending(\.setTime)).frame(maxWidth: .infinity)
                 }
             }
-            }.frame(maxWidth: .infinity)
+        }.frame(maxWidth: .infinity)
             .background(.grey04)
-        }
-}
-enum FieldType{
-    case cycle
-    case shortBreak
-    case longBreak
-    var title:String{
-        switch self{
-        case .cycle: "Cycle"
-        case .longBreak: "Long Break"
-        case .shortBreak: "Short Break"
-        }
     }
-    
 }
 extension TimerSettingView{
-    @ViewBuilder func fiedls(type:FieldType) -> some View{
+    @ViewBuilder func fiedls(type:TimerSettingFeature.SettingType) -> some View{
         let wow:Binding<Int> = switch type{
         case .cycle:
             $store.cycleTime.sending(\.setCycleTime)
-        case .longBreak:
-            $store.longBreak.sending(\.setLongBreak)
-        case .shortBreak:
-            $store.shortBreak.sending(\.setShortBreak)
+        case .breakDuration:
+            $store.breakTime.sending(\.setBreakTime)
         }
         HStack(content: {
             Text(type.title)
             Spacer()
             HStack {
                 Picker("Cycle nums",selection: wow ){
-                    ForEach(1...10,id:\.self){
+                    ForEach(type.range,id:\.self){
                         Text("\($0)").tag($0)
                     }
                 }.pickerStyle(.wheel).frame(width: 44)
@@ -85,35 +73,9 @@ extension TimerSettingView{
         }).frame(height:66).background(.yellow)
     }
 }
-struct CustomPicker:View{
-    var body: some View{
-        Text("Hello world")
-    }
-}
 
 #Preview(body: {
     TimerSettingView(store: Store(initialState: TimerSettingFeature.State(), reducer: {
         TimerSettingFeature()
     }))
 })
-//                    HStack(content: {
-//                        Spacer()
-//                        TextField("00", text: $store.time.sending(\.setTime))
-//                            .font(.title)
-//                            .keyboardType(.numberPad)
-//                            .frame(width: 120).background(.red)
-//                            .font(.title)
-//                        Text("min")
-//                        Spacer()
-//                    }).padding()
-//                    HStack(content: {
-//                        Spacer()
-//                        Text("Pomodoro Mode")
-//
-//                        // Custom Toggler 만들기
-//                        Toggle("하이", isOn: $store.isPomodoroMode.sending(\.setPomodoroMode))
-//                            .backgroundStyle(.blue)
-//                        Spacer()
-//                    })
-//                    .font(.title3)
-//                    .padding()

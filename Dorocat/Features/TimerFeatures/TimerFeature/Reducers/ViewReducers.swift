@@ -63,7 +63,7 @@ extension TimerFeature{
 
     func resetTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         switch state.timerStatus{
-        case .shortBreak,.longBreak,.pause: return .run{ send in
+        case .breakTime,.pause: return .run{ send in
             await send(.setStatus(.standBy))
         }
         default: return .none
@@ -76,5 +76,8 @@ extension TimerFeature{
         }
         default: return .none
         }
+    }
+    func triggerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
+        catTapped(state: &state)
     }
 }

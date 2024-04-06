@@ -23,27 +23,29 @@ struct TempView: View{
             //                    .frame(height: 300)
             //                    .focused($showKeyboard)
             Spacer()
-            DoroNumberPad()
+            DoroNumberPad(text: $text)
                 .frame(maxWidth: .infinity).frame(height:300)
         }.ignoresSafeArea(.container,edges: .bottom)
     }
 }
 struct DoroNumberPad:View{
+    @Binding var text:String
     var body: some View{
         VStack(content: {
             LazyVGrid(columns: Array(repeating: .init(.flexible(),spacing:6.66), count: 3),spacing: 7, content: {
                 ForEach(1...9,id:\.self){ idx in
                     keyboardButtonView(.text("\(idx)"), onTap: {
-                        
+                        text += "\(idx)"
                     })
                 }
                 keyboardButtonView(.text("C",.clear)) {
-                    
+                    text = ""
                 }
                 keyboardButtonView(.text("0")) {
+                    text += "0"
                 }
                 keyboardButtonView(.image("delete.backward")) {
-                    
+                    _ = text.popLast()
                 }
             }).padding(.horizontal,15).padding(.vertical,5)
         })

@@ -10,13 +10,30 @@ import ComposableArchitecture
 
 @Reducer
 struct TimerSettingFeature{
+    enum SettingType{
+        case cycle
+        case breakDuration
+        // Feature에서 정한 계산 Property
+        var range: Range<Int>{
+            switch self{
+            case .cycle: Range<Int>(2...4)
+            case .breakDuration: Range<Int>(1...60)
+            }
+        }
+        var title:String{
+            switch self{
+            case .cycle: "Cycle"
+            case .breakDuration: "Break Duration"
+            }
+        }
+    }
     @ObservableState struct State: Equatable{
         var time:String = ""
         var isPomodoroMode: Bool = false
-        var cycleTime:Int = 1
-        var shortBreak:Int = 1
-        var longBreak:Int = 1
+        var cycleTime:Int = 2
+        var breakTime:Int = 1
         var timerInfo = TimerInformation()
+        
     }
     
     enum Action:Equatable{ // 키패드 접근을 어떻게 할 것인지...
@@ -26,8 +43,7 @@ struct TimerSettingFeature{
         case setTime(String)
         case setPomodoroMode(Bool)
         case setCycleTime(Int)
-        case setShortBreak(Int)
-        case setLongBreak(Int)
+        case setBreakTime(Int)
         
         case delegate(Delegate)
         enum Delegate: Equatable{
@@ -40,14 +56,22 @@ struct TimerSettingFeature{
         Reduce{ state, action in
             switch action{
             case .doneTapped:
-                return .run {[timerInfo = state.timerInfo] send in
-                    await send(.delegate(.setTimerInfo(timerInfo)))
-                    await self.dismiss()
+                if let time = Int(state.time){
+                    let timerInfo = TimerInformation(timeSeconds: time, cycle: state.cycleTime, breakTime: state.breakTime, isPomoMode: state.isPomodoroMode)
+                    return .run {send in
+                        await send(.delegate(.setTimerInfo(timerInfo)))
+                        await self.dismiss()
+                    }
+                }else{
+                    return .run {[timerInfo = state.timerInfo] send in
+                        await send(.delegate(.setTimerInfo(timerInfo)))
+                        await self.dismiss()
+                    }
                 }
             case .setTime(let time):
+                if time.count > 2{ return .none }
                 state.time = time
                 state.timerInfo.timeSeconds = (Int(time) ?? 0)
-//                (Int(time) ?? 0) * 60
                 return .none
             case .setPomodoroMode(let isPomodoro):
                 state.isPomodoroMode = isPomodoro
@@ -55,25 +79,17 @@ struct TimerSettingFeature{
                 return .none
             case .setCycleTime(let num):
                 state.cycleTime = num
-                state.timerInfo.cycle = num
                 return .none
-            case .setShortBreak(let num):
-                state.shortBreak = num
-                state.timerInfo.shortBreak = num
-                return .none
-            case .setLongBreak(let num):
-                state.longBreak = num
-                state.timerInfo.longBreak = num
+            case .setBreakTime(let num):
+                state.breakTime = num
                 return .none
             case .delegate: return .none
             case .setDefaultValues(let info):
                 state.timerInfo = info
                 state.cycleTime = info.cycle
                 state.isPomodoroMode = info.isPomoMode
-                state.longBreak = info.longBreak
-                state.shortBreak = info.shortBreak
-                state.time = "\(info.timeSeconds)"
-//                "\(info.timeSeconds / 60)"
+                state.breakTime = info.breakTime
+                state.time = info.timeSeconds / 60 <= 0 ? "" : "\(info.timeSeconds / 60)"
                 return .none
             }
         }

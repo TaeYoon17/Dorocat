@@ -13,10 +13,7 @@ struct TimerView: View {
     var body: some View {
         WithPerceptionTracking{
             VStack(content: {
-                switch store.timerStatus{
-                case .pause,.shortBreak,.longBreak: resetBtn
-                default: EmptyView()
-                }
+                Spacer()
                 if store.timerStatus == .completed{
                     VStack {
                         Text("Well done!").font(.title2).bold()
@@ -31,43 +28,36 @@ struct TimerView: View {
                 if store.timerStatus == .focus{
                     circleTimer
                 }
+                Spacer()
                 switch store.timerStatus{
-                case .standBy,.focus,.pause: numberFieldTimer
+                case .standBy,.focus,.pause: 
+                    numberFieldTimer
+                    triggerBtn
                 case .completed:
-                    Button("Break"){
-                        print("Button is pressed!!")
-                    }.triggerStyle
-                case .shortBreak:
-                    VStack {
-                        Text("Short Break")
-                            .font(.title2)
-                            .padding()
-                            .background(.white)
-                        numberFieldTimer
-                    }
-                case .longBreak:
-                    VStack {
-                        Text("Long Break")
-                            .font(.title2)
-                            .padding()
-                            .background(.white)
-                        numberFieldTimer
-                    }
+                    triggerBtn
+                case .breakTime:
+                    triggerBtn
                 }
-                triggerBtn
+                
             }).frame(maxWidth: .infinity)
+            .overlay(alignment: .top, content: {
+                    switch store.timerStatus{
+                    case .pause,.breakTime: resetBtn.padding(.top,25)
+                    default: EmptyView()
+                    }
+            })
             .overlay(content: {
-                if store.timerStatus == .standBy{
-                    HStack {
-                        if !store.guideInformation.goLeft{
-                            Text("Left")
-                        }
-                        Spacer()
-                        if !store.guideInformation.goRight{
-                            Text("Right")
-                        }
-                    }.frame(maxWidth: .infinity).background(.yellow)
-                }
+//                if store.timerStatus == .standBy{
+//                    HStack {
+//                        if !store.guideInformation.goLeft{
+//                            Text("Left")
+//                        }
+//                        Spacer()
+//                        if !store.guideInformation.goRight{
+//                            Text("Right")
+//                        }
+//                    }.frame(maxWidth: .infinity).background(.yellow)
+//                }
             })
             .sheet(item: $store.scope(state: \.timerSetting, action: \.timerSetting)) { timerSettingStore in
                 TimerSettingView(store: timerSettingStore).presentationDetents([.large])
@@ -93,16 +83,7 @@ extension TimerView{
                 .onTapGesture {
                     store.send(.timerFieldTapped)
                 }
-            
         })
-        .overlay(alignment: .bottom) {
-            if store.timerStatus == .standBy{
-                Text("Tap to change timer")
-                    .font(.title2)
-                    .background(.thinMaterial)
-                    .offset(y:44)
-            }
-        }
     }
     
     var circleTimer: some View{
@@ -136,28 +117,23 @@ extension TimerView{
             Text("Reset")
                 .font(.button)
                 .foregroundStyle(.doroWhite)
-                .padding()
+                .padding(.horizontal,20)
+                .padding(.vertical,13.5)
                 .background(.grey03)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
         }
     }
-    var completeBtn: some View{
-        Button{
-            store.send(.completeTapped)
-        }label:{
-            Text("Complete")
-        }
-    }
     var triggerBtn: some View{
-        Button("Start"){
-            print("Button is pressed!!")
-        }.triggerStyle
+        let text = switch store.timerStatus{
+        case .breakTime: "Stop Break"
+        case .completed: "Break"
+        case .standBy: "Start"
+        case .focus:"Pause"
+        case .pause(.focusPause): "Start"
+        default: ""
+        }
+        return Button(text){
+            store.send(.triggerTapped)
+        }.triggerStyle(scale: store.timerStatus == .breakTime ? .flexed : .fixed(110))
     }
 }
-// 기존 타이머 앱에서 타이머를 구현하는 방법...
-//.onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect(), perform: { _ in
-//    if pomodoroModel.isStarted{
-//        pomodoroModel.updateTimer()
-//    }
-//})
-

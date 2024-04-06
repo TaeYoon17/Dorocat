@@ -8,11 +8,16 @@
 import SwiftUI
 
 extension Button{
-    var triggerStyle: some View{
-        self.buttonStyle(TriggerBtnStyle())
+    func triggerStyle(scale: TriggerBtnStyle.ButtonScale) -> some View{
+        self.buttonStyle(TriggerBtnStyle(scale: scale))
     }
 }
-fileprivate struct TriggerBtnStyle:ButtonStyle{
+struct TriggerBtnStyle:ButtonStyle{
+    enum ButtonScale{
+        case fixed(CGFloat)
+        case flexed
+    }
+    var scale: ButtonScale
     func makeBody(configuration: Configuration) -> some View {
         if !configuration.isPressed{
             configuration.label
@@ -20,6 +25,7 @@ fileprivate struct TriggerBtnStyle:ButtonStyle{
                 .font(.button)
                 .padding(.vertical,19.5)
                 .padding(.horizontal,28)
+                .modifier(ScaleModifier(scale: scale))
                 .background(content: {
                     Capsule().stroke(lineWidth: 1).fill(.grey02)
                         .overlay {
@@ -33,11 +39,13 @@ fileprivate struct TriggerBtnStyle:ButtonStyle{
                         .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 8)
                         .offset(y:-2)
                 }
+                .modifier(ScaleModifier(scale: scale))
         }else{
             configuration.label.foregroundStyle(.grey02)
                 .font(.button)
                 .padding(.vertical,19.5)
                 .padding(.horizontal,28)
+                .modifier(ScaleModifier(scale: scale))
                 .background(
                     .black.gradient.shadow(.inner(radius: 4,y:8))
                 )
@@ -48,7 +56,17 @@ fileprivate struct TriggerBtnStyle:ButtonStyle{
                 })
                 .clipShape(Capsule())
                 .padding(.bottom,2)
-                .animation(.easeOut(duration: 0.1), value: configuration.isPressed)
+                
+        }
+    }
+    fileprivate struct ScaleModifier: ViewModifier{
+        var scale: ButtonScale
+        func body(content: Content) -> some View {
+            switch scale{
+            case .fixed(let width):
+                content.frame(width: CGFloat(width))
+            case .flexed: content
+            }
         }
     }
 }
