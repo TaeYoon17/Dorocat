@@ -9,26 +9,33 @@ import Foundation
 import ComposableArchitecture
 extension TimerFeature{
     func timerFieldTapped(state:inout TimerFeature.State) ->  Effect<TimerFeature.Action>{
+        var effects:[Effect<TimerFeature.Action>] = []
+        if !state.guideInformation.onBoarding{
+            state.guideInformation.onBoarding = true
+            effects.append(.run(operation: {[guides = state.guideInformation] send in
+                await guideDefaults.set(guide: guides)
+            }))
+        }
         switch state.timerStatus{
         case .focus:
-            return .run { send in
+            effects.append(.run { send in
                 await send(.setStatus(.pause(.focusPause)))
-            }
+            })
         case .pause(.focusPause):
-            return .run {[count = state.count] send in
-            await send(.setStatus(.focus,isRequiredSetTimer: false))
-            await send(.setTimerRunning(count))
-        }
+            effects.append(.run {[count = state.count] send in
+                await send(.setStatus(.focus,isRequiredSetTimer: false))
+                await send(.setTimerRunning(count))}
+        )
         case .standBy: // standby일때 탭하면 세팅하는 화면으로 설정한다.
             state.timerSetting = TimerSettingFeature.State()
-            return .run {[info = state.timerInformation] send in
-                print(info)
-                await send(.timerSetting(.presented(.setDefaultValues(info))))
-            }
-        default: return .none
+                effects.append( .run {[info = state.timerInformation] send in
+                    await send(.timerSetting(.presented(.setDefaultValues(info))))
+                }
+            )
+        default: break
         }
+        return Effect.concatenate(effects)
     }
-
     func catTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         switch state.timerStatus{
         case .standBy:

@@ -11,9 +11,8 @@
 3. pause => 타이머를 멈춘 상태, 2가지 존재함
     - focus를 멈춘 상태
     - breakTime를 멈춘 상태
-4. completed => 모든 타이머가 끝난 후 유저의 액션을 기다리는 상태
-5. breakTime => 하나의 focus가 끝난 후 쉬는 상태 
-7. sleep => 앱이 background로 가있는 상태
+4. breakTime => 하나의 focus가 끝난 후 쉬는 상태
+5. completed => 모든 타이머가 끝난 후 유저의 액션을 기다리는 상태
 -- 타이머를 사용하는 상태
 + focus
 + breakTime

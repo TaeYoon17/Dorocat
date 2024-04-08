@@ -14,7 +14,7 @@ enum TimerViewModifiers{
             func body(content: Content) -> some View {
                 content.overlay(alignment: .leading) {
                     if store.timerStatus == .standBy && !store.guideInformation.goLeft{
-                        Text("Left")
+                        TimerViewComponents.Guide.GoLeft()
                     }
                 }
             }
@@ -24,7 +24,18 @@ enum TimerViewModifiers{
             func body(content: Content) -> some View {
                 content.overlay(alignment: .trailing) {
                     if store.timerStatus == .standBy && !store.guideInformation.goRight{
-                        Text("Right")
+                        TimerViewComponents.Guide.GoRight()
+                    }
+                }
+            }
+        }
+        struct Onboarding: ViewModifier{
+            let store: StoreOf<TimerFeature>
+            func body(content: Content) -> some View {
+                content.overlay(alignment:.top) {
+                    if store.timerStatus == .standBy && !store.guideInformation.onBoarding{
+                        TimerViewComponents.Guide.Onboarding()
+                            .padding(.top,125)
                     }
                 }
             }

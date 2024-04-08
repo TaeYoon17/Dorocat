@@ -11,7 +11,6 @@ import ComposableArchitecture
 struct DorocatFeature{
     enum PageType:String, Hashable,Equatable,CaseIterable,Identifiable{
         var id:String{ self.rawValue }
-        
         case analyze
         case timer
         case setting

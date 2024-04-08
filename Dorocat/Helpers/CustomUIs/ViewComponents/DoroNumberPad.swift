@@ -17,11 +17,6 @@ struct TempView: View{
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 100,height: 100)
                 .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
-            //            TextField("$100.0", text: $text)
-            //                .inputView { CustomKeyboardView() }
-            //                    .frame(maxWidth: .infinity)
-            //                    .frame(height: 300)
-            //                    .focused($showKeyboard)
             Spacer()
             DoroNumberPad(text: $text)
                 .frame(maxWidth: .infinity).frame(height:300)
