@@ -6,32 +6,27 @@
 //
 
 import SwiftUI
-
+import ComposableArchitecture
 enum AnalyzeDurationView{
-    
     struct Day:View{
+        let store: StoreOf<AnalyzeFeature>
         var body: some View{
             VStack(spacing:38) {
                 HStack {
-                    Button{
-                        
-                    }label: {
+                    Button{ store.send(.leftArrowTapped) }label: {
                         Image(systemName: "chevron.left")
                     }
                     Spacer()
                     Text("Today, Mar 22").font(.paragraph03()).foregroundStyle(.grey00)
                     Spacer()
-                    Button{
-                    
-                    }label: {
+                    Button{ store.send(.rightArrowTapped) }label: {
                         Image(systemName: "chevron.right")
                     }
-                }.padding(.horizontal,4)
-                    .tint(.grey00)
+                }.padding(.horizontal,4).tint(.grey00)
                 HStack(content: {
                     VStack(alignment:.leading,spacing:4) {
                         Text("Total Time").font(.paragraph04).foregroundStyle(.grey02)
-                        Text("2h 40m")
+                        Text(store.totalTime)
                             .font(.header03)
                             .foregroundStyle(.doroWhite)
                     }

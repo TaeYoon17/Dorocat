@@ -21,10 +21,10 @@ struct AnalyzeView: View {
                             LazyVStack(alignment: .center, pinnedViews: [.sectionHeaders], content: {
                                 Section {
                                     VStack(spacing:16) {
-                                        AnalyzeDurationView.Day()
+                                        AnalyzeDurationView.Day(store: store)
                                         VStack(spacing:8) {
-                                            ForEach(1...10, id: \.self) { count in
-                                                AnalyzeListItemView()
+                                            ForEach(store.timerRecordList){ item in
+                                                AnalyzeListItemView(analyzeDateType: .day, timerListItem: item)
                                             }
                                         }
                                     }.padding(.horizontal, 16)
@@ -36,8 +36,6 @@ struct AnalyzeView: View {
                             })
                             Rectangle().fill(.clear).frame(height:40)
                         }
-                        
-                        
                     }
                 }.toolbar(.hidden, for: .navigationBar)
         }

@@ -8,73 +8,54 @@
 import Foundation
 import ComposableArchitecture
 import RealmSwift
+enum AnalyzeDateType{
+    case day
+    case week
+    case month
+}
 @Reducer struct AnalyzeFeature{
     @ObservableState struct State:Equatable{
-        @Presents var addShoppingList:AddShoppingListFeature.State?
-        var shoppingLists: IdentifiedArrayOf<ShoppingList> = []
-        var path = StackState<ShoppingListItemFeature.State>()
+        var timerRecordList: IdentifiedArrayOf<TimerRecordItem> = []
+        var totalTime:String = ""
     }
     enum Action: Equatable{
-        case openShoppingListTapped
-        case addShoppingListTapped
+        case leftArrowTapped
+        case rightArrowTapped
+        case setAnalyzeTypeSegment(AnalyzeDateType)
         case initShoppingLists
-        case updateShoppingLists([ShoppingList])
-        case path(StackAction<ShoppingListItemFeature.State,ShoppingListItemFeature.Action>)
-        case addShoppingList(PresentationAction<AddShoppingListFeature.Action>)
+        case updateTimerRecordList([TimerRecordItem])
+        case updateTotalTime(Double)
     }
-    @DBActor @Dependency(\.dbAPIClients) var apiClient
+    @DBActor @Dependency(\.analyzeAPIClients) var apiClient
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
-            case .openShoppingListTapped:
+            case .leftArrowTapped:
                 return .none
-            case .addShoppingListTapped:
-                state.addShoppingList = AddShoppingListFeature.State()
+            case .rightArrowTapped:
                 return .none
-            case .path:
+            case .setAnalyzeTypeSegment(_):
                 return .none
-            case .addShoppingList(.presented(.delegate(.appendShoppingListCompleted))):
-                return .run { send in
-//                    var li:[ShoppingList] = []
-//                    for v in await apiClient.getShoppingLists(){
-//                        await li.append(ShoppingList(table: v))
-//                    }
-                    let li = await apiClient.getShoppingLists().asyncMap{ 
-                        await ShoppingList(table: $0)
-                    }
-                    await send(.updateShoppingLists(li))
-                }
             case .initShoppingLists:
                 return .run {@DBActor send in
                     do{
-                        try await apiClient.initRealm()
-                        let list = apiClient.getShoppingLists().map{ShoppingList(table: $0)}
-                        await send(.updateShoppingLists(list))
+                        try await apiClient.initAction()
+                        let list = try await apiClient.get(day: Date())
+                        await send(.updateTimerRecordList(list))
+                        await send(.updateTotalTime(apiClient.totalFocusTime))
                     }catch{
-                        fatalError("get error!!")
+                        print(error)
                     }
                 }
-            case .updateShoppingLists(let list):
-                state.shoppingLists.removeAll()
-                state.shoppingLists.append(contentsOf: list)
+            case .updateTimerRecordList(let lists):
+                state.timerRecordList.removeAll()
+                state.timerRecordList.append(contentsOf: lists)
                 return .none
-            case .addShoppingList:
+            case .updateTotalTime(let time):
+                // 여기 수정사항 - Double 정도의 숫자 범위를 Int로 변환해도 문제가 없나?
+                state.totalTime = "\(Int(time) / 60)h \(Int(time) % 60)m"
                 return .none
             }
-        }.forEach(\.path, action: \.path){
-            ShoppingListItemFeature()
         }
-        .ifLet(\.$addShoppingList, action: \.addShoppingList){
-            AddShoppingListFeature()
-        }
-    }
-}
-extension Sequence{
-    func asyncMap<T>(_ transform: (Element) async throws -> T ) async rethrows -> [T]{
-        var values = [T]()
-        for element in self{
-            try await values.append(transform(element))
-        }
-        return values
     }
 }

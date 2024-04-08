@@ -7,7 +7,7 @@
 
 import Foundation
 import ComposableArchitecture
-
+/*
 @Reducer struct AddShoppingListFeature{
     @ObservableState struct State: Equatable{
         var selectedCategory:String = ""
@@ -54,3 +54,4 @@ import ComposableArchitecture
         }
     }
 }
+*/
