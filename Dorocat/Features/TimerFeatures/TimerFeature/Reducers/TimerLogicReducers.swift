@@ -21,11 +21,13 @@ extension TimerFeature{
                 await send(.setTimerRunning(count))
             }
         case .pause: return .cancel(id: CancelID.timer)
-        case .completed:
+        case .completed,.breakStandBy:
             // 여기에 DB 데이터 추가..?
             let startDate = state.startDate
             let duration = state.timerInformation.timeSeconds
-            return Effect.concatenate(.cancel(id: CancelID.timer),.run(operation: {send in
+            return Effect.concatenate(.cancel(id: CancelID.timer),
+                                      .run(operation: {send in
+                  print("API 전송이 일어난다!!")
                 await analyzeAPI.append(.init(createdAt: startDate, duration: duration))
             }))
         case .breakTime:
@@ -55,12 +57,9 @@ extension TimerFeature{
                             await send(.setStatus(.completed))
                         }
                     : .run{ send in
-                        await send(.setStatus(.breakTime))
+                        await send(.setStatus(.breakStandBy))
                     }
-                return Effect.concatenate([
-                .cancel(id: CancelID.timer),
-                cycleEffect
-            ])
+                return Effect.concatenate([.cancel(id: CancelID.timer),cycleEffect])
             case .breakTime: // breakTime 시간이 끝남...
                 state.count = state.timerInformation.breakTime
                 return Effect.concatenate([
@@ -86,19 +85,3 @@ extension TimerFeature{
         }
     }
 }
-//let num = state.count - 1
-//let cycle = state.cycle
-//if num < 0{
-//    if cycle <= 0{
-//        return .run{ send in
-//            await send(.setStatus(.longBreak))
-//        }
-//    }else{
-//        return .run{ send in
-//            await send(.setStatus(.shortBreak))
-//        }
-//    }
-//}else{
-//    state.count = num
-//    return .none
-//}

@@ -25,6 +25,7 @@
 		632F89412BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89402BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift */; };
 		632F89442BB5C49E00F2DC0B /* ViewReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89432BB5C49E00F2DC0B /* ViewReducers.swift */; };
 		632F89462BB5C52300F2DC0B /* TimerLogicReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89452BB5C52300F2DC0B /* TimerLogicReducers.swift */; };
+		6359D9882BC576C40045DEC7 /* AppStateReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6359D9872BC576C40045DEC7 /* AppStateReducers.swift */; };
 		635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 635BD5582B9F56CA004480D1 /* Localizable.xcstrings */; };
 		635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 635BD55B2B9F5708004480D1 /* ComposableArchitecture */; };
 		635C9D3D2BB082E400BFD46D /* PomoDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C9D3C2BB082E400BFD46D /* PomoDependency.swift */; };
@@ -102,6 +103,7 @@
 		632F89402BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerSettingFeatures+Reducers.swift"; sourceTree = "<group>"; };
 		632F89432BB5C49E00F2DC0B /* ViewReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewReducers.swift; sourceTree = "<group>"; };
 		632F89452BB5C52300F2DC0B /* TimerLogicReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLogicReducers.swift; sourceTree = "<group>"; };
+		6359D9872BC576C40045DEC7 /* AppStateReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateReducers.swift; sourceTree = "<group>"; };
 		635BD5582B9F56CA004480D1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		635C9D3C2BB082E400BFD46D /* PomoDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoDependency.swift; sourceTree = "<group>"; };
 		636E9F652BA818000006FE56 /* DBActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBActor.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				632F89452BB5C52300F2DC0B /* TimerLogicReducers.swift */,
 				637350502BB7EEE300221F20 /* BackgroundLogicReducers.swift */,
 				63FD447A2BBC4C1100FA528F /* TimerGuideReducers.swift */,
+				6359D9872BC576C40045DEC7 /* AppStateReducers.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				637340812BA7440900B2A10F /* TimerRecordItemTable.swift in Sources */,
 				637350532BB8161D00221F20 /* DateExtensions.swift in Sources */,
 				635C9D3D2BB082E400BFD46D /* PomoDependency.swift in Sources */,
+				6359D9882BC576C40045DEC7 /* AppStateReducers.swift in Sources */,
 				638EAB082BBFD1C7007F8CAC /* DoroNumberPad.swift in Sources */,
 				63AD705E2BA43A5900DBD6B9 /* SettingView.swift in Sources */,
 				631058892BC17A5A008611AD /* TimerViewComponents.swift in Sources */,
@@ -839,7 +843,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.5;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -874,7 +878,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.5;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -15,10 +15,11 @@ enum TimerViewComponents{
             WithPerceptionTracking {
                 let text = switch store.timerStatus{
                 case .breakTime: "Stop Break"
-                case .completed: "Break"
+                case .completed: "Complete"
                 case .standBy: "Start"
                 case .focus:"Pause"
                 case .pause(.focusPause): "Start"
+                case .breakStandBy: "Break"
                 default: ""
                 }
                 Button(text){

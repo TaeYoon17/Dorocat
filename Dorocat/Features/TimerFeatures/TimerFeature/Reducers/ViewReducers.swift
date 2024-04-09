@@ -25,18 +25,40 @@ extension TimerFeature{
             effects.append(.run {[count = state.count] send in
                 await send(.setStatus(.focus,isRequiredSetTimer: false))
                 await send(.setTimerRunning(count))}
-        )
+            )
         case .standBy: // standby일때 탭하면 세팅하는 화면으로 설정한다.
             state.timerSetting = TimerSettingFeature.State()
-                effects.append( .run {[info = state.timerInformation] send in
-                    await send(.timerSetting(.presented(.setDefaultValues(info))))
-                }
+            effects.append( .run {[info = state.timerInformation] send in
+                await send(.timerSetting(.presented(.setDefaultValues(info))))
+            }
             )
         default: break
         }
         return Effect.concatenate(effects)
     }
     func catTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
+        return .none
+    }
+    
+    func circleTimerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
+        switch state.timerStatus{
+        case .focus:
+            return .run { send in
+                await send(.setStatus(.pause(.focusPause)))
+            }
+        default: return .none
+        }
+    }
+    
+    func resetTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
+        switch state.timerStatus{
+        case .breakTime,.pause: return .run{ send in
+            await send(.setStatus(.standBy))
+        }
+        default: return .none
+        }
+    }
+    func triggerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         switch state.timerStatus{
         case .standBy:
             guard state.count != 0 else {return .none}
@@ -49,43 +71,21 @@ extension TimerFeature{
         }
         case .pause(.focusPause):
             return .run {[count = state.count] send in
-            await send(.setStatus(.focus,isRequiredSetTimer: false))
-            await send(.setTimerRunning(count))
-        }
-        case .completed: return .run{ send in
-            await send(.setStatus(.standBy))
-        }
-        default: return .none
-        }
-    }
-
-    func circleTimerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
-        switch state.timerStatus{
-        case .focus:
-            return .run { send in
-                await send(.setStatus(.pause(.focusPause)))
+                await send(.setStatus(.focus,isRequiredSetTimer: false))
+                await send(.setTimerRunning(count))
             }
-        default: return .none
-        }
-    }
-
-    func resetTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
-        switch state.timerStatus{
-        case .breakTime,.pause: return .run{ send in
-            await send(.setStatus(.standBy))
-        }
-        default: return .none
-        }
-    }
-    func completeTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
-        switch state.timerStatus{
         case .completed: return .run{ send in
             await send(.setStatus(.standBy))
         }
-        default: return .none
+        case .breakStandBy:
+            state.startDate = Date()
+            return .run { send in
+                await send(.setStatus(.breakTime))
+            }
+        case .breakTime: return .run { send in
+            await send(.setStatus(.standBy))
         }
-    }
-    func triggerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
-        catTapped(state: &state)
+        case .pause(.breakPause): return .none
+        }
     }
 }

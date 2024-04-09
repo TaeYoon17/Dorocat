@@ -43,12 +43,14 @@ enum AnalyzeDateType{
                 return .none
             case .initAnalyzeFeature:
                 if !state.isLaunched{
+                    print("이게 자꾸 발생!!")
                     state.isLaunched = true
                     return .run(operation: { send in
                         try await self.getDatabaseValueAndUpdate(sender: send)
                         for try await event in await apiClient.eventAsyncStream(){
                             switch event{
                             case .append:
+                                print("전송 성공!!")
                                 try await self.getDatabaseValueAndUpdate(sender: send)
                             }
                         }

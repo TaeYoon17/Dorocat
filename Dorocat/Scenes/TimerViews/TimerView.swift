@@ -29,9 +29,9 @@ struct TimerView: View {
                 }
                 Spacer()
                 switch store.timerStatus{
-                case .standBy,.focus,.pause: 
+                case .standBy,.focus,.pause,.breakTime:
                     TimerViewComponents.Timer.NumberField(store: store)
-                case .completed,.breakTime: EmptyView()
+                case .completed,.breakStandBy: EmptyView()
                 }
                 TimerViewComponents.TriggerBtn(store: store)
             }).frame(maxWidth: .infinity)

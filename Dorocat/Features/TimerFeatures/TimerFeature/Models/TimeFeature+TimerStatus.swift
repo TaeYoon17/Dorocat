@@ -14,8 +14,9 @@ enum TimerFeatureStatus:Equatable{
     case standBy
     case focus
     case pause(PauseStatus)
-    case completed
+    case breakStandBy
     case breakTime
+    case completed
 }
 extension TimerFeatureStatus{
     static func create(name:String) -> Self{
@@ -26,6 +27,7 @@ extension TimerFeatureStatus{
         case "pauseBreak": .pause(.breakPause)
         case "breakTime": .breakTime
         case "completed": .completed
+        case "breakStandBy": .breakStandBy
         default: .standBy
         }
     }
@@ -37,6 +39,7 @@ extension TimerFeatureStatus{
         case .pause(.focusPause): "pauseFocus"
         case .pause(.breakPause): "pauseBreak"
         case .breakTime: "breakTime"
+        case .breakStandBy: "breakStandBy"
         }
     }
     static func getPause(_ prevStatus:Self)->Self?{

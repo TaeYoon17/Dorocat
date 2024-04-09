@@ -64,6 +64,61 @@ extension TimerFeature{
         }
     }
     // 포모 타이머 집중 상태에서 멈추었다 다시 가져온다.
+    fileprivate func pomoTimerFocus(_ send: Sender,value: PomoValues,diff: Int) async {
+        guard let info = value.information else {fatalError("여기에는 정보가 있어야한다.")}
+        let restTime = value.count - diff
+        if restTime > 0{
+            await send(.setStatus(.focus, isRequiredSetTimer: false))
+            await send(.setTimerRunning(restTime))
+        }else{
+            var cycle = value.cycle + 1
+            let restCycle = info.cycle - cycle
+            var newValue = value
+            newValue.cycle = cycle
+            newValue.count = 0
+            await send(.setDefaultValues(newValue))
+            if restCycle <= 0{
+                await send(.setStatus(.completed))
+            }else{
+                await send(.setStatus(.breakStandBy))
+            }
+        }
+    }
+    //MARK: -- breakTime 상태일 때 처리
+    fileprivate func pomoTimerBreak(_ send: Sender,value: PomoValues,diff: Int) async{
+        guard let info = value.information else {fatalError("여기에는 정보가 있어야한다.")}
+        var timeDiff = diff - value.count
+        var cycle = value.cycle
+        var newValue = value
+        if timeDiff <= 0{
+            await send(.setStatus(.breakTime, isRequiredSetTimer: false))
+            await send(.setTimerRunning(value.count - diff))
+        }else{
+            newValue.count = info.timeSeconds
+            newValue.status = .pause(.focusPause)
+            await pomoTimerFocus(send, value: newValue, diff: timeDiff)
+        }
+    }
+}
+
+
+//MARK: -- Legacy... CycleCompleted 상태가 없이 바로 넘어가는 경우를 구현
+/*
+extension TimerFeature{
+    fileprivate func pomoTimerBreak(_ send: Sender,value: PomoValues,diff: Int) async {
+        guard let info = value.information else {fatalError("여기에는 정보가 있어야한다.")}
+        var timeDiff = diff - value.count
+        var cycle = value.cycle
+        var newValue = value
+        if timeDiff <= 0{
+            await send(.setStatus(.breakTime, isRequiredSetTimer: false))
+            await send(.setTimerRunning(value.count - diff))
+        }else{
+            newValue.count = info.timeSeconds
+            newValue.status = .pause(.focusPause)
+            await pomoTimerFocus(send, value: newValue, diff: timeDiff)
+        }
+    }
     fileprivate func pomoTimerFocus(_ send: Sender,value: PomoValues,diff:Int) async{
         guard let info = value.information else {fatalError("여기에는 정보가 있어야한다.")}
         var timeDiff = diff - value.count
@@ -106,22 +161,5 @@ extension TimerFeature{
             }
         }
     }
-
 }
-//MARK: -- shortBreak 상태일 때 처리
-extension TimerFeature{
-    fileprivate func pomoTimerBreak(_ send: Sender,value: PomoValues,diff: Int) async {
-        guard let info = value.information else {fatalError("여기에는 정보가 있어야한다.")}
-        var timeDiff = diff - value.count
-        var cycle = value.cycle
-        var newValue = value
-        if timeDiff <= 0{
-            await send(.setStatus(.breakTime, isRequiredSetTimer: false))
-            await send(.setTimerRunning(value.count - diff))
-        }else{
-            newValue.count = info.timeSeconds
-            newValue.status = .pause(.focusPause)
-            await pomoTimerFocus(send, value: newValue, diff: timeDiff)
-        }
-    }
-}
+*/
