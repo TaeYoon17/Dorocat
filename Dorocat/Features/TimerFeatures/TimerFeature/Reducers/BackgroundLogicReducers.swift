@@ -13,6 +13,8 @@ extension TimerFeature{
     /// 디스크에 저장되어 남았던 데이터를 가져옴
     var diskTimerInfoToMemory:Effect<TimerFeature.Action>{
         .run { send in
+            // Realm 객체 생성
+            try await analyzeAPI.initAction()
             // 시간 설정
             guard let prevDate = await timeBackground.date else { return }
             if Date().isOverTwoDays(prevDate: prevDate){

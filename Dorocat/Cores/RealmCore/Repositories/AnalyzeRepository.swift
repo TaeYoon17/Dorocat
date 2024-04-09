@@ -12,7 +12,7 @@ import RealmSwift
 @DBActor final class TimerRecordRepository: TableRepository<TimerRecordItemTable>{
     func getByDay(date:Date) -> Results<TimerRecordItemTable>{
         self.getTasks.where { table in
-            table.recordCode == date.convertToRecordCode()
+            table.recordCode.equals(date.convertToRecordCode())
         }
     }
     func append(_ item:TimerRecordItemTable) async {

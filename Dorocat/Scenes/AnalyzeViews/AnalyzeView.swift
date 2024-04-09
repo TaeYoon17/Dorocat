@@ -11,33 +11,35 @@ import RealmSwift
 struct AnalyzeView: View {
     @Perception.Bindable var store: StoreOf<AnalyzeFeature>
     var body: some View {
+        
         WithPerceptionTracking {
-//            NavigationStack {
-                ZStack{
-                    Image(.defaultBg).resizable(resizingMode: .tile)
-                    ScrollView {
-                        VStack{
-                            Rectangle().fill(.clear).frame(height:40)
-                            LazyVStack(alignment: .center, pinnedViews: [.sectionHeaders], content: {
-                                Section {
-                                    VStack(spacing:16) {
-                                        AnalyzeDurationView.Day(store: store)
-                                        VStack(spacing:8) {
-                                            ForEach(store.timerRecordList){ item in
-                                                AnalyzeListItemView(analyzeDateType: .day, timerListItem: item)
-                                            }
+            ZStack{
+                Image(.defaultBg).resizable(resizingMode: .tile)
+                ScrollView {
+                    VStack{
+                        Rectangle().fill(.clear).frame(height:40)
+                        LazyVStack(alignment: .center, pinnedViews: [.sectionHeaders], content: {
+                            Section {
+                                VStack(spacing:16) {
+                                    AnalyzeDurationView.Day(store: store)
+                                    VStack(spacing:8) {
+                                        ForEach(store.timerRecordList){ item in
+                                            AnalyzeListItemView(analyzeDateType: .day, timerListItem: item)
                                         }
-                                    }.padding(.horizontal, 16)
-                                } header: {
-                                        DurationPickerView()
-                                            .padding(.vertical,8)
-                                            .background(DefaultBG())
-                                }
-                            })
-                            Rectangle().fill(.clear).frame(height:40)
-                        }
+                                    }
+                                }.padding(.horizontal, 16)
+                            } header: {
+                                    DurationPickerView()
+                                        .padding(.vertical,8)
+                                        .background(DefaultBG())
+                            }
+                        })
+                        Rectangle().fill(.clear).frame(height:40)
                     }
-                }.toolbar(.hidden, for: .navigationBar)
+                }.onAppear {
+                    store.send(.initAnalyzeFeature)
+                }
+            }.toolbar(.hidden, for: .navigationBar)
         }
     }
 }

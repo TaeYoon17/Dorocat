@@ -31,6 +31,7 @@ import ComposableArchitecture
     @Dependency(\.pomoDefaults) var pomoDefaults
     @Dependency(\.guideDefaults) var guideDefaults
     @Dependency(\.timeBackground) var timeBackground
+    @Dependency(\.analyzeAPIClients) var analyzeAPI
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
@@ -46,7 +47,7 @@ import ComposableArchitecture
                 return .none
             case .timerSetting(.presented(.delegate(.setTimerInfo(let info)))):
                 let count = info.timeSeconds
-                let pomoValues = PomoValues(status: state.timerStatus, information: info, cycle: 0, count: count)
+                let pomoValues = PomoValues(status: state.timerStatus, information: info, cycle: 0, count: count,startDate: state.startDate)
                 return .run { send in
                     await send(.setDefaultValues(pomoValues))
                     await pomoDefaults.setAll(pomoValues)
@@ -77,7 +78,7 @@ import ComposableArchitecture
                         let prevStatus = state.timerStatus // 이전에 갖고 있던 상태를 그대로 저장
                         let pauseStatus = TimerFeatureStatus.getPause(state.timerStatus) ?? state.timerStatus
                         // 이전에 갖고 있던 상태에서 Pause로 이동한 상태를 저장
-                        let values = PomoValues(status: pauseStatus, information: state.timerInformation, cycle: state.cycle, count: state.count)
+                        let values = PomoValues(status: pauseStatus, information: state.timerInformation, cycle: state.cycle, count: state.count,startDate: state.startDate)
                         return .run { send in
                             await timeBackground.set(date: Date())
                             await timeBackground.set(timerStatus: prevStatus)

@@ -22,6 +22,7 @@ extension TimerFeature{
         var cycleNote:String{
             "\(cycle) / \(timerInformation.cycle)"
         }
+        var startDate = Date()
         @Presents var timerSetting: TimerSettingFeature.State?
         var appState = DorocatFeature.AppStateType.active
     }

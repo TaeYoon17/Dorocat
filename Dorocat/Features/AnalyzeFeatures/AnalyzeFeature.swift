@@ -7,7 +7,6 @@
 
 import Foundation
 import ComposableArchitecture
-import RealmSwift
 enum AnalyzeDateType{
     case day
     case week
@@ -17,16 +16,20 @@ enum AnalyzeDateType{
     @ObservableState struct State:Equatable{
         var timerRecordList: IdentifiedArrayOf<TimerRecordItem> = []
         var totalTime:String = ""
+        var isLaunched = false
     }
     enum Action: Equatable{
         case leftArrowTapped
         case rightArrowTapped
         case setAnalyzeTypeSegment(AnalyzeDateType)
-        case initShoppingLists
+        case initAnalyzeFeature
         case updateTimerRecordList([TimerRecordItem])
         case updateTotalTime(Double)
     }
     @DBActor @Dependency(\.analyzeAPIClients) var apiClient
+    enum CancelID{
+        case dbCancel
+    }
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
@@ -36,17 +39,22 @@ enum AnalyzeDateType{
                 return .none
             case .setAnalyzeTypeSegment(_):
                 return .none
-            case .initShoppingLists:
-                return .run {@DBActor send in
-                    do{
-                        try await apiClient.initAction()
-                        let list = try await apiClient.get(day: Date())
-                        await send(.updateTimerRecordList(list))
-                        await send(.updateTotalTime(apiClient.totalFocusTime))
-                    }catch{
-                        print(error)
-                    }
+            case .initAnalyzeFeature:
+                if !state.isLaunched{
+                    state.isLaunched = true
+                    return .run(operation: { send in
+                        try await self.getDatabaseValueAndUpdate(sender: send)
+                        for try await event in await apiClient.eventAsyncStream(){
+                            switch event{
+                            case .append:
+                                try await self.getDatabaseValueAndUpdate(sender: send)
+                            }
+                        }
+                    }).cancellable(id: CancelID.dbCancel)
+                }else{
+                    return .none
                 }
+                
             case .updateTimerRecordList(let lists):
                 state.timerRecordList.removeAll()
                 state.timerRecordList.append(contentsOf: lists)
@@ -57,5 +65,10 @@ enum AnalyzeDateType{
                 return .none
             }
         }
+    }
+    func getDatabaseValueAndUpdate(sender send: Send<AnalyzeFeature.Action>) async throws {
+        let list = try await apiClient.get(day: Date())
+        await send(.updateTimerRecordList(list))
+        await send(.updateTotalTime(apiClient.totalFocusTime))
     }
 }

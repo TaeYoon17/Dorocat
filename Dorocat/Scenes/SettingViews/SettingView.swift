@@ -24,7 +24,7 @@ struct SettingView: View {
                                         ProListItemView().padding(.bottom,16)
                                         SettingListItem.Toggler(title: "Notifications",
                                                                 description: "Get notified of focus sessions or breaks", isOn: $isOn)
-                                        SettingListItem.Toggler(title: "Sound", isOn: $isOn)
+                                        SettingListItem.Toggler(title: "Sound", isOn: $store.isSound.sending(\.setSound))
                                         SettingListItem.Toggler(title: "Haptics", isOn: $isOn)
                                         SettingListItem.Linker(title: "Your Rating Matters") {
                                             print("hello world")

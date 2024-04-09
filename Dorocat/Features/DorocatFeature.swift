@@ -9,7 +9,7 @@ import Foundation
 import ComposableArchitecture
 @Reducer
 struct DorocatFeature{
-    enum PageType:String, Hashable,Equatable,CaseIterable,Identifiable{
+    enum PageType:String,Hashable,Equatable,CaseIterable,Identifiable{
         var id:String{ self.rawValue }
         case analyze
         case timer
@@ -90,14 +90,14 @@ struct DorocatFeature{
                 }
             }
         }
+        Scope(state: \.anylzeState,action: /DorocatFeature.Action.analyze){
+            AnalyzeFeature()
+        }
         Scope(state: \.timerState, action: /DorocatFeature.Action.timer) {
             TimerFeature()
         }
         Scope(state: \.settingState,action: /DorocatFeature.Action.setting){
             SettingFeature()
-        }
-        Scope(state: \.anylzeState,action: /DorocatFeature.Action.analyze){
-            AnalyzeFeature()
         }
     }
 }

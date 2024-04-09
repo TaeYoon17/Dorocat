@@ -40,6 +40,7 @@ extension TimerFeature{
         switch state.timerStatus{
         case .standBy:
             guard state.count != 0 else {return .none}
+            state.startDate = Date()
             return .run { send in
                 await send(.setStatus(.focus))
             }

@@ -23,7 +23,11 @@ extension TimerFeature{
         case .pause: return .cancel(id: CancelID.timer)
         case .completed:
             // 여기에 DB 데이터 추가..?
-            return .cancel(id: CancelID.timer)
+            let startDate = state.startDate
+            let duration = state.timerInformation.timeSeconds
+            return Effect.concatenate(.cancel(id: CancelID.timer),.run(operation: {send in
+                await analyzeAPI.append(.init(createdAt: startDate, duration: duration))
+            }))
         case .breakTime:
             return .run{[count = state.timerInformation.breakTime] send in
                 await send(.setTimerRunning(count))
