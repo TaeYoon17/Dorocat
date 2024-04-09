@@ -8,7 +8,7 @@
 import SwiftUI
 import RealmSwift
 import ComposableArchitecture
-
+/*
 struct ShoppingListItemsScreen: View {
     @Perception.Bindable var store: StoreOf<ShoppingListItemFeature>
     @State var shoppingList:ShoppingListTable = .init()
@@ -78,3 +78,4 @@ struct ShoppingListItemsScreen: View {
 //        }
 //    }
 //}
+*/

@@ -7,6 +7,7 @@
 
 import Foundation
 import ComposableArchitecture
+import Combine
 enum AnalyzeDateType{
     case day
     case week
@@ -27,6 +28,7 @@ enum AnalyzeDateType{
         case updateTotalTime(Double)
     }
     @DBActor @Dependency(\.analyzeAPIClients) var apiClient
+    var cancellable = Set<AnyCancellable>()
     enum CancelID{
         case dbCancel
     }
