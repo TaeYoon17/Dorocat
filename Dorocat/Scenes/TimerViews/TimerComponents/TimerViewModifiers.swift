@@ -44,11 +44,15 @@ enum TimerViewModifiers{
             let store: StoreOf<TimerFeature>
             func body(content: Content) -> some View {
                 content.overlay(alignment:.top) {
-                    if store.timerStatus == .focus && !store.guideInformation.startGuide{
-                        TimerViewComponents.Guide.Focus()
-                            .padding(.top,25)
-                            .transition(.opacity)
-                    }
+                    ZStack {
+                        if store.timerStatus == .focus && !store.guideInformation.startGuide{
+                            TimerViewComponents.Guide.Focus()
+                                .padding(.top,25)
+                                .opacity(!store.guideInformation.startGuide ? 1 : 0)
+                        }else{
+                            EmptyView()
+                        }
+                    }.transition(.opacity)
                 }
             }
         }

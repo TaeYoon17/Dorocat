@@ -89,8 +89,7 @@ fileprivate extension TimerFeature{
                 guide.startGuide = true
                 effects.append(.run {[guide] send in
                     try await Task.sleep(for: .seconds(3))
-                    
-                    await send(.setGuideState(guide))
+                    await send(.setGuideState(guide),animation: .easeInOut)
                     
                 })
             }

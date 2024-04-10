@@ -87,7 +87,7 @@ struct DorocatFeature{
                     await self.guideDefaults.set(guide: guides)
                 }
             case .setGuideStates(let guides):
-                return .run{[guides = state.guideState] send in
+                return .run{[guides] send in
                     await self.guideDefaults.set(guide: guides)
                     await send(.timer(.setGuideState(guides)))
                 }
