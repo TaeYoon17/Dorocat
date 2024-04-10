@@ -9,43 +9,39 @@ import Foundation
 import ComposableArchitecture
 
 extension TimerFeature{
-    /// 앱을 시작할 때, inActive로 돌아올 때
-    /// 디스크에 저장되어 남았던 데이터를 가져옴
-    var diskTimerInfoToMemory:Effect<TimerFeature.Action>{
-        .run { send in
-            // Realm 객체 생성
-            try await analyzeAPI.initAction()
-            // 시간 설정
-            guard let prevDate = await timeBackground.date else { return }
-            if Date().isOverTwoDays(prevDate: prevDate){
-                await send(.setStatus(.standBy, isRequiredSetTimer: true))
-                return
+    func awakeTimer(_ send: Send<TimerFeature.Action>) async {
+        // 시간 설정, 저장해둔 타이머 시간 정보가 없으면 저장한 Status 값 그대로 보존한다.
+        guard let prevDate = await timeBackground.date else { return }
+        if Date().isOverTwoDays(prevDate: prevDate){
+            await send(.setStatus(.standBy))
+            return
+        }
+        await timeBackground.set(date: nil)
+        let difference = Int(Date().timeIntervalSince(prevDate))
+        
+        let savedValues:PomoValues = await pomoDefaults.getAll() // 디스크에 저장된 값
+        await send(.setDefaultValues(savedValues)) // 디스크에 저장된 값을 State에 보냄
+        let prevStatus = await timeBackground.timerStatus // 이전 상태
+        let pauseStatus = savedValues.status // 이전 상태에서 Pause한 상태
+        
+        //MARK: -- 이전 상태와 저장된 상태를 통해서 메서드를 호출
+        switch (prevStatus,pauseStatus){
+        case (_,.focus),(_,.breakTime): // 이전 상태가 타이머를 사용하는 상태
+            fatalError("Pause Status에서 타이머에 접근하고 있다...")
+        case (_,.completed),(_,.standBy),(_ ,.breakStandBy): break
+        case (.pause,.pause): break
+        case (.focus,.pause(.focusPause)): // 포커스 타임이지만, 일시적으로 Pause한 상태
+            guard let info = savedValues.information else {
+                fatalError("여기에는 정보가 있어야한다.")
             }
-            let difference = Int(Date().timeIntervalSince(prevDate))
-            await timeBackground.set(date: nil)
-            let savedValues:PomoValues = await pomoDefaults.getAll() // 저장된 값
-            let prevStatus = await timeBackground.timerStatus // 이전 상태
-            let pauseStatus = savedValues.status // 이전 상태에서 Pause한 상태
-            await send(.setDefaultValues(savedValues)) // 저장된 값에서 타이머 Feature를 가져옴
-            //MARK: -- 이전 상태와 저장된 상태를 통해서 메서드를 호출
-            switch (prevStatus,pauseStatus){
-            case (_,.focus),(_,.breakTime): // 이전 상태가 타이머를 사용하는 상태
-                fatalError("이게 왜 돌아가...")
-            case (_,.completed),(_,.standBy): break
-            case (.pause,.pause): break
-            case (.focus,.pause(.focusPause)): // 포커스 타임이지만, 일시적으로 Pause한 상태
-                guard let info = savedValues.information else {
-                    fatalError("여기에는 정보가 있어야한다.")
-                }
-                if info.isPomoMode{
-                    await pomoTimerFocus(send, value: savedValues, diff: difference)
-                }else{
-                    await defaultTimerFocus(send, value: savedValues, diff: difference)
-                }
-            case (.breakTime,.pause(.breakPause)):
-                await self.pomoTimerBreak(send, value: savedValues, diff: difference)
-            default: print("알 수 없는 상태 \(prevStatus) \(savedValues.status)")
+            if info.isPomoMode{
+                await pomoTimerFocus(send, value: savedValues, diff: difference)
+            }else{
+                await defaultTimerFocus(send, value: savedValues, diff: difference)
             }
+        case (.breakTime,.pause(.breakPause)):
+            await self.pomoTimerBreak(send, value: savedValues, diff: difference)
+        default: fatalError("발생 할 수 없는 경우!!")
         }
     }
 }
@@ -53,23 +49,21 @@ extension TimerFeature{
 //MARK: -- focus 상태일 때 처리
 extension TimerFeature{
     fileprivate typealias Sender = Send<TimerFeature.Action>
-    // 기본 타이머 집중 상태에서 멈추었다 다시 가져온다.
+    // 1. 기본 타이머 집중 상태에서 멈추었다 다시 가져온다.
     fileprivate func defaultTimerFocus(_ send: Send<TimerFeature.Action>,value:PomoValues,diff:Int) async{
         let restTime = value.count - diff
         if restTime > 0{
-            await send(.setStatus(.focus, isRequiredSetTimer: false))
-            await send(.setTimerRunning(restTime))
+            await send(.setStatus(.focus, count:restTime))
         }else{
             await send(.setStatus(.completed))
         }
     }
-    // 포모 타이머 집중 상태에서 멈추었다 다시 가져온다.
+    // 2. 포모 타이머 집중 상태에서 멈추었다 다시 가져온다.
     fileprivate func pomoTimerFocus(_ send: Sender,value: PomoValues,diff: Int) async {
         guard let info = value.information else {fatalError("여기에는 정보가 있어야한다.")}
         let restTime = value.count - diff
         if restTime > 0{
-            await send(.setStatus(.focus, isRequiredSetTimer: false))
-            await send(.setTimerRunning(restTime))
+            await send(.setStatus(.focus,count: restTime))
         }else{
             var cycle = value.cycle + 1
             let restCycle = info.cycle - cycle
@@ -91,8 +85,7 @@ extension TimerFeature{
         var cycle = value.cycle
         var newValue = value
         if timeDiff <= 0{
-            await send(.setStatus(.breakTime, isRequiredSetTimer: false))
-            await send(.setTimerRunning(value.count - diff))
+            await send(.setStatus(.breakTime, count:value.count - diff))
         }else{
             newValue.count = info.timeSeconds
             newValue.status = .pause(.focusPause)

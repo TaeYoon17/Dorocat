@@ -8,21 +8,25 @@
 import Foundation
 import ComposableArchitecture
 // MARK: -- Dorocat Tab과 Feature를 완전히 분리해서 구현해보기
-@Reducer struct TimerFeature{
-    enum CancelID { case timer }
-    enum Action:Equatable{
-        // View에 보이는 그대로 Action
+extension TimerFeature{
+    enum ViewAction:Equatable{
         case timerFieldTapped
         case circleTimerTapped
         case catTapped
         case resetTapped
         case triggerTapped
+    }
+}
+@Reducer struct TimerFeature{
+    enum CancelID { case timer }
+    enum Action:Equatable{
+        case viewAction(ViewAction)
         // 내부 로직 Action
         case initAction
         case setDefaultValues(PomoValues)
         case setTimerRunning(Int)
         case timerTick
-        case setStatus(TimerFeatureStatus,isRequiredSetTimer: Bool = true)
+        case setStatus(TimerFeatureStatus,count: Int? = nil)
         case timerSetting(PresentationAction<TimerSettingFeature.Action>)
         case setAppState(DorocatFeature.AppStateType)
         case setGuideState(Guides)
@@ -34,12 +38,8 @@ import ComposableArchitecture
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
-            //MARK: -- 뷰 버튼, Field... Action 처리
-            case .timerFieldTapped: return self.timerFieldTapped(state: &state)
-            case .circleTimerTapped: return self.circleTimerTapped(state: &state)
-            case .catTapped: return self.catTapped(state: &state)
-            case .resetTapped: return self.resetTapped(state: &state)
-            case .triggerTapped: return self.triggerTapped(state: &state)
+            case .viewAction(let viewAction): return self.viewAction(&state,viewAction)
+            case .setAppState(let appState): return self.appStateRedecuer(&state,appState: appState)
             //MARK: -- 화면 전환 Action 처리
             case .timerSetting(.presented(.delegate(.cancel))):
                 return .none
@@ -53,14 +53,7 @@ import ComposableArchitecture
             case .timerSetting: return .none
             case .timerTick: return self.timerTick(state: &state)
                 // 내부 로직 Action 처리
-            case .setStatus(let status,let isRequiredSetTimer):
-                state.timerStatus = status
-                if isRequiredSetTimer{
-                    return setTimer(state: &state, status: status)
-                }else{
-                    return .none
-                }
-            case .setAppState(let appState): return self.appStateRedecuer(&state,appState: appState)
+            case .setStatus(let status,let count): return setTimerStatus(state: &state, status: status,count: count)
             case .setTimerRunning(let count):
                 state.count = count
                 return .run{ send in

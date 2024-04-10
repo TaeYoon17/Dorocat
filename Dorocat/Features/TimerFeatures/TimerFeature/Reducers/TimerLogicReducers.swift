@@ -9,31 +9,34 @@ import Foundation
 import ComposableArchitecture
 extension TimerFeature{
     // 앱의 상태가 바뀐 뒤 타이머 구성
-    func setTimer(state:inout TimerFeature.State,status:TimerFeatureStatus) -> Effect<TimerFeature.Action>{
+    func setTimerStatus(state:inout TimerFeature.State,status:TimerFeatureStatus,count:Int? = nil) -> Effect<TimerFeature.Action>{
+        state.timerStatus = status
+        let runningEffect: Effect<Action> = .run{[count = state.count] send in
+            await send(.setTimerRunning(count))
+       }
         switch status{
         case .standBy:
+            if let count{ fatalError("여기에 존재하면 안된다!!")}
             state.cycle = 0
             state.count = state.timerInformation.timeSeconds
             return .none
         case .focus:
-            state.count = state.timerInformation.timeSeconds
-            return .run {[count = state.timerInformation.timeSeconds] send in
-                await send(.setTimerRunning(count))
-            }
-        case .pause: return .cancel(id: CancelID.timer)
+            state.count = count ?? state.timerInformation.timeSeconds
+            return runningEffect
+        case .breakTime:
+            state.count = count ?? state.timerInformation.breakTime
+            return runningEffect
+        case .pause:
+            if let count{ fatalError("여기에 존재하면 안된다!!")}
+            return .cancel(id: CancelID.timer)
         case .completed,.breakStandBy:
-            // 여기에 DB 데이터 추가..?
+            if let count{ fatalError("여기에 존재하면 안된다!!")}
             let startDate = state.startDate
             let duration = state.timerInformation.timeSeconds
             return Effect.concatenate(.cancel(id: CancelID.timer),
                                       .run(operation: {send in
-                  print("API 전송이 일어난다!!")
                 await analyzeAPI.append(.init(createdAt: startDate, duration: duration))
             }))
-        case .breakTime:
-            return .run{[count = state.timerInformation.breakTime] send in
-                await send(.setTimerRunning(count))
-           }
         }
     }
 }
@@ -51,7 +54,6 @@ extension TimerFeature{
             switch state.timerStatus{
             case .focus:
                 state.cycle += 1
-                // trigger 역할을 수행한다.
                 let cycleEffect:Effect<TimerFeature.Action> = state.cycle >= state.timerInformation.cycle ?
                         .run{ send in
                             await send(.setStatus(.completed))
@@ -59,12 +61,10 @@ extension TimerFeature{
                     : .run{ send in
                         await send(.setStatus(.breakStandBy))
                     }
-                return Effect.concatenate([.cancel(id: CancelID.timer),cycleEffect])
+                return Effect.merge([.cancel(id: CancelID.timer),cycleEffect])
             case .breakTime: // breakTime 시간이 끝남...
                 state.count = state.timerInformation.breakTime
-                return Effect.concatenate([
-                    .cancel(id: CancelID.timer),
-                    .run { send in
+                return Effect.merge([.cancel(id: CancelID.timer),.run { send in
                         await send(.setStatus(.focus))
                     }
                 ])

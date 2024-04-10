@@ -8,6 +8,23 @@
 import Foundation
 import ComposableArchitecture
 extension TimerFeature{
+    func viewAction(_ state:inout State,_ act: ViewAction) -> Effect<Action>{
+        switch act {
+        case .timerFieldTapped:
+            return self.timerFieldTapped(state: &state)
+        case .circleTimerTapped:
+            return self.circleTimerTapped(state: &state)
+        case .catTapped:
+            return self.catTapped(state: &state)
+        case .resetTapped:
+            return self.resetTapped(state: &state)
+        case .triggerTapped:
+            return self.triggerTapped(state: &state)
+        }
+    }
+    
+}
+fileprivate extension TimerFeature{
     func timerFieldTapped(state:inout TimerFeature.State) ->  Effect<TimerFeature.Action>{
         var effects:[Effect<TimerFeature.Action>] = []
         if !state.guideInformation.onBoarding{
@@ -23,8 +40,8 @@ extension TimerFeature{
             })
         case .pause(.focusPause):
             effects.append(.run {[count = state.count] send in
-                await send(.setStatus(.focus,isRequiredSetTimer: false))
-                await send(.setTimerRunning(count))}
+                await send(.setStatus(.focus,count:count))
+                }
             )
         case .standBy: // standby일때 탭하면 세팅하는 화면으로 설정한다.
             state.timerSetting = TimerSettingFeature.State()
@@ -39,7 +56,6 @@ extension TimerFeature{
     func catTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         return .none
     }
-    
     func circleTimerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         switch state.timerStatus{
         case .focus:
@@ -49,7 +65,6 @@ extension TimerFeature{
         default: return .none
         }
     }
-    
     func resetTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         switch state.timerStatus{
         case .breakTime,.pause: return .run{ send in
@@ -71,8 +86,7 @@ extension TimerFeature{
         }
         case .pause(.focusPause):
             return .run {[count = state.count] send in
-                await send(.setStatus(.focus,isRequiredSetTimer: false))
-                await send(.setTimerRunning(count))
+                await send(.setStatus(.focus,count: count))
             }
         case .completed: return .run{ send in
             await send(.setStatus(.standBy))
