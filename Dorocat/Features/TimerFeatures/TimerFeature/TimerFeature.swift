@@ -81,6 +81,7 @@ extension TimerFeature{
                 state.timerStatus = value.status
                 return .none
             case .setGuideState(let guides):
+                print(guides)
                 state.guideInformation = guides
                 return .none
             }

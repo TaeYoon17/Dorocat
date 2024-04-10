@@ -45,7 +45,8 @@ struct TimerView: View {
 fileprivate extension View{
     func timerViewModifiers(store: StoreOf<TimerFeature>) -> some View{
         self.modifier(TimerViewModifiers.Reset(store: store))
-            .modifier(TimerViewModifiers.Guide.Onboarding(store: store))
+            .modifier(TimerViewModifiers.Guide.Focus(store: store))
+            .modifier(TimerViewModifiers.Guide.StandBy(store: store))
             .modifier(TimerViewModifiers.Guide.GoLeft(store: store))
             .modifier(TimerViewModifiers.Guide.GoRight(store: store))
             .modifier(TimerViewModifiers.Init(store: store))

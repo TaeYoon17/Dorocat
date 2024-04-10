@@ -54,7 +54,10 @@ fileprivate extension TimerFeature{
         return Effect.concatenate(effects)
     }
     func catTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
-        return .none
+        state.guideInformation.standByGuide = true
+        return .run {[guide = state.guideInformation] send in
+            await send(.setGuideState(guide))
+        }
     }
     func circleTimerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         switch state.timerStatus{

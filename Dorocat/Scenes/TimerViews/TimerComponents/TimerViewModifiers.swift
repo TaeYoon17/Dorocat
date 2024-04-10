@@ -29,13 +29,24 @@ enum TimerViewModifiers{
                 }
             }
         }
-        struct Onboarding: ViewModifier{
+        struct StandBy: ViewModifier{
             let store: StoreOf<TimerFeature>
             func body(content: Content) -> some View {
                 content.overlay(alignment:.top) {
-                    if store.timerStatus == .standBy && !store.guideInformation.onBoarding{
-                        TimerViewComponents.Guide.Onboarding()
+                    if store.timerStatus == .standBy && !store.guideInformation.standByGuide{
+                        TimerViewComponents.Guide.StandBy()
                             .padding(.top,125)
+                    }
+                }
+            }
+        }
+        struct Focus: ViewModifier{
+            let store: StoreOf<TimerFeature>
+            func body(content: Content) -> some View {
+                content.overlay(alignment:.top) {
+                    if store.timerStatus == .focus && !store.guideInformation.startGuide{
+                        TimerViewComponents.Guide.Focus()
+                            .padding(.top,25)
                     }
                 }
             }

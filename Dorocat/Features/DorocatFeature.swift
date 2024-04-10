@@ -63,9 +63,6 @@ struct DorocatFeature{
                         return .none
                     }
                 }
-            case .timer: return .none
-            case .analyze:return .none
-            case .setting: return .none
             case .setAppState(let appState):
                 state.appState = appState
                 return .run{ send in
@@ -82,12 +79,21 @@ struct DorocatFeature{
                 }else{
                     return .none
                 }
+            case .timer(.setGuideState(let guide)):
+                guard guide != state.guideState else {return .none}
+                state.guideState = guide
+                return .run{[guides = state.guideState] send in
+                    await self.guideDefaults.set(guide: guides)
+                }
             case .setGuideStates(let guides):
                 state.guideState = guides
                 return .run{[guides = state.guideState] send in
                     await self.guideDefaults.set(guide: guides)
                     await send(.timer(.setGuideState(guides)))
                 }
+            case .timer: return .none
+            case .analyze:return .none
+            case .setting: return .none
             }
         }
         Scope(state: \.anylzeState,action: /DorocatFeature.Action.analyze){

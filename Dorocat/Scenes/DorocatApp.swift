@@ -19,6 +19,9 @@ struct DorocatApp: App {
                     DefaultBG()
                     DoroMainView(store: store)
                 }.preferredColorScheme(.dark)
+                    .onAppear(){
+                        store.send(.initAction)
+                    }
             }
 //            TempView()
         }.onChange(of: phase) { newValue in

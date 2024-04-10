@@ -378,8 +378,8 @@
 		63AD705B2BA43A3C00DBD6B9 /* TimerViews */ = {
 			isa = PBXGroup;
 			children = (
-				631058852BC17A1A008611AD /* TimerComponents */,
 				63A9C3FA2BA5AAC20076D42C /* TimerSetting */,
+				631058852BC17A1A008611AD /* TimerComponents */,
 				63AD70512BA4297300DBD6B9 /* TimerView.swift */,
 			);
 			path = TimerViews;

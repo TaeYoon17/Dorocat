@@ -23,7 +23,7 @@ enum TimerViewComponents{
                 default: ""
                 }
                 Button(text){
-                    store.send(.triggerTapped)
+                    store.send(.viewAction(.triggerTapped))
                 }.triggerStyle(scale: store.timerStatus == .breakTime ? .flexed : .fixed(110))
             }
         }
@@ -37,7 +37,7 @@ enum TimerViewComponents{
                         .font(.header01)
                         .foregroundStyle(.doroWhite)
                         .onTapGesture {
-                            store.send(.timerFieldTapped)
+                            store.send(.viewAction(.timerFieldTapped))
                         }
                 })
             }
@@ -51,7 +51,7 @@ enum TimerViewComponents{
                     })
                     .frame(width: 120,height: 120)
                     .onTapGesture {
-                        store.send(.circleTimerTapped)
+                        store.send(.viewAction(.circleTimerTapped))
                     }
             }
         }
@@ -60,11 +60,10 @@ enum TimerViewComponents{
         let store: StoreOf<TimerFeature>
         var body: some View{
             Button(action: {
-                store.send(.catTapped)
+                store.send(.viewAction(.catTapped))
             }, label: {
-                Text("고양이").font(.largeTitle)
+                Image(.cat)
                     .frame(width: 304,height: 304)
-                    .background(.yellow)
             })
         }
     }
@@ -72,7 +71,7 @@ enum TimerViewComponents{
         let store: StoreOf<TimerFeature>
         var body: some View{
             Button{
-                store.send(.resetTapped)
+                store.send(.viewAction(.resetTapped))
             }label: {
                 Text("Reset")
                     .font(.button)
@@ -117,9 +116,21 @@ extension TimerViewComponents{
                     }
             }
         }
-        struct Onboarding:View{
+        struct StandBy:View{
             var body: some View{
                 Text("Let the cat snooze and get started!")
+                    .foregroundStyle(.grey00)
+                    .font(.paragraph03())
+                    .padding(.horizontal,20)
+                    .padding(.vertical,14)
+                    .background(.grey03)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+        }
+        struct Focus: View{
+            var body: some View{
+                Text("Cat's asleep!")
+                    .foregroundStyle(.grey00)
                     .font(.paragraph03())
                     .padding(.horizontal,20)
                     .padding(.vertical,14)
