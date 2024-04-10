@@ -10,8 +10,7 @@ import ComposableArchitecture
 @main
 struct DorocatApp: App {
     @Environment(\.scenePhase) var phase
-    let store = Store(initialState: DorocatFeature.State(),
-                      reducer: { DorocatFeature()})
+    let store = Store(initialState: DorocatFeature.State(), reducer: { DorocatFeature()})
     var body: some Scene {
         WindowGroup {
             WithPerceptionTracking {

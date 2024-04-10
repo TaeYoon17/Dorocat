@@ -31,6 +31,7 @@ struct DorocatFeature{
         case pageMove(PageType)
         case setAppState(AppStateType)
         case initAction
+        case onBoardingTapped
         case timer(TimerFeature.Action)
         case analyze(AnalyzeFeature.Action)
         case setting(SettingFeature.Action)
@@ -90,6 +91,12 @@ struct DorocatFeature{
                 return .run{[guides = state.guideState] send in
                     await self.guideDefaults.set(guide: guides)
                     await send(.timer(.setGuideState(guides)))
+                }
+            case .onBoardingTapped:
+                var guide = state.guideState
+                guide.onBoarding = true
+                return .run{[guide] send in
+                    await send(.setGuideStates(guide))
                 }
             case .timer: return .none
             case .analyze:return .none

@@ -29,6 +29,7 @@
 		635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 635BD5582B9F56CA004480D1 /* Localizable.xcstrings */; };
 		635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 635BD55B2B9F5708004480D1 /* ComposableArchitecture */; };
 		635C9D3D2BB082E400BFD46D /* PomoDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C9D3C2BB082E400BFD46D /* PomoDependency.swift */; };
+		63616FC12BC666B8003A7211 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63616FC02BC666B8003A7211 /* OnboardingView.swift */; };
 		636E9F662BA818000006FE56 /* DBActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636E9F652BA818000006FE56 /* DBActor.swift */; };
 		636E9F6A2BAD0A880006FE56 /* Legacy-AddShoppingListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636E9F692BAD0A880006FE56 /* Legacy-AddShoppingListFeature.swift */; };
 		637340812BA7440900B2A10F /* TimerRecordItemTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637340802BA7440900B2A10F /* TimerRecordItemTable.swift */; };
@@ -105,6 +106,7 @@
 		6359D9872BC576C40045DEC7 /* AppStateReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateReducers.swift; sourceTree = "<group>"; };
 		635BD5582B9F56CA004480D1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		635C9D3C2BB082E400BFD46D /* PomoDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoDependency.swift; sourceTree = "<group>"; };
+		63616FC02BC666B8003A7211 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		636E9F652BA818000006FE56 /* DBActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBActor.swift; sourceTree = "<group>"; };
 		636E9F692BAD0A880006FE56 /* Legacy-AddShoppingListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Legacy-AddShoppingListFeature.swift"; sourceTree = "<group>"; };
 		637340802BA7440900B2A10F /* TimerRecordItemTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordItemTable.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 			children = (
 				63C124D32B9EF93D000A6D35 /* DorocatApp.swift */,
 				63AD70552BA42A6E00DBD6B9 /* DoroMainView.swift */,
+				63616FBF2BC666A2003A7211 /* OnboardingViews */,
 				63A9C3FE2BA5E2CA0076D42C /* AnalyzeViews */,
 				63AD705C2BA43A4F00DBD6B9 /* SettingViews */,
 				63AD705B2BA43A3C00DBD6B9 /* TimerViews */,
@@ -281,6 +284,14 @@
 				635C9D3C2BB082E400BFD46D /* PomoDependency.swift */,
 			);
 			path = PomoDependencies;
+			sourceTree = "<group>";
+		};
+		63616FBF2BC666A2003A7211 /* OnboardingViews */ = {
+			isa = PBXGroup;
+			children = (
+				63616FC02BC666B8003A7211 /* OnboardingView.swift */,
+			);
+			path = OnboardingViews;
 			sourceTree = "<group>";
 		};
 		6373407E2BA743CD00B2A10F /* AnalyzeDBDependencies */ = {
@@ -639,6 +650,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63E63AB42BB709EA00A601E3 /* TimeBackgroundDependency.swift in Sources */,
+				63616FC12BC666B8003A7211 /* OnboardingView.swift in Sources */,
 				6301F7A52BC3D0AF00E04214 /* Legacy-AnalyzeFeature.swift in Sources */,
 				63AD70522BA4297300DBD6B9 /* TimerView.swift in Sources */,
 				63AD70622BA43EB800DBD6B9 /* SettingFeature.swift in Sources */,

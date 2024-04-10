@@ -33,6 +33,9 @@ struct DoroMainView: View {
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .ignoresSafeArea(.container,edges: .bottom)
                 PageIndicatorView(itemCount: DorocatFeature.PageType.allCases,selectedIndex: store.pageSelection)
+                if !store.guideState.onBoarding{
+                    OnboardingView(store: store)
+                }
             }
         }
     }
