@@ -47,6 +47,7 @@ enum TimerViewModifiers{
                     if store.timerStatus == .focus && !store.guideInformation.startGuide{
                         TimerViewComponents.Guide.Focus()
                             .padding(.top,25)
+                            .transition(.opacity)
                     }
                 }
             }

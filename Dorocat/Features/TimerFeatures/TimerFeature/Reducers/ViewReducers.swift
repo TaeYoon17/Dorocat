@@ -81,9 +81,20 @@ fileprivate extension TimerFeature{
         case .standBy:
             guard state.count != 0 else {return .none}
             state.startDate = Date()
-            return .run { send in
+            var effects:[Effect<Action>] = [.run { send in
                 await send(.setStatus(.focus))
+            }]
+            if !state.guideInformation.startGuide{
+                var guide = state.guideInformation
+                guide.startGuide = true
+                effects.append(.run {[guide] send in
+                    try await Task.sleep(for: .seconds(3))
+                    
+                    await send(.setGuideState(guide))
+                    
+                })
             }
+            return Effect.concatenate(effects)
         case .focus: return .run { send in
             await send(.setStatus(.pause(.focusPause)))
         }

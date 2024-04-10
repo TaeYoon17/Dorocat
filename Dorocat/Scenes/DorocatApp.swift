@@ -22,7 +22,6 @@ struct DorocatApp: App {
                         store.send(.initAction)
                     }
             }
-//            TempView()
         }.onChange(of: phase) { newValue in
             switch newValue{
             case .active: store.send(.setAppState(.active))
