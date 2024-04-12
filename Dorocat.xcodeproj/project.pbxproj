@@ -25,6 +25,7 @@
 		632F89412BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89402BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift */; };
 		632F89442BB5C49E00F2DC0B /* ViewReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89432BB5C49E00F2DC0B /* ViewReducers.swift */; };
 		632F89462BB5C52300F2DC0B /* TimerLogicReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89452BB5C52300F2DC0B /* TimerLogicReducers.swift */; };
+		634C17BB2BC9207A007AC15F /* AnalyzeFeature+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C17BA2BC9207A007AC15F /* AnalyzeFeature+State.swift */; };
 		6359D9882BC576C40045DEC7 /* AppStateReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6359D9872BC576C40045DEC7 /* AppStateReducers.swift */; };
 		635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 635BD5582B9F56CA004480D1 /* Localizable.xcstrings */; };
 		635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 635BD55B2B9F5708004480D1 /* ComposableArchitecture */; };
@@ -44,6 +45,9 @@
 		638EAB032BBF7F50007F8CAC /* DoroTogglerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638EAB022BBF7F50007F8CAC /* DoroTogglerView.swift */; };
 		638EAB062BBF7FDE007F8CAC /* DragGesture+Swipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638EAB052BBF7FDE007F8CAC /* DragGesture+Swipe.swift */; };
 		638EAB082BBFD1C7007F8CAC /* DoroNumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638EAB072BBFD1C7007F8CAC /* DoroNumberPad.swift */; };
+		639F8D132BC97BF300D66551 /* Anaylze+ViewReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639F8D122BC97BF300D66551 /* Anaylze+ViewReducers.swift */; };
+		639F8D152BC97C8700D66551 /* AnalyzeFeautre+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639F8D142BC97C8700D66551 /* AnalyzeFeautre+Action.swift */; };
+		639F8D172BC9954400D66551 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639F8D162BC9954400D66551 /* IntExtensions.swift */; };
 		63A9C3F62BA574830076D42C /* TimerRecordDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3F52BA574830076D42C /* TimerRecordDependency.swift */; };
 		63A9C3F92BA5A3F10076D42C /* NumberPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3F82BA5A3F10076D42C /* NumberPickerView.swift */; };
 		63A9C3FD2BA5E21A0076D42C /* AnalyzeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3FC2BA5E21A0076D42C /* AnalyzeFeature.swift */; };
@@ -103,6 +107,7 @@
 		632F89402BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerSettingFeatures+Reducers.swift"; sourceTree = "<group>"; };
 		632F89432BB5C49E00F2DC0B /* ViewReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewReducers.swift; sourceTree = "<group>"; };
 		632F89452BB5C52300F2DC0B /* TimerLogicReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLogicReducers.swift; sourceTree = "<group>"; };
+		634C17BA2BC9207A007AC15F /* AnalyzeFeature+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnalyzeFeature+State.swift"; sourceTree = "<group>"; };
 		6359D9872BC576C40045DEC7 /* AppStateReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateReducers.swift; sourceTree = "<group>"; };
 		635BD5582B9F56CA004480D1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		635C9D3C2BB082E400BFD46D /* PomoDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoDependency.swift; sourceTree = "<group>"; };
@@ -122,6 +127,9 @@
 		638EAB022BBF7F50007F8CAC /* DoroTogglerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroTogglerView.swift; sourceTree = "<group>"; };
 		638EAB052BBF7FDE007F8CAC /* DragGesture+Swipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DragGesture+Swipe.swift"; sourceTree = "<group>"; };
 		638EAB072BBFD1C7007F8CAC /* DoroNumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroNumberPad.swift; sourceTree = "<group>"; };
+		639F8D122BC97BF300D66551 /* Anaylze+ViewReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Anaylze+ViewReducers.swift"; sourceTree = "<group>"; };
+		639F8D142BC97C8700D66551 /* AnalyzeFeautre+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnalyzeFeautre+Action.swift"; sourceTree = "<group>"; };
+		639F8D162BC9954400D66551 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		63A9C3F52BA574830076D42C /* TimerRecordDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordDependency.swift; sourceTree = "<group>"; };
 		63A9C3F82BA5A3F10076D42C /* NumberPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPickerView.swift; sourceTree = "<group>"; };
 		63A9C3FC2BA5E21A0076D42C /* AnalyzeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeFeature.swift; sourceTree = "<group>"; };
@@ -255,6 +263,14 @@
 			path = Reducers;
 			sourceTree = "<group>";
 		};
+		634C17B92BC92047007AC15F /* Reducers */ = {
+			isa = PBXGroup;
+			children = (
+				639F8D122BC97BF300D66551 /* Anaylze+ViewReducers.swift */,
+			);
+			path = Reducers;
+			sourceTree = "<group>";
+		};
 		635BD55D2B9F573D004480D1 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +290,7 @@
 				6301F7A12BC3D07700E04214 /* AsyncHighOrder */,
 				63A9C3F72BA5A3E30076D42C /* CustomUIs */,
 				637350522BB8161D00221F20 /* DateExtensions.swift */,
+				639F8D162BC9954400D66551 /* IntExtensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -357,6 +374,9 @@
 			isa = PBXGroup;
 			children = (
 				63A9C3FC2BA5E21A0076D42C /* AnalyzeFeature.swift */,
+				634C17BA2BC9207A007AC15F /* AnalyzeFeature+State.swift */,
+				639F8D142BC97C8700D66551 /* AnalyzeFeautre+Action.swift */,
+				634C17B92BC92047007AC15F /* Reducers */,
 				6373408C2BA7478A00B2A10F /* ShoppingListItemFeature.swift */,
 				636E9F692BAD0A880006FE56 /* Legacy-AddShoppingListFeature.swift */,
 				6301F7A42BC3D0AF00E04214 /* Legacy-AnalyzeFeature.swift */,
@@ -678,21 +698,25 @@
 				63AD70642BA43F6D00DBD6B9 /* TimerSettingFeature.swift in Sources */,
 				632F89412BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift in Sources */,
 				637340812BA7440900B2A10F /* TimerRecordItemTable.swift in Sources */,
+				639F8D152BC97C8700D66551 /* AnalyzeFeautre+Action.swift in Sources */,
 				637350532BB8161D00221F20 /* DateExtensions.swift in Sources */,
 				635C9D3D2BB082E400BFD46D /* PomoDependency.swift in Sources */,
 				6359D9882BC576C40045DEC7 /* AppStateReducers.swift in Sources */,
 				638EAB082BBFD1C7007F8CAC /* DoroNumberPad.swift in Sources */,
+				634C17BB2BC9207A007AC15F /* AnalyzeFeature+State.swift in Sources */,
 				63AD705E2BA43A5900DBD6B9 /* SettingView.swift in Sources */,
 				631058892BC17A5A008611AD /* TimerViewComponents.swift in Sources */,
 				63AD70582BA437EB00DBD6B9 /* TimerFeature.swift in Sources */,
 				63088F202BBEC24600BF654D /* TriggerBtnStyle.swift in Sources */,
 				638EAB062BBF7FDE007F8CAC /* DragGesture+Swipe.swift in Sources */,
 				6373408D2BA7478A00B2A10F /* ShoppingListItemFeature.swift in Sources */,
+				639F8D172BC9954400D66551 /* IntExtensions.swift in Sources */,
 				6301F79D2BC3BF1300E04214 /* RealmError.swift in Sources */,
 				637350512BB7EEE300221F20 /* BackgroundTimerLogicReducers.swift in Sources */,
 				632F89462BB5C52300F2DC0B /* TimerLogicReducers.swift in Sources */,
 				63B3FC422BB04B2500277576 /* FontExtension.swift in Sources */,
 				630285402BBD1360009C32AE /* PageIndicatorView.swift in Sources */,
+				639F8D132BC97BF300D66551 /* Anaylze+ViewReducers.swift in Sources */,
 				630285432BBD1A2C009C32AE /* ProListItemView.swift in Sources */,
 				636E9F6A2BAD0A880006FE56 /* Legacy-AddShoppingListFeature.swift in Sources */,
 				63BBF51A2BBD3F160094872B /* DurationPickerView.swift in Sources */,

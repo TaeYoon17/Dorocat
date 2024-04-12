@@ -7,6 +7,7 @@
 
 import Foundation
 import ComposableArchitecture
+
 @Reducer
 struct DorocatFeature{
     enum PageType:String,Hashable,Equatable,CaseIterable,Identifiable{

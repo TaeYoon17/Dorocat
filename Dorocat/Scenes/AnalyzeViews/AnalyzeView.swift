@@ -20,10 +20,14 @@ struct AnalyzeView: View {
                         LazyVStack(alignment: .center, pinnedViews: [.sectionHeaders], content: {
                             Section {
                                 VStack(spacing:16) {
-                                    AnalyzeDurationView.Day(store: store)
+                                    switch store.durationType{
+                                    case .day:AnalyzeDurationView.Day(store: store)
+                                    case .month: AnalyzeDurationView.Month(store: store)
+                                    case .week: AnalyzeDurationView.Week(store: store)
+                                    }
                                     VStack(spacing:8) {
                                         ForEach(store.timerRecordList){ item in
-                                            AnalyzeListItemView(durationDateType: .day, timerListItem: item)
+                                            AnalyzeListItemView(durationDateType: store.durationType, timerListItem: item)
                                         }
                                     }
                                 }.padding(.horizontal, 16)

@@ -9,5 +9,11 @@ import Foundation
 import ComposableArchitecture
 
 extension TimerFeature{
-    
+    enum ViewAction:Equatable{
+        case timerFieldTapped
+        case circleTimerTapped
+        case catTapped
+        case resetTapped
+        case triggerTapped
+    }
 }

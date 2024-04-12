@@ -8,15 +8,6 @@
 import Foundation
 import ComposableArchitecture
 // MARK: -- Dorocat Tab과 Feature를 완전히 분리해서 구현해보기
-extension TimerFeature{
-    enum ViewAction:Equatable{
-        case timerFieldTapped
-        case circleTimerTapped
-        case catTapped
-        case resetTapped
-        case triggerTapped
-    }
-}
 @Reducer struct TimerFeature{
     enum CancelID { case timer }
     enum Action:Equatable{
@@ -81,7 +72,6 @@ extension TimerFeature{
                 state.timerStatus = value.status
                 return .none
             case .setGuideState(let guides):
-                print(guides)
                 state.guideInformation = guides
                 return .none
             }
