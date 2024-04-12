@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct AnalyzeListItemView:View{
-    let analyzeDateType: AnalyzeDateType
+    let durationDateType: DurationType
     let timerListItem:TimerRecordItem
     var body: some View{
         HStack {
@@ -26,8 +26,7 @@ struct AnalyzeListItemView:View{
         .clipShape(RoundedRectangle(cornerRadius: 20))
     }
     var convertTimerText:String{
-        let dateFormatter = DateFormatter()
-        switch analyzeDateType {
+        switch durationDateType {
         case .day:
             return timerListItem.createdAt.dayFormat
         case .week,.month:

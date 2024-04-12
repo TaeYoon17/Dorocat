@@ -72,6 +72,7 @@ struct DorocatFeature{
             case .initAction:
                 if !state.isAppLaunched{
                     state.isAppLaunched = true
+                    state.guideState.onBoarding = true
                     return .run{ send in
                         let guides = await self.guideDefaults.get()
                         await send(.setGuideStates(guides))

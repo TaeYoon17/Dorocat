@@ -11,7 +11,6 @@ import RealmSwift
 struct AnalyzeView: View {
     @Perception.Bindable var store: StoreOf<AnalyzeFeature>
     var body: some View {
-        
         WithPerceptionTracking {
             ZStack{
                 Image(.defaultBg).resizable(resizingMode: .tile)
@@ -24,12 +23,12 @@ struct AnalyzeView: View {
                                     AnalyzeDurationView.Day(store: store)
                                     VStack(spacing:8) {
                                         ForEach(store.timerRecordList){ item in
-                                            AnalyzeListItemView(analyzeDateType: .day, timerListItem: item)
+                                            AnalyzeListItemView(durationDateType: .day, timerListItem: item)
                                         }
                                     }
                                 }.padding(.horizontal, 16)
                             } header: {
-                                    DurationPickerView()
+                                DurationPickerView(selectedDuration: $store.durationType.sending(\.setDurationType))
                                         .padding(.vertical,8)
                                         .background(DefaultBG())
                             }

@@ -7,14 +7,9 @@
 
 import Foundation
 import ComposableArchitecture
-import Combine
-enum AnalyzeDateType{
-    case day
-    case week
-    case month
-}
 @Reducer struct AnalyzeFeature{
     @ObservableState struct State:Equatable{
+        var durationType: DurationType = .day
         var timerRecordList: IdentifiedArrayOf<TimerRecordItem> = []
         var totalTime:String = ""
         var isLaunched = false
@@ -22,13 +17,12 @@ enum AnalyzeDateType{
     enum Action: Equatable{
         case leftArrowTapped
         case rightArrowTapped
-        case setAnalyzeTypeSegment(AnalyzeDateType)
+        case setDurationType(DurationType)
         case initAnalyzeFeature
         case updateTimerRecordList([TimerRecordItem])
         case updateTotalTime(Double)
     }
     @DBActor @Dependency(\.analyzeAPIClients) var apiClient
-    var cancellable = Set<AnyCancellable>()
     enum CancelID{
         case dbCancel
     }
@@ -39,18 +33,17 @@ enum AnalyzeDateType{
                 return .none
             case .rightArrowTapped:
                 return .none
-            case .setAnalyzeTypeSegment(_):
+            case .setDurationType(let durationType):
+                state.durationType = durationType
                 return .none
             case .initAnalyzeFeature:
                 if !state.isLaunched{
-                    print("이게 자꾸 발생!!")
                     state.isLaunched = true
                     return .run(operation: { send in
                         try await self.getDatabaseValueAndUpdate(sender: send)
                         for try await event in await apiClient.eventAsyncStream(){
                             switch event{
                             case .append:
-                                print("전송 성공!!")
                                 try await self.getDatabaseValueAndUpdate(sender: send)
                             }
                         }

@@ -22,7 +22,6 @@ extension TimerFeature{
             return self.triggerTapped(state: &state)
         }
     }
-    
 }
 fileprivate extension TimerFeature{
     func timerFieldTapped(state:inout TimerFeature.State) ->  Effect<TimerFeature.Action>{

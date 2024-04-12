@@ -16,7 +16,7 @@ extension TimerFeature{
        }
         switch status{
         case .standBy:
-            if let count{ fatalError("여기에 존재하면 안된다!!")}
+            if count != nil{ fatalError("여기에 존재하면 안된다!!")}
             state.cycle = 0
             state.count = state.timerInformation.timeSeconds
             return .none
@@ -30,7 +30,7 @@ extension TimerFeature{
             if let count{ fatalError("여기에 존재하면 안된다!!")}
             return .cancel(id: CancelID.timer)
         case .completed,.breakStandBy:
-            if let count{ fatalError("여기에 존재하면 안된다!!")}
+            if count != nil{ fatalError("여기에 존재하면 안된다!!")}
             let startDate = state.startDate
             let duration = state.timerInformation.timeSeconds
             return Effect.concatenate(.cancel(id: CancelID.timer),

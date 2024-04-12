@@ -65,7 +65,7 @@ extension TimerFeature{
         if restTime > 0{
             await send(.setStatus(.focus,count: restTime))
         }else{
-            var cycle = value.cycle + 1
+            let cycle = value.cycle + 1
             let restCycle = info.cycle - cycle
             var newValue = value
             newValue.cycle = cycle

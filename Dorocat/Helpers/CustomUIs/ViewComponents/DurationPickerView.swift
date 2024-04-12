@@ -15,14 +15,14 @@ enum DurationType:String,CaseIterable,Identifiable{
     var name:String{
         switch self{
         case .day:"Day"
-        case .month:"Week"
-        case .week:"Month"
+        case .month:"Month"
+        case .week:"Week"
         }
     }
 }
 
 struct DurationPickerView: View{
-    @State private var selectedDuration: DurationType = .day
+    @Binding var selectedDuration: DurationType
     var body: some View{
         ScrollView(.horizontal) {
             HStack(spacing:0) {
