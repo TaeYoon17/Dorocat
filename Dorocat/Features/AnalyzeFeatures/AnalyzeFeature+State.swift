@@ -30,7 +30,6 @@ extension AnalyzeFeature{
     @ObservableState struct DayInformation:Equatable,AnalyzeInformationAble{
         var date = Date()
         var timerRecordList: IdentifiedArrayOf<TimerRecordItem> = []
-        
         var isLastDuration: Bool{
             let current = Calendar.current
             let todayCPT = current.dateComponents([.year,.month,.day], from: date)
@@ -42,9 +41,8 @@ extension AnalyzeFeature{
             let todayCPT = current.dateComponents([.year,.month,.day], from: date)
             let nowCPT = current.dateComponents([.year,.month,.day], from: Date())
             let day = (Calendar.current.dateComponents([.year,.month,.day], from: date).day ?? 1)
-            return "\(todayCPT == nowCPT ? "Today, " : "\(date.getMonthName()) \(day)")"
+            return "\(todayCPT == nowCPT ? "Today, " : "")\(date.getMonthName()) \(day)"
         }
-        
         mutating func prev() -> Date{
             let calendar = Calendar.current
             let yesterday = calendar.date(byAdding: .day, value: -1, to: date) ?? Date()
@@ -69,7 +67,7 @@ extension AnalyzeFeature{
                   let saturdayDate = current.date(byAdding: .day, value: 6, to: sundayDate) else {
                 fatalError("Wow world")
             }
-            return "\(date.getMonthName()) \(sundayDate.getDayNumber()) - \(date.getMonthName()) \(saturdayDate.getDayNumber())"
+            return "\(date.getMonthName()) \(sundayDate.numberOfDay()) - \(date.getMonthName()) \(saturdayDate.numberOfDay())"
         }
         var isLastDuration: Bool{
             let current = Calendar.current
@@ -81,10 +79,13 @@ extension AnalyzeFeature{
         }
         
         var dailyAverage:String{
-            let totalDuration = timerRecordList.reduce(0) { partialResult, item in
-                partialResult + item.duration
+            let totalDuration = timerRecordList.reduce(0) { $0 + $1.duration }
+            let dailyCount = if date.isSameDay(Date()){
+                Calendar.current.dateComponents([.weekday], from: date).weekday ?? 1
+            }else{
+                7
             }
-            let dailyAveNum = totalDuration / (timerRecordList.count == 0 ? 1 : timerRecordList.count)
+            let dailyAveNum = totalDuration / dailyCount
             return "\(dailyAveNum / 60)h \(dailyAveNum.minuteString)m"
         }
         mutating func prev() -> Date {
@@ -100,7 +101,7 @@ extension AnalyzeFeature{
             return nextWeekDay
         }
     }
-    struct MonthInformation: Equatable,AnalyzeInformationAble{
+    @ObservableState struct MonthInformation: Equatable,AnalyzeInformationAble{
         var isLastDuration: Bool{
             let current = Calendar.current
             let month = current.dateComponents([.year,.month], from: date)
@@ -112,11 +113,14 @@ extension AnalyzeFeature{
         var date = Date()
         var timerRecordList: IdentifiedArrayOf<TimerRecordItem> = []
         var dailyAverage:String{
-            let totalDuration = timerRecordList.reduce(0) { partialResult, item in
-                partialResult + item.duration
+            let totalDuration = timerRecordList.reduce(0) { $0 + $1.duration }
+            let nowDayCount = if date.isSameDay(Date()){
+                Calendar.current.dateComponents([.day], from: date).day ?? 0
+            }else{
+                date.numberOfDaysInMonth() ?? 0
             }
-            let dailyAveNum = totalDuration / (timerRecordList.count == 0 ? 1 : timerRecordList.count)
-            return "\(dailyAveNum / 60)h \(dailyAveNum.minuteString)m"
+            let monthAveNum = totalDuration / nowDayCount
+            return "\(monthAveNum / 60)h \(monthAveNum.minuteString)m"
         }
         mutating func prev() -> Date{
             let calendar = Calendar.current
@@ -132,18 +136,10 @@ extension AnalyzeFeature{
         }
     }
 }
-
 extension Date{
-    static func getMonthNumberToName(_ num: Int) -> String{
-        let months = ["January","February","March","April","May","July","June","August","September","October","November","December"]
-        return months[num]
-    }
     func getMonthName()->String{
         let monthNumber = (Calendar.current.dateComponents([.month], from: self).month ?? 1)  - 1
         return Date.getMonthNumberToName(monthNumber)
     }
-    func getDayNumber()->Int{
-        let current = Calendar.current
-        return current.dateComponents([.day], from: self).day ?? 0
-    }
+    
 }

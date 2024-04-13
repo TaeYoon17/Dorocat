@@ -7,6 +7,15 @@
 
 import SwiftUI
 import ComposableArchitecture
+extension DurationType{
+    var averageTitle: String{
+        return switch self{
+        case .day: ""
+        case .week: "Weekly Average"
+        case .month: "Montly Average"
+        }
+    }
+}
 enum AnalyzeDurationView{
     struct Day:View{
         let store: StoreOf<AnalyzeFeature>
@@ -19,6 +28,7 @@ enum AnalyzeDurationView{
                         store.send(.viewAction(.signRightTapped))
                     }
                     TotalFocusTimeView(totalTime: store.dayInfo.totalTime)
+                        .animation(nil,value: store.dayInfo.totalTime)
                 }.modifier(DurationModifier())
             }
         }
@@ -35,7 +45,9 @@ enum AnalyzeDurationView{
                     }
                     VStack(spacing:12) {
                         TotalFocusTimeView(totalTime: store.weekInfo.totalTime)
-                        DailyAverageView(dailyAverage: store.weekInfo.dailyAverage)
+                            .animation(nil,value: store.weekInfo.totalTime)
+                        DailyAverageView(title: store.durationType.averageTitle, dailyAverage: store.weekInfo.dailyAverage)
+                            .animation(nil,value: store.weekInfo.dailyAverage)
                     }
                 }.modifier(DurationModifier())
             }
@@ -53,7 +65,9 @@ enum AnalyzeDurationView{
                     }
                     VStack(spacing:12) {
                         TotalFocusTimeView(totalTime: store.monthInfo.totalTime)
-                        DailyAverageView(dailyAverage: store.weekInfo.dailyAverage)
+                            .animation(nil,value: store.monthInfo.totalTime)
+                        DailyAverageView(title: store.durationType.averageTitle, dailyAverage: store.monthInfo.dailyAverage)
+                            .animation(nil,value: store.monthInfo.dailyAverage)
                     }
                 }.modifier(DurationModifier())
             }
@@ -63,6 +77,7 @@ enum AnalyzeDurationView{
 
 fileprivate extension AnalyzeDurationView{
     struct DurationSignView: View{
+        
         let title:String
         let isLastSign:Bool
         var leftTapped:()->()
@@ -82,6 +97,7 @@ fileprivate extension AnalyzeDurationView{
         }
     }
     struct TotalFocusTimeView: View{
+        
         let totalTime:String
         var body: some View{
             HStack(content: {
@@ -96,11 +112,14 @@ fileprivate extension AnalyzeDurationView{
         }
     }
     struct DailyAverageView: View{
+        let title:String
         let dailyAverage: String
+        
         var body: some View{
             HStack(content: {
                 VStack(alignment:.leading,spacing:4) {
-                    Text("Daily Average").font(.paragraph04).foregroundStyle(.grey02)
+
+                    Text(title).font(.paragraph04).foregroundStyle(.grey02)
                     Text(dailyAverage)
                         .font(.header03)
                         .foregroundStyle(.doroWhite)

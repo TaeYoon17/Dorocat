@@ -18,8 +18,8 @@ extension AnalyzeFeature{
         case (.signLeftTapped,.month): state.monthInfo.prev()
         case (.signRightTapped,.month): state.monthInfo.next()
         }
-        return .run {[date] send in
-            try await getDatabaseValueAndUpdate(sender: send, date: date, durationType: type)
+        return .run { send in
+            await send(.getAllRecordsThenUpdate())
         }
     }
 }

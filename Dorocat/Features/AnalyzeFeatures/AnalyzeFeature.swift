@@ -10,6 +10,9 @@ import ComposableArchitecture
 @Reducer struct AnalyzeFeature{
     @ObservableState struct State:Equatable{
         var durationType: DurationType = .day
+        var dayInfo = DayInformation()
+        var weekInfo = WeekInformation()
+        var monthInfo = MonthInformation()
         var timerRecordList: IdentifiedArrayOf<TimerRecordItem>{
             switch durationType {
             case .day: dayInfo.timerRecordList
@@ -17,18 +20,15 @@ import ComposableArchitecture
             case .month: monthInfo.timerRecordList
             }
         }
-        var dayInfo = DayInformation()
-        var weekInfo = WeekInformation()
-        var monthInfo = MonthInformation()
-        var totalTime: String = ""
         var isLaunched = false
     }
     enum Action: Equatable{
         case viewAction(ViewAction)
+        case selectDuration(DurationType)
         case setDurationType(DurationType)
         case initAnalyzeFeature
-        case updateTimerRecordList([TimerRecordItem])
-        case updateTotalTime(Double)
+        case getAllRecordsThenUpdate(DurationType? = nil)
+        case updateRecords([TimerRecordItem],type:DurationType? = nil)
     }
     @DBActor @Dependency(\.analyzeAPIClients) var apiClient
     enum CancelID{ case dbCancel }
@@ -36,59 +36,39 @@ import ComposableArchitecture
         Reduce{ state, action in
             switch action{
             case .viewAction(let action): return self.viewAction(&state, action)
+            case .selectDuration(let duartionType): return selectDuration(&state,duartionType)
             case .setDurationType(let durationType):
                 state.durationType = durationType
-                let type = state.durationType
-                let myDate:Date = type.dateInfo(state: &state)
-                return .run { send in
-                    try await getDatabaseValueAndUpdate(sender: send, date: myDate, durationType: type)
-                }
+                return .none
             case .initAnalyzeFeature:
                 if !state.isLaunched{
                     state.isLaunched = true
-                    let type = state.durationType
-                    let myDate:Date = type.dateInfo(state: &state)
-                    return .run(operation: {[myDate] send in
-                        try await self.getDatabaseValueAndUpdate(sender: send, date: myDate,durationType: type)
+                    return .run(operation: {send in
+                        await DurationType.allCases.asyncForEach { type in
+                            await send(.getAllRecordsThenUpdate(type))
+                        }
                         for try await event in await apiClient.eventAsyncStream(){
                             switch event{
                             case .append:
-                                try await self.getDatabaseValueAndUpdate(sender: send,date: myDate,durationType: type)
+                                await send(.getAllRecordsThenUpdate())
                             }
                         }
                     }).cancellable(id: CancelID.dbCancel)
-                }else{
-                    return .none
-                }
-            case .updateTimerRecordList(let lists):
-                switch state.durationType{
-                case .day:
-                    state.dayInfo.timerRecordList.removeAll()
-                    state.dayInfo.timerRecordList.append(contentsOf: lists)
-                case.month:
-                    state.monthInfo.timerRecordList.removeAll()
-                    state.monthInfo.timerRecordList.append(contentsOf: lists)
-                case .week:
-                    state.weekInfo.timerRecordList.removeAll()
-                    state.weekInfo.timerRecordList.append(contentsOf: lists)
                 }
                 return .none
-            case .updateTotalTime(let time):
-                // 여기 수정사항 - Double 정도의 숫자 범위를 Int로 변환해도 문제가 없나?
-                state.totalTime = "\(Int(time) / 60)h \(Int(time) % 60)m"
-                return .none
+            case .updateRecords(let lists,let givenType): return updateRecords(&state, type: givenType, lists: lists)
+            case .getAllRecordsThenUpdate(let givenType): return getAllRecordsThenUpdate(&state, type: givenType)
             }
         }
-        
     }
-    func getDatabaseValueAndUpdate(sender send: Send<AnalyzeFeature.Action>,date:Date,durationType: DurationType) async throws {
-        let list = switch durationType{
-        case .day: try await apiClient.get(day: date)
-        case .month: try await apiClient.get(monthDate: date)
-        case .week: try await apiClient.get(weekDate: date)
+}
+extension AnalyzeAPIs{
+    func getAnalyzeValue(date:Date,durationType: DurationType) async throws ->  [TimerRecordItem] {
+        return  switch durationType{
+        case .day: try await self.get(day: date)
+        case .month: try await self.get(monthDate: date)
+        case .week: try await self.get(weekDate: date)
         }
-        await send(.updateTimerRecordList(list))
-        await send(.updateTotalTime(apiClient.totalFocusTime))
     }
 }
 extension DurationType{

@@ -25,21 +25,22 @@ struct AnalyzeView: View {
                                     case .month: AnalyzeDurationView.Month(store: store)
                                     case .week: AnalyzeDurationView.Week(store: store)
                                     }
-                                    VStack(spacing:8) {
+                                    LazyVStack(spacing:8) {
                                         ForEach(store.timerRecordList){ item in
                                             AnalyzeListItemView(durationDateType: store.durationType, timerListItem: item)
                                         }
-                                    }
+                                    }.frame(maxHeight: .infinity)
                                 }.padding(.horizontal, 16)
                             } header: {
-                                DurationPickerView(selectedDuration: $store.durationType.sending(\.setDurationType))
-                                        .padding(.vertical,8)
-                                        .background(DefaultBG())
+                                DurationPickerView(selectedDuration: $store.durationType.sending(\.selectDuration))
+                                    .padding(.vertical,8)
+                                    .background(DefaultBG())
                             }
                         })
                         Rectangle().fill(.clear).frame(height:40)
                     }
-                }.onAppear {
+                }
+                .onAppear {
                     store.send(.initAnalyzeFeature)
                 }
             }.toolbar(.hidden, for: .navigationBar)
