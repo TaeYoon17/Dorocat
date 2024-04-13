@@ -15,10 +15,11 @@ struct TimerView: View {
             VStack(content: {
                 Spacer()
                 if store.timerStatus == .completed{
-                    VStack {
-                        Text("Well done!").font(.title2).bold()
-                        Text("You've completed successfully")
-                    }.background(.yellow)
+                    VStack(alignment:.center,spacing:8) {
+                        Text("Well done!").font(.header03).foregroundStyle(.doroWhite)
+                        Text("You've completed successfully\nLet's stretch together.").font(.paragraph02()).foregroundStyle(.doroWhite)
+                            .multilineTextAlignment(.center).lineSpacing(4)
+                    }
                 }
                 if store.timerInformation.isPomoMode{
                     Text(store.cycleNote).font(.title2).bold().background(.blue)
@@ -38,6 +39,7 @@ struct TimerView: View {
             .timerViewModifiers(store: store)
             .sheet(item: $store.scope(state: \.timerSetting, action: \.timerSetting)) { timerSettingStore in
                 TimerSettingView(store: timerSettingStore).presentationDetents([.large])
+                    .presentationDragIndicator(.visible)
             }
         }
     }

@@ -77,7 +77,6 @@ enum AnalyzeDurationView{
 
 fileprivate extension AnalyzeDurationView{
     struct DurationSignView: View{
-        
         let title:String
         let isLastSign:Bool
         var leftTapped:()->()

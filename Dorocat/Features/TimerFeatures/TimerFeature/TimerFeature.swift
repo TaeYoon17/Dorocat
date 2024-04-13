@@ -56,9 +56,15 @@ import ComposableArchitecture
             case .initAction:
                 if !state.isAppLaunched {
                     state.isAppLaunched = true
-                    return diskTimerInfoToMemory
+                    return Effect.concatenate(
+                        .run{ send in
+                            let savedValues:PomoValues = await pomoDefaults.getAll() // 디스크에 저장된 값
+                            await send(.setDefaultValues(savedValues)) // 디스크에 저장된 값을 State에 보냄
+                        }
+                        ,diskTimerInfoToMemory)
                 }else{ return .none }
             case .setDefaultValues(let value):
+                print("default Values \(value)")
                 guard let info = value.information else {
                     state.timerInformation = TimerInformation.defaultCreate()
                     state.count = 25 * 60

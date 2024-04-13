@@ -32,7 +32,10 @@ extension TimerFeature{
         case .completed,.breakStandBy:
             if count != nil{ fatalError("여기에 존재하면 안된다!!")}
             let startDate = state.startDate
-            let duration = state.timerInformation.timeSeconds
+            let duration = state.timerInformation.timeSeconds / 60
+            if status == .breakStandBy{
+                state.count = state.timerInformation.breakTime
+            }
             return Effect.concatenate(.cancel(id: CancelID.timer),
                                       .run(operation: {send in
                 await analyzeAPI.append(.init(createdAt: startDate, duration: duration))
@@ -55,15 +58,11 @@ extension TimerFeature{
             case .focus:
                 state.cycle += 1
                 let cycleEffect:Effect<TimerFeature.Action> = state.cycle >= state.timerInformation.cycle ?
-                        .run{ send in
-                            await send(.setStatus(.completed))
-                        }
-                    : .run{ send in
-                        await send(.setStatus(.breakStandBy))
-                    }
+                        .run{ await $0(.setStatus(.completed)) }
+                    : .run{ await $0(.setStatus(.breakStandBy)) }
                 return Effect.merge([.cancel(id: CancelID.timer),cycleEffect])
             case .breakTime: // breakTime 시간이 끝남...
-                state.count = state.timerInformation.breakTime
+                state.count = state.timerInformation.timeSeconds
                 return Effect.merge([.cancel(id: CancelID.timer),.run { send in
                         await send(.setStatus(.focus))
                     }

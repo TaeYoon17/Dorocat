@@ -108,9 +108,8 @@ fileprivate extension TimerFeature{
             return .run { send in
                 await send(.setStatus(.breakTime))
             }
-        case .breakTime: return .run { send in
-            await send(.setStatus(.standBy))
-        }
+        case .breakTime: return .concatenate([.cancel(id: CancelID.timer),
+                                              .run { await $0(.setStatus(.standBy)) }])
         case .pause(.breakPause): return .none
         }
     }

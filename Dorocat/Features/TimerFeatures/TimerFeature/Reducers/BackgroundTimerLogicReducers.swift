@@ -10,6 +10,8 @@ import ComposableArchitecture
 
 extension TimerFeature{
     func awakeTimer(_ send: Send<TimerFeature.Action>) async {
+        
+        
         // 시간 설정, 저장해둔 타이머 시간 정보가 없으면 저장한 Status 값 그대로 보존한다.
         guard let prevDate = await timeBackground.date else { return }
         if Date().isOverTwoDays(prevDate: prevDate){
@@ -18,7 +20,6 @@ extension TimerFeature{
         }
         await timeBackground.set(date: nil)
         let difference = Int(Date().timeIntervalSince(prevDate))
-        
         let savedValues:PomoValues = await pomoDefaults.getAll() // 디스크에 저장된 값
         await send(.setDefaultValues(savedValues)) // 디스크에 저장된 값을 State에 보냄
         let prevStatus = await timeBackground.timerStatus // 이전 상태
@@ -81,12 +82,13 @@ extension TimerFeature{
     //MARK: -- breakTime 상태일 때 처리
     fileprivate func pomoTimerBreak(_ send: Sender,value: PomoValues,diff: Int) async{
         guard let info = value.information else {fatalError("여기에는 정보가 있어야한다.")}
-        var timeDiff = diff - value.count
-        var cycle = value.cycle
+        let timeDiff = diff - value.count
+        let cycle = value.cycle
         var newValue = value
         if timeDiff <= 0{
             await send(.setStatus(.breakTime, count:value.count - diff))
         }else{
+            // 집중 Pause에서 집중 상태로 돌아가는 로직을 실행시킨다.
             newValue.count = info.timeSeconds
             newValue.status = .pause(.focusPause)
             await pomoTimerFocus(send, value: newValue, diff: timeDiff)

@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    ":" : {
+
+    },
     "%lld" : {
 
     },
@@ -76,7 +79,7 @@
     "Well done!" : {
 
     },
-    "You've completed successfully" : {
+    "You've completed successfully\nLet's stretch together." : {
 
     },
     "원형 타이머" : {

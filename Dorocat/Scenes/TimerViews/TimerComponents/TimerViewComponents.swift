@@ -24,7 +24,13 @@ enum TimerViewComponents{
                 }
                 Button(text){
                     store.send(.viewAction(.triggerTapped))
-                }.triggerStyle(scale: store.timerStatus == .breakTime ? .flexed : .fixed(110))
+                }.triggerStyle(scale: btnScale)
+            }
+        }
+        var btnScale:TriggerBtnStyle.ButtonScale{
+            switch store.timerStatus{
+            case .breakTime,.completed: .flexed
+            default: .fixed(110)
             }
         }
     }
@@ -33,12 +39,23 @@ enum TimerViewComponents{
             let store: StoreOf<TimerFeature>
             var body: some View{
                 HStack(content: {
-                    Text(store.timer)
-                        .font(.header01)
-                        .foregroundStyle(.doroWhite)
-                        .onTapGesture {
-                            store.send(.viewAction(.timerFieldTapped))
+                    Spacer()
+                    HStack (alignment: .center,spacing:1){
+                        HStack{
+                            Spacer()
+                            Text(store.timer.prefix(2))
                         }
+                        Text(":")
+                        HStack {
+                            Text(store.timer.suffix(2))
+                            Spacer()
+                        }
+                    }
+                    .font(.header01).foregroundStyle(.doroWhite)
+                    .onTapGesture {
+                        store.send(.viewAction(.timerFieldTapped))
+                    }
+                    Spacer()
                 })
             }
         }
@@ -62,9 +79,15 @@ enum TimerViewComponents{
             Button(action: {
                 store.send(.viewAction(.catTapped))
             }, label: {
-                Image(.cat)
-                    .frame(width: 304,height: 304)
+                Image(.cat).resizable().scaledToFit()
+                    .frame(width: size,height: size)
             })
+        }
+        var size: CGFloat{
+            switch store.timerStatus{
+            case .focus: 200
+            default: 370
+            }
         }
     }
     struct ResetButton: View{

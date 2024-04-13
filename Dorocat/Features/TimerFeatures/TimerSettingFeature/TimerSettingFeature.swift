@@ -57,7 +57,7 @@ struct TimerSettingFeature{
             switch action{
             case .doneTapped:
                 if let time = Int(state.time){
-                    let timerInfo = TimerInformation(timeSeconds: time, cycle: state.cycleTime, breakTime: state.breakTime, isPomoMode: state.isPomodoroMode)
+                    let timerInfo = TimerInformation(timeSeconds: time * 60, cycle: state.cycleTime, breakTime: state.breakTime * 60, isPomoMode: state.isPomodoroMode)
                     return .run {send in
                         await send(.delegate(.setTimerInfo(timerInfo)))
                         await self.dismiss()
@@ -71,7 +71,6 @@ struct TimerSettingFeature{
             case .setTime(let time):
                 if time.count > 2{ return .none }
                 state.time = time
-                state.timerInfo.timeSeconds = (Int(time) ?? 0)
                 return .none
             case .setPomodoroMode(let isPomodoro):
                 state.isPomodoroMode = isPomodoro
@@ -88,7 +87,7 @@ struct TimerSettingFeature{
                 state.timerInfo = info
                 state.cycleTime = info.cycle
                 state.isPomodoroMode = info.isPomoMode
-                state.breakTime = info.breakTime
+                state.breakTime = info.breakTime / 60 <= 0 ? 1 : info.breakTime / 60
                 state.time = info.timeSeconds / 60 <= 0 ? "" : "\(info.timeSeconds / 60)"
                 return .none
             }
