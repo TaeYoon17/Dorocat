@@ -16,6 +16,9 @@
     "00" : {
 
     },
+    "2h 30m" : {
+
+    },
     "analyze" : {
 
     },
@@ -32,6 +35,9 @@
 
     },
     "Get Started" : {
+
+    },
+    "Great!" : {
 
     },
     "I'll help you focus and stay on track" : {
@@ -80,6 +86,9 @@
 
     },
     "You've completed successfully\nLet's stretch together." : {
+
+    },
+    "You've completed this session" : {
 
     }
   },

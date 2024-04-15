@@ -10,7 +10,6 @@ import ComposableArchitecture
 struct DoroMainView: View {
     @Bindable var store: StoreOf<DorocatFeature>
     var body: some View {
-        
         ZStack(alignment: .top) {
             TabView(selection: $store.pageSelection.sending(\.pageMove), content:  {
                 AnalyzeView(store: self.store.scope(state: \.anylzeState, action: \.analyze))

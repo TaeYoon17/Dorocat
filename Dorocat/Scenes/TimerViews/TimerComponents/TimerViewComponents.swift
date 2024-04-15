@@ -12,7 +12,6 @@ enum TimerViewComponents{
     struct TriggerBtn: View{
         let store: StoreOf<TimerFeature>
         var body: some View{
-            
                 let text = switch store.timerStatus{
                 case .breakTime: "Stop Break"
                 case .completed: "Complete"
@@ -72,19 +71,28 @@ enum TimerViewComponents{
                 store.send(.viewAction(.catTapped))
             }, label: {
                 switch store.timerStatus{
+                case .completed:
+                    LottieView(fileName: "WellDone", loopMode: .autoReverse).frame(width: size,height: size)
                 case .breakStandBy:
-                    LottieView(fileName: "Default", loopMode: .autoReverse)
+                    LottieView(fileName: "Great", loopMode: .autoReverse)
                         .frame(width: size,height: size)
-                default:
-                    LottieView(fileName: "Sleeping", loopMode: .playOnce)
+                case .focus,.breakTime:
+                    CircularProgress(progress: store.progress, lineWidth: 44, backShape: Color.black, frontShapes: [Color.grey04])
+                        .overlay(alignment: .bottom) {
+                            LottieView(fileName: "Sleeping", loopMode: .autoReverse).offset(y:4)
+                                .frame(width: 190,height:190)
+                        }
+                        .frame(width: size,height: size).padding(.bottom,36)
+                case .standBy,.pause:
+                    LottieView(fileName: "Default", loopMode: .playOnce)
                         .frame(width: size,height: size)
                 }
             })
         }
         var size: CGFloat{
             switch store.timerStatus{
-            case .focus: 200
-            default: 370
+            case .focus: 240
+            default: 375
             }
         }
     }
