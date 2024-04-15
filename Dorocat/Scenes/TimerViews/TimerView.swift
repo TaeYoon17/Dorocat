@@ -8,10 +8,9 @@
 import SwiftUI
 import ComposableArchitecture
 struct TimerView: View {
-    @Perception.Bindable var store: StoreOf<TimerFeature>
+    @Bindable var store: StoreOf<TimerFeature>
     @Environment(\.scenePhase) var phase
     var body: some View {
-        WithPerceptionTracking{
             VStack(content: {
                 Spacer()
                 if store.timerStatus == .completed{
@@ -41,7 +40,6 @@ struct TimerView: View {
                 TimerSettingView(store: timerSettingStore).presentationDetents([.large])
                     .presentationDragIndicator(.visible)
             }
-        }
     }
 }
 fileprivate extension View{

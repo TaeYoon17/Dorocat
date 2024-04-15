@@ -13,15 +13,14 @@ struct DorocatApp: App {
     let store = Store(initialState: DorocatFeature.State(), reducer: { DorocatFeature()})
     var body: some Scene {
         WindowGroup {
-            WithPerceptionTracking {
-                ZStack {
-                    DefaultBG()
-                    DoroMainView(store: store)
-                }.preferredColorScheme(.dark)
-                    .onAppear(){
-                        store.send(.initAction)
-                    }
-            }
+            
+            ZStack {
+                DefaultBG()
+                DoroMainView(store: store)
+            }.preferredColorScheme(.dark)
+                .onAppear(){
+                    store.send(.initAction)
+                }
         }.onChange(of: phase) { newValue in
             switch newValue{
             case .active: store.send(.setAppState(.active))

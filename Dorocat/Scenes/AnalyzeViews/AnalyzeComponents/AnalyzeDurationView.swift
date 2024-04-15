@@ -20,57 +20,51 @@ enum AnalyzeDurationView{
     struct Day:View{
         let store: StoreOf<AnalyzeFeature>
         var body: some View{
-            WithPerceptionTracking {
-                VStack(spacing:38) {
-                    DurationSignView(title: store.dayInfo.title, isLastSign: store.dayInfo.isLastDuration) {
-                        store.send(.viewAction(.signLeftTapped))
-                    } rightTapped: {
-                        store.send(.viewAction(.signRightTapped))
-                    }
-                    TotalFocusTimeView(totalTime: store.dayInfo.totalTime)
-                        .animation(nil,value: store.dayInfo.totalTime)
-                }.modifier(DurationModifier())
-            }
+            VStack(spacing:38) {
+                DurationSignView(title: store.dayInfo.title, isLastSign: store.dayInfo.isLastDuration) {
+                    store.send(.viewAction(.signLeftTapped))
+                } rightTapped: {
+                    store.send(.viewAction(.signRightTapped))
+                }
+                TotalFocusTimeView(totalTime: store.dayInfo.totalTime)
+                    .animation(nil,value: store.dayInfo.totalTime)
+            }.modifier(DurationModifier())
         }
     }
     struct Week:View {
         let store: StoreOf<AnalyzeFeature>
         var body: some View {
-            WithPerceptionTracking {
-                VStack(spacing:38) {
-                    DurationSignView(title: store.weekInfo.title, isLastSign: store.weekInfo.isLastDuration) {
-                        store.send(.viewAction(.signLeftTapped))
-                    } rightTapped: {
-                        store.send(.viewAction(.signRightTapped))
-                    }
-                    VStack(spacing:12) {
-                        TotalFocusTimeView(totalTime: store.weekInfo.totalTime)
-                            .animation(nil,value: store.weekInfo.totalTime)
-                        DailyAverageView(title: store.durationType.averageTitle, dailyAverage: store.weekInfo.dailyAverage)
-                            .animation(nil,value: store.weekInfo.dailyAverage)
-                    }
-                }.modifier(DurationModifier())
-            }
+            VStack(spacing:38) {
+                DurationSignView(title: store.weekInfo.title, isLastSign: store.weekInfo.isLastDuration) {
+                    store.send(.viewAction(.signLeftTapped))
+                } rightTapped: {
+                    store.send(.viewAction(.signRightTapped))
+                }
+                VStack(spacing:12) {
+                    TotalFocusTimeView(totalTime: store.weekInfo.totalTime)
+                        .animation(nil,value: store.weekInfo.totalTime)
+                    DailyAverageView(title: store.durationType.averageTitle, dailyAverage: store.weekInfo.dailyAverage)
+                        .animation(nil,value: store.weekInfo.dailyAverage)
+                }
+            }.modifier(DurationModifier())
         }
     }
     struct Month: View{
         let store: StoreOf<AnalyzeFeature>
         var body: some View{
-            WithPerceptionTracking {
-                VStack(spacing:38) {
-                    DurationSignView(title: store.monthInfo.title, isLastSign: store.monthInfo.isLastDuration) {
-                        store.send(.viewAction(.signLeftTapped))
-                    } rightTapped: {
-                        store.send(.viewAction(.signRightTapped))
-                    }
-                    VStack(spacing:12) {
-                        TotalFocusTimeView(totalTime: store.monthInfo.totalTime)
-                            .animation(nil,value: store.monthInfo.totalTime)
-                        DailyAverageView(title: store.durationType.averageTitle, dailyAverage: store.monthInfo.dailyAverage)
-                            .animation(nil,value: store.monthInfo.dailyAverage)
-                    }
-                }.modifier(DurationModifier())
-            }
+            VStack(spacing:38) {
+                DurationSignView(title: store.monthInfo.title, isLastSign: store.monthInfo.isLastDuration) {
+                    store.send(.viewAction(.signLeftTapped))
+                } rightTapped: {
+                    store.send(.viewAction(.signRightTapped))
+                }
+                VStack(spacing:12) {
+                    TotalFocusTimeView(totalTime: store.monthInfo.totalTime)
+                        .animation(nil,value: store.monthInfo.totalTime)
+                    DailyAverageView(title: store.durationType.averageTitle, dailyAverage: store.monthInfo.dailyAverage)
+                        .animation(nil,value: store.monthInfo.dailyAverage)
+                }
+            }.modifier(DurationModifier())
         }
     }
 }
@@ -117,7 +111,7 @@ fileprivate extension AnalyzeDurationView{
         var body: some View{
             HStack(content: {
                 VStack(alignment:.leading,spacing:4) {
-
+                    
                     Text(title).font(.paragraph04).foregroundStyle(.grey02)
                     Text(dailyAverage)
                         .font(.header03)

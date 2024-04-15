@@ -10,7 +10,7 @@ import ComposableArchitecture
 struct OnboardingView: View {
     let store: StoreOf<DorocatFeature>
     var body: some View {
-        WithPerceptionTracking{
+        
             ZStack{
                 Image(.defaultBg).resizable(resizingMode: .tile)
                 VStack(spacing:0) {
@@ -28,7 +28,6 @@ struct OnboardingView: View {
                 triggerBtn.padding(.bottom,97)
             }
             .background(.grey04)
-        }
     }
     var triggerBtn: some View{
         Button("Get Started"){

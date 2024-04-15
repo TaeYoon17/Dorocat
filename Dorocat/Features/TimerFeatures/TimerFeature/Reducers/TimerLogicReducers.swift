@@ -21,7 +21,7 @@ extension TimerFeature{
             state.count = state.timerInformation.timeSeconds
             return .none
         case .focus:
-            let count = count ?? state.timerInformation.breakTime
+            let count = count ?? state.timerInformation.timeSeconds
             state.count = count
             return .run {send in
                 await send(.setTimerRunning(count))

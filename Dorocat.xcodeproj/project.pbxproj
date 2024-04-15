@@ -87,6 +87,13 @@
 		63C5BF562BCAB8BE00E5A89C /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C5BF552BCAB8BE00E5A89C /* CircularProgressView.swift */; };
 		63C969EE2B9FD509004E79C6 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 63C969ED2B9FD509004E79C6 /* Realm */; };
 		63C969F02B9FD509004E79C6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 63C969EF2B9FD509004E79C6 /* RealmSwift */; };
+		63CBAD8C2BCD2247004EE320 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBAD8B2BCD2247004EE320 /* LottieView.swift */; };
+		63CCAFA32BCD1E280045B2A0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 63CCAFA22BCD1E280045B2A0 /* Lottie */; };
+		63CCAFA62BCD1EB20045B2A0 /* Sleeping.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA52BCD1EB20045B2A0 /* Sleeping.json */; };
+		63CCAFA82BCD1EBB0045B2A0 /* Default.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA72BCD1EBB0045B2A0 /* Default.json */; };
+		63CCAFAB2BCD1EC60045B2A0 /* WellDone.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA92BCD1EC60045B2A0 /* WellDone.json */; };
+		63CCAFAC2BCD1EC60045B2A0 /* 04_confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFAA2BCD1EC60045B2A0 /* 04_confetti.json */; };
+		63CCAFAE2BCD1ED70045B2A0 /* Great.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFAD2BCD1ED70045B2A0 /* Great.json */; };
 		63E63AB42BB709EA00A601E3 /* TimeBackgroundDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E63AB32BB709EA00A601E3 /* TimeBackgroundDependency.swift */; };
 		63FD44792BBC48D500FA528F /* GuideDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FD44782BBC48D500FA528F /* GuideDependencies.swift */; };
 /* End PBXBuildFile section */
@@ -172,6 +179,12 @@
 		63C124D72B9EF93D000A6D35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63C124DA2B9EF93D000A6D35 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		63C5BF552BCAB8BE00E5A89C /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		63CBAD8B2BCD2247004EE320 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		63CCAFA52BCD1EB20045B2A0 /* Sleeping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Sleeping.json; path = CatIllust/Sleeping.json; sourceTree = SOURCE_ROOT; };
+		63CCAFA72BCD1EBB0045B2A0 /* Default.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Default.json; path = CatIllust/Default.json; sourceTree = SOURCE_ROOT; };
+		63CCAFA92BCD1EC60045B2A0 /* WellDone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = WellDone.json; path = CatIllust/WellDone.json; sourceTree = SOURCE_ROOT; };
+		63CCAFAA2BCD1EC60045B2A0 /* 04_confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 04_confetti.json; path = CatIllust/04_confetti.json; sourceTree = SOURCE_ROOT; };
+		63CCAFAD2BCD1ED70045B2A0 /* Great.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Great.json; path = CatIllust/Great.json; sourceTree = SOURCE_ROOT; };
 		63E63AB32BB709EA00A601E3 /* TimeBackgroundDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBackgroundDependency.swift; sourceTree = "<group>"; };
 		63FD44782BBC48D500FA528F /* GuideDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDependencies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,6 +197,7 @@
 				63C969F02B9FD509004E79C6 /* RealmSwift in Frameworks */,
 				63C969EE2B9FD509004E79C6 /* Realm in Frameworks */,
 				635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */,
+				63CCAFA32BCD1E280045B2A0 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +370,7 @@
 				638EAB022BBF7F50007F8CAC /* DoroTogglerView.swift */,
 				638EAB072BBFD1C7007F8CAC /* DoroNumberPad.swift */,
 				63C5BF552BCAB8BE00E5A89C /* CircularProgressView.swift */,
+				63CBAD8B2BCD2247004EE320 /* LottieView.swift */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -557,6 +572,7 @@
 		63C124E12B9EFAD5000A6D35 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				63CCAFAF2BCD20580045B2A0 /* AnimDependencies */,
 				63FD44772BBC48CA00FA528F /* GuideDependencies */,
 				63E63AB22BB709C100A601E3 /* TimeBackgroundDependencies */,
 				635C9D3B2BB082A600BFD46D /* PomoDependencies */,
@@ -568,6 +584,7 @@
 		63C124E22B9EFAE6000A6D35 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				63CCAFA42BCD1E520045B2A0 /* Lotties */,
 				639F8D182BCA1BB200D66551 /* Legacies */,
 				63B3FC232BB04A4B00277576 /* FontAssets */,
 			);
@@ -580,6 +597,25 @@
 				6301F7992BC3BCEB00E04214 /* RealmCore */,
 			);
 			path = Cores;
+			sourceTree = "<group>";
+		};
+		63CCAFA42BCD1E520045B2A0 /* Lotties */ = {
+			isa = PBXGroup;
+			children = (
+				63CCAFA72BCD1EBB0045B2A0 /* Default.json */,
+				63CCAFA52BCD1EB20045B2A0 /* Sleeping.json */,
+				63CCAFA92BCD1EC60045B2A0 /* WellDone.json */,
+				63CCAFAD2BCD1ED70045B2A0 /* Great.json */,
+				63CCAFAA2BCD1EC60045B2A0 /* 04_confetti.json */,
+			);
+			path = Lotties;
+			sourceTree = "<group>";
+		};
+		63CCAFAF2BCD20580045B2A0 /* AnimDependencies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AnimDependencies;
 			sourceTree = "<group>";
 		};
 		63E63AB22BB709C100A601E3 /* TimeBackgroundDependencies */ = {
@@ -618,6 +654,7 @@
 				635BD55B2B9F5708004480D1 /* ComposableArchitecture */,
 				63C969ED2B9FD509004E79C6 /* Realm */,
 				63C969EF2B9FD509004E79C6 /* RealmSwift */,
+				63CCAFA22BCD1E280045B2A0 /* Lottie */,
 			);
 			productName = Dorocat;
 			productReference = 63C124D02B9EF93D000A6D35 /* Dorocat.app */;
@@ -651,6 +688,7 @@
 			packageReferences = (
 				635BD55A2B9F5708004480D1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				63C969EC2B9FD509004E79C6 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				63CCAFA12BCD1E280045B2A0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 63C124D12B9EF93D000A6D35 /* Products */;
 			projectDirPath = "";
@@ -668,7 +706,10 @@
 			files = (
 				63C124DB2B9EF93D000A6D35 /* Preview Assets.xcassets in Resources */,
 				63B3FC3A2BB04A6600277576 /* Rubik-ExtraBold.ttf in Resources */,
+				63CCAFA62BCD1EB20045B2A0 /* Sleeping.json in Resources */,
 				63B3FC392BB04A6600277576 /* Rubik-Bold.ttf in Resources */,
+				63CCAFAB2BCD1EC60045B2A0 /* WellDone.json in Resources */,
+				63CCAFAC2BCD1EC60045B2A0 /* 04_confetti.json in Resources */,
 				632721862B9F2E5C007E3206 /* .gitignore in Resources */,
 				63B3FC332BB04A6600277576 /* Rubik-BlackItalic.ttf in Resources */,
 				63B3FC382BB04A6600277576 /* Rubik-LightItalic.ttf in Resources */,
@@ -679,10 +720,12 @@
 				63C124D82B9EF93D000A6D35 /* Assets.xcassets in Resources */,
 				63B3FC3C2BB04A6600277576 /* Rubik-BoldItalic.ttf in Resources */,
 				63B3FC3B2BB04A6600277576 /* Rubik-Black.ttf in Resources */,
+				63CCAFAE2BCD1ED70045B2A0 /* Great.json in Resources */,
 				63B3FC3D2BB04A6600277576 /* Rubik-Italic.ttf in Resources */,
 				63B3FC3E2BB04A6600277576 /* Rubik-Regular.ttf in Resources */,
 				63B3FC322BB04A6600277576 /* Rubik-Medium.ttf in Resources */,
 				63B3FC372BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf in Resources */,
+				63CCAFA82BCD1EBB0045B2A0 /* Default.json in Resources */,
 				63B3FC352BB04A6600277576 /* Rubik-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -711,6 +754,7 @@
 				637340832BA7449F00B2A10F /* ShoppingItem.swift in Sources */,
 				63AD70562BA42A6E00DBD6B9 /* DoroMainView.swift in Sources */,
 				632F89392BB5716400F2DC0B /* TimerFeature+State.swift in Sources */,
+				63CBAD8C2BCD2247004EE320 /* LottieView.swift in Sources */,
 				63A9C3FD2BA5E21A0076D42C /* AnalyzeFeature.swift in Sources */,
 				632F893B2BB5717D00F2DC0B /* TimerFeature+Action.swift in Sources */,
 				63A9C3F92BA5A3F10076D42C /* NumberPickerView.swift in Sources */,
@@ -898,7 +942,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -933,7 +977,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -990,6 +1034,14 @@
 				kind = branch;
 			};
 		};
+		63CCAFA12BCD1E280045B2A0 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1007,6 +1059,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 63C969EC2B9FD509004E79C6 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		63CCAFA22BCD1E280045B2A0 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63CCAFA12BCD1E280045B2A0 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "Haptic.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Haptic@2x.png",
+      "filename" : "Untitled_Artwork 8.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Haptic@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

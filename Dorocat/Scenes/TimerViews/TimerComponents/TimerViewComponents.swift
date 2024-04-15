@@ -12,7 +12,7 @@ enum TimerViewComponents{
     struct TriggerBtn: View{
         let store: StoreOf<TimerFeature>
         var body: some View{
-            WithPerceptionTracking {
+            
                 let text = switch store.timerStatus{
                 case .breakTime: "Stop Break"
                 case .completed: "Complete"
@@ -25,7 +25,6 @@ enum TimerViewComponents{
                 Button(text){
                     store.send(.viewAction(.triggerTapped))
                 }.triggerStyle(scale: btnScale)
-            }
         }
         var btnScale:TriggerBtnStyle.ButtonScale{
             switch store.timerStatus{
@@ -72,8 +71,14 @@ enum TimerViewComponents{
             Button(action: {
                 store.send(.viewAction(.catTapped))
             }, label: {
-                Image(.cat).resizable().scaledToFit()
-                    .frame(width: size,height: size)
+                switch store.timerStatus{
+                case .breakStandBy:
+                    LottieView(fileName: "Default", loopMode: .autoReverse)
+                        .frame(width: size,height: size)
+                default:
+                    LottieView(fileName: "Sleeping", loopMode: .playOnce)
+                        .frame(width: size,height: size)
+                }
             })
         }
         var size: CGFloat{

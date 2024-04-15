@@ -8,9 +8,9 @@
 import SwiftUI
 import ComposableArchitecture
 struct TimerSettingView:View {
-    @Perception.Bindable var store: StoreOf<TimerSettingFeature>
+    @Bindable var store: StoreOf<TimerSettingFeature>
     var body: some View {
-        WithPerceptionTracking{
+        
             VStack {
                 if store.isPomodoroMode{
                     Rectangle().fill(.clear).frame(height:56)
@@ -45,7 +45,7 @@ struct TimerSettingView:View {
                     DoroNumberPad(text: $store.time.sending(\.setTime)).frame(maxWidth: .infinity)
                 }
             }
-        }.frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity)
             .background(.grey04)
     }
 }
