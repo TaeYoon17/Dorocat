@@ -16,6 +16,13 @@ extension TimerFeature{
         var count = 0
         var cycle = 0
         var isAppLaunched = false
+        var progress:Double{
+            switch timerStatus{
+            case .focus: 1 - Double(count) / Double(timerInformation.timeSeconds)
+            case .breakTime: 1 - Double(count) / Double(timerInformation.breakTime)
+            default: 0.0
+            }
+        }
         var timer:String {
             "\(count / 60 < 10 ? "0" : "")\(count / 60):\((count % 60) < 10 ? "0":"")\(count % 60)"
         }

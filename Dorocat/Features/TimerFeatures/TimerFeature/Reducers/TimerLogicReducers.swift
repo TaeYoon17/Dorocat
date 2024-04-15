@@ -21,11 +21,17 @@ extension TimerFeature{
             state.count = state.timerInformation.timeSeconds
             return .none
         case .focus:
-            state.count = count ?? state.timerInformation.timeSeconds
-            return runningEffect
+            let count = count ?? state.timerInformation.breakTime
+            state.count = count
+            return .run {send in
+                await send(.setTimerRunning(count))
+            }
         case .breakTime:
-            state.count = count ?? state.timerInformation.breakTime
-            return runningEffect
+            let count = count ?? state.timerInformation.breakTime
+            state.count = count
+            return .run { send in
+                await send(.setTimerRunning(count))
+            }
         case .pause:
             if let count{ fatalError("여기에 존재하면 안된다!!")}
             return .cancel(id: CancelID.timer)

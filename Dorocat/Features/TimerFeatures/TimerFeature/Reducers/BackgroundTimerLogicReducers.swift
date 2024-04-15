@@ -10,8 +10,6 @@ import ComposableArchitecture
 
 extension TimerFeature{
     func awakeTimer(_ send: Send<TimerFeature.Action>) async {
-        
-        
         // 시간 설정, 저장해둔 타이머 시간 정보가 없으면 저장한 Status 값 그대로 보존한다.
         guard let prevDate = await timeBackground.date else { return }
         if Date().isOverTwoDays(prevDate: prevDate){
@@ -24,7 +22,6 @@ extension TimerFeature{
         await send(.setDefaultValues(savedValues)) // 디스크에 저장된 값을 State에 보냄
         let prevStatus = await timeBackground.timerStatus // 이전 상태
         let pauseStatus = savedValues.status // 이전 상태에서 Pause한 상태
-        
         //MARK: -- 이전 상태와 저장된 상태를 통해서 메서드를 호출
         switch (prevStatus,pauseStatus){
         case (_,.focus),(_,.breakTime): // 이전 상태가 타이머를 사용하는 상태

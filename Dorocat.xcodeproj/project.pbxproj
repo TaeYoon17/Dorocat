@@ -84,6 +84,7 @@
 		63C124D42B9EF93D000A6D35 /* DorocatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C124D32B9EF93D000A6D35 /* DorocatApp.swift */; };
 		63C124D82B9EF93D000A6D35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C124D72B9EF93D000A6D35 /* Assets.xcassets */; };
 		63C124DB2B9EF93D000A6D35 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C124DA2B9EF93D000A6D35 /* Preview Assets.xcassets */; };
+		63C5BF562BCAB8BE00E5A89C /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C5BF552BCAB8BE00E5A89C /* CircularProgressView.swift */; };
 		63C969EE2B9FD509004E79C6 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 63C969ED2B9FD509004E79C6 /* Realm */; };
 		63C969F02B9FD509004E79C6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 63C969EF2B9FD509004E79C6 /* RealmSwift */; };
 		63E63AB42BB709EA00A601E3 /* TimeBackgroundDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E63AB32BB709EA00A601E3 /* TimeBackgroundDependency.swift */; };
@@ -170,6 +171,7 @@
 		63C124D32B9EF93D000A6D35 /* DorocatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DorocatApp.swift; sourceTree = "<group>"; };
 		63C124D72B9EF93D000A6D35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63C124DA2B9EF93D000A6D35 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		63C5BF552BCAB8BE00E5A89C /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		63E63AB32BB709EA00A601E3 /* TimeBackgroundDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBackgroundDependency.swift; sourceTree = "<group>"; };
 		63FD44782BBC48D500FA528F /* GuideDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDependencies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -353,6 +355,7 @@
 				63088F1F2BBEC24600BF654D /* TriggerBtnStyle.swift */,
 				638EAB022BBF7F50007F8CAC /* DoroTogglerView.swift */,
 				638EAB072BBFD1C7007F8CAC /* DoroNumberPad.swift */,
+				63C5BF552BCAB8BE00E5A89C /* CircularProgressView.swift */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				6301F7A02BC3C1E400E04214 /* AnalyzeRepository.swift in Sources */,
 				6301F7A32BC3D09500E04214 /* AsyncMap.swift in Sources */,
 				63AD70642BA43F6D00DBD6B9 /* TimerSettingFeature.swift in Sources */,
+				63C5BF562BCAB8BE00E5A89C /* CircularProgressView.swift in Sources */,
 				639F8D202BCA5F2700D66551 /* AsyncForEach.swift in Sources */,
 				632F89412BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift in Sources */,
 				637340812BA7440900B2A10F /* TimerRecordItemTable.swift in Sources */,

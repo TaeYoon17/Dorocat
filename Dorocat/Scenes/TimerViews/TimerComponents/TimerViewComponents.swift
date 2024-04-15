@@ -62,14 +62,7 @@ enum TimerViewComponents{
         struct CircleField: View{
             let store: StoreOf<TimerFeature>
             var body: some View{
-                Circle().fill(Color.red)
-                    .overlay(content: {
-                        Text("원형 타이머")
-                    })
-                    .frame(width: 120,height: 120)
-                    .onTapGesture {
-                        store.send(.viewAction(.circleTimerTapped))
-                    }
+                CircularProgress(progress: CGFloat(store.progress), lineWidth: 40, backShape: Color.grey03, frontShapes: [Color.doroWhite])
             }
         }
     }
