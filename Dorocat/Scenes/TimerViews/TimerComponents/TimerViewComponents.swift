@@ -84,14 +84,14 @@ enum TimerViewComponents{
                         }
                         .frame(width: size,height: size).padding(.bottom,36)
                 case .standBy,.pause:
-                    LottieView(fileName: "Default", loopMode: .playOnce)
+                    LottieView(fileName: "Default", loopMode: .autoReverse)
                         .frame(width: size,height: size)
                 }
             })
         }
         var size: CGFloat{
             switch store.timerStatus{
-            case .focus: 240
+            case .focus,.breakTime: 240
             default: 375
             }
         }
