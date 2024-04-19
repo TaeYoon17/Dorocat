@@ -26,6 +26,8 @@ import ComposableArchitecture
     @Dependency(\.guideDefaults) var guideDefaults
     @Dependency(\.timeBackground) var timeBackground
     @Dependency(\.analyzeAPIClients) var analyzeAPI
+    @Dependency(\.pomoNotification) var notification
+    @Dependency(\.timer) var timer
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
@@ -47,9 +49,8 @@ import ComposableArchitecture
             case .setStatus(let status,let count): return setTimerStatus(state: &state, status: status,count: count)
             case .setTimerRunning(let count):
                 state.count = count
-                return .run{ send in
-                    while true{
-                        try await Task.sleep(for: .seconds(1))
+                return .run(priority: .high) { send in
+                    for try await _ in Timer.eventAsyncStream(){
                         await send(.timerTick)
                     }
                 }.cancellable(id: CancelID.timer)
@@ -60,8 +61,8 @@ import ComposableArchitecture
                         .run{ send in
                             let savedValues:PomoValues = await pomoDefaults.getAll() // 디스크에 저장된 값
                             await send(.setDefaultValues(savedValues)) // 디스크에 저장된 값을 State에 보냄
-                        }
-                        ,diskTimerInfoToMemory)
+                            await notification.requestPermission()
+                        },diskTimerInfoToMemory)
                 }else{ return .none }
             case .setDefaultValues(let value):
                 print("default Values \(value)")
@@ -87,3 +88,4 @@ import ComposableArchitecture
         }
     }
 }
+

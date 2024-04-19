@@ -77,7 +77,7 @@ enum TimerViewComponents{
                     LottieView(fileName: "Great", loopMode: .autoReverse)
                         .frame(width: size,height: size)
                 case .focus,.breakTime,.pause(.breakPause):
-                    CircularProgress(progress: store.progress, lineWidth: 44, backShape: Color.black, frontShapes: [Color.grey04])
+                    CircularProgress(progress: store.progress, lineWidth: 44, backShape: ImagePaint(image: Image(.defaultBg)), frontShapes: [Color.black])
                         .overlay(alignment: .bottom) {
                             LottieView(fileName: "Sleeping", loopMode: .autoReverse).offset(y:4)
                                 .frame(width: 190,height:190)

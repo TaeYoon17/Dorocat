@@ -38,7 +38,6 @@ extension TimerFeature{
                 await defaultTimerFocus(send, value: savedValues, diff: difference)
             }
         case (.breakTime,.pause(.breakPause)):
-            print("여기에 불려야한다")
             await self.pomoTimerBreak(send, value: savedValues, diff: difference)
         default: fatalError("발생 할 수 없는 경우!!")
         }
@@ -89,17 +88,6 @@ extension TimerFeature{
             newValue.status = .pause(.focusPause)
             await pomoTimerFocus(send, value: newValue, diff: diff - value.count)
         }
-//        let timeDiff = diff - value.count
-//        let cycle = value.cycle
-//        var newValue = value
-//        if timeDiff <= 0{
-//            await send(.setStatus(.breakTime, count:timeDiff))
-//        }else{
-//            // 집중 Pause에서 집중 상태로 돌아가는 로직을 실행시킨다.
-//            newValue.count = info.timeSeconds
-//            newValue.status = .pause(.focusPause)
-//            await pomoTimerFocus(send, value: newValue, diff: timeDiff)
-//        }
     }
 }
 

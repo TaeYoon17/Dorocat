@@ -11,9 +11,6 @@ extension TimerFeature{
     // 앱의 상태가 바뀐 뒤 타이머 구성
     func setTimerStatus(state:inout TimerFeature.State,status:TimerFeatureStatus,count:Int? = nil) -> Effect<TimerFeature.Action>{
         state.timerStatus = status
-        let runningEffect: Effect<Action> = .run{[count = state.count] send in
-            await send(.setTimerRunning(count))
-       }
         switch status{
         case .standBy:
             if count != nil{ fatalError("여기에 존재하면 안된다!!")}
@@ -43,9 +40,9 @@ extension TimerFeature{
                 state.count = state.timerInformation.breakTime
             }
             return Effect.concatenate(.cancel(id: CancelID.timer),
-                                      .run(operation: {send in
+                                      .run{send in
                 await analyzeAPI.append(.init(createdAt: startDate, duration: duration))
-            }))
+            })
         }
     }
 }

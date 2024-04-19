@@ -44,10 +44,9 @@ fileprivate extension TimerFeature{
             )
         case .standBy: // standby일때 탭하면 세팅하는 화면으로 설정한다.
             state.timerSetting = TimerSettingFeature.State()
-            effects.append( .run {[info = state.timerInformation] send in
+            effects.append(.run {[info = state.timerInformation] send in
                 await send(.timerSetting(.presented(.setDefaultValues(info))))
-            }
-            )
+            })
         default: break
         }
         return Effect.concatenate(effects)
