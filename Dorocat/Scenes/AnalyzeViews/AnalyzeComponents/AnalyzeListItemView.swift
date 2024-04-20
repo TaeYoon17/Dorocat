@@ -14,7 +14,7 @@ struct AnalyzeListItemView:View{
     var body: some View{
         HStack {
             HStack {
-                Image(.haptic).resizable().frame(width: 20,height:20)
+                Image(.haptic).resizable().frame(width: 20,height:20).opacity(0.6)
                 Text("\(timerListItem.duration)m").font(.paragraph03()).foregroundStyle(.doroWhite)
             }
             Spacer()

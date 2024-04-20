@@ -38,7 +38,7 @@ extension TimerFeature{
                 }
                  */
             }
-        case .background: return .none
+        case .background:
             let prevStatus = state.timerStatus // 이전에 갖고 있던 상태를 그대로 저장
             let pauseStatus = TimerFeatureStatus.getPause(state.timerStatus) ?? state.timerStatus
             // 이전에 갖고 있던 상태에서 Pause로 이동한 상태를 저장
@@ -76,27 +76,27 @@ extension TimerFeature{
         case .breakStandBy,.completed,.standBy,.pause: break
         case .breakTime:
             guard let information = value.information else {fatalError("정보가 없음!!")}
-            try await notification.sendNotification(message: .breakTimeToFocus(focusTime: information.timeSeconds),
+            try await notification.sendNotification(message: .breakTimeToFocus(focusMinutes: information.timeSeconds / 60),
                                                     restSeconds: value.count)
             let restCycle = information.cycle - value.cycle
             let sessionSeconds = value.count + information.timeSeconds
             if restCycle == 1{
                 try await notification.sendNotification(message: .complete, restSeconds: sessionSeconds)
             }else{
-                try await notification.sendNotification(message: .sessionComplete(breakTime: information.breakTime),
+                try await notification.sendNotification(message: .sessionComplete(breakMinutes: information.breakTime / 60),
                                                         restSeconds: sessionSeconds)
             }
         case .focus:
             guard let information = value.information else {fatalError("정보가 없음!!")}
             if information.isPomoMode{
-                try? await notification.sendNotification(message: .complete, restSeconds: value.count)
-            }else{
                 let restCycle = information.cycle - value.cycle
                 if restCycle == 1{
                     try await notification.sendNotification(message: .complete, restSeconds: value.count)
                 }else{
-                    try await notification.sendNotification(message: .sessionComplete(breakTime: information.breakTime), restSeconds: value.count)
+                    try await notification.sendNotification(message: .sessionComplete(breakMinutes: information.breakTime / 60), restSeconds: value.count)
                 }
+            }else{
+                try? await notification.sendNotification(message: .complete, restSeconds: value.count)
             }
         }
     }
