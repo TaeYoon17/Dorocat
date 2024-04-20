@@ -64,12 +64,6 @@ struct TimerView: View {
                 TimerSettingView(store: timerSettingStore).presentationDetents([.large])
                     .presentationDragIndicator(.visible)
             }
-        /// Temp Overlay...
-//            .overlay(alignment: .top) {
-//                if store.timerInformation.isPomoMode{
-//                    Text(store.cycleNote).font(.title2).bold().background(.blue)
-//                }
-//            }
     }
 }
 fileprivate extension View{

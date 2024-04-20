@@ -52,21 +52,25 @@ struct TimerSettingFeature{
         }
     }
     @Dependency(\.dismiss) var dismiss
+    @Dependency(\.haptic) var haptic
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
             case .doneTapped:
+                let hapticEffect:Effect<Action> = .run { send in
+                    await haptic.impact(style: .soft)
+                }
                 if let time = Int(state.time){
                     let timerInfo = TimerInformation(timeSeconds: time * 60, cycle: state.cycleTime, breakTime: state.breakTime * 60, isPomoMode: state.isPomodoroMode)
                     return .run {send in
                         await send(.delegate(.setTimerInfo(timerInfo)))
                         await self.dismiss()
-                    }
+                    }.merge(with: hapticEffect)
                 }else{
                     return .run {[timerInfo = state.timerInfo] send in
                         await send(.delegate(.setTimerInfo(timerInfo)))
                         await self.dismiss()
-                    }
+                    }.merge(with: hapticEffect)
                 }
             case .setTime(let time):
                 if time.count > 2{ return .none }
@@ -75,7 +79,7 @@ struct TimerSettingFeature{
             case .setPomodoroMode(let isPomodoro):
                 state.isPomodoroMode = isPomodoro
                 state.timerInfo.isPomoMode = isPomodoro
-                return .none
+                return .run{_ in await haptic.impact(style: .light)}
             case .setCycleTime(let num):
                 state.cycleTime = num
                 return .none

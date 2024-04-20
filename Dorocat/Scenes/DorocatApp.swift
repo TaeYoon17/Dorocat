@@ -13,7 +13,6 @@ struct DorocatApp: App {
     let store = Store(initialState: DorocatFeature.State(), reducer: { DorocatFeature()})
     var body: some Scene {
         WindowGroup {
-            
             ZStack {
                 DefaultBG()
                 DoroMainView(store: store)

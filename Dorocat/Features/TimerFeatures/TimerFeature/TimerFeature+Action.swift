@@ -15,5 +15,6 @@ extension TimerFeature{
         case catTapped
         case resetTapped
         case triggerTapped
+        case triggerWillTap
     }
 }

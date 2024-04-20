@@ -21,14 +21,23 @@ enum TimerViewComponents{
                 case .breakStandBy: "Break"
                 default: ""
                 }
-                Button(text){
+                Button(" "){
                     store.send(.viewAction(.triggerTapped))
-                }.triggerStyle(scale: btnScale)
+                }
+                .triggerStyle(status: btnType, willTap: {
+                    store.send(.viewAction(.triggerWillTap))
+                })
+                .animation(nil, value: store.timerStatus)
         }
-        var btnScale:TriggerBtnStyle.ButtonScale{
+        var btnType:TriggerBtnStyle.TriggerType{
             switch store.timerStatus{
-            case .breakTime,.completed: .flexed
-            default: .fixed(110)
+            case .breakStandBy: return .goBreak
+            case .breakTime: return .stopBreak
+            case .focus: return .pause
+            case .standBy: return .start
+            case .completed: return .complete
+            case .pause(.focusPause): return .start
+            case .pause(.breakPause): return .stopBreak
             }
         }
     }
@@ -57,12 +66,12 @@ enum TimerViewComponents{
                 })
             }
         }
-        struct CircleField: View{
-            let store: StoreOf<TimerFeature>
-            var body: some View{
-                CircularProgress(progress: CGFloat(store.progress), lineWidth: 40, backShape: Color.grey03, frontShapes: [Color.doroWhite])
-            }
-        }
+//        struct CircleField: View{
+//            let store: StoreOf<TimerFeature>
+//            var body: some View{
+//                CircularProgress(progress: CGFloat(store.progress), lineWidth: 40, backShape: Color.black, frontShapes: [Color.doroWhite])
+//            }
+//        }
     }
     struct DoroCat:View{
         let store: StoreOf<TimerFeature>
@@ -77,7 +86,7 @@ enum TimerViewComponents{
                     LottieView(fileName: "Great", loopMode: .autoReverse)
                         .frame(width: size,height: size)
                 case .focus,.breakTime,.pause(.breakPause):
-                    CircularProgress(progress: store.progress, lineWidth: 44, backShape: ImagePaint(image: Image(.defaultBg)), frontShapes: [Color.black])
+                    CircularProgress(progress: store.progress, lineWidth: 44, backShape: .black, frontShapes: [Color.grey04.shadow(.inner(color: .black.opacity(0.4), radius: 8, x: 0, y: 2))])
                         .overlay(alignment: .bottom) {
                             LottieView(fileName: "Sleeping", loopMode: .autoReverse).offset(y:4)
                                 .frame(width: 190,height:190)
@@ -99,17 +108,9 @@ enum TimerViewComponents{
     struct ResetButton: View{
         let store: StoreOf<TimerFeature>
         var body: some View{
-            Button{
+            Button("Reset"){
                 store.send(.viewAction(.resetTapped))
-            }label: {
-                Text("Reset")
-                    .font(.button)
-                    .foregroundStyle(.doroWhite)
-                    .padding(.horizontal,20)
-                    .padding(.vertical,13.5)
-                    .background(.grey03)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-            }
+            }.resetStyle()
         }
     }
 }

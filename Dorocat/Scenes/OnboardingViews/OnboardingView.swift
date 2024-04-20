@@ -32,7 +32,7 @@ struct OnboardingView: View {
     var triggerBtn: some View{
         Button("Get Started"){
             store.send(.onBoardingTapped)
-        }.triggerStyle(scale: .flexed)
+        }.triggerStyle(status: .getStarted)
     }
 }
 

@@ -10,7 +10,6 @@ import ComposableArchitecture
 struct TimerSettingView:View {
     @Bindable var store: StoreOf<TimerSettingFeature>
     var body: some View {
-        
             VStack {
                 if store.isPomodoroMode{
                     Rectangle().fill(.clear).frame(height:56)
@@ -31,21 +30,10 @@ struct TimerSettingView:View {
                 .padding()
                 Spacer()
                 VStack (spacing:24){
-                    Button(action: {
-                        store.send(.doneTapped)
-                    }, label: {
-                        Text("Done").font(.button)
-                            .padding(.vertical,19.5)
-                            .padding(.horizontal,28)
-                            .foregroundStyle(.black)
-                            .background(.doroWhite)
-                            .clipShape(Capsule())
-                        
-                    })
+                    Button("Done"){ store.send(.doneTapped) }.doneStyle()
                     DoroNumberPad(text: $store.time.sending(\.setTime)).frame(maxWidth: .infinity)
                 }
-            }
-        .frame(maxWidth: .infinity)
+            }.frame(maxWidth: .infinity)
             .background(.grey04)
     }
 }

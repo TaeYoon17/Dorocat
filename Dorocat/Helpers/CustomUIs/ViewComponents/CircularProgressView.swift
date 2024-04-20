@@ -24,7 +24,6 @@ struct CircularProgress:View{
                         .rotationEffect(.init(degrees: -90))
                 }
             })
-            
         })
     }
 }
