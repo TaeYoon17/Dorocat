@@ -20,6 +20,14 @@
 		631058892BC17A5A008611AD /* TimerViewComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631058882BC17A5A008611AD /* TimerViewComponents.swift */; };
 		6310588B2BC17D26008611AD /* TimerViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310588A2BC17D26008611AD /* TimerViewModifiers.swift */; };
 		632721862B9F2E5C007E3206 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 632721852B9F2E5C007E3206 /* .gitignore */; };
+		632F53882BD7490800357C68 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632F53872BD7490800357C68 /* WidgetKit.framework */; };
+		632F538A2BD7490800357C68 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632F53892BD7490800357C68 /* SwiftUI.framework */; };
+		632F538D2BD7490800357C68 /* DoroWidgetExtensionBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F538C2BD7490800357C68 /* DoroWidgetExtensionBundle.swift */; };
+		632F538F2BD7490800357C68 /* DoroWidgetExtensionLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F538E2BD7490800357C68 /* DoroWidgetExtensionLiveActivity.swift */; };
+		632F53912BD7490800357C68 /* DoroWidgetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F53902BD7490800357C68 /* DoroWidgetExtension.swift */; };
+		632F53932BD7490900357C68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 632F53922BD7490900357C68 /* Assets.xcassets */; };
+		632F53972BD7490900357C68 /* DoroWidgetExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 632F53852BD7490800357C68 /* DoroWidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		632F539F2BD749FF00357C68 /* PomoLiveDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F539E2BD749FF00357C68 /* PomoLiveDependency.swift */; };
 		632F89392BB5716400F2DC0B /* TimerFeature+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89382BB5716400F2DC0B /* TimerFeature+State.swift */; };
 		632F893B2BB5717D00F2DC0B /* TimerFeature+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F893A2BB5717D00F2DC0B /* TimerFeature+Action.swift */; };
 		632F89412BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89402BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift */; };
@@ -107,6 +115,30 @@
 		63FD44792BBC48D500FA528F /* GuideDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FD44782BBC48D500FA528F /* GuideDependencies.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		632F53952BD7490900357C68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63C124C82B9EF93D000A6D35 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 632F53842BD7490800357C68;
+			remoteInfo = DoroWidgetExtensionExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		632F53982BD7490900357C68 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				632F53972BD7490900357C68 /* DoroWidgetExtensionExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		6301F79A2BC3BE6200E04214 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		6301F79C2BC3BF1300E04214 /* RealmError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmError.swift; sourceTree = "<group>"; };
@@ -121,6 +153,15 @@
 		631058882BC17A5A008611AD /* TimerViewComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewComponents.swift; sourceTree = "<group>"; };
 		6310588A2BC17D26008611AD /* TimerViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModifiers.swift; sourceTree = "<group>"; };
 		632721852B9F2E5C007E3206 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		632F53852BD7490800357C68 /* DoroWidgetExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DoroWidgetExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		632F53872BD7490800357C68 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		632F53892BD7490800357C68 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		632F538C2BD7490800357C68 /* DoroWidgetExtensionBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroWidgetExtensionBundle.swift; sourceTree = "<group>"; };
+		632F538E2BD7490800357C68 /* DoroWidgetExtensionLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroWidgetExtensionLiveActivity.swift; sourceTree = "<group>"; };
+		632F53902BD7490800357C68 /* DoroWidgetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroWidgetExtension.swift; sourceTree = "<group>"; };
+		632F53922BD7490900357C68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		632F53942BD7490900357C68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		632F539E2BD749FF00357C68 /* PomoLiveDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoLiveDependency.swift; sourceTree = "<group>"; };
 		632F89382BB5716400F2DC0B /* TimerFeature+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerFeature+State.swift"; sourceTree = "<group>"; };
 		632F893A2BB5717D00F2DC0B /* TimerFeature+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerFeature+Action.swift"; sourceTree = "<group>"; };
 		632F89402BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerSettingFeatures+Reducers.swift"; sourceTree = "<group>"; };
@@ -209,6 +250,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		632F53822BD7490800357C68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				632F538A2BD7490800357C68 /* SwiftUI.framework in Frameworks */,
+				632F53882BD7490800357C68 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63C124CD2B9EF93D000A6D35 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -268,6 +318,27 @@
 				6310588A2BC17D26008611AD /* TimerViewModifiers.swift */,
 			);
 			path = TimerComponents;
+			sourceTree = "<group>";
+		};
+		632F53862BD7490800357C68 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				632F53872BD7490800357C68 /* WidgetKit.framework */,
+				632F53892BD7490800357C68 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		632F538B2BD7490800357C68 /* DoroWidgetExtension */ = {
+			isa = PBXGroup;
+			children = (
+				632F538C2BD7490800357C68 /* DoroWidgetExtensionBundle.swift */,
+				632F538E2BD7490800357C68 /* DoroWidgetExtensionLiveActivity.swift */,
+				632F53902BD7490800357C68 /* DoroWidgetExtension.swift */,
+				632F53922BD7490900357C68 /* Assets.xcassets */,
+				632F53942BD7490900357C68 /* Info.plist */,
+			);
+			path = DoroWidgetExtension;
 			sourceTree = "<group>";
 		};
 		632F89372BB56E0900F2DC0B /* TimerFeature */ = {
@@ -342,6 +413,7 @@
 				63BD3C872BD2519900C80542 /* PomoNotiType.swift */,
 				635C9D3C2BB082E400BFD46D /* PomoDependency.swift */,
 				63F3D6632BD1805B00F1204B /* PomoNotiDependency.swift */,
+				632F539E2BD749FF00357C68 /* PomoLiveDependency.swift */,
 			);
 			path = PomoDependencies;
 			sourceTree = "<group>";
@@ -581,6 +653,8 @@
 			isa = PBXGroup;
 			children = (
 				63C124D22B9EF93D000A6D35 /* Dorocat */,
+				632F538B2BD7490800357C68 /* DoroWidgetExtension */,
+				632F53862BD7490800357C68 /* Frameworks */,
 				63C124D12B9EF93D000A6D35 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -589,6 +663,7 @@
 			isa = PBXGroup;
 			children = (
 				63C124D02B9EF93D000A6D35 /* Dorocat.app */,
+				632F53852BD7490800357C68 /* DoroWidgetExtensionExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -690,6 +765,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		632F53842BD7490800357C68 /* DoroWidgetExtensionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 632F539B2BD7490900357C68 /* Build configuration list for PBXNativeTarget "DoroWidgetExtensionExtension" */;
+			buildPhases = (
+				632F53812BD7490800357C68 /* Sources */,
+				632F53822BD7490800357C68 /* Frameworks */,
+				632F53832BD7490800357C68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DoroWidgetExtensionExtension;
+			productName = DoroWidgetExtensionExtension;
+			productReference = 632F53852BD7490800357C68 /* DoroWidgetExtensionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		63C124CF2B9EF93D000A6D35 /* Dorocat */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63C124DE2B9EF93D000A6D35 /* Build configuration list for PBXNativeTarget "Dorocat" */;
@@ -697,10 +789,12 @@
 				63C124CC2B9EF93D000A6D35 /* Sources */,
 				63C124CD2B9EF93D000A6D35 /* Frameworks */,
 				63C124CE2B9EF93D000A6D35 /* Resources */,
+				632F53982BD7490900357C68 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				632F53962BD7490900357C68 /* PBXTargetDependency */,
 			);
 			name = Dorocat;
 			packageProductDependencies = (
@@ -723,6 +817,9 @@
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					632F53842BD7490800357C68 = {
+						CreatedOnToolsVersion = 15.2;
+					};
 					63C124CF2B9EF93D000A6D35 = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -747,11 +844,20 @@
 			projectRoot = "";
 			targets = (
 				63C124CF2B9EF93D000A6D35 /* Dorocat */,
+				632F53842BD7490800357C68 /* DoroWidgetExtensionExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		632F53832BD7490800357C68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				632F53932BD7490900357C68 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63C124CE2B9EF93D000A6D35 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -785,6 +891,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		632F53812BD7490800357C68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				632F538F2BD7490800357C68 /* DoroWidgetExtensionLiveActivity.swift in Sources */,
+				632F538D2BD7490800357C68 /* DoroWidgetExtensionBundle.swift in Sources */,
+				632F53912BD7490800357C68 /* DoroWidgetExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63C124CC2B9EF93D000A6D35 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -810,6 +926,7 @@
 				63AD70562BA42A6E00DBD6B9 /* DoroMainView.swift in Sources */,
 				63A2885B2BD6507100C817E7 /* SettingPurchaseFeature.swift in Sources */,
 				632F89392BB5716400F2DC0B /* TimerFeature+State.swift in Sources */,
+				632F539F2BD749FF00357C68 /* PomoLiveDependency.swift in Sources */,
 				63CBAD8C2BCD2247004EE320 /* LottieView.swift in Sources */,
 				63A9C3FD2BA5E21A0076D42C /* AnalyzeFeature.swift in Sources */,
 				632F893B2BB5717D00F2DC0B /* TimerFeature+Action.swift in Sources */,
@@ -865,7 +982,69 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		632F53962BD7490900357C68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 632F53842BD7490800357C68 /* DoroWidgetExtensionExtension */;
+			targetProxy = 632F53952BD7490900357C68 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		632F53992BD7490900357C68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DoroWidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DoroWidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat.DoroWidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		632F539A2BD7490900357C68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DoroWidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DoroWidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat.DoroWidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		63C124DC2B9EF93D000A6D35 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -988,6 +1167,7 @@
 		63C124DF2B9EF93D000A6D35 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -1023,6 +1203,7 @@
 		63C124E02B9EF93D000A6D35 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -1058,6 +1239,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		632F539B2BD7490900357C68 /* Build configuration list for PBXNativeTarget "DoroWidgetExtensionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				632F53992BD7490900357C68 /* Debug */,
+				632F539A2BD7490900357C68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		63C124CB2B9EF93D000A6D35 /* Build configuration list for PBXProject "Dorocat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

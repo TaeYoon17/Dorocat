@@ -26,7 +26,14 @@
 
     },
     "Cat's asleep!" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "고양이가 자고 있어요"
+          }
+        }
+      }
     },
     "Cycle nums" : {
 
@@ -38,7 +45,14 @@
 
     },
     "Get Started" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시작하기"
+          }
+        }
+      }
     },
     "Great!" : {
 
@@ -50,7 +64,14 @@
 
     },
     "Learn More" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "더 보기"
+          }
+        }
+      }
     },
     "Let the cat snooze and get started!" : {
 
