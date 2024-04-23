@@ -11,7 +11,7 @@ import SwiftUI
 @main
 struct DoroWidgetExtensionBundle: WidgetBundle {
     var body: some Widget {
-        DoroWidgetExtension()
+//        DoroWidgetExtension()
         DoroWidgetExtensionLiveActivity()
     }
 }

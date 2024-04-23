@@ -29,6 +29,7 @@ import ComposableArchitecture
     @Dependency(\.pomoNotification) var notification
     @Dependency(\.timer) var timer
     @Dependency(\.haptic) var haptic
+    @Dependency(\.pomoLiveActivity) var liveActivity
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{

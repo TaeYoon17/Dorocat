@@ -6,18 +6,7 @@
 //
 
 import Foundation
-enum PauseStatus:Equatable{
-    case focusPause
-    case breakPause
-}
-enum TimerFeatureStatus:Equatable{
-    case standBy
-    case focus
-    case pause(PauseStatus)
-    case breakStandBy
-    case breakTime
-    case completed
-}
+
 extension TimerFeatureStatus{
     static func create(name:String) -> Self{
         switch name{

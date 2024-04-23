@@ -21,6 +21,8 @@ extension TimerFeature{
             let count = count ?? state.timerInformation.timeSeconds
             state.count = count
             return .run {send in
+                await liveActivity.removeActivity()
+                await liveActivity.addActivity(restCount: count)
                 await send(.setTimerRunning(count))
             }
         case .breakTime:
