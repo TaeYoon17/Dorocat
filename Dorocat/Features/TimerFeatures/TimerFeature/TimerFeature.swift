@@ -47,7 +47,8 @@ import ComposableArchitecture
             case .timerSetting: return .none
             case .timerTick: return self.timerTick(state: &state)
                 // 내부 로직 Action 처리
-            case .setStatus(let status,let count): return setTimerStatus(state: &state, status: status,count: count)
+            case .setStatus(let status,let count): 
+                return setTimerStatus(state: &state, status: status,count: count)
             case .setTimerRunning(let count):
                 state.count = count
                 return .run(priority: .high) { send in

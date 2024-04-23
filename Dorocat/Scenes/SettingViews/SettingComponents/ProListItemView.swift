@@ -8,6 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 struct ProListItemView: View {
+    var action: ()->()
     var body: some View {
         VStack(spacing:10){
             HStack{
@@ -26,7 +27,7 @@ struct ProListItemView: View {
                 })
                 Spacer()
                 Button(action: {
-                    print("Hello world")
+                    action()
                 }, label: {
                     Text("Learn More")
                         .font(.paragraph03(.bold))

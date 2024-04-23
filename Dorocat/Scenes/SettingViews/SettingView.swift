@@ -10,9 +10,9 @@ import ComposableArchitecture
 struct SettingView: View {
     @Bindable var store: StoreOf<SettingFeature>
     @State private var isOn: Bool = false
+//    @State private var presentPurchaseSheet:Bool = false
     var body: some View {
-        
-        NavigationStack {
+//        NavigationStack {
             ZStack{
                 DefaultBG()
                 ScrollView {
@@ -21,7 +21,9 @@ struct SettingView: View {
                         Section {
                             VStack(spacing:0) {
                                 VStack(spacing:8){
-                                    ProListItemView().padding(.bottom,16)
+                                    ProListItemView{
+                                        store.send(.openPurchase)
+                                    }.padding(.bottom,16)
                                     SettingListItem.Toggler(title: "Notifications",
                                                             description: "Get notified of focus sessions or breaks", isOn: $isOn)
                                     SettingListItem.Toggler(title: "Sound", isOn: $store.isSound.sending(\.setSound))
@@ -59,13 +61,18 @@ struct SettingView: View {
                         }
                     })
                 }
+                .sheet(item: $store.scope(state: \.purchaseSheet, action: \.purchaseSheet)) { settingPurchaseStore in
+                    PurchaseSheet(store: settingPurchaseStore).presentationDetents([.large])
+                        .presentationDragIndicator(.visible)
+                }
             }
-            .toolbar(.hidden, for: .navigationBar)
-        }
+            
+//        }
         .tint(.black)
         .foregroundStyle(.black)
         .toolbar(.hidden, for: .navigationBar)
         .background(.grey04)
+        
     }
 }
 
