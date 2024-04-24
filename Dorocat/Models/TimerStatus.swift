@@ -6,14 +6,15 @@
 //
 
 import Foundation
-enum PauseStatus:Equatable{
-    case focusPause
-    case breakPause
+enum SleepStatus: Equatable{
+    case focusSleep
+    case breakSleep
 }
 enum TimerFeatureStatus:Equatable{
     case standBy
     case focus
-    case pause(PauseStatus)
+    case pause
+    case sleep(SleepStatus)
     case breakStandBy
     case breakTime
     case completed

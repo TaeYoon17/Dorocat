@@ -16,22 +16,30 @@ extension TimerFeature{
             if count != nil{ fatalError("여기에 존재하면 안된다!!")}
             state.cycle = 0
             state.count = state.timerInformation.timeSeconds
-            return .none
+            return .run { send in
+                await liveActivity.removeActivity()
+            }
         case .focus:
             let count = count ?? state.timerInformation.timeSeconds
             state.count = count
-            return .run {send in
+            return .run {[focusTotalTime = state.timerInformation.timeSeconds ] send in
                 await liveActivity.removeActivity()
-                await liveActivity.addActivity(restCount: count)
+                await liveActivity.addActivity(restCount: count,totalCount: focusTotalTime)
                 await send(.setTimerRunning(count))
             }
         case .breakTime:
             let count = count ?? state.timerInformation.breakTime
             state.count = count
-            return .run { send in
+            return .run {[breakTotalTime = state.timerInformation.breakTime] send in
+                await liveActivity.removeActivity()
+                await liveActivity.addActivity(restCount: count,totalCount: breakTotalTime)
                 await send(.setTimerRunning(count))
             }
         case .pause:
+            return .run { send in
+                await liveActivity.removeActivity()
+            }.merge(with: .cancel(id: CancelID.timer))
+        case .sleep:
             if let count{ fatalError("여기에 존재하면 안된다!!")}
             return .cancel(id: CancelID.timer)
         case .completed,.breakStandBy:
@@ -43,7 +51,8 @@ extension TimerFeature{
             }
             return Effect.concatenate(.cancel(id: CancelID.timer),
                                       .run{send in
-                await analyzeAPI.append(.init(createdAt: startDate, duration: duration))
+                                          await liveActivity.removeActivity()
+                                          await analyzeAPI.append(.init(createdAt: startDate, duration: duration))
             })
         }
     }

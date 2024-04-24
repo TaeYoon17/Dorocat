@@ -10,20 +10,16 @@ import WidgetKit
 import SwiftUI
 
 struct DoroWidgetExtensionLiveActivity: Widget {
-    @State private var count = 0
-    @State private var limit = 0
-    @State private var timer:Timer?
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: PomoAttributes.self) { context in
             // Lock screen/banner UI goes here
             VStack {
-                Text("Hello \(context.state.count)")
+                Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),since: .now))
             }
             .activityBackgroundTint(Color.cyan)
             .activitySystemActionForegroundColor(Color.black)
 
         } dynamicIsland: { context in
-            limit = context.state.count
             return DynamicIsland {
                 // Expanded UI goes here.  Compose the expanded UI through
                 // various regions, like leading/trailing/center/bottom
@@ -35,16 +31,28 @@ struct DoroWidgetExtensionLiveActivity: Widget {
                     Text("DoroCat")
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("Bottom \(context.state.count)")
+                    Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),since: .now))
                     // more content
                 }
             } compactLeading: {
-//                Image(.cat).resizable().scaledToFit()
-                Text("D")
+                Image(.cat).resizable().scaledToFit()
+                    .frame(width: 38)
             } compactTrailing: {
-                Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),since: .now))
+                Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count / 60),
+                                                    since: .now),showsHours: false)
+                .monospacedDigit()
+                .frame(width:48)
             } minimal: {
-                Text("\(context.state.count)")
+                let start = Date.now.addingTimeInterval(TimeInterval(-context.state.endTime+context.state.count))
+                let end = Date.now.addingTimeInterval(TimeInterval(context.state.endTime))
+                ProgressView(timerInterval: start...end,countsDown: false
+                ) {
+//                    Label("s", systemImage: "plus")
+                    EmptyView()
+                }currentValueLabel: {
+                    
+                    EmptyView()
+                }.progressViewStyle(.circular)
             }
             .widgetURL(URL(string: "http://www.apple.com"))
             .keylineTint(Color.red)

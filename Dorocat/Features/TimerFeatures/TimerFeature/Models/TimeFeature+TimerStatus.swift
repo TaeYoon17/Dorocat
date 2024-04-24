@@ -12,11 +12,12 @@ extension TimerFeatureStatus{
         switch name{
         case "standBy": .standBy
         case "focus": .focus
-        case "pauseFocus": .pause(.focusPause)
-        case "pauseBreak": .pause(.breakPause)
+        case "pause": .pause
         case "breakTime": .breakTime
         case "completed": .completed
         case "breakStandBy": .breakStandBy
+        case "focusSleep": .sleep(.focusSleep)
+        case "breakSleep": .sleep(.breakSleep)
         default: .standBy
         }
     }
@@ -25,16 +26,17 @@ extension TimerFeatureStatus{
         case .completed: "completed"
         case .standBy: "standBy"
         case .focus: "focus"
-        case .pause(.focusPause): "pauseFocus"
-        case .pause(.breakPause): "pauseBreak"
+        case .pause: "pause"
+        case .sleep(.breakSleep): "breakSleep"
+        case .sleep(.focusSleep): "focusSleep"
         case .breakTime: "breakTime"
         case .breakStandBy: "breakStandBy"
         }
     }
-    static func getPause(_ prevStatus:Self)->Self?{
+    static func getSleep(_ prevStatus:Self)->Self?{
         switch prevStatus{
-        case .breakTime: return .pause(.breakPause)
-        case .focus: return .pause(.focusPause)
+        case .breakTime: return .sleep(.breakSleep)
+        case .focus: return .sleep(.focusSleep)
         default:
             return nil
         }

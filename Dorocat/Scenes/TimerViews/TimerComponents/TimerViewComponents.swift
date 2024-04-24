@@ -17,7 +17,7 @@ enum TimerViewComponents{
                 case .completed: "Complete"
                 case .standBy: "Start"
                 case .focus:"Pause"
-                case .pause(.focusPause): "Start"
+                case .pause: "Start"
                 case .breakStandBy: "Break"
                 default: ""
                 }
@@ -36,8 +36,9 @@ enum TimerViewComponents{
             case .focus: return .pause
             case .standBy: return .start
             case .completed: return .complete
-            case .pause(.focusPause): return .start
-            case .pause(.breakPause): return .stopBreak
+            case .pause: return .start
+            case .sleep(.focusSleep): return .pause
+            case .sleep(.breakSleep): return .stopBreak
             }
         }
     }
@@ -85,7 +86,7 @@ enum TimerViewComponents{
                 case .breakStandBy:
                     LottieView(fileName: "Great", loopMode: .autoReverse)
                         .frame(width: size,height: size)
-                case .focus,.breakTime,.pause(.breakPause):
+                case .focus,.breakTime,.sleep:
                     CircularProgress(progress: store.progress, lineWidth: 44, backShape: .black, frontShapes: [Color.grey04.shadow(.inner(color: .black.opacity(0.4), radius: 8, x: 0, y: 2))])
                         .overlay(alignment: .bottom) {
                             LottieView(fileName: "Sleeping", loopMode: .autoReverse).offset(y:4)
@@ -100,7 +101,7 @@ enum TimerViewComponents{
         }
         var size: CGFloat{
             switch store.timerStatus{
-            case .focus,.breakTime: 240
+            case .focus,.breakTime,.sleep: 240
             default: 375
             }
         }

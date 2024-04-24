@@ -14,9 +14,13 @@ extension TimerFeature{
         state.appState = appState
         switch appState{
         case .active:// background 시간 없애주기...
-            return .run { send in
+            return .run {[state] send in
                 try await removeAllNotifications()
-                await timeBackground.set(date: nil)
+                switch state.timerStatus{
+                case .breakTime,.focus: break
+                default: await liveActivity.removeActivity()
+                }
+                await timeBackground.set(date: Date())
             }
         case .inActive:
             switch prevState{
@@ -25,25 +29,13 @@ extension TimerFeature{
             default: return .none
                 /// 앞으로 background로 이동할 상태
                 /// 현재 진행상황 저장 - background로 이동시 무조건 타이머 상태는 pause가 되도록 설정한다.
-                /*
-                 let prevStatus = state.timerStatus // 이전에 갖고 있던 상태를 그대로 저장
-                 let pauseStatus = TimerFeatureStatus.getPause(state.timerStatus) ?? state.timerStatus
-                 // 이전에 갖고 있던 상태에서 Pause로 이동한 상태를 저장
-                 let values = PomoValues(status: pauseStatus, information: state.timerInformation, cycle: state.cycle, count: state.count,startDate: state.startDate)
-                 return .run { send in
-                 try await self.setNotification(send: send, status: prevStatus, value: values)
-                 await timeBackground.set(date: Date())
-                 await timeBackground.set(timerStatus: prevStatus)
-                 await send(.setStatus(pauseStatus))
-                 await pomoDefaults.setAll(values)
-                 }
-                 */
             }
         case .background:
-            let prevStatus = state.timerStatus // 이전에 갖고 있던 상태를 그대로 저장
-            let pauseStatus = TimerFeatureStatus.getPause(state.timerStatus) ?? state.timerStatus
             // 이전에 갖고 있던 상태에서 Pause로 이동한 상태를 저장
-            let values = PomoValues(status: pauseStatus, information: state.timerInformation, cycle: state.cycle, count: state.count,startDate: state.startDate)
+            let prevStatus = state.timerStatus
+            let timerStatus = TimerFeatureStatus.getSleep(prevStatus) ?? prevStatus
+            // 이전에 갖고 있던 상태를 그대로 저장
+            let values = PomoValues(status: prevStatus, information: state.timerInformation, cycle: state.cycle, count: state.count,startDate: state.startDate)
             let activityEffect:Effect<Action> = if prevStatus == .focus{
                 .run{[count = state.count] send in
                     print("이거 맞는데...")
@@ -53,8 +45,8 @@ extension TimerFeature{
             return activityEffect.concatenate(with:.run { send in
                 try await self.setNotification(send: send, status: prevStatus, value: values)
                 await timeBackground.set(date: Date())
-                await timeBackground.set(timerStatus: prevStatus)
-                await send(.setStatus(pauseStatus))
+                await timeBackground.set(timerStatus: timerStatus)
+                await send(.setStatus(timerStatus))
                 await pomoDefaults.setAll(values)
             })
         }
@@ -80,7 +72,7 @@ extension TimerFeature{
     fileprivate func setNotification(send:Send<TimerFeature.Action>,status: TimerFeatureStatus,value:PomoValues) async throws {
         print("setNotification called")
         switch status{
-        case .breakStandBy,.completed,.standBy,.pause: break
+        case .breakStandBy,.completed,.standBy,.pause,.sleep: break
         case .breakTime:
             guard let information = value.information else {fatalError("정보가 없음!!")}
             try await notification.sendNotification(message: .breakTimeToFocus(focusMinutes: information.timeSeconds / 60),

@@ -10,6 +10,7 @@ import ActivityKit
 struct PomoAttributes:ActivityAttributes{
     struct ContentState:Codable,Hashable{
         var count:Int = 0
+        var endTime:Int = 0
 //        var cycle:Int = 0
 //        var isPomoMode:Bool = false
 //        var focusTime:Int = 0

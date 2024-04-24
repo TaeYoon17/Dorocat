@@ -39,11 +39,11 @@ fileprivate extension TimerFeature{
         switch state.timerStatus{
         case .focus:
             effects.append(.run { send in
-                await send(.setStatus(.pause(.focusPause)))
+                await send(.setStatus(.pause))
             }.merge(with: .run(operation: { send in
                 await haptic.impact(style: .rigid,intensity: 0.7)
             })))
-        case .pause(.focusPause):
+        case .pause:
             effects.append(.run {[count = state.count] send in
                 await send(.setStatus(.focus,count:count))
                 }
@@ -77,7 +77,7 @@ fileprivate extension TimerFeature{
         switch state.timerStatus{
         case .focus:
             return .run { send in
-                await send(.setStatus(.pause(.focusPause)))
+                await send(.setStatus(.pause))
             }.merge(with: .run(operation: { send in
                 await haptic.impact(style: .rigid,intensity: 0.7)
             }))
@@ -116,9 +116,9 @@ fileprivate extension TimerFeature{
             }
             return Effect.concatenate(effects)
         case .focus: return .run { send in
-            await send(.setStatus(.pause(.focusPause)))
+            await send(.setStatus(.pause))
         }.merge(with: hapticEffect)
-        case .pause(.focusPause):
+        case .pause:
             return .run {[count = state.count] send in
                 await send(.setStatus(.focus,count: count))
             }
@@ -132,7 +132,7 @@ fileprivate extension TimerFeature{
             }.merge(with: hapticEffect)
         case .breakTime: return .concatenate([.cancel(id: CancelID.timer),
                                               .run { await $0(.setStatus(.standBy)) }]).merge(with: hapticEffect)
-        case .pause(.breakPause): return .none
+        case .sleep: return .none
         }
     }
     

@@ -11,24 +11,27 @@ import ComposableArchitecture
 extension TimerFeature{
     func awakeTimer(_ send: Send<TimerFeature.Action>) async {
         // 시간 설정, 저장해둔 타이머 시간 정보가 없으면 저장한 Status 값 그대로 보존한다.
-        guard let prevDate = await timeBackground.date else { return }
+        guard let prevDate = await timeBackground.date else {
+            print("이게 문제")
+            return
+        }
         if Date().isOverTwoDays(prevDate: prevDate){
             await send(.setStatus(.standBy))
             return
         }
-        await timeBackground.set(date: nil)
+        await timeBackground.set(date: Date())
         let difference = Int(Date().timeIntervalSince(prevDate))
         let savedValues:PomoValues = await pomoDefaults.getAll() // 디스크에 저장된 값
         await send(.setDefaultValues(savedValues)) // 디스크에 저장된 값을 State에 보냄
-        let prevStatus = await timeBackground.timerStatus // 이전 상태
-        let pauseStatus = savedValues.status // 이전 상태에서 Pause한 상태
+        let pauseStatus = await timeBackground.timerStatus  // 이전 상태에서 Sleep한 상태
+        let prevStatus = savedValues.status // 이전 상태
         //MARK: -- 이전 상태와 저장된 상태를 통해서 메서드를 호출
+        print("**",prevStatus,pauseStatus)
         switch (prevStatus,pauseStatus){
         case (_,.focus),(_,.breakTime): // 이전 상태가 타이머를 사용하는 상태
             fatalError("Pause Status에서 타이머에 접근하고 있다...")
-        case (_,.completed),(_,.standBy),(_ ,.breakStandBy): break
-        case (.pause,.pause): break
-        case (.focus,.pause(.focusPause)): // 포커스 타임이지만, 일시적으로 Pause한 상태
+        case (_,.completed),(_,.standBy),(_ ,.breakStandBy),(_,.pause): break
+        case (.focus,.sleep(.focusSleep)): // 포커스 타임이지만, 일시적으로 Pause한 상태
             guard let info = savedValues.information else {
                 fatalError("여기에는 정보가 있어야한다.")
             }
@@ -37,7 +40,7 @@ extension TimerFeature{
             }else{
                 await defaultTimerFocus(send, value: savedValues, diff: difference)
             }
-        case (.breakTime,.pause(.breakPause)):
+        case (.breakTime,.sleep(.breakSleep)):
             await self.pomoTimerBreak(send, value: savedValues, diff: difference)
         default: fatalError("발생 할 수 없는 경우!!")
         }
@@ -85,7 +88,7 @@ extension TimerFeature{
             await send(.setStatus(.breakTime, count:restTime))
         }else{
             newValue.count = info.timeSeconds
-            newValue.status = .pause(.focusPause)
+            newValue.status = .sleep(.focusSleep)
             await pomoTimerFocus(send, value: newValue, diff: diff - value.count)
         }
     }

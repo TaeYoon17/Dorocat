@@ -14,7 +14,7 @@ struct TimerView: View {
         VStack(spacing:0,content: {
             Spacer()
             switch store.timerStatus{
-            case .standBy,.focus,.pause,.breakTime:
+            case .standBy,.focus,.pause,.breakTime,.sleep:
                 VStack(spacing:0) {
                     TimerViewComponents.DoroCat(store:store)
                     TimerViewComponents.Timer.NumberField(store: store).frame(height: 102)
