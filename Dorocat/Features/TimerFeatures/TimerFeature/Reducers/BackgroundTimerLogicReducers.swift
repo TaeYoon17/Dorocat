@@ -27,23 +27,44 @@ extension TimerFeature{
         let prevStatus = savedValues.status // 이전 상태
         //MARK: -- 이전 상태와 저장된 상태를 통해서 메서드를 호출
         print("**",prevStatus,pauseStatus)
-        switch (prevStatus,pauseStatus){
-        case (_,.focus),(_,.breakTime): // 이전 상태가 타이머를 사용하는 상태
-            fatalError("Pause Status에서 타이머에 접근하고 있다...")
-        case (_,.completed),(_,.standBy),(_ ,.breakStandBy),(_,.pause): break
-        case (.focus,.sleep(.focusSleep)): // 포커스 타임이지만, 일시적으로 Pause한 상태
-            guard let info = savedValues.information else {
-                fatalError("여기에는 정보가 있어야한다.")
+        switch prevStatus {
+        case .standBy,.pause,.completed,.breakStandBy: break
+        case .focus:
+            switch pauseStatus{
+            case .sleep(.focusSleep):
+                guard let info = savedValues.information else { fatalError("여기에는 정보가 있어야한다.") }
+                if info.isPomoMode{
+                    await pomoTimerFocus(send, value: savedValues, diff: difference)
+                }else{
+                    await defaultTimerFocus(send, value: savedValues, diff: difference)
+                }
+            default: break
             }
-            if info.isPomoMode{
-                await pomoTimerFocus(send, value: savedValues, diff: difference)
-            }else{
-                await defaultTimerFocus(send, value: savedValues, diff: difference)
+        case .breakTime:
+            switch pauseStatus{
+            case .sleep(.breakSleep):
+                await self.pomoTimerBreak(send, value: savedValues, diff: difference)
+            default: break
             }
-        case (.breakTime,.sleep(.breakSleep)):
-            await self.pomoTimerBreak(send, value: savedValues, diff: difference)
-        default: fatalError("발생 할 수 없는 경우!!")
+        case .sleep: fatalError("여긴 절대 발생하면 안됨")
         }
+//        switch (prevStatus,pauseStatus){
+//        case (_,.focus),(_,.breakTime): // 이전 상태가 타이머를 사용하는 상태
+//            fatalError("Pause Status에서 타이머에 접근하고 있다...")
+//        case (_,.completed),(_,.standBy),(_ ,.breakStandBy),(_,.pause): break
+//        case (.focus,.sleep(.focusSleep)): // 포커스 타임이지만, 일시적으로 Pause한 상태
+//            guard let info = savedValues.information else {
+//                fatalError("여기에는 정보가 있어야한다.")
+//            }
+//            if info.isPomoMode{
+//                await pomoTimerFocus(send, value: savedValues, diff: difference)
+//            }else{
+//                await defaultTimerFocus(send, value: savedValues, diff: difference)
+//            }
+//        case (.breakTime,.sleep(.breakSleep)):
+//            await self.pomoTimerBreak(send, value: savedValues, diff: difference)
+//        default: fatalError("발생 할 수 없는 경우!!")
+//        }
     }
 }
 

@@ -18,8 +18,10 @@ extension TimerFeature{
         var isAppLaunched = false
         var progress:Double{
             switch timerStatus{
-            case .focus: 1 - Double(count) / Double(timerInformation.timeSeconds)
-            case .breakTime: 1 - Double(count) / Double(timerInformation.breakTime)
+            case .focus: Double(count) / (60 * 60)
+//                Double(timerInformation.timeSeconds)
+            case .breakTime: Double(count) / (60 * 60)
+//                Double(timerInformation.breakTime)
             default: 0.0
             }
         }

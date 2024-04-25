@@ -38,7 +38,7 @@ struct DoroWidgetExtensionLiveActivity: Widget {
                 Image(.cat).resizable().scaledToFit()
                     .frame(width: 38)
             } compactTrailing: {
-                Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count / 60),
+                Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),
                                                     since: .now),showsHours: false)
                 .monospacedDigit()
                 .frame(width:48)
@@ -47,7 +47,6 @@ struct DoroWidgetExtensionLiveActivity: Widget {
                 let end = Date.now.addingTimeInterval(TimeInterval(context.state.endTime))
                 ProgressView(timerInterval: start...end,countsDown: false
                 ) {
-//                    Label("s", systemImage: "plus")
                     EmptyView()
                 }currentValueLabel: {
                     
@@ -59,26 +58,3 @@ struct DoroWidgetExtensionLiveActivity: Widget {
         }
     }
 }
-//
-//extension DoroWidgetExtensionAttributes {
-//    fileprivate static var preview: DoroWidgetExtensionAttributes {
-//        DoroWidgetExtensionAttributes(name: "World")
-//    }
-//}
-//
-//extension DoroWidgetExtensionAttributes.ContentState {
-//    fileprivate static var smiley: DoroWidgetExtensionAttributes.ContentState {
-//        DoroWidgetExtensionAttributes.ContentState(emoji: "😀")
-//     }
-//     
-//     fileprivate static var starEyes: DoroWidgetExtensionAttributes.ContentState {
-//         DoroWidgetExtensionAttributes.ContentState(emoji: "🤩")
-//     }
-//}
-//
-//#Preview("Notification", as: .content, using: DoroWidgetExtensionAttributes.preview) {
-//   DoroWidgetExtensionLiveActivity()
-//} contentStates: {
-//    DoroWidgetExtensionAttributes.ContentState.smiley
-//    DoroWidgetExtensionAttributes.ContentState.starEyes
-//}
