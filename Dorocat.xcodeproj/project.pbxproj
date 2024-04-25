@@ -19,6 +19,9 @@
 		63088F202BBEC24600BF654D /* TriggerBtnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088F1F2BBEC24600BF654D /* TriggerBtnStyle.swift */; };
 		631058892BC17A5A008611AD /* TimerViewComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631058882BC17A5A008611AD /* TimerViewComponents.swift */; };
 		6310588B2BC17D26008611AD /* TimerViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310588A2BC17D26008611AD /* TimerViewModifiers.swift */; };
+		631E71542BDA377000DDD72B /* AppState>LiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E71532BDA377000DDD72B /* AppState>LiveActivity.swift */; };
+		631E71562BDA380E00DDD72B /* AppState>Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E71552BDA380E00DDD72B /* AppState>Notification.swift */; };
+		631E71582BDA386900DDD72B /* AppState>Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E71572BDA386900DDD72B /* AppState>Timer.swift */; };
 		632721862B9F2E5C007E3206 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 632721852B9F2E5C007E3206 /* .gitignore */; };
 		632F53882BD7490800357C68 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632F53872BD7490800357C68 /* WidgetKit.framework */; };
 		632F538A2BD7490800357C68 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632F53892BD7490800357C68 /* SwiftUI.framework */; };
@@ -157,6 +160,9 @@
 		63088F1F2BBEC24600BF654D /* TriggerBtnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerBtnStyle.swift; sourceTree = "<group>"; };
 		631058882BC17A5A008611AD /* TimerViewComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewComponents.swift; sourceTree = "<group>"; };
 		6310588A2BC17D26008611AD /* TimerViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModifiers.swift; sourceTree = "<group>"; };
+		631E71532BDA377000DDD72B /* AppState>LiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState>LiveActivity.swift"; sourceTree = "<group>"; };
+		631E71552BDA380E00DDD72B /* AppState>Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState>Notification.swift"; sourceTree = "<group>"; };
+		631E71572BDA386900DDD72B /* AppState>Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState>Timer.swift"; sourceTree = "<group>"; };
 		632721852B9F2E5C007E3206 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		632F53852BD7490800357C68 /* DoroWidgetExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DoroWidgetExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		632F53872BD7490800357C68 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -328,6 +334,17 @@
 			path = TimerComponents;
 			sourceTree = "<group>";
 		};
+		631E71522BDA375200DDD72B /* AppStateReducers */ = {
+			isa = PBXGroup;
+			children = (
+				6359D9872BC576C40045DEC7 /* AppStateReducers.swift */,
+				631E71532BDA377000DDD72B /* AppState>LiveActivity.swift */,
+				631E71552BDA380E00DDD72B /* AppState>Notification.swift */,
+				631E71572BDA386900DDD72B /* AppState>Timer.swift */,
+			);
+			path = AppStateReducers;
+			sourceTree = "<group>";
+		};
 		632F53862BD7490800357C68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,10 +391,10 @@
 		632F89422BB5C49600F2DC0B /* Reducers */ = {
 			isa = PBXGroup;
 			children = (
+				631E71522BDA375200DDD72B /* AppStateReducers */,
 				632F89432BB5C49E00F2DC0B /* ViewReducers.swift */,
 				632F89452BB5C52300F2DC0B /* TimerLogicReducers.swift */,
 				637350502BB7EEE300221F20 /* BackgroundTimerLogicReducers.swift */,
-				6359D9872BC576C40045DEC7 /* AppStateReducers.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -944,6 +961,7 @@
 				63A9C4002BA5E2D60076D42C /* AnalyzeView.swift in Sources */,
 				636E9F662BA818000006FE56 /* DBActor.swift in Sources */,
 				637340852BA745CB00B2A10F /* Legacy-ShoppingListItemsScreen.swift in Sources */,
+				631E71562BDA380E00DDD72B /* AppState>Notification.swift in Sources */,
 				637340832BA7449F00B2A10F /* ShoppingItem.swift in Sources */,
 				63AD70562BA42A6E00DBD6B9 /* DoroMainView.swift in Sources */,
 				63A2885B2BD6507100C817E7 /* SettingPurchaseFeature.swift in Sources */,
@@ -961,6 +979,7 @@
 				63A9C3F62BA574830076D42C /* TimerRecordDependency.swift in Sources */,
 				6301F7A02BC3C1E400E04214 /* AnalyzeRepository.swift in Sources */,
 				63B521C42BD3C3B600400ADB /* TimerSettingModifiers.swift in Sources */,
+				631E71542BDA377000DDD72B /* AppState>LiveActivity.swift in Sources */,
 				6301F7A32BC3D09500E04214 /* AsyncMap.swift in Sources */,
 				63AD70642BA43F6D00DBD6B9 /* TimerSettingFeature.swift in Sources */,
 				63C5BF562BCAB8BE00E5A89C /* CircularProgressView.swift in Sources */,
@@ -980,6 +999,7 @@
 				63AD70582BA437EB00DBD6B9 /* TimerFeature.swift in Sources */,
 				633E97F22BD7AE0700215563 /* TimerStatus.swift in Sources */,
 				63088F202BBEC24600BF654D /* TriggerBtnStyle.swift in Sources */,
+				631E71582BDA386900DDD72B /* AppState>Timer.swift in Sources */,
 				638EAB062BBF7FDE007F8CAC /* DragGesture+Swipe.swift in Sources */,
 				6373408D2BA7478A00B2A10F /* Legacy-ShoppingListItemFeature.swift in Sources */,
 				639F8D172BC9954400D66551 /* IntExtensions.swift in Sources */,

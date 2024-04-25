@@ -14,6 +14,7 @@ import ComposableArchitecture
         case viewAction(ViewAction)
         // 내부 로직 Action
         case initAction
+        case diskInfoToMemory
         case setDefaultValues(PomoValues)
         case setTimerRunning(Int)
         case timerTick
@@ -53,9 +54,7 @@ import ComposableArchitecture
             case .setTimerRunning(let count):
                 state.count = count
                 return .run(priority: .high) { send in
-                    for try await _ in Timer.eventAsyncStream(){
-                        await send(.timerTick)
-                    }
+                    for try await _ in Timer.eventAsyncStream(){ await send(.timerTick) }
                 }.cancellable(id: CancelID.timer)
             case .initAction:
                 if !state.isAppLaunched {
@@ -65,8 +64,14 @@ import ComposableArchitecture
                             let savedValues:PomoValues = await pomoDefaults.getAll() // 디스크에 저장된 값
                             await send(.setDefaultValues(savedValues)) // 디스크에 저장된 값을 State에 보냄
                             await notification.requestPermission()
-                        },diskTimerInfoToMemory)
+                            await send(.diskInfoToMemory)
+                        })
                 }else{ return .none }
+            case .diskInfoToMemory:
+                return .run{ send in
+                    try await analyzeAPI.initAction()
+                    await awakeTimer(send)
+                }
             case .setDefaultValues(let value):
                 print("default Values \(value)")
                 guard let info = value.information else {
