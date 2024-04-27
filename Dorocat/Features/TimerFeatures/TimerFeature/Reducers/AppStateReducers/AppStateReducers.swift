@@ -23,7 +23,7 @@ extension TimerFeature{
     enum AppStateReducers:CaseIterable{
         typealias AppState = DorocatFeature.AppStateType
         typealias State = TimerFeature.State
-        case activity,notification,pomoTimer
+        case pomoTimer,activity,notification
         private var myReducer:AppStateReducerProtocol{
             switch self{
             case .activity: LiveActivityReducer()

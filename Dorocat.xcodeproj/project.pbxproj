@@ -39,7 +39,14 @@
 		633E97F02BD7ADE900215563 /* PomoValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633E97EF2BD7ADE900215563 /* PomoValues.swift */; };
 		633E97F22BD7AE0700215563 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633E97F12BD7AE0700215563 /* TimerStatus.swift */; };
 		633E97F42BD7AE3C00215563 /* PomoAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633E97F32BD7AE3C00215563 /* PomoAttributes.swift */; };
+		633FF07D2BDAB14B00D0F85F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633FF07C2BDAB14B00D0F85F /* StoreKit.framework */; };
+		633FF07F2BDAB5A000D0F85F /* DoroTest.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 633FF07E2BDAB5A000D0F85F /* DoroTest.storekit */; };
+		633FF0812BDABAD300D0F85F /* StoreKitExampleCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633FF0802BDABAD300D0F85F /* StoreKitExampleCode.swift */; };
+		6345AB602BDCDCFA00FF5D33 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB5F2BDCDCFA00FF5D33 /* FontManager.swift */; };
+		6345AB622BDCDD0100FF5D33 /* FontSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB612BDCDD0100FF5D33 /* FontSystem.swift */; };
+		6345AB642BDCDD9400FF5D33 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB632BDCDD9400FF5D33 /* UIFontExtension.swift */; };
 		634C17BB2BC9207A007AC15F /* AnalyzeFeature+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C17BA2BC9207A007AC15F /* AnalyzeFeature+State.swift */; };
+		634C48B72BDB8F1D002E35DC /* DarumadropOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 634C48B62BDB8F1D002E35DC /* DarumadropOne-Regular.ttf */; };
 		6359D9882BC576C40045DEC7 /* AppStateReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6359D9872BC576C40045DEC7 /* AppStateReducers.swift */; };
 		635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 635BD5582B9F56CA004480D1 /* Localizable.xcstrings */; };
 		635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 635BD55B2B9F5708004480D1 /* ComposableArchitecture */; };
@@ -116,6 +123,9 @@
 		63CCAFAB2BCD1EC60045B2A0 /* WellDone.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA92BCD1EC60045B2A0 /* WellDone.json */; };
 		63CCAFAC2BCD1EC60045B2A0 /* 04_confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFAA2BCD1EC60045B2A0 /* 04_confetti.json */; };
 		63CCAFAE2BCD1ED70045B2A0 /* Great.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFAD2BCD1ED70045B2A0 /* Great.json */; };
+		63DF61B32BDAACC200D5C458 /* StoreDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF61B22BDAACC200D5C458 /* StoreDependency.swift */; };
+		63DF61B52BDAACF100D5C458 /* Guides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF61B42BDAACF100D5C458 /* Guides.swift */; };
+		63DF61B82BDAB07900D5C458 /* Dorocat.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 63DF61B72BDAB07900D5C458 /* Dorocat.storekit */; };
 		63E2BC612BD7D496006FED92 /* PomoAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633E97F32BD7AE3C00215563 /* PomoAttributes.swift */; };
 		63E2BC622BD7EE47006FED92 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633E97F12BD7AE0700215563 /* TimerStatus.swift */; };
 		63E63AB42BB709EA00A601E3 /* TimeBackgroundDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E63AB32BB709EA00A601E3 /* TimeBackgroundDependency.swift */; };
@@ -181,7 +191,14 @@
 		633E97EF2BD7ADE900215563 /* PomoValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoValues.swift; sourceTree = "<group>"; };
 		633E97F12BD7AE0700215563 /* TimerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStatus.swift; sourceTree = "<group>"; };
 		633E97F32BD7AE3C00215563 /* PomoAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoAttributes.swift; sourceTree = "<group>"; };
+		633FF07C2BDAB14B00D0F85F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		633FF07E2BDAB5A000D0F85F /* DoroTest.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = DoroTest.storekit; sourceTree = "<group>"; };
+		633FF0802BDABAD300D0F85F /* StoreKitExampleCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitExampleCode.swift; sourceTree = "<group>"; };
+		6345AB5F2BDCDCFA00FF5D33 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
+		6345AB612BDCDD0100FF5D33 /* FontSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSystem.swift; sourceTree = "<group>"; };
+		6345AB632BDCDD9400FF5D33 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		634C17BA2BC9207A007AC15F /* AnalyzeFeature+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnalyzeFeature+State.swift"; sourceTree = "<group>"; };
+		634C48B62BDB8F1D002E35DC /* DarumadropOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DarumadropOne-Regular.ttf"; path = "Darumadrop_One/DarumadropOne-Regular.ttf"; sourceTree = SOURCE_ROOT; };
 		6359D9872BC576C40045DEC7 /* AppStateReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateReducers.swift; sourceTree = "<group>"; };
 		635BD5582B9F56CA004480D1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		635C9D3C2BB082E400BFD46D /* PomoDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoDependency.swift; sourceTree = "<group>"; };
@@ -257,10 +274,12 @@
 		63CCAFA92BCD1EC60045B2A0 /* WellDone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = WellDone.json; path = CatIllust/WellDone.json; sourceTree = SOURCE_ROOT; };
 		63CCAFAA2BCD1EC60045B2A0 /* 04_confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 04_confetti.json; path = CatIllust/04_confetti.json; sourceTree = SOURCE_ROOT; };
 		63CCAFAD2BCD1ED70045B2A0 /* Great.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Great.json; path = CatIllust/Great.json; sourceTree = SOURCE_ROOT; };
+		63DF61B22BDAACC200D5C458 /* StoreDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDependency.swift; sourceTree = "<group>"; };
+		63DF61B42BDAACF100D5C458 /* Guides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guides.swift; sourceTree = "<group>"; };
+		63DF61B72BDAB07900D5C458 /* Dorocat.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Dorocat.storekit; sourceTree = "<group>"; };
 		63E63AB32BB709EA00A601E3 /* TimeBackgroundDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBackgroundDependency.swift; sourceTree = "<group>"; };
 		63F3D6632BD1805B00F1204B /* PomoNotiDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoNotiDependency.swift; sourceTree = "<group>"; };
 		63FD44782BBC48D500FA528F /* GuideDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDependencies.swift; sourceTree = "<group>"; };
-		63FE245E2BD66EE8007B3A5F /* ProProduct.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = ProProduct.storekit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +298,7 @@
 			files = (
 				63C969F02B9FD509004E79C6 /* RealmSwift in Frameworks */,
 				63C969EE2B9FD509004E79C6 /* Realm in Frameworks */,
+				633FF07D2BDAB14B00D0F85F /* StoreKit.framework in Frameworks */,
 				635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */,
 				63CCAFA32BCD1E280045B2A0 /* Lottie in Frameworks */,
 			);
@@ -348,6 +368,7 @@
 		632F53862BD7490800357C68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				633FF07C2BDAB14B00D0F85F /* StoreKit.framework */,
 				632F53872BD7490800357C68 /* WidgetKit.framework */,
 				632F53892BD7490800357C68 /* SwiftUI.framework */,
 			);
@@ -405,6 +426,7 @@
 				633E97EF2BD7ADE900215563 /* PomoValues.swift */,
 				633E97F12BD7AE0700215563 /* TimerStatus.swift */,
 				633E97F32BD7AE3C00215563 /* PomoAttributes.swift */,
+				63DF61B42BDAACF100D5C458 /* Guides.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -630,6 +652,7 @@
 		63B3FC232BB04A4B00277576 /* FontAssets */ = {
 			isa = PBXGroup;
 			children = (
+				634C48B62BDB8F1D002E35DC /* DarumadropOne-Regular.ttf */,
 				63B3FC2D2BB04A6600277576 /* Rubik-Black.ttf */,
 				63B3FC252BB04A6600277576 /* Rubik-BlackItalic.ttf */,
 				63B3FC2B2BB04A6600277576 /* Rubik-Bold.ttf */,
@@ -651,7 +674,10 @@
 		63B3FC402BB04B1700277576 /* Font+ */ = {
 			isa = PBXGroup;
 			children = (
+				6345AB632BDCDD9400FF5D33 /* UIFontExtension.swift */,
 				63B3FC412BB04B2500277576 /* FontExtension.swift */,
+				6345AB5F2BDCDCFA00FF5D33 /* FontManager.swift */,
+				6345AB612BDCDD0100FF5D33 /* FontSystem.swift */,
 			);
 			path = "Font+";
 			sourceTree = "<group>";
@@ -687,6 +713,7 @@
 		63C124C72B9EF93D000A6D35 = {
 			isa = PBXGroup;
 			children = (
+				63DF61B72BDAB07900D5C458 /* Dorocat.storekit */,
 				63C124D22B9EF93D000A6D35 /* Dorocat */,
 				632F538B2BD7490800357C68 /* DoroWidgetExtension */,
 				632F53862BD7490800357C68 /* Frameworks */,
@@ -733,6 +760,7 @@
 		63C124E12B9EFAD5000A6D35 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				63DF61B12BDAACB500D5C458 /* StoreDependencies */,
 				63A5175D2BD2D52D00FEAEF6 /* HapticDependencies */,
 				63CCAFAF2BCD20580045B2A0 /* AnimDependencies */,
 				63FD44772BBC48CA00FA528F /* GuideDependencies */,
@@ -746,10 +774,10 @@
 		63C124E22B9EFAE6000A6D35 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				633FF07E2BDAB5A000D0F85F /* DoroTest.storekit */,
 				63CCAFA42BCD1E520045B2A0 /* Lotties */,
 				639F8D182BCA1BB200D66551 /* Legacies */,
 				63B3FC232BB04A4B00277576 /* FontAssets */,
-				63FE245E2BD66EE8007B3A5F /* ProProduct.storekit */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -779,6 +807,15 @@
 			children = (
 			);
 			path = AnimDependencies;
+			sourceTree = "<group>";
+		};
+		63DF61B12BDAACB500D5C458 /* StoreDependencies */ = {
+			isa = PBXGroup;
+			children = (
+				63DF61B22BDAACC200D5C458 /* StoreDependency.swift */,
+				633FF0802BDABAD300D0F85F /* StoreKitExampleCode.swift */,
+			);
+			path = StoreDependencies;
 			sourceTree = "<group>";
 		};
 		63E63AB22BB709C100A601E3 /* TimerDependencies */ = {
@@ -905,6 +942,8 @@
 				63CCAFAB2BCD1EC60045B2A0 /* WellDone.json in Resources */,
 				63CCAFAC2BCD1EC60045B2A0 /* 04_confetti.json in Resources */,
 				632721862B9F2E5C007E3206 /* .gitignore in Resources */,
+				633FF07F2BDAB5A000D0F85F /* DoroTest.storekit in Resources */,
+				63DF61B82BDAB07900D5C458 /* Dorocat.storekit in Resources */,
 				63B3FC332BB04A6600277576 /* Rubik-BlackItalic.ttf in Resources */,
 				63B3FC382BB04A6600277576 /* Rubik-LightItalic.ttf in Resources */,
 				635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */,
@@ -919,6 +958,7 @@
 				63B3FC3E2BB04A6600277576 /* Rubik-Regular.ttf in Resources */,
 				63B3FC322BB04A6600277576 /* Rubik-Medium.ttf in Resources */,
 				63B3FC372BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf in Resources */,
+				634C48B72BDB8F1D002E35DC /* DarumadropOne-Regular.ttf in Resources */,
 				63CCAFA82BCD1EBB0045B2A0 /* Default.json in Resources */,
 				63B3FC352BB04A6600277576 /* Rubik-SemiBold.ttf in Resources */,
 			);
@@ -951,7 +991,9 @@
 				63BD3C882BD2519900C80542 /* PomoNotiType.swift in Sources */,
 				63F3D6642BD1805B00F1204B /* PomoNotiDependency.swift in Sources */,
 				633E97F02BD7ADE900215563 /* PomoValues.swift in Sources */,
+				63DF61B52BDAACF100D5C458 /* Guides.swift in Sources */,
 				63AD70622BA43EB800DBD6B9 /* SettingFeature.swift in Sources */,
+				6345AB642BDCDD9400FF5D33 /* UIFontExtension.swift in Sources */,
 				630285472BBD1E1D009C32AE /* SettingListItem.swift in Sources */,
 				63BBF51E2BBD47F20094872B /* AnalyzeListItemView.swift in Sources */,
 				6373504E2BB7E3E500221F20 /* TimerFeature+TimerInformation.swift in Sources */,
@@ -960,11 +1002,14 @@
 				6373504C2BB7E3AE00221F20 /* TimeFeature+TimerStatus.swift in Sources */,
 				63A9C4002BA5E2D60076D42C /* AnalyzeView.swift in Sources */,
 				636E9F662BA818000006FE56 /* DBActor.swift in Sources */,
+				63DF61B32BDAACC200D5C458 /* StoreDependency.swift in Sources */,
 				637340852BA745CB00B2A10F /* Legacy-ShoppingListItemsScreen.swift in Sources */,
 				631E71562BDA380E00DDD72B /* AppState>Notification.swift in Sources */,
+				6345AB622BDCDD0100FF5D33 /* FontSystem.swift in Sources */,
 				637340832BA7449F00B2A10F /* ShoppingItem.swift in Sources */,
 				63AD70562BA42A6E00DBD6B9 /* DoroMainView.swift in Sources */,
 				63A2885B2BD6507100C817E7 /* SettingPurchaseFeature.swift in Sources */,
+				633FF0812BDABAD300D0F85F /* StoreKitExampleCode.swift in Sources */,
 				632F89392BB5716400F2DC0B /* TimerFeature+State.swift in Sources */,
 				632F539F2BD749FF00357C68 /* PomoLiveDependency.swift in Sources */,
 				63CBAD8C2BCD2247004EE320 /* LottieView.swift in Sources */,
@@ -1010,6 +1055,7 @@
 				63B3FC422BB04B2500277576 /* FontExtension.swift in Sources */,
 				630285402BBD1360009C32AE /* PageIndicatorView.swift in Sources */,
 				639F8D132BC97BF300D66551 /* Anaylze+ViewReducers.swift in Sources */,
+				6345AB602BDCDCFA00FF5D33 /* FontManager.swift in Sources */,
 				630285432BBD1A2C009C32AE /* ProListItemView.swift in Sources */,
 				636E9F6A2BAD0A880006FE56 /* Legacy-AddShoppingListFeature.swift in Sources */,
 				63BBF51A2BBD3F160094872B /* DurationPickerView.swift in Sources */,
@@ -1233,7 +1279,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.8;
+				MARKETING_VERSION = 0.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1270,7 +1316,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.8;
+				MARKETING_VERSION = 0.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

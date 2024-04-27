@@ -46,7 +46,15 @@ extension TimerFeature{
                 await self.pomoTimerBreak(send, value: savedValues, diff: difference)
             default: break
             }
-        case .sleep: fatalError("여긴 절대 발생하면 안됨")
+        case .sleep(.focusSleep):
+            guard let info = savedValues.information else { fatalError("여기에는 정보가 있어야한다.") }
+            if info.isPomoMode{
+                await pomoTimerFocus(send, value: savedValues, diff: difference)
+            }else{
+                await defaultTimerFocus(send, value: savedValues, diff: difference)
+            }
+        case .sleep(.breakSleep):
+            await self.pomoTimerBreak(send, value: savedValues, diff: difference)
         }
 //        switch (prevStatus,pauseStatus){
 //        case (_,.focus),(_,.breakTime): // 이전 상태가 타이머를 사용하는 상태

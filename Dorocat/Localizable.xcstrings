@@ -7,9 +7,6 @@
     ":" : {
 
     },
-    "%lld" : {
-
-    },
     "%lldm" : {
 
     },
@@ -35,7 +32,7 @@
         }
       }
     },
-    "Cycle nums" : {
+    "Continue" : {
 
     },
     "Done" : {
@@ -55,9 +52,6 @@
       }
     },
     "Great!" : {
-
-    },
-    "Hello, World!" : {
 
     },
     "I'll help you focus and stay on track" : {

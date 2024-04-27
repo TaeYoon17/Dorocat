@@ -24,19 +24,34 @@ extension TimerFeature.AppStateReducers{
                 case .background: return .run { send in
                     await send(.diskInfoToMemory)
                 }
-                default: return .none
+                case .active:
+                    let prevStatus = state.timerStatus
+                    let timerStatus = TimerFeatureStatus.getSleep(prevStatus) ?? prevStatus
+                    let values = PomoValues(status: prevStatus, information: state.timerInformation, cycle: state.cycle, count: state.count,startDate: state.startDate)
+                    return .run { send in
+                        await timerBackground.set(date: Date())
+                        await timerBackground.set(timerStatus: timerStatus)
+                        await send(.setStatus(timerStatus))
+                        await pomoDefaults.setAll(values)
+                    }
+                case .inActive: return .none
                 }
             case .background:
-                // 이전에 갖고 있던 상태에서 Pause로 이동한 상태를 저장
-                let prevStatus = state.timerStatus
-                let timerStatus = TimerFeatureStatus.getSleep(prevStatus) ?? prevStatus
-                let values = PomoValues(status: prevStatus, information: state.timerInformation, cycle: state.cycle, count: state.count,startDate: state.startDate)
-                return .run { send in
-                    await timerBackground.set(date: Date())
-                    await timerBackground.set(timerStatus: timerStatus)
-                    await send(.setStatus(timerStatus))
-                    await pomoDefaults.setAll(values)
+                switch prevAppState {
+                case .inActive:return .none
+                case .active,.background:
+                    // 이전에 갖고 있던 상태에서 Pause로 이동한 상태를 저장
+                    let prevStatus = state.timerStatus
+                    let timerStatus = TimerFeatureStatus.getSleep(prevStatus) ?? prevStatus
+                    let values = PomoValues(status: prevStatus, information: state.timerInformation, cycle: state.cycle, count: state.count,startDate: state.startDate)
+                    return .run { send in
+                        await timerBackground.set(date: Date())
+                        await timerBackground.set(timerStatus: timerStatus)
+                        await send(.setStatus(timerStatus))
+                        await pomoDefaults.setAll(values)
+                    }
                 }
+               
             }
         }
     }

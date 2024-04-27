@@ -49,16 +49,16 @@ extension TimerSettingView{
             Text(type.title)
             Spacer()
             HStack {
-                Picker("Cycle nums",selection: wow ){
-                    ForEach(type.range,id:\.self){
-                        Text("\($0)").tag($0)
-                    }
-                }.pickerStyle(.wheel).frame(width: 44)
+                NumberPickerView(number: wow, range: type.range)
+                    .frame(width: 44,height:80)
+                    .clipped()
+                    
                 if type != .cycle{
                     Text("min")
                 }
             }.font(.paragraph02(.bold))
-        }).frame(height:66).background(.yellow)
+        }).frame(height:66)
+//            .background(.yellow)
     }
 }
 

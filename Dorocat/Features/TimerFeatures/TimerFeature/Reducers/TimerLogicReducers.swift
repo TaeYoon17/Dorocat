@@ -40,7 +40,8 @@ extension TimerFeature{
                 await liveActivity.removeActivity()
             }.merge(with: .cancel(id: CancelID.timer))
         case .sleep:
-            if let count{ fatalError("여기에 존재하면 안된다!!")}
+            if let count { fatalError("여기에 존재하면 안된다!!")}
+            print("Sleep 모드로 타이머 전환")
             return .cancel(id: CancelID.timer)
         case .completed,.breakStandBy:
             if count != nil{ fatalError("여기에 존재하면 안된다!!")}

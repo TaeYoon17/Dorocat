@@ -121,7 +121,7 @@ fileprivate extension TimerFeature{
         case .pause:
             return .run {[count = state.count] send in
                 await send(.setStatus(.focus,count: count))
-            }
+            }.merge(with: hapticEffect)
         case .completed: return .run{ send in
             await send(.setStatus(.standBy))
         }.merge(with: hapticEffect)
