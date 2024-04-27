@@ -19,15 +19,10 @@ struct PurchaseSheet: View {
                 }).padding()
                     .background(.doroWhite)
             }
-            Button {
+            Button("Continue") {
                 store.send(.doneTapped)
-            } label: {
-                Text("Continue")
-                    .font(.button)
-                    .padding(.horizontal,28)
-                    .padding(.vertical,19.5)
-                    .background(.doroPink)
-                    .clipShape(Capsule())
+            }.continueBtnStyle {
+                store.send(.doneWillTapped)
             }
         }
     }

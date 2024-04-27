@@ -70,7 +70,6 @@ struct DorocatFeature{
                 }
             case .setAppState(let appState):
                 state.appState = appState
-                print(appState)
                 return .run{ send in
                     await send(.timer(.setAppState(appState)))
                 }

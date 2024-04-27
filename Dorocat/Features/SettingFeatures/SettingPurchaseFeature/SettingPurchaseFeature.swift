@@ -16,6 +16,7 @@ struct SettingPurchaseFeature{
         var isInit = false
     }
     enum Action:Equatable{
+        case doneWillTapped
         case doneTapped
         case initAction
         case setProducts([Product])
@@ -25,6 +26,7 @@ struct SettingPurchaseFeature{
     }
     @Dependency(\.dismiss) var dismiss
     @Dependency(\.store) var store
+    @Dependency(\.haptic) var haptic
     enum CancelID{
         case purchase
     }
@@ -43,11 +45,16 @@ struct SettingPurchaseFeature{
             case .doneTapped:
                 return .run{ send in
                     try await store.purchase()
-                }.cancellable(id: CancelID.purchase)
+                }
+                .cancellable(id: CancelID.purchase)
             case .setProducts(let products):
                 print(products)
                 state.products = products
                 return .none
+            case .doneWillTapped:
+                return .run { send in
+                    await haptic.impact(style: .soft)
+                }
             }
         }
     }

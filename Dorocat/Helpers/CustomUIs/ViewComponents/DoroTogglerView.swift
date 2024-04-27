@@ -20,47 +20,49 @@ struct DoroTogglerView: View {
    }
    var body: some View {
        GeometryReader { reader in
-           HStack(spacing:0) {
-               switch toggleSize {
-               case .medium:
-                   Rectangle().fill(.clear).frame(width: 2)
-               case .small:
-                   Rectangle().fill(.clear).frame(width: 5)
-               }
-               if isOn { Spacer() }
-               Group{
+           ZStack(alignment: .center){
+               HStack(spacing:0) {
                    switch toggleSize {
-                   case .small:
-                       toggleButton.clipShape(Circle()).padding(.vertical,3).padding(.horizontal,2)
                    case .medium:
-                       toggleButton.clipShape(Circle()).padding(.vertical,4).padding(.horizontal,4.5)
+                       Rectangle().fill(.clear).frame(width: 2)
+                   case .small:
+                       Rectangle().fill(.clear).frame(width: 5)
+                   }
+                   if isOn { Spacer() }
+                   Group{
+                       switch toggleSize {
+                       case .small:
+                           toggleButton.clipShape(Circle()).padding(.vertical,3).padding(.horizontal,2)
+                       case .medium:
+                           toggleButton.clipShape(Circle()).padding(.vertical,4).padding(.horizontal,4.5)
+                       }
+                   }
+                   //MARK: -- 설정에서 사용한 패딩 값들
+                   .frame(width: reader.frame(in: .global).height)
+                   .onTapGesture {
+                       withAnimation { isOn.toggle() }
+                   }.modifier(Swipe { direction in
+                       if direction == .swipeLeft {
+                           withAnimation() { isOn = true }
+                       }else if direction == .swipeRight {
+                           withAnimation() { isOn = false }
+                       }
+                   })
+                   if !isOn {
+                       Spacer()
+                   }
+                   switch toggleSize {
+                   case .medium:
+                       Rectangle().fill(.clear).frame(width: 2)
+                   case .small:
+                       Rectangle().fill(.clear).frame(width: 5)
                    }
                }
-               //MARK: -- 설정에서 사용한 패딩 값들
-               .frame(width: reader.frame(in: .global).height)
-               .onTapGesture {
-                   withAnimation { isOn.toggle() }
-               }.modifier(Swipe { direction in
-                   if direction == .swipeLeft {
-                       withAnimation() { isOn = true }
-                   }else if direction == .swipeRight {
-                       withAnimation() { isOn = false }
-                   }
-               })
-               if !isOn {
-                   Spacer()
-               }
-               switch toggleSize {
-               case .medium:
-                   Rectangle().fill(.clear).frame(width: 2)
-               case .small:
-                   Rectangle().fill(.clear).frame(width: 5)
-               }
+               .background{bgImage}
+               .clipShape(Capsule())
+               .frame(width: 50, height: 26)
            }
-           .background{bgImage}
-           .clipShape(Capsule())
-           .frame(width: 50, height: 26)
-//           .frame(width: 60, height: 30)//control the frame or remove it and add it to ToggleView
+           .frame(width: 60, height: 30)//control the frame or remove it and add it to ToggleView
        }
    }
     var bgImage: some View{

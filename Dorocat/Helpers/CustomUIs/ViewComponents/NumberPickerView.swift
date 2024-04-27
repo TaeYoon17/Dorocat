@@ -35,12 +35,24 @@ struct NumberPickerView:UIViewRepresentable{
     }
     func updateUIView(_ uiView: UIViewType, context: Context) { }
     final class PickerCoordinator:NSObject,UIPickerViewDelegate,UIPickerViewDataSource{
-        weak var pickerView: UIPickerView!
+        weak var pickerView: UIPickerView!{
+            didSet{
+                guard let pickerView,let idx = numberIndexes[number] else {return}
+                DispatchQueue.main.async{
+                    print("가져오기... \(idx)")
+                    pickerView.selectRow(idx, inComponent: 0, animated: false)
+                }
+            }
+        }
+        private var numberIndexes:[Int:Int] = [:]
         private var numbers:[Int] = []
         @Binding var number:Int
         init(number:Binding<Int>,range:Range<Int>) {
             self._number = number
-            for i in range{ numbers.append(i) }
+            for (idx,num) in range.enumerated(){
+                numberIndexes[num] = idx
+                numbers.append(num)
+            }
         }
         func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
 

@@ -138,7 +138,11 @@ fileprivate extension TimerFeature{
     
     func triggerWillTap(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         switch state.timerStatus{
-        case .completed,.breakStandBy,.breakTime,.standBy,.focus:
+        case .completed,
+                .breakStandBy,
+                .breakTime,
+                .standBy,
+                .focus,.pause:
             return .run { send in
                 await haptic.impact(style: .heavy)
             }

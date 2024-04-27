@@ -20,6 +20,7 @@ extension AnalyzeFeature{
         }
         return .run { send in
             await send(.getAllRecordsThenUpdate())
+            await haptic.impact(style: .light)
         }
     }
 }

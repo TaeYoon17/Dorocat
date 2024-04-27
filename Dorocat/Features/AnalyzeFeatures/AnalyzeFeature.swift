@@ -31,6 +31,7 @@ import ComposableArchitecture
         case updateRecords([TimerRecordItem],type:DurationType? = nil)
     }
     @DBActor @Dependency(\.analyzeAPIClients) var apiClient
+    @Dependency(\.haptic) var haptic
     enum CancelID{ case dbCancel }
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
@@ -39,7 +40,9 @@ import ComposableArchitecture
             case .selectDuration(let duartionType): return selectDuration(&state,duartionType)
             case .setDurationType(let durationType):
                 state.durationType = durationType
-                return .none
+                return .run { send in
+                    await haptic.impact(style: .light)
+                }
             case .initAnalyzeFeature:
                 if !state.isLaunched{
                     state.isLaunched = true

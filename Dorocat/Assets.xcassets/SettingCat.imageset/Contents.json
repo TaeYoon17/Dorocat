@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Untitled_Artwork.png",
+      "filename" : "SettingCat.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Untitled_Artwork@2x.png",
+      "filename" : "SettingCat@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Untitled_Artwork@3x.png",
+      "filename" : "SettingCat@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
