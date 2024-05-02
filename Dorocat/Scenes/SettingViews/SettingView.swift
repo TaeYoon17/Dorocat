@@ -75,7 +75,7 @@ struct SettingView: View {
                 }
             }
             .onAppear(){
-                store.send(.initAction)
+                store.send(.launchAction)
             }
 //        }
         .tint(.black)

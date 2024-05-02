@@ -20,7 +20,7 @@ struct DorocatApp: App {
                 DoroMainView(store: store)
             }.preferredColorScheme(.dark)
                 .onAppear(){
-                    store.send(.initAction)
+                    store.send(.launchAction)
 //                    NotificationCenter.default.addObserver(forName: UIApplication.willTerminateNotification, object:nil, queue: .main) { _ in
 //                        print("이거 시작!")
 //                        let semaphore = DispatchSemaphore(value: 0)

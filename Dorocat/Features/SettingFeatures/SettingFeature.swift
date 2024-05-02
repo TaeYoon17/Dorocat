@@ -15,7 +15,7 @@ import UIKit
         case disabled
     }
     @ObservableState struct State: Equatable{
-        var isInit = false
+        var isLaunch = false
         var isNotiAuthorized = false
         var isNotiEnabled = false
         var isSoundEnabled = false
@@ -32,18 +32,21 @@ import UIKit
         case feedbackItemTapped
         case setNotiType(NotificationStateType)
         case purchaseSheet(PresentationAction<SettingPurchaseFeature.Action>)
-    case initAction
+        case launchAction
+        case initAction
         case openPurchase
     }
     @Dependency(\.pomoNotification) var notification
     @Dependency(\.haptic) var haptic
+    @Dependency(\.initial) var initial
+    enum CancelID{case initial}
     var body: some ReducerOf<Self>{
         Reduce{ state,action in
             switch action{
-            case .initAction:
-                if !state.isInit{
-                    state.isInit = true
-                    return .run { send in
+            case .launchAction:
+                if !state.isLaunch{
+                    state.isLaunch = true
+                    let notificationEffect:Effect<Action> = .run { send in
                         let authStatusAuthorized = await notification.getUserNotiAuthroizationStatus()
                         if authStatusAuthorized{
                             let enable = await notification.enable
@@ -53,6 +56,19 @@ import UIKit
                             await send(.setNotiType(.unAuthorized))
                         }
                     }
+                    let initialEffect:Effect<Action> = .run { send in
+                        let isAvailable = await initial.isUsed // 이미 초기 설정이 끝났다... 기존에 있는 값을 가져오면 됨
+                        if isAvailable{
+                            await send(.setHapticEnabled(await haptic.enable))
+                            await send(.initAction)
+                        }else{
+                            for await _ in await initial.eventStream(){
+                                await send(.setHapticEnabled(true))
+                                await send(.initAction)
+                            }
+                        }
+                    }.cancellable(id: CancelID.initial)
+                    return Effect.merge(notificationEffect,initialEffect)
                 }
                 return .none
             case .purchaseSheet: return .none
@@ -105,6 +121,8 @@ import UIKit
                 return .run { send in
                     await haptic.impact(style: .soft)
                 }
+            case .initAction:
+                return .cancel(id: CancelID.initial)
             }
         }
         .ifLet(\.$purchaseSheet, action: \.purchaseSheet){

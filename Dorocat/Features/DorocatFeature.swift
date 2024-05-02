@@ -32,15 +32,18 @@ struct DorocatFeature{
     enum Action:Equatable{
         case pageMove(PageType)
         case setAppState(AppStateType)
-        case initAction
+        case launchAction
         case onBoardingTapped
         case timer(TimerFeature.Action)
         case analyze(AnalyzeFeature.Action)
         case setting(SettingFeature.Action)
         case setGuideStates(Guides)
+        case initialAction
     }
     @Dependency(\.guideDefaults) var guideDefaults
     @Dependency(\.haptic) var haptic
+    @Dependency(\.initial) var initial
+    @Dependency(\.pomoNotification) var notification
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
@@ -73,15 +76,20 @@ struct DorocatFeature{
                 return .run{ send in
                     await send(.timer(.setAppState(appState)))
                 }
-            case .initAction:
+            case .launchAction:
                 if !state.isAppLaunched{
                     state.isAppLaunched = true
                     state.guideState.onBoarding = true
-                    return .run{ send in
+                    return Effect.merge(.run{ send in
                         let guides = await self.guideDefaults.get()
                         await send(.setGuideStates(guides))
                         await send(.timer(.setGuideState(guides)))
-                    }
+                    },.run(operation: { send in
+                        if await !initial.isUsed{
+                            await initial.offInitial()
+                            await send(.initialAction)
+                        }
+                    }))
                 }else{
                     return .none
                 }
@@ -111,6 +119,10 @@ struct DorocatFeature{
             case .timer: return .none
             case .analyze:return .none
             case .setting: return .none
+            case .initialAction:
+                return .run{ send in
+                    await haptic.setEnable(true)
+                }
             }
         }
         Scope(state: \.anylzeState,action: /DorocatFeature.Action.analyze){
