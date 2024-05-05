@@ -39,8 +39,7 @@ struct DoroWidgetExtensionLiveActivity: Widget {
                     .frame(width: 38)
             } compactTrailing: {
                 Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),
-                                                    since: .now),showsHours: false)
-                .monospacedDigit()
+                                                    since: .now),showsHours: false).monospacedDigit()
                 .frame(width:48)
             } minimal: {
                 let start = Date.now.addingTimeInterval(TimeInterval(-context.state.endTime+context.state.count))
