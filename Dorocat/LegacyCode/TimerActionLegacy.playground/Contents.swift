@@ -7,23 +7,8 @@
 
 import Foundation
 import ComposableArchitecture
-extension TimerFeature{
-    func viewAction(_ state:inout State,_ act: ViewAction) -> Effect<Action>{
-        switch act {
-        case .timerFieldTapped:
-            return self.timerFieldTapped(state: &state)
-        case .circleTimerTapped:
-            return self.circleTimerTapped(state: &state)
-        case .catTapped:
-            return self.catTapped(state: &state)
-        case .resetTapped:
-            return self.resetTapped(state: &state)
-        case .triggerTapped:
-            return self.triggerTapped(state: &state)
-        case .triggerWillTap: return self.triggerWillTap(state: &state)
-        }
-    }
-}
+
+
 fileprivate extension TimerFeature{
     //MARK: -- TimerFieldTapped Reducer
     func timerFieldTapped(state:inout TimerFeature.State) ->  Effect<TimerFeature.Action>{
@@ -37,17 +22,6 @@ fileprivate extension TimerFeature{
             })))
         }
         switch state.timerStatus{
-        case .focus:
-            effects.append(.run { send in
-                await send(.setStatus(.pause))
-            }.merge(with: .run(operation: { send in
-                await haptic.impact(style: .rigid,intensity: 0.7)
-            })))
-        case .pause:
-            effects.append(.run {[count = state.count] send in
-                await send(.setStatus(.focus,count:count))
-                }
-            )
         case .standBy: // standby일때 탭하면 세팅하는 화면으로 설정한다.
             state.timerSetting = TimerSettingFeature.State()
             effects.append(.run {[info = state.timerInformation] send in
@@ -55,24 +29,24 @@ fileprivate extension TimerFeature{
             }.merge(with: .run(operation: { send in
                 await haptic.impact(style: .soft)
             })))
-        default: break
+        default: effects.append(.run(operation: { send in
+            await haptic.impact(style: .rigid,intensity: 0.7)
+        }))
         }
         return Effect.concatenate(effects)
     }
     //MARK: -- Cat Tapped Reducer
     func catTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
-        state.guideInformation.standByGuide = true
         let hapticEffect:Effect<Action> = .run {[status = state.timerStatus] send in
             switch status{
             case .breakTime,.focus: await haptic.impact(style: .rigid,intensity: 0.7)
             default: break
             }
         }
-        return .run {[guide = state.guideInformation] send in
-            await send(.setGuideState(guide))
-        }.merge(with: hapticEffect)
+        return hapticEffect
     }
     //MARK: -- Circle Timer Tapped Reducer
+    /*
     func circleTimerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         switch state.timerStatus{
         case .focus:
@@ -87,6 +61,7 @@ fileprivate extension TimerFeature{
         default: return .none
         }
     }
+     */
     func resetTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         switch state.timerStatus{
         case .breakTime,.pause: return .run{ send in
@@ -103,8 +78,11 @@ fileprivate extension TimerFeature{
         case .standBy:
             guard state.count != 0 else {return .none}
             state.startDate = Date()
+            state.guideInformation.standByGuide = true
             var effects:[Effect<Action>] = [hapticEffect,.run { send in
                 await send(.setStatus(.focus))
+            },.run {[guide = state.guideInformation] send in
+                await send(.setGuideState(guide))
             }]
             if !state.guideInformation.startGuide{
                 var guide = state.guideInformation

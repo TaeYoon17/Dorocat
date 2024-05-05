@@ -9,7 +9,7 @@ import Foundation
 import ComposableArchitecture
 extension TimerFeature{
     // 앱의 상태가 바뀐 뒤 타이머 구성
-    func setTimerStatus(state:inout TimerFeature.State,status:TimerFeatureStatus,count:Int? = nil) -> Effect<TimerFeature.Action>{
+    func setTimerStatus(state:inout TimerFeature.State,status:TimerFeatureStatus,count:Int? = nil,startDate:Date? = nil) -> Effect<TimerFeature.Action>{
         state.timerStatus = status
         switch status{
         case .standBy:
@@ -18,8 +18,9 @@ extension TimerFeature{
             state.count = state.timerInformation.timeSeconds
             return .run { send in
                 await liveActivity.removeActivity()
-            }
+            }.concatenate(with: .cancel(id: CancelID.timer))
         case .focus:
+            if let startDate{ state.startDate = startDate }
             let count = count ?? state.timerInformation.timeSeconds
             state.count = count
             return .run {[focusTotalTime = state.timerInformation.timeSeconds ] send in
@@ -28,6 +29,7 @@ extension TimerFeature{
                 await send(.setTimerRunning(count))
             }
         case .breakTime:
+            if let startDate{state.startDate = startDate}
             let count = count ?? state.timerInformation.breakTime
             state.count = count
             return .run {[breakTotalTime = state.timerInformation.breakTime] send in
@@ -48,6 +50,7 @@ extension TimerFeature{
             let startDate = state.startDate
             let duration = state.timerInformation.timeSeconds / 60
             if status == .breakStandBy{
+                
                 state.count = state.timerInformation.breakTime
             }
             return Effect.concatenate(.cancel(id: CancelID.timer),

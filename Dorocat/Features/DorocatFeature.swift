@@ -99,7 +99,7 @@ struct DorocatFeature{
                 return .run{[guides = state.guideState] send in
                     await self.guideDefaults.set(guide: guides)
                 }
-            case .timer(.setStatus(let status,_)):
+            case .timer(.setStatus(let status,_,_)):
                 switch status{
                 case .standBy: state.showPageIndicator = true
                 default: state.showPageIndicator = false

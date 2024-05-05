@@ -13,13 +13,13 @@ extension Button{
 }
 extension TriggerBtnStyle{
     enum TriggerType{
-            case start
-            case complete
-            case goBreak
-            case getStarted
-            case stopBreak
-            case pause
-        }
+        case start
+        case complete
+        case goBreak
+        case getStarted
+        case stopBreak
+        case pause
+    }
 }
 struct TriggerBtnStyle:ButtonStyle{
     var status: TriggerType
@@ -34,7 +34,13 @@ struct TriggerBtnStyle:ButtonStyle{
             case .pause: pauseStyle(configuration: configuration)
             case .stopBreak: stopBreakStyle(configuration: configuration)
             }
-        }.onChange(of: configuration.isPressed) { oldValue, newValue in
+        }
+        .overlay(alignment: .center, content: {
+            configuration.label.font(.button)
+                .foregroundStyle(configuration.isPressed ? .grey02 :.doroWhite)
+                .animation(nil, value: configuration.isPressed)
+        })
+        .onChange(of: configuration.isPressed) { oldValue, newValue in
             if oldValue == false && newValue == true{
                 willTap?()
             }
@@ -44,11 +50,7 @@ struct TriggerBtnStyle:ButtonStyle{
 //MARK: -- Start
 fileprivate extension TriggerBtnStyle{
     @ViewBuilder func startStyle(configuration: Configuration)-> some View{
-        if !configuration.isPressed{
-            Image(.start).frame(width: 105,height:64)
-        }else{
-            Image(.startActive).frame(width: 105,height:64)
-        }
+        Image(!configuration.isPressed ? .start : .startActive).background(.red)
     }
 }
 //MARK: -- Complete
@@ -114,24 +116,24 @@ fileprivate extension TriggerBtnStyle{
 //                configuration.label.foregroundStyle(.grey02).font(.button)
 //            }.clipShape(RoundedRectangle(cornerRadius: 30))
 /*
-configuration.label
-    .foregroundStyle(.doroWhite)
-    .font(.button)
-    .padding(.vertical,19.5)
-    .padding(.horizontal,28)
-    .modifier(ScaleModifier(scale: scale))
-    .background(content: {
-        Capsule().stroke(lineWidth: 1).fill(.grey02)
-            .overlay {
-                Capsule().fill(.clear)
-                    .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 6)
-            }
-    })
-    .padding(.bottom,2)
-    .overlay{
-        Capsule().stroke(lineWidth: 2).fill(.black)
-            .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 8)
-            .offset(y:-2)
-    }
-    .modifier(ScaleModifier(scale: scale))
+ configuration.label
+ .foregroundStyle(.doroWhite)
+ .font(.button)
+ .padding(.vertical,19.5)
+ .padding(.horizontal,28)
+ .modifier(ScaleModifier(scale: scale))
+ .background(content: {
+ Capsule().stroke(lineWidth: 1).fill(.grey02)
+ .overlay {
+ Capsule().fill(.clear)
+ .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 6)
+ }
+ })
+ .padding(.bottom,2)
+ .overlay{
+ Capsule().stroke(lineWidth: 2).fill(.black)
+ .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 8)
+ .offset(y:-2)
+ }
+ .modifier(ScaleModifier(scale: scale))
  */

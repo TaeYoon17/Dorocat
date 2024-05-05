@@ -11,14 +11,14 @@ import ComposableArchitecture
 @Reducer struct TimerFeature{
     enum CancelID { case timer }
     enum Action:Equatable{
-        case viewAction(ViewAction)
+        case viewAction(ControllType)
         // 내부 로직 Action
         case initAction
         case diskInfoToMemory
         case setDefaultValues(PomoValues)
         case setTimerRunning(Int)
         case timerTick
-        case setStatus(TimerFeatureStatus,count: Int? = nil)
+        case setStatus(TimerFeatureStatus,count: Int? = nil,startDate:Date? = nil)
         case timerSetting(PresentationAction<TimerSettingFeature.Action>)
         case setAppState(DorocatFeature.AppStateType)
         case setGuideState(Guides)
@@ -49,7 +49,7 @@ import ComposableArchitecture
             case .timerSetting: return .none
             case .timerTick: return self.timerTick(state: &state)
                 // 내부 로직 Action 처리
-            case .setStatus(let status,let count): 
+            case .setStatus(let status,let count,let startDate): 
                 return setTimerStatus(state: &state, status: status,count: count)
             case .setTimerRunning(let count):
                 state.count = count

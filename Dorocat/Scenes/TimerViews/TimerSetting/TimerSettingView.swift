@@ -22,8 +22,12 @@ struct TimerSettingView:View {
                         .padding(.bottom,41)
                     if store.isPomodoroMode{
                         VStack(spacing:8,content: {
-                            TimerSettingViewComponent.ListItem(title: "Cycles Amount", type: .cycle, selectedIdx: $store.cycleTime.sending(\.setCycleTime))
-                            TimerSettingViewComponent.ListItem(title: "Break Duration", type: .breakDuration, selectedIdx: $store.breakTime.sending(\.setBreakTime))
+                            TimerSettingViewComponent.ListItem(title: "Cycles Amount",
+                                                               type: .cycle,
+                                                               selectedIdx: $store.cycleTime.sending(\.setCycleTime))
+                            TimerSettingViewComponent.ListItem(title: "Break Duration",
+                                                               type: .breakDuration,
+                                                               selectedIdx: $store.breakTime.sending(\.setBreakTime))
                         })
                     }
                 })
@@ -58,7 +62,6 @@ extension TimerSettingView{
                 }
             }.font(.paragraph02(.bold))
         }).frame(height:66)
-//            .background(.yellow)
     }
 }
 

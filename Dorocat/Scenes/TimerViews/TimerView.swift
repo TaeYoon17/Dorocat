@@ -66,6 +66,7 @@ struct TimerView: View {
             }
     }
 }
+
 fileprivate extension View{
     func timerViewModifiers(store: StoreOf<TimerFeature>) -> some View{
         self.modifier(TimerViewModifiers.Reset(store: store))
