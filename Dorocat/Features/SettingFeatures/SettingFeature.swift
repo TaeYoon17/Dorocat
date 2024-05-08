@@ -10,7 +10,7 @@ import ComposableArchitecture
 import UIKit
 @Reducer struct SettingFeature{
     enum NotificationStateType{
-        case unAuthorized
+        case denied
         case enabled
         case disabled
     }
@@ -20,8 +20,9 @@ import UIKit
         var isNotiEnabled = false
         var isSoundEnabled = false
         var isHapticEnabled = false
-        var notiAuthType: NotificationStateType = .unAuthorized
+        var notiAuthType: NotificationStateType = .denied
         @Presents var purchaseSheet: SettingPurchaseFeature.State?
+        var appState = DorocatFeature.AppStateType.active
     }
     enum Action:Equatable{
         case setNotiAuthorized(Bool)
@@ -35,6 +36,7 @@ import UIKit
         case launchAction
         case initAction
         case openPurchase
+        case setAppState(DorocatFeature.AppStateType)
     }
     @Dependency(\.pomoNotification) var notification
     @Dependency(\.haptic) var haptic
@@ -47,13 +49,8 @@ import UIKit
                 if !state.isLaunch{
                     state.isLaunch = true
                     let notificationEffect:Effect<Action> = .run { send in
-                        let authStatusAuthorized = await notification.getUserNotiAuthroizationStatus()
-                        if authStatusAuthorized{
-                            let enable = await notification.enable
-                            await send(.setNotiType(enable ? .enabled : .disabled))
-                            await send(.setNotiEnabled(enable))
-                        }else{
-                            await send(.setNotiType(.unAuthorized))
+                        if await !notification.isDetermined{
+                            _ = try await notification.requestPermission()
                         }
                     }
                     let initialEffect:Effect<Action> = .run { send in
@@ -97,7 +94,7 @@ import UIKit
                     await haptic.impact(style: .light)
                 }
                 switch state.notiAuthType{
-                case .unAuthorized: return hapticEffect
+                case .denied: return hapticEffect
                 case .disabled,.enabled: return .run { send in
                      await notification.setEnable(isEnabled)
                     }.merge(with: hapticEffect)
@@ -123,6 +120,19 @@ import UIKit
                 }
             case .initAction:
                 return .cancel(id: CancelID.initial)
+            case .setAppState(let appState):
+                if appState == .active{
+                    return .run { send in
+                        if await notification.isDenied{
+                            await send(.setNotiType(.denied))
+                        }else{
+                            let enable = await notification.isEnable
+                            await send(.setNotiType(enable ? .enabled : .disabled))
+                            await send(.setNotiEnabled(enable))
+                        }
+                    }
+                }
+                return .none
             }
         }
         .ifLet(\.$purchaseSheet, action: \.purchaseSheet){

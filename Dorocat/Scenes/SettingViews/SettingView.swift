@@ -28,7 +28,7 @@ struct SettingView: View {
                                         SettingListItem.Toggler(title: "Notifications",
                                                                 description: desc,
                                                                 isOn: $store.isNotiEnabled.sending(\.setNotiEnabled))
-                                    case .unAuthorized:
+                                    case .denied:
                                         let desc = "Get notified of focus sessions or breaks.\nMake sure to enable Dorocat notifications\nin iOS Settings."
                                         SettingListItem.Toggler(title: "Notifications",
                                                                 description: desc,

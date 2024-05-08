@@ -23,16 +23,10 @@ import ComposableArchitecture
         case setAppState(DorocatFeature.AppStateType)
         case setGuideState(Guides)
     }
-    @Dependency(\.guideDefaults) var guideDefaults
-    @Dependency(\.haptic) var haptic
-    
     @Dependency(\.pomoDefaults) var pomoDefaults
     @Dependency(\.timeBackground) var timeBackground
     @Dependency(\.analyzeAPIClients) var analyzeAPI
-    @Dependency(\.pomoNotification) var notification
     @Dependency(\.timer) var timer
-    
-    @Dependency(\.pomoLiveActivity) var liveActivity
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
@@ -52,7 +46,7 @@ import ComposableArchitecture
             case .timerTick: return self.timerTick(state: &state)
                 // 내부 로직 Action 처리
             case .setStatus(let status,let count,let startDate):
-                return setTimerStatus(state: &state, status: status,count: count)
+                return setTimerStatus(state: &state, status: status,count: count,startDate: startDate)
             case .setTimerRunning(let count):
                 state.count = count
                 return .run(priority: .high) { send in
@@ -65,7 +59,6 @@ import ComposableArchitecture
                         .run{ send in
                             let savedValues:PomoValues = await pomoDefaults.getAll() // 디스크에 저장된 값
                             await send(.setDefaultValues(savedValues)) // 디스크에 저장된 값을 State에 보냄
-                            await notification.requestPermission()
                             await send(.diskInfoToMemory)
                         })
                 }else{ return .none }

@@ -9,7 +9,7 @@ import Foundation
 import ComposableArchitecture
 extension TimerFeature{
     func viewAction(_ state:inout State,_ act: ControllType) -> Effect<Action>{
-        return Effect.merge(ControllerReducers.makeAllReducers(state: &state, act: act))
+        return ControllerReducers.makeAllReducers(state: &state, act: act)
     }
 }
 
@@ -36,18 +36,22 @@ extension TimerControllerProtocol{
 }
 extension TimerFeature{
     enum ControllerReducers:CaseIterable{
-        case haptic,guide,action
+        case haptic,guide,action, notification
         private var myReducer: TimerControllerProtocol{
             switch self{
             case .haptic: HapticReducer()
             case .guide: GuideReducer()
             case .action: ActionReducer()
+            case .notification: NotificationReducer()
             }
         }
-        static func makeAllReducers(state:inout TimerFeature.State,act:ControllType) -> [Effect<Action>]{
-            Self.allCases.map { reducer in
-                reducer.myReducer.makeReducer(state: &state, act: act)
-            }
+        static func makeAllReducers(state:inout TimerFeature.State,act:ControllType) -> Effect<Action>{
+            return Effect.concatenate(
+                Self.notification.myReducer.makeReducer(state: &state, act: act),
+                Effect.merge([
+                    Self.haptic,.guide,.action
+                ].map{$0.myReducer.makeReducer(state: &state, act: act)})
+            )
         }
     }
 }

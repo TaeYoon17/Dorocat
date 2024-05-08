@@ -33,12 +33,12 @@ struct DorocatFeature{
         case pageMove(PageType)
         case setAppState(AppStateType)
         case launchAction
+        case initialAction
         case onBoardingTapped
         case timer(TimerFeature.Action)
         case analyze(AnalyzeFeature.Action)
         case setting(SettingFeature.Action)
         case setGuideStates(Guides)
-        case initialAction
     }
     @Dependency(\.guideDefaults) var guideDefaults
     @Dependency(\.haptic) var haptic
@@ -75,6 +75,7 @@ struct DorocatFeature{
                 state.appState = appState
                 return .run{ send in
                     await send(.timer(.setAppState(appState)))
+                    await send(.setting(.setAppState(appState)))
                 }
             case .launchAction:
                 if !state.isAppLaunched{
@@ -124,6 +125,7 @@ struct DorocatFeature{
             case .initialAction:
                 return .run{ send in
                     await haptic.setEnable(true)
+                    await notification.setEnable(true)
                 }
             }
         }

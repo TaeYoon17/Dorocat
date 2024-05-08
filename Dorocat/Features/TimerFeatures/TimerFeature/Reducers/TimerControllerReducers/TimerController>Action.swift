@@ -11,6 +11,7 @@ import ComposableArchitecture
 extension TimerFeature.ControllerReducers{
     struct ActionReducer: TimerControllerProtocol{
         typealias Action = TimerFeature.Action
+        @Dependency(\.pomoNotification) var notification
         func timerFieldTapped(state: inout TimerFeature.State) -> ComposableArchitecture.Effect<TimerFeature.Action> {
             switch state.timerStatus{
             case .standBy: // standby일때 탭하면 세팅하는 화면으로 설정한다.
@@ -39,6 +40,7 @@ extension TimerFeature.ControllerReducers{
             case .standBy:
                 guard state.count != 0 else {return .none}
                 return .run { send in
+                    
                     await send(.setStatus(.focus,startDate: Date()))
                 }
             case .focus: return .run { send in
