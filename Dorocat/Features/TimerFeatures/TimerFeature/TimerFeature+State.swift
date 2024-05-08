@@ -31,6 +31,13 @@ extension TimerFeature{
         var cycleNote:String{
             "\(cycle) / \(timerInformation.cycle)"
         }
+        var totalTime: String{
+            let cycle = timerInformation.isPomoMode ? 1 : timerInformation.cycle
+            let rawTimeSeconds = cycle * timerInformation.timeSeconds
+            let hour = rawTimeSeconds / 3600
+            let min = (rawTimeSeconds - hour * 3600) / 60
+            return "\(hour)h \(min)m"
+        }
         var startDate = Date()
         @Presents var timerSetting: TimerSettingFeature.State?
         var appState = DorocatFeature.AppStateType.active

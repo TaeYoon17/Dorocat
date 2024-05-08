@@ -59,7 +59,6 @@ extension TimerFeature.ControllerReducers{
             case .sleep: return .none
             }
         }
-        
         func triggerWillTap(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
             return .none
         }

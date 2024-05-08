@@ -101,8 +101,10 @@ struct DorocatFeature{
                 }
             case .timer(.setStatus(let status,_,_)):
                 switch status{
-                case .standBy: state.showPageIndicator = true
-                default: state.showPageIndicator = false
+                case .focus,.breakTime:
+                    state.showPageIndicator = false
+                default:
+                    state.showPageIndicator = true
                 }
                 return .none
             case .setGuideStates(let guides):

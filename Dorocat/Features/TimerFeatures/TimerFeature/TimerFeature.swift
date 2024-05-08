@@ -23,13 +23,15 @@ import ComposableArchitecture
         case setAppState(DorocatFeature.AppStateType)
         case setGuideState(Guides)
     }
-    @Dependency(\.pomoDefaults) var pomoDefaults
     @Dependency(\.guideDefaults) var guideDefaults
+    @Dependency(\.haptic) var haptic
+    
+    @Dependency(\.pomoDefaults) var pomoDefaults
     @Dependency(\.timeBackground) var timeBackground
     @Dependency(\.analyzeAPIClients) var analyzeAPI
     @Dependency(\.pomoNotification) var notification
     @Dependency(\.timer) var timer
-    @Dependency(\.haptic) var haptic
+    
     @Dependency(\.pomoLiveActivity) var liveActivity
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
@@ -49,7 +51,7 @@ import ComposableArchitecture
             case .timerSetting: return .none
             case .timerTick: return self.timerTick(state: &state)
                 // 내부 로직 Action 처리
-            case .setStatus(let status,let count,let startDate): 
+            case .setStatus(let status,let count,let startDate):
                 return setTimerStatus(state: &state, status: status,count: count)
             case .setTimerRunning(let count):
                 state.count = count

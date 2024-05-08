@@ -29,17 +29,7 @@ struct TimerView: View {
                     }.padding(.bottom,-21)
                     TimerViewComponents.DoroCat(store:store).frame(maxWidth: 375, maxHeight: 375)
                         .padding(.bottom,8)
-                    HStack{
-                        Image(systemName: "circle")
-                        Text("2h 30m")
-                    }.font(.paragraph03())
-                        .foregroundStyle(.grey00)
-                        .padding(.horizontal,20)
-                        .padding(.vertical,10)
-                        .background(.grey03)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .frame(height: 40)
-                        .padding(.bottom,22)
+                    TimerViewComponents.TotalFocusTimeView(store: store)
                 }
             case .breakStandBy:
                 VStack(spacing:0) {

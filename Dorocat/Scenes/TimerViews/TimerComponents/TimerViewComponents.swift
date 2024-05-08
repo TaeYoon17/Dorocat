@@ -102,6 +102,22 @@ enum TimerViewComponents{
             }
         }
     }
+    struct TotalFocusTimeView: View {
+        let store: StoreOf<TimerFeature>
+        var body: some View {
+            HStack{
+                Image(.completeIcon)
+                Text(store.totalTime)
+            }.font(.paragraph03())
+                .foregroundStyle(.grey00)
+                .padding(.horizontal,20)
+                .padding(.vertical,10)
+                .background(.grey03)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .frame(height: 40)
+                .padding(.bottom,22)
+        }
+    }
     struct ResetButton: View{
         let store: StoreOf<TimerFeature>
         var body: some View{

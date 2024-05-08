@@ -33,7 +33,6 @@ extension TimerFeature{
             }
         }
         static func makeAllReducer(capturedState: State,prevAppState:AppState,nowAppState:AppState)->[Effect<Action>]{
-            print("makeAllReducer",capturedState.timerStatus)
             return [Self.notification,.activity,.pomoTimer].map{$0.myReducer.makeReducer(capturedState: capturedState,
                                                        prevAppState: prevAppState,
                                                        nextAppState: nowAppState)

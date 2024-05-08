@@ -50,12 +50,12 @@ struct TriggerBtnStyle:ButtonStyle{
 fileprivate extension View{
     func frame(status:TriggerBtnStyle.TriggerType)-> some View{
         switch status{
-        case .start: self.frame(width: 105,height: 64)
-        case .complete: self.frame(width: 144,height: 64)
-        case .goBreak: self.frame(width: 111,height: 64)
-        case .getStarted: self.frame(width: 161,height: 64)
-        case .pause: self.frame(width: 105,height: 64)
-        case .stopBreak: self.frame(width: 140,height: 64)
+        case .start: frame(width: 105,height: 64)
+        case .complete: frame(width: 144,height: 64)
+        case .goBreak: frame(width: 111,height: 64)
+        case .getStarted: frame(width: 161,height: 64)
+        case .pause: frame(width: 105,height: 64)
+        case .stopBreak: frame(width: 140,height: 64)
         }
     }
 }

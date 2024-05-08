@@ -69,7 +69,7 @@ struct DoroTogglerView: View {
         Image(isOn ? .togglerActive : .toggler).resizable().scaledToFit()
     }
     var toggleButton: some View{
-        Image(isOn ? .knobOn : .knobOn).resizable().scaledToFit()
+        Image(isOn ? .knobOn : .knobOff).resizable().scaledToFit()
     }
 }
 // MARK: -- 기존에 사용하는 커스텀 토글러...
