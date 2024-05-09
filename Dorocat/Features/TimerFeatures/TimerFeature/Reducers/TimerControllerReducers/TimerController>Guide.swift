@@ -28,8 +28,7 @@ extension TimerFeature.ControllerReducers{
         }
         
         func triggerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
-            if !state.guideInformation.onBoarding{
-                state.guideInformation.onBoarding = true
+            if !state.guideInformation.startGuide{
                 var guide = state.guideInformation
                 guide.startGuide = true
                 return .run {[guide] send in

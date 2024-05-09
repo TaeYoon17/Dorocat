@@ -21,9 +21,10 @@ extension TimerFeature.StatusReducers{
             if let startDate{ state.startDate = startDate }
             let count = count ?? state.timerInformation.timeSeconds
             state.count = count
-            return .run(priority: .high)  { send in
-                await send(.setTimerRunning(count))
-            }
+            return .concatenate(.cancel(id: cancelID),
+                                .run(priority: .high)  { send in
+                                    await send(.setTimerRunning(count))
+                                })
         }
         
         func setPause(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> Effect<TimerFeature.Action> {
@@ -39,9 +40,9 @@ extension TimerFeature.StatusReducers{
             if let startDate{state.startDate = startDate}
             let count = count ?? state.timerInformation.breakTime
             state.count = count
-            return .run(priority: .high) { send in
+            return .concatenate(.cancel(id: cancelID),.run(priority: .high) { send in
                 await send(.setTimerRunning(count))
-            }
+            })
         }
         func setBreakStandBy(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<TimerFeature.Action> {
             if count != nil{ fatalError("여기에 존재하면 안된다!!")}

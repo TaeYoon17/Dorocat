@@ -14,6 +14,7 @@ extension TimerFeature.AppStateReducers{
         @Dependency(\.pomoDefaults) var pomoDefaults
         @Dependency(\.analyzeAPIClients) var analyzeAPI
         func makeReducer(capturedState state: TimerFeature.State, prevAppState: DorocatFeature.AppStateType, nextAppState: DorocatFeature.AppStateType) -> ComposableArchitecture.Effect<TimerFeature.Action> {
+            print("-- App State",prevAppState,nextAppState)
             switch nextAppState {
             case .active:
                 return .run { send in
@@ -31,7 +32,7 @@ extension TimerFeature.AppStateReducers{
                     return .run { send in
                         await timerBackground.set(date: Date())
                         await timerBackground.set(timerStatus: timerStatus)
-                        await send(.setStatus(timerStatus))
+//                        await send(.setStatus(timerStatus))
                         await pomoDefaults.setAll(values)
                     }
                 case .inActive: return .none

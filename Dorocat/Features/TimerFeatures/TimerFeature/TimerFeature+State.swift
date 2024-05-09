@@ -32,11 +32,10 @@ extension TimerFeature{
             "\(cycle) / \(timerInformation.cycle)"
         }
         var totalTime: String{
-            let cycle = timerInformation.isPomoMode ? 1 : timerInformation.cycle
+            let cycle = timerInformation.isPomoMode ? timerInformation.cycle : 1
             let rawTimeSeconds = cycle * timerInformation.timeSeconds
-            let hour = rawTimeSeconds / 3600
-            let min = (rawTimeSeconds - hour * 3600) / 60
-            return "\(hour)h \(min)m"
+            let totalMin = rawTimeSeconds / 60
+            return "\(totalMin / 60)h \(totalMin % 60)m"
         }
         var startDate = Date()
         @Presents var timerSetting: TimerSettingFeature.State?
