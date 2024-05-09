@@ -132,6 +132,25 @@
 		63CCAFAB2BCD1EC60045B2A0 /* WellDone.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA92BCD1EC60045B2A0 /* WellDone.json */; };
 		63CCAFAC2BCD1EC60045B2A0 /* 04_confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFAA2BCD1EC60045B2A0 /* 04_confetti.json */; };
 		63CCAFAE2BCD1ED70045B2A0 /* Great.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFAD2BCD1ED70045B2A0 /* Great.json */; };
+		63DE9A922BECDBF900FF6204 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB632BDCDD9400FF5D33 /* UIFontExtension.swift */; };
+		63DE9A932BECDBFC00FF6204 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3FC412BB04B2500277576 /* FontExtension.swift */; };
+		63DE9A942BECDC0400FF6204 /* FontSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB612BDCDD0100FF5D33 /* FontSystem.swift */; };
+		63DE9A952BECDC0B00FF6204 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB5F2BDCDCFA00FF5D33 /* FontManager.swift */; };
+		63DE9A962BECDC2100FF6204 /* DarumadropOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 634C48B62BDB8F1D002E35DC /* DarumadropOne-Regular.ttf */; };
+		63DE9A972BECDC2600FF6204 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC242BB04A6600277576 /* Rubik-Medium.ttf */; };
+		63DE9A982BECDC2600FF6204 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2B2BB04A6600277576 /* Rubik-Bold.ttf */; };
+		63DE9A992BECDC2600FF6204 /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2E2BB04A6600277576 /* Rubik-BoldItalic.ttf */; };
+		63DE9A9A2BECDC2600FF6204 /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2A2BB04A6600277576 /* Rubik-LightItalic.ttf */; };
+		63DE9A9B2BECDC2600FF6204 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2F2BB04A6600277576 /* Rubik-Italic.ttf */; };
+		63DE9A9C2BECDC2600FF6204 /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC272BB04A6600277576 /* Rubik-SemiBold.ttf */; };
+		63DE9A9D2BECDC2600FF6204 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC302BB04A6600277576 /* Rubik-Regular.ttf */; };
+		63DE9A9E2BECDC2600FF6204 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC282BB04A6600277576 /* Rubik-Light.ttf */; };
+		63DE9A9F2BECDC2600FF6204 /* Rubik-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC312BB04A6600277576 /* Rubik-SemiBoldItalic.ttf */; };
+		63DE9AA02BECDC2600FF6204 /* Rubik-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC292BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf */; };
+		63DE9AA12BECDC2600FF6204 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC262BB04A6600277576 /* Rubik-MediumItalic.ttf */; };
+		63DE9AA22BECDC2600FF6204 /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC252BB04A6600277576 /* Rubik-BlackItalic.ttf */; };
+		63DE9AA32BECDC2600FF6204 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2D2BB04A6600277576 /* Rubik-Black.ttf */; };
+		63DE9AA42BECDC2600FF6204 /* Rubik-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2C2BB04A6600277576 /* Rubik-ExtraBold.ttf */; };
 		63DF61B32BDAACC200D5C458 /* StoreDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF61B22BDAACC200D5C458 /* StoreDependency.swift */; };
 		63DF61B52BDAACF100D5C458 /* Guides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF61B42BDAACF100D5C458 /* Guides.swift */; };
 		63DF61B82BDAB07900D5C458 /* Dorocat.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 63DF61B72BDAB07900D5C458 /* Dorocat.storekit */; };
@@ -981,7 +1000,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63DE9A992BECDC2600FF6204 /* Rubik-BoldItalic.ttf in Resources */,
+				63DE9A972BECDC2600FF6204 /* Rubik-Medium.ttf in Resources */,
+				63DE9A9F2BECDC2600FF6204 /* Rubik-SemiBoldItalic.ttf in Resources */,
+				63DE9AA32BECDC2600FF6204 /* Rubik-Black.ttf in Resources */,
+				63DE9A982BECDC2600FF6204 /* Rubik-Bold.ttf in Resources */,
+				63DE9AA22BECDC2600FF6204 /* Rubik-BlackItalic.ttf in Resources */,
+				63DE9A9A2BECDC2600FF6204 /* Rubik-LightItalic.ttf in Resources */,
+				63DE9A9D2BECDC2600FF6204 /* Rubik-Regular.ttf in Resources */,
+				63DE9AA02BECDC2600FF6204 /* Rubik-ExtraBoldItalic.ttf in Resources */,
+				63DE9A9B2BECDC2600FF6204 /* Rubik-Italic.ttf in Resources */,
 				632F53932BD7490900357C68 /* Assets.xcassets in Resources */,
+				63DE9AA12BECDC2600FF6204 /* Rubik-MediumItalic.ttf in Resources */,
+				63DE9A9E2BECDC2600FF6204 /* Rubik-Light.ttf in Resources */,
+				63DE9A962BECDC2100FF6204 /* DarumadropOne-Regular.ttf in Resources */,
+				63DE9AA42BECDC2600FF6204 /* Rubik-ExtraBold.ttf in Resources */,
+				63DE9A9C2BECDC2600FF6204 /* Rubik-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1027,9 +1061,13 @@
 			files = (
 				632F538F2BD7490800357C68 /* DoroWidgetExtensionLiveActivity.swift in Sources */,
 				63E2BC612BD7D496006FED92 /* PomoAttributes.swift in Sources */,
+				63DE9A932BECDBFC00FF6204 /* FontExtension.swift in Sources */,
 				632F538D2BD7490800357C68 /* DoroWidgetExtensionBundle.swift in Sources */,
+				63DE9A952BECDC0B00FF6204 /* FontManager.swift in Sources */,
 				63E2BC622BD7EE47006FED92 /* TimerStatus.swift in Sources */,
+				63DE9A922BECDBF900FF6204 /* UIFontExtension.swift in Sources */,
 				632F53912BD7490800357C68 /* DoroWidgetExtension.swift in Sources */,
+				63DE9A942BECDC0400FF6204 /* FontSystem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

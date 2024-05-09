@@ -11,7 +11,9 @@ import ComposableArchitecture
 extension TimerFeature.AppStateReducers{
     struct LiveActivityReducer:AppStateReducerProtocol{
         @Dependency(\.pomoLiveActivity) var liveActivity
-        func makeReducer(capturedState state: TimerFeature.State, prevAppState: DorocatFeature.AppStateType, nextAppState: DorocatFeature.AppStateType) -> Effect<TimerFeature.Action> {
+        func makeReducer(capturedState state: TimerFeature.State,
+                         prevAppState: DorocatFeature.AppStateType,
+                         nextAppState: DorocatFeature.AppStateType) -> Effect<TimerFeature.Action> {
             switch nextAppState{
             case .active: return .run{ send in
                 switch state.timerStatus{
