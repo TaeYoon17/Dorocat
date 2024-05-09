@@ -10,7 +10,21 @@ import ComposableArchitecture
 struct PurchaseSheet: View {
     @Bindable var store: StoreOf<SettingPurchaseFeature>
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            ScrollView(.horizontal) {
+                HStack(content: {
+                    ForEach(store.products){ product in
+                        Text(product.displayName)
+                    }
+                }).padding()
+                    .background(.doroWhite)
+            }
+            Button("Continue") {
+                store.send(.doneTapped)
+            }.continueBtnStyle {
+                store.send(.doneWillTapped)
+            }
+        }
     }
 }
 

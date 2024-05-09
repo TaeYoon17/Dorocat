@@ -8,56 +8,6 @@
 import Foundation
 import ComposableArchitecture
 extension TimerFeature{
-    // 앱의 상태가 바뀐 뒤 타이머 구성
-    func setTimerStatus(state:inout TimerFeature.State,status:TimerFeatureStatus,count:Int? = nil) -> Effect<TimerFeature.Action>{
-        state.timerStatus = status
-        switch status{
-        case .standBy:
-            if count != nil{ fatalError("여기에 존재하면 안된다!!")}
-            state.cycle = 0
-            state.count = state.timerInformation.timeSeconds
-            return .run { send in
-                await liveActivity.removeActivity()
-            }
-        case .focus:
-            let count = count ?? state.timerInformation.timeSeconds
-            state.count = count
-            return .run {[focusTotalTime = state.timerInformation.timeSeconds ] send in
-                await liveActivity.removeActivity()
-                await liveActivity.addActivity(restCount: count,totalCount: focusTotalTime)
-                await send(.setTimerRunning(count))
-            }
-        case .breakTime:
-            let count = count ?? state.timerInformation.breakTime
-            state.count = count
-            return .run {[breakTotalTime = state.timerInformation.breakTime] send in
-                await liveActivity.removeActivity()
-                await liveActivity.addActivity(restCount: count,totalCount: breakTotalTime)
-                await send(.setTimerRunning(count))
-            }
-        case .pause:
-            return .run { send in
-                await liveActivity.removeActivity()
-            }.merge(with: .cancel(id: CancelID.timer))
-        case .sleep:
-            if let count{ fatalError("여기에 존재하면 안된다!!")}
-            return .cancel(id: CancelID.timer)
-        case .completed,.breakStandBy:
-            if count != nil{ fatalError("여기에 존재하면 안된다!!")}
-            let startDate = state.startDate
-            let duration = state.timerInformation.timeSeconds / 60
-            if status == .breakStandBy{
-                state.count = state.timerInformation.breakTime
-            }
-            return Effect.concatenate(.cancel(id: CancelID.timer),
-                                      .run{send in
-                                          await liveActivity.removeActivity()
-                                          await analyzeAPI.append(.init(createdAt: startDate, duration: duration))
-            })
-        }
-    }
-}
-extension TimerFeature{
     func timerTick(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         return state.timerInformation.isPomoMode ? pomoTick(state: &state) : defaultTick(state: &state)
     }

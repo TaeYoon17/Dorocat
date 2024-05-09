@@ -14,20 +14,22 @@ enum SettingListItem{
         @Binding var isOn: Bool
         var body: some View{
             HStack(content: {
-                VStack(alignment:.leading) {
-                    Text(title)
-                        .font(.paragraph02())
-                        .foregroundStyle(.doroWhite)
+                VStack(alignment:.leading,spacing: 0) {
+                    HStack(alignment:.center) {
+                        Text(title)
+                            .font(.paragraph02())
+                            .foregroundStyle(.doroWhite)
+                        Spacer()
+                        DoroTogglerView(isOn: $isOn,toggleSize: .medium).frame(width: 50, height: 30)
+                    }
                     if let description{
-                        Text(description)
+                        Text(description).lineSpacing(-12)
                             .font(.paragraph04)
                             .foregroundStyle(.grey02)
                     }
                 }
-                Spacer()
-                DoroTogglerView(isOn: $isOn,toggleSize: .medium).frame(width: 50, height: 30)
             })
-            .frame(height: 68)
+            .padding(.vertical,18)
             .padding(.leading,23)
             .padding(.trailing,17)
             .background(.grey03)

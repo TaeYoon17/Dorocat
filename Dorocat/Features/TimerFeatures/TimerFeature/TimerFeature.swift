@@ -11,26 +11,22 @@ import ComposableArchitecture
 @Reducer struct TimerFeature{
     enum CancelID { case timer }
     enum Action:Equatable{
-        case viewAction(ViewAction)
+        case viewAction(ControllType)
         // 내부 로직 Action
         case initAction
         case diskInfoToMemory
         case setDefaultValues(PomoValues)
         case setTimerRunning(Int)
         case timerTick
-        case setStatus(TimerFeatureStatus,count: Int? = nil)
+        case setStatus(TimerFeatureStatus,count: Int? = nil,startDate:Date? = nil)
         case timerSetting(PresentationAction<TimerSettingFeature.Action>)
         case setAppState(DorocatFeature.AppStateType)
         case setGuideState(Guides)
     }
     @Dependency(\.pomoDefaults) var pomoDefaults
-    @Dependency(\.guideDefaults) var guideDefaults
     @Dependency(\.timeBackground) var timeBackground
     @Dependency(\.analyzeAPIClients) var analyzeAPI
-    @Dependency(\.pomoNotification) var notification
     @Dependency(\.timer) var timer
-    @Dependency(\.haptic) var haptic
-    @Dependency(\.pomoLiveActivity) var liveActivity
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
@@ -49,8 +45,8 @@ import ComposableArchitecture
             case .timerSetting: return .none
             case .timerTick: return self.timerTick(state: &state)
                 // 내부 로직 Action 처리
-            case .setStatus(let status,let count): 
-                return setTimerStatus(state: &state, status: status,count: count)
+            case .setStatus(let status,let count,let startDate):
+                return setTimerStatus(state: &state, status: status,count: count,startDate: startDate)
             case .setTimerRunning(let count):
                 state.count = count
                 return .run(priority: .high) { send in
@@ -63,7 +59,6 @@ import ComposableArchitecture
                         .run{ send in
                             let savedValues:PomoValues = await pomoDefaults.getAll() // 디스크에 저장된 값
                             await send(.setDefaultValues(savedValues)) // 디스크에 저장된 값을 State에 보냄
-                            await notification.requestPermission()
                             await send(.diskInfoToMemory)
                         })
                 }else{ return .none }

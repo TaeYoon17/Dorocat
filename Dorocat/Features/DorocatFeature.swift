@@ -32,7 +32,8 @@ struct DorocatFeature{
     enum Action:Equatable{
         case pageMove(PageType)
         case setAppState(AppStateType)
-        case initAction
+        case launchAction
+        case initialAction
         case onBoardingTapped
         case timer(TimerFeature.Action)
         case analyze(AnalyzeFeature.Action)
@@ -41,6 +42,8 @@ struct DorocatFeature{
     }
     @Dependency(\.guideDefaults) var guideDefaults
     @Dependency(\.haptic) var haptic
+    @Dependency(\.initial) var initial
+    @Dependency(\.pomoNotification) var notification
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
@@ -72,16 +75,22 @@ struct DorocatFeature{
                 state.appState = appState
                 return .run{ send in
                     await send(.timer(.setAppState(appState)))
+                    await send(.setting(.setAppState(appState)))
                 }
-            case .initAction:
+            case .launchAction:
                 if !state.isAppLaunched{
                     state.isAppLaunched = true
                     state.guideState.onBoarding = true
-                    return .run{ send in
+                    return Effect.merge(.run{ send in
                         let guides = await self.guideDefaults.get()
                         await send(.setGuideStates(guides))
                         await send(.timer(.setGuideState(guides)))
-                    }
+                    },.run(operation: { send in
+                        if await !initial.isUsed{
+                            await initial.offInitial()
+                            await send(.initialAction)
+                        }
+                    }))
                 }else{
                     return .none
                 }
@@ -91,10 +100,12 @@ struct DorocatFeature{
                 return .run{[guides = state.guideState] send in
                     await self.guideDefaults.set(guide: guides)
                 }
-            case .timer(.setStatus(let status,_)):
+            case .timer(.setStatus(let status,_,_)):
                 switch status{
-                case .standBy: state.showPageIndicator = true
-                default: state.showPageIndicator = false
+                case .focus,.breakTime:
+                    state.showPageIndicator = false
+                default:
+                    state.showPageIndicator = true
                 }
                 return .none
             case .setGuideStates(let guides):
@@ -111,6 +122,11 @@ struct DorocatFeature{
             case .timer: return .none
             case .analyze:return .none
             case .setting: return .none
+            case .initialAction:
+                return .run{ send in
+                    await haptic.setEnable(true)
+                    await notification.setEnable(true)
+                }
             }
         }
         Scope(state: \.anylzeState,action: /DorocatFeature.Action.analyze){

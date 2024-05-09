@@ -12,7 +12,8 @@ extension TimerFeature{
     func appStateRedecuer(_ state: inout TimerFeature.State,appState: DorocatFeature.AppStateType)-> Effect<Action>{
         let prevState = state.appState
         state.appState = appState
-        return Effect.concatenate(AppStateReducers.makeAllReducer(capturedState: state,
+        let state = state
+        return Effect.merge(AppStateReducers.makeAllReducer(capturedState: state,
                                                                   prevAppState: prevState,
                                                                   nowAppState: appState)
         )
@@ -23,7 +24,7 @@ extension TimerFeature{
     enum AppStateReducers:CaseIterable{
         typealias AppState = DorocatFeature.AppStateType
         typealias State = TimerFeature.State
-        case activity,notification,pomoTimer
+        case notification,pomoTimer,activity
         private var myReducer:AppStateReducerProtocol{
             switch self{
             case .activity: LiveActivityReducer()
@@ -32,7 +33,9 @@ extension TimerFeature{
             }
         }
         static func makeAllReducer(capturedState: State,prevAppState:AppState,nowAppState:AppState)->[Effect<Action>]{
-            Self.allCases.map{$0.myReducer.makeReducer(capturedState: capturedState, prevAppState: prevAppState, nextAppState: nowAppState)
+            return [Self.notification,.activity,.pomoTimer].map{$0.myReducer.makeReducer(capturedState: capturedState,
+                                                       prevAppState: prevAppState,
+                                                       nextAppState: nowAppState)
             }
         }
         func makeReducer(capturedState: State,prevAppState:AppState,nowAppState:AppState)->Effect<Action>{

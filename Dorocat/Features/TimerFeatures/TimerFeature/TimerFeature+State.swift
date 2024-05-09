@@ -18,8 +18,10 @@ extension TimerFeature{
         var isAppLaunched = false
         var progress:Double{
             switch timerStatus{
-            case .focus: 1 - Double(count) / Double(timerInformation.timeSeconds)
-            case .breakTime: 1 - Double(count) / Double(timerInformation.breakTime)
+            case .focus: Double(count) / (60 * 60)
+//                Double(timerInformation.timeSeconds)
+            case .breakTime: Double(count) / (60 * 60)
+//                Double(timerInformation.breakTime)
             default: 0.0
             }
         }
@@ -28,6 +30,12 @@ extension TimerFeature{
         }
         var cycleNote:String{
             "\(cycle) / \(timerInformation.cycle)"
+        }
+        var totalTime: String{
+            let cycle = timerInformation.isPomoMode ? timerInformation.cycle : 1
+            let rawTimeSeconds = cycle * timerInformation.timeSeconds
+            let totalMin = rawTimeSeconds / 60
+            return "\(totalMin / 60)h \(totalMin % 60)m"
         }
         var startDate = Date()
         @Presents var timerSetting: TimerSettingFeature.State?

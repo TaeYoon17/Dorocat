@@ -22,7 +22,7 @@ struct ProListItemView: View {
                         .foregroundStyle(.grey03)
                         .padding(.vertical,2)
                         .padding(.horizontal,6)
-                        .background(.plus)
+                        .background(.doroPink)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 })
                 Spacer()

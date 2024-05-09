@@ -21,11 +21,12 @@ extension TimerFeature.AppStateReducers{
             }
             case .inActive: return .none
             case .background:
-                return if .pause == state.timerStatus{
-                .run{[count = state.count] send in
+                switch state.timerStatus{
+                case .sleep: return .run{[count = state.count] send in
                     await liveActivity.updateActivity(restCount: count)
+                    }
+                default: return .none
                 }
-            }else{ .none }
             }
         }
     }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "BreakActive.png",
+      "filename" : "PressedTrigger.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "BreakActive@2x.png",
+      "filename" : "PressedTrigger@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "BreakActive@3x.png",
+      "filename" : "PressedTrigger@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

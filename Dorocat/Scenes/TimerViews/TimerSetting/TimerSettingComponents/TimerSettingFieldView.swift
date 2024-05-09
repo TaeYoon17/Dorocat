@@ -48,13 +48,10 @@ enum TimerSettingViewComponent{
                 Text(title).font(.paragraph02()).foregroundStyle(.doroWhite)
                 Spacer()
                 HStack(spacing:0,content: {
-                    Picker("Cycle nums",selection: $selectedIdx){
-                        ForEach(type.range,id:\.self){
-                            Text("\($0)")
-                                .font(.paragraph02(.bold)).foregroundStyle(.doroWhite)
-                                .tag($0)
-                        }
-                    }.pickerStyle(.wheel).frame(width: 44)
+                    NumberPickerView(number: $selectedIdx, range: type.range)
+                        .frame(width: 44)
+                        .clipped()
+                        .contentShape(Rectangle())
                     switch type{
                     case .breakDuration: Text("min")
                     case .cycle: EmptyView()

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "GetStartedActive.png",
+      "filename" : "GetStarted.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "GetStartedActive@2x.png",
+      "filename" : "GetStarted@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "GetStartedActive@3x.png",
+      "filename" : "GetStarted@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

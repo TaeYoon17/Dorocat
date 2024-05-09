@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "image 4.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "live_activities_thumb01.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

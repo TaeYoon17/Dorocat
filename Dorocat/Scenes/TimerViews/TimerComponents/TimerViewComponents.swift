@@ -21,10 +21,9 @@ enum TimerViewComponents{
                 case .breakStandBy: "Break"
                 default: ""
                 }
-                Button(" "){
+                return Button(text){
                     store.send(.viewAction(.triggerTapped))
-                }
-                .triggerStyle(status: btnType, willTap: {
+                }.triggerStyle(status: btnType, willTap: {
                     store.send(.viewAction(.triggerWillTap))
                 })
                 .animation(nil, value: store.timerStatus)
@@ -67,19 +66,11 @@ enum TimerViewComponents{
                 })
             }
         }
-//        struct CircleField: View{
-//            let store: StoreOf<TimerFeature>
-//            var body: some View{
-//                CircularProgress(progress: CGFloat(store.progress), lineWidth: 40, backShape: Color.black, frontShapes: [Color.doroWhite])
-//            }
-//        }
     }
     struct DoroCat:View{
         let store: StoreOf<TimerFeature>
         var body: some View{
-            Button(action: {
-                store.send(.viewAction(.catTapped))
-            }, label: {
+            Group{
                 switch store.timerStatus{
                 case .completed:
                     LottieView(fileName: "WellDone", loopMode: .autoReverse).frame(width: size,height: size)
@@ -87,7 +78,10 @@ enum TimerViewComponents{
                     LottieView(fileName: "Great", loopMode: .autoReverse)
                         .frame(width: size,height: size)
                 case .focus,.breakTime,.sleep:
-                    CircularProgress(progress: store.progress, lineWidth: 44, backShape: .black, frontShapes: [Color.grey04.shadow(.inner(color: .black.opacity(0.4), radius: 8, x: 0, y: 2))])
+                    CircularProgress(progress: store.progress,
+                                     lineWidth: 44,
+                                     backShape: .black,
+                                     frontShapes: [Color.grey04.shadow(.inner(color: .black.opacity(0.4), radius: 8, x: 0, y: 2))])
                         .overlay(alignment: .bottom) {
                             LottieView(fileName: "Sleeping", loopMode: .autoReverse).offset(y:4)
                                 .frame(width: 190,height:190)
@@ -97,13 +91,31 @@ enum TimerViewComponents{
                     LottieView(fileName: "Default", loopMode: .autoReverse)
                         .frame(width: size,height: size)
                 }
-            })
+            }.onTapGesture {
+                store.send(.viewAction(.catTapped))
+            }
         }
         var size: CGFloat{
             switch store.timerStatus{
             case .focus,.breakTime,.sleep: 240
             default: 375
             }
+        }
+    }
+    struct TotalFocusTimeView: View {
+        let store: StoreOf<TimerFeature>
+        var body: some View {
+            HStack{
+                Image(.completeIcon)
+                Text(store.totalTime)
+            }.font(.paragraph03())
+                .foregroundStyle(.grey00)
+                .padding(.horizontal,20)
+                .padding(.vertical,10)
+                .background(.grey03)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .frame(height: 40)
+                .padding(.bottom,22)
         }
     }
     struct ResetButton: View{
