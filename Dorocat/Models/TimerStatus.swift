@@ -19,3 +19,8 @@ enum TimerFeatureStatus:Equatable{
     case breakTime
     case completed
 }
+enum ActivityTimerStatus:Codable,Hashable{
+    case focus
+    case pause
+    case breakTime
+}

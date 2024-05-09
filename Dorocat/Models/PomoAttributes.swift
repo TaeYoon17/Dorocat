@@ -9,6 +9,7 @@ import Foundation
 import ActivityKit
 struct PomoAttributes:ActivityAttributes{
     struct ContentState:Codable,Hashable{
+        var timerStatus: ActivityTimerStatus = .focus
         var count:Int = 0
         var endTime:Int = 0
 //        var cycle:Int = 0
