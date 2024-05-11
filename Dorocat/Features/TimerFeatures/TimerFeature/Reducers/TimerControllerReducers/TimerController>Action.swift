@@ -11,13 +11,22 @@ import ComposableArchitecture
 extension TimerFeature.ControllerReducers{
     struct ActionReducer: TimerControllerProtocol{
         typealias Action = TimerFeature.Action
-        @Dependency(\.pomoNotification) var notification
         func timerFieldTapped(state: inout TimerFeature.State) -> ComposableArchitecture.Effect<TimerFeature.Action> {
             switch state.timerStatus{
             case .standBy: // standby일때 탭하면 세팅하는 화면으로 설정한다.
                 state.timerSetting = TimerSettingFeature.State()
                 return .run {[info = state.timerInformation] send in
                     await send(.timerSetting(.presented(.setDefaultValues(info))))
+                }
+            default: return .none
+            }
+        }
+        func sessionTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
+            switch state.timerStatus{
+            case .standBy:
+                state.timerSession = TimerSessionFeature.State()
+                return .run {[selectedSession = state.selectedSession] send in
+                    await send(.timerSession(.presented(.setSelectedSession(selectedSession))))
                 }
             default: return .none
             }

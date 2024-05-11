@@ -35,6 +35,9 @@
     "Dorocat" : {
 
     },
+    "Focus" : {
+
+    },
     "Get Started" : {
       "localizations" : {
         "ko" : {
@@ -85,6 +88,9 @@
     "Restore Purchases" : {
 
     },
+    "Select Session" : {
+
+    },
     "Setting" : {
 
     },
@@ -98,6 +104,9 @@
 
     },
     "Well done!" : {
+
+    },
+    "Work" : {
 
     },
     "You've completed successfully\nLet's stretch together." : {

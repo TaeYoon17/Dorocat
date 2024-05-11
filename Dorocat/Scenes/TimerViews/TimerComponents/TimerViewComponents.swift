@@ -183,6 +183,23 @@ extension TimerViewComponents{
         }
     }
 }
+extension TimerViewComponents{
+    struct FocusSessionButton:View {
+        let store: StoreOf<TimerFeature>
+        var body: some View {
+            switch store.timerStatus{
+            case .standBy:
+                Button { store.send(.viewAction(.sessionTapped)) } label: {
+                    textItem
+                }
+            default: textItem
+            }
+        }
+        var textItem: some View{
+            Text(store.selectedSession.name).foregroundStyle(.grey01).font(.button)
+        }
+    }
+}
 #Preview {
     TimerView(store: Store(initialState: TimerFeature.State(), reducer: {
         TimerFeature()

@@ -11,6 +11,8 @@ extension TimerFeature{
     @ObservableState struct State: Equatable{
         var timerStatus = TimerFeatureStatus.standBy
         var timerInformation = TimerInformation() // 앱에서 설정한 정보...
+        var timerSessionType = "Focus"
+        var selectedSession: SessionItem = .init(name: "Focus")
         var guideInformation = Guides()
         // 앱에서 running일 때 사용할 정보들
         var count = 0
@@ -19,9 +21,7 @@ extension TimerFeature{
         var progress:Double{
             switch timerStatus{
             case .focus: Double(count) / (60 * 60)
-//                Double(timerInformation.timeSeconds)
             case .breakTime: Double(count) / (60 * 60)
-//                Double(timerInformation.breakTime)
             default: 0.0
             }
         }
@@ -39,6 +39,7 @@ extension TimerFeature{
         }
         var startDate = Date()
         @Presents var timerSetting: TimerSettingFeature.State?
+        @Presents var timerSession: TimerSessionFeature.State?
         var appState = DorocatFeature.AppStateType.active
     }
 }

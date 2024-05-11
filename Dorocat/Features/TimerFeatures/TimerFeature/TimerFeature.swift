@@ -16,14 +16,17 @@ import ComposableArchitecture
         case initAction
         case diskInfoToMemory
         case setDefaultValues(PomoValues)
+        case setPomoSessionValue(SessionItem)
         case setTimerRunning(Int)
         case timerTick
         case setStatus(TimerFeatureStatus,count: Int? = nil,startDate:Date? = nil)
         case timerSetting(PresentationAction<TimerSettingFeature.Action>)
+        case timerSession(PresentationAction<TimerSessionFeature.Action>)
         case setAppState(DorocatFeature.AppStateType)
         case setGuideState(Guides)
     }
     @Dependency(\.pomoDefaults) var pomoDefaults
+    @Dependency(\.pomoSession) var pomoSession
     @Dependency(\.timeBackground) var timeBackground
     @Dependency(\.analyzeAPIClients) var analyzeAPI
     @Dependency(\.timer) var timer
@@ -33,8 +36,7 @@ import ComposableArchitecture
             case .viewAction(let viewAction): return self.viewAction(&state,viewAction)
             case .setAppState(let appState): return self.appStateRedecuer(&state,appState: appState)
             //MARK: -- 화면 전환 Action 처리
-            case .timerSetting(.presented(.delegate(.cancel))):
-                return .none
+            case .timerSetting(.presented(.delegate(.cancel))): return .none
             case .timerSetting(.presented(.delegate(.setTimerInfo(let info)))):
                 let count = info.timeSeconds
                 let pomoValues = PomoValues(status: state.timerStatus, information: info, cycle: 0, count: count,startDate: state.startDate)
@@ -43,8 +45,13 @@ import ComposableArchitecture
                     await pomoDefaults.setAll(pomoValues)
                 }
             case .timerSetting: return .none
+            case .timerSession(.presented(.delegate(.setSelectSession(let session)))):
+                state.selectedSession = session
+                return .none
+            case .timerSession(.presented(.delegate(.cancel))): return .none
+            case .timerSession: return .none
+            //MARK: --  내부 로직 Action 처리
             case .timerTick: return self.timerTick(state: &state)
-                // 내부 로직 Action 처리
             case .setStatus(let status,let count,let startDate):
                 return setTimerStatus(state: &state, status: status,count: count,startDate: startDate)
             case .setTimerRunning(let count):
@@ -58,7 +65,9 @@ import ComposableArchitecture
                     return Effect.concatenate(
                         .run{ send in
                             let savedValues:PomoValues = await pomoDefaults.getAll() // 디스크에 저장된 값
+                            let sessionItem = await pomoSession.selectedItem
                             await send(.setDefaultValues(savedValues)) // 디스크에 저장된 값을 State에 보냄
+                            await send(.setPomoSessionValue(sessionItem))
                             await send(.diskInfoToMemory)
                         })
                 }else{ return .none }
@@ -84,10 +93,16 @@ import ComposableArchitecture
             case .setGuideState(let guides):
                 state.guideInformation = guides
                 return .none
+            case .setPomoSessionValue(let sessionItem):
+                state.selectedSession = sessionItem
+                return .none
             }
         }
         .ifLet(\.$timerSetting, action: \.timerSetting){
             TimerSettingFeature()
+        }
+        .ifLet(\.$timerSession, action: \.timerSession){
+            TimerSessionFeature()
         }
     }
 }

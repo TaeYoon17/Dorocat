@@ -9,6 +9,10 @@ import Foundation
 import ComposableArchitecture
 extension TimerFeature.ControllerReducers{
     struct GuideReducer: TimerControllerProtocol{
+        func sessionTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
+            .none
+        }
+        
         @Dependency(\.guideDefaults) var guideDefaults
         func timerFieldTapped(state: inout TimerFeature.State) -> ComposableArchitecture.Effect<TimerFeature.Action> {
             if !state.guideInformation.standByGuide{

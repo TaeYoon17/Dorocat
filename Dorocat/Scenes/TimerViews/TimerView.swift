@@ -16,7 +16,10 @@ struct TimerView: View {
             switch store.timerStatus{
             case .standBy,.focus,.pause,.breakTime,.sleep:
                 VStack(spacing:0) {
-                    TimerViewComponents.DoroCat(store:store)
+                    // Focus 모드시 고양이가 Session 버튼을 가림!!
+                    TimerViewComponents.DoroCat(store:store).overlay(alignment: .top) {
+                        TimerViewComponents.FocusSessionButton(store: store)
+                    }
                     TimerViewComponents.Timer.NumberField(store: store).frame(height: 102)
                     Rectangle().fill(.clear).frame(height: 29)
                 }
@@ -53,6 +56,9 @@ struct TimerView: View {
             .sheet(item: $store.scope(state: \.timerSetting, action: \.timerSetting)) { timerSettingStore in
                 TimerSettingView(store: timerSettingStore).presentationDetents([.large])
                     .presentationDragIndicator(.visible)
+            }
+            .sheet(item: $store.scope(state: \.timerSession, action: \.timerSession)) { timerSessionStore in
+                TimerSessionView(store: timerSessionStore).presentationCornerRadius(24)
             }
     }
 }
