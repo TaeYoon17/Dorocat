@@ -15,7 +15,10 @@ struct AnalyzeListItemView:View{
         HStack {
             HStack {
                 Image(.haptic).resizable().frame(width: 20,height:20).opacity(0.6)
-                Text("\(timerListItem.duration)m").font(.paragraph03()).foregroundStyle(.doroWhite)
+                HStack(spacing:6) {
+                    Text("\(timerListItem.duration)m").font(.paragraph03()).foregroundStyle(.doroWhite)
+                    Text("\(timerListItem.session.name)").font(.paragraph03()).foregroundStyle(.grey02)
+                }
             }
             Spacer()
             Text(convertTimerText).font(.paragraph03()).foregroundStyle(.grey02)
@@ -38,11 +41,12 @@ fileprivate extension Date{
     var dayFormat:String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h:mm a"
+        dateFormatter.locale = Locale(languageCode: .english, script: .armenian, languageRegion: .southKorea)
         return dateFormatter.string(from: self)
     }
     var weekAndMonthFormat:String{
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, h:mm a"
+        dateFormatter.locale = Locale(languageCode: .english, script: .armenian, languageRegion: .southKorea)
         return dateFormatter.string(from: self)
     }
 }

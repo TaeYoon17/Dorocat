@@ -9,6 +9,10 @@ import Foundation
 import ComposableArchitecture
 extension TimerFeature.ControllerReducers{
     struct HapticReducer: TimerControllerProtocol{
+        func sessionTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
+            .none
+        }
+        
         @Dependency(\.haptic) var haptic
         func timerFieldTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
             if !state.guideInformation.onBoarding{

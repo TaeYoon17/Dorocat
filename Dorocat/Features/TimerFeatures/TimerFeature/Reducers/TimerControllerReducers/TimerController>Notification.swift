@@ -10,6 +10,10 @@ import ComposableArchitecture
 
 extension TimerFeature.ControllerReducers{
     struct NotificationReducer: TimerControllerProtocol{
+        func sessionTapped(state: inout TimerFeature.State) -> ComposableArchitecture.Effect<TimerFeature.Action> {
+            .none
+        }
+        
         typealias Action = TimerFeature.Action
         @Dependency(\.pomoNotification) var notification
         func timerFieldTapped(state: inout TimerFeature.State) -> ComposableArchitecture.Effect<TimerFeature.Action> {

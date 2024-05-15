@@ -69,6 +69,14 @@ enum TimerViewModifiers{
             })
         }
     }
+    struct Session: ViewModifier{
+        let store: StoreOf<TimerFeature>
+        func body(content: Content) -> some View {
+            content.overlay(alignment: .top, content: {
+                TimerViewComponents.FocusSessionButton(store: store).padding(.top,93)
+            })
+        }
+    }
     struct Init: ViewModifier{
         let store: StoreOf<TimerFeature>
         func body(content: Content) -> some View {

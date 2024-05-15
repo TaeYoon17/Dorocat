@@ -22,6 +22,7 @@ protocol TimerControllerProtocol{
     func resetTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>
     func triggerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>
     func triggerWillTap(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>
+    func sessionTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>
 }
 extension TimerControllerProtocol{
     func makeReducer(state: inout TimerFeature.State,act: TimerFeature.ControllType)->Effect<TimerFeature.Action>{
@@ -31,6 +32,7 @@ extension TimerControllerProtocol{
         case .timerFieldTapped: timerFieldTapped(state: &state)
         case .triggerTapped: triggerTapped(state: &state)
         case .triggerWillTap: triggerWillTap(state: &state)
+        case .sessionTapped: sessionTapped(state: &state)
         }
     }
 }
