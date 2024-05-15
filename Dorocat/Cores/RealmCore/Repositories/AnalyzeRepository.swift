@@ -10,7 +10,6 @@ import ComposableArchitecture
 import RealmSwift
 
 @DBActor final class TimerRecordRepository: TableRepository<TimerRecordItemTable>{
-    
     func getByDay(date:Date) -> Results<TimerRecordItemTable>{
         self.getTasks.where { table in
             table.recordCode.equals(date.convertToRecordCode())

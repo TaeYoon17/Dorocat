@@ -44,6 +44,7 @@ struct DorocatFeature{
     @Dependency(\.haptic) var haptic
     @Dependency(\.initial) var initial
     @Dependency(\.pomoNotification) var notification
+    @Dependency(\.pomoSession) var session
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
@@ -90,7 +91,9 @@ struct DorocatFeature{
                             await initial.offInitial()
                             await send(.initialAction)
                         }
-                    }))
+                    }),.run{ send in
+                        try! await session.initAction()
+                    })
                 }else{
                     return .none
                 }

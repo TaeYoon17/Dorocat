@@ -32,6 +32,7 @@ import ComposableArchitecture
     }
     @DBActor @Dependency(\.analyzeAPIClients) var apiClient
     @Dependency(\.haptic) var haptic
+    @Dependency(\.pomoSession) var session
     enum CancelID{ case dbCancel }
     var body: some ReducerOf<Self>{
         Reduce{ state, action in

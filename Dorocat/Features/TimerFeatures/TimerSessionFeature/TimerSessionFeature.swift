@@ -37,7 +37,6 @@ struct TimerSessionFeature{
                     await send(.allSessions(items))
                 }
             case .allSessions(let sessions):
-                print("all Sesions \(sessions)")
                 state.sessions = sessions
                 return .none
             case .sessionTapped(let session):

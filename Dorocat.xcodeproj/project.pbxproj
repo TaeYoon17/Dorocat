@@ -146,8 +146,12 @@
 		63E2BC622BD7EE47006FED92 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633E97F12BD7AE0700215563 /* TimerStatus.swift */; };
 		63E63AB42BB709EA00A601E3 /* TimeBackgroundDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E63AB32BB709EA00A601E3 /* TimeBackgroundDependency.swift */; };
 		63F3D6642BD1805B00F1204B /* PomoNotiDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3D6632BD1805B00F1204B /* PomoNotiDependency.swift */; };
+		63F804A22BF4805B007333AF /* RealmSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F804A12BF4805B007333AF /* RealmSessionStore.swift */; };
+		63F804A42BF4812E007333AF /* TimerSessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F804A32BF4812E007333AF /* TimerSessionRepository.swift */; };
 		63FD1AA22BE0E9F000E8D6EA /* InitialDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FD1AA12BE0E9F000E8D6EA /* InitialDependency.swift */; };
 		63FD44792BBC48D500FA528F /* GuideDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FD44782BBC48D500FA528F /* GuideDependencies.swift */; };
+		63FF53752BF2F4FF006C009B /* TimerSessionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF53742BF2F4FF006C009B /* TimerSessionTable.swift */; };
+		63FF53772BF2F573006C009B /* TimerRecordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF53762BF2F573006C009B /* TimerRecordItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -312,8 +316,12 @@
 		63DF61B72BDAB07900D5C458 /* Dorocat.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Dorocat.storekit; sourceTree = "<group>"; };
 		63E63AB32BB709EA00A601E3 /* TimeBackgroundDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBackgroundDependency.swift; sourceTree = "<group>"; };
 		63F3D6632BD1805B00F1204B /* PomoNotiDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoNotiDependency.swift; sourceTree = "<group>"; };
+		63F804A12BF4805B007333AF /* RealmSessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSessionStore.swift; sourceTree = "<group>"; };
+		63F804A32BF4812E007333AF /* TimerSessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionRepository.swift; sourceTree = "<group>"; };
 		63FD1AA12BE0E9F000E8D6EA /* InitialDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialDependency.swift; sourceTree = "<group>"; };
 		63FD44782BBC48D500FA528F /* GuideDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDependencies.swift; sourceTree = "<group>"; };
+		63FF53742BF2F4FF006C009B /* TimerSessionTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionTable.swift; sourceTree = "<group>"; };
+		63FF53762BF2F573006C009B /* TimerRecordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +352,7 @@
 		6301F7992BC3BCEB00E04214 /* RealmCore */ = {
 			isa = PBXGroup;
 			children = (
+				63F804A02BF47C3A007333AF /* Tables */,
 				6301F79E2BC3C1D200E04214 /* Repositories */,
 				6301F79A2BC3BE6200E04214 /* RealmRepository.swift */,
 				6301F79C2BC3BF1300E04214 /* RealmError.swift */,
@@ -356,6 +365,7 @@
 			children = (
 				636E9F652BA818000006FE56 /* DBActor.swift */,
 				6301F79F2BC3C1E400E04214 /* AnalyzeRepository.swift */,
+				63F804A32BF4812E007333AF /* TimerSessionRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -476,6 +486,7 @@
 				633E97F32BD7AE3C00215563 /* PomoAttributes.swift */,
 				63DF61B42BDAACF100D5C458 /* Guides.swift */,
 				636EA3222BEF815400203538 /* SessionItem.swift */,
+				63FF53762BF2F573006C009B /* TimerRecordItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -563,6 +574,7 @@
 				636EA3242BEF83CF00203538 /* PomoSessionDependency.swift */,
 				636EA32A2BEF856B00203538 /* PomoSession+Snapshot.swift */,
 				636EA32C2BEF858D00203538 /* UserDefaultsSessionStore.swift */,
+				63F804A12BF4805B007333AF /* RealmSessionStore.swift */,
 			);
 			path = PomoSession;
 			sourceTree = "<group>";
@@ -578,18 +590,8 @@
 			isa = PBXGroup;
 			children = (
 				63A9C3F52BA574830076D42C /* TimerRecordDependency.swift */,
-				6373407F2BA743E300B2A10F /* Tables */,
 			);
 			path = AnalyzeDBDependencies;
-			sourceTree = "<group>";
-		};
-		6373407F2BA743E300B2A10F /* Tables */ = {
-			isa = PBXGroup;
-			children = (
-				637340802BA7440900B2A10F /* TimerRecordItemTable.swift */,
-				637340822BA7449F00B2A10F /* ShoppingItem.swift */,
-			);
-			path = Tables;
 			sourceTree = "<group>";
 		};
 		6373504F2BB7E3EF00221F20 /* Models */ = {
@@ -842,8 +844,8 @@
 				633E97EE2BD79E0D00215563 /* Models */,
 				63AD70502BA4292D00DBD6B9 /* Features */,
 				635BD55D2B9F573D004480D1 /* Scenes */,
-				63C124E32B9EFAF1000A6D35 /* Cores */,
 				63C124E12B9EFAD5000A6D35 /* Dependencies */,
+				63C124E32B9EFAF1000A6D35 /* Cores */,
 				63C124E22B9EFAE6000A6D35 /* Resources */,
 				635BD55F2B9F5764004480D1 /* Helpers */,
 				63C124D72B9EF93D000A6D35 /* Assets.xcassets */,
@@ -924,6 +926,16 @@
 				63BD3C892BD261CA00C80542 /* TimerDependency.swift */,
 			);
 			path = TimerDependencies;
+			sourceTree = "<group>";
+		};
+		63F804A02BF47C3A007333AF /* Tables */ = {
+			isa = PBXGroup;
+			children = (
+				637340802BA7440900B2A10F /* TimerRecordItemTable.swift */,
+				63FF53742BF2F4FF006C009B /* TimerSessionTable.swift */,
+				637340822BA7449F00B2A10F /* ShoppingItem.swift */,
+			);
+			path = Tables;
 			sourceTree = "<group>";
 		};
 		63FD1AA02BE0E54500E8D6EA /* IntialDependencies */ = {
@@ -1110,6 +1122,7 @@
 				63B2BAE72BEBB9E3000090C5 /* TimerStatus>Status.swift in Sources */,
 				630285452BBD1D39009C32AE /* SettingTitleView.swift in Sources */,
 				6345AB662BDD28B800FF5D33 /* ContinueBtnStyle.swift in Sources */,
+				63FF53772BF2F573006C009B /* TimerRecordItem.swift in Sources */,
 				636EA3252BEF83CF00203538 /* PomoSessionDependency.swift in Sources */,
 				63BBF51C2BBD453C0094872B /* AnalyzeDurationView.swift in Sources */,
 				6373504C2BB7E3AE00221F20 /* TimeFeature+TimerStatus.swift in Sources */,
@@ -1129,6 +1142,7 @@
 				63CBAD8C2BCD2247004EE320 /* LottieView.swift in Sources */,
 				63A9C3FD2BA5E21A0076D42C /* AnalyzeFeature.swift in Sources */,
 				632F893B2BB5717D00F2DC0B /* TimerFeature+ControllType.swift in Sources */,
+				63F804A42BF4812E007333AF /* TimerSessionRepository.swift in Sources */,
 				63A9C3F92BA5A3F10076D42C /* NumberPickerView.swift in Sources */,
 				638EAB032BBF7F50007F8CAC /* DoroTogglerView.swift in Sources */,
 				63A5175F2BD2D54200FEAEF6 /* HapticDependency.swift in Sources */,
@@ -1141,6 +1155,7 @@
 				636EA3232BEF815400203538 /* SessionItem.swift in Sources */,
 				63B521C42BD3C3B600400ADB /* TimerSettingModifiers.swift in Sources */,
 				631E71542BDA377000DDD72B /* AppState>LiveActivity.swift in Sources */,
+				63F804A22BF4805B007333AF /* RealmSessionStore.swift in Sources */,
 				63FD1AA22BE0E9F000E8D6EA /* InitialDependency.swift in Sources */,
 				6301F7A32BC3D09500E04214 /* AsyncMap.swift in Sources */,
 				63AD70642BA43F6D00DBD6B9 /* TimerSettingFeature.swift in Sources */,
@@ -1149,6 +1164,7 @@
 				631FA2162BE790CE00E603A2 /* TimerController>Action.swift in Sources */,
 				632F89412BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift in Sources */,
 				637340812BA7440900B2A10F /* TimerRecordItemTable.swift in Sources */,
+				63FF53752BF2F4FF006C009B /* TimerSessionTable.swift in Sources */,
 				639F8D152BC97C8700D66551 /* AnalyzeFeautre+Action.swift in Sources */,
 				637350532BB8161D00221F20 /* DateExtensions.swift in Sources */,
 				635C9D3D2BB082E400BFD46D /* PomoDependency.swift in Sources */,
@@ -1403,7 +1419,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.2;
+				MARKETING_VERSION = 0.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1440,7 +1456,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.2;
+				MARKETING_VERSION = 0.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

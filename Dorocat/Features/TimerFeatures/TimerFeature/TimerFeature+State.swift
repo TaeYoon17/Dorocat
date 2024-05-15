@@ -11,7 +11,6 @@ extension TimerFeature{
     @ObservableState struct State: Equatable{
         var timerStatus = TimerFeatureStatus.standBy
         var timerInformation = TimerInformation() // 앱에서 설정한 정보...
-        var timerSessionType = "Focus"
         var selectedSession: SessionItem = .init(name: "Focus")
         var guideInformation = Guides()
         // 앱에서 running일 때 사용할 정보들
@@ -28,8 +27,8 @@ extension TimerFeature{
         var timer:String {
             "\(count / 60 < 10 ? "0" : "")\(count / 60):\((count % 60) < 10 ? "0":"")\(count % 60)"
         }
-        var cycleNote:String{
-            "\(cycle) / \(timerInformation.cycle)"
+        var cycleNote:String{ // 현재 목표가 되는 사이클
+            "\(cycle + 1)/\(timerInformation.cycle)"
         }
         var totalTime: String{
             let cycle = timerInformation.isPomoMode ? timerInformation.cycle : 1

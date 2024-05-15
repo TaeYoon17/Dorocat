@@ -17,9 +17,7 @@ struct TimerView: View {
             case .standBy,.focus,.pause,.breakTime,.sleep:
                 VStack(spacing:0) {
                     // Focus 모드시 고양이가 Session 버튼을 가림!!
-                    TimerViewComponents.DoroCat(store:store).overlay(alignment: .top) {
-                        TimerViewComponents.FocusSessionButton(store: store)
-                    }
+                    TimerViewComponents.DoroCat(store:store)
                     TimerViewComponents.Timer.NumberField(store: store).frame(height: 102)
                     Rectangle().fill(.clear).frame(height: 29)
                 }
@@ -66,6 +64,7 @@ struct TimerView: View {
 fileprivate extension View{
     func timerViewModifiers(store: StoreOf<TimerFeature>) -> some View{
         self.modifier(TimerViewModifiers.Reset(store: store))
+            .modifier(TimerViewModifiers.Session(store: store))
             .modifier(TimerViewModifiers.Guide.Focus(store: store))
             .modifier(TimerViewModifiers.Guide.StandBy(store: store))
             .modifier(TimerViewModifiers.Guide.GoLeft(store: store))

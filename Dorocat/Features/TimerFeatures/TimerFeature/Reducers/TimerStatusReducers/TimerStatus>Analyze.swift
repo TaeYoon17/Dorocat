@@ -23,8 +23,9 @@ extension TimerFeature.StatusReducers{
         func setBreakStandBy(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<TimerFeature.Action> {
             let startDate = state.startDate
             let duration = state.timerInformation.timeSeconds / 60
+            let session = state.selectedSession
             return .run(priority: .medium) { send in
-                await analyze.append(.init(createdAt: startDate, duration: duration))
+                await analyze.append(.init(createdAt: startDate, duration: duration,session: session))
             }
         }
         
@@ -33,8 +34,9 @@ extension TimerFeature.StatusReducers{
         func setCompleted(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<TimerFeature.Action> {
             let startDate = state.startDate
             let duration = state.timerInformation.timeSeconds / 60
+            let session = state.selectedSession
             return .run(priority: .medium) { send in
-                await analyze.append(.init(createdAt: startDate, duration: duration))
+                await analyze.append(.init(createdAt: startDate, duration: duration,session: session))
             }
         }
     }

@@ -32,10 +32,9 @@ struct TimerSessionView: View {
         Button{
             action()
         }label: {
-            Text(name)
-                .font(.button)
-                .padding(.horizontal,48.5)
-                .padding(.vertical,19)
+            ZStack{
+                Text(name).font(.button)
+            }.frame(width: 140,height: 60)
                 .foregroundStyle(isSelected ? .black : .grey01)
                 .background(isSelected ? .doroWhite: .grey03)
                 .clipShape(Capsule())

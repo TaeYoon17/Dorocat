@@ -192,6 +192,12 @@ extension TimerViewComponents{
                 Button { store.send(.viewAction(.sessionTapped)) } label: {
                     textItem
                 }
+            case .focus:
+                if store.timerInformation.isPomoMode{
+                    Text("\(store.selectedSession.name) \(store.cycleNote)").foregroundStyle(.grey01).font(.button)
+                }else{
+                    textItem
+                }
             default: textItem
             }
         }
