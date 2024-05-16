@@ -17,7 +17,7 @@ struct DoroWidgetExtensionLiveActivity: Widget {
                 Image(.catLock).resizable().scaledToFill().frame(width: 60,height:60)
                     .padding(.trailing,16)
                 VStack(alignment:.leading,spacing: 0,content: {
-                    Text("Read").font(.button).foregroundStyle(.grey01)
+                    Text(context.state.timerSession.name).font(.button).foregroundStyle(.grey01)
                     HStack(content: {
                         Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),since: .now))
                             .font(.header03).foregroundStyle(.doroWhite)

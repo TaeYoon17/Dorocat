@@ -18,10 +18,16 @@ struct DorocatApp: App {
                 DefaultBG()
                 DoroMainView(store: store)
             }.preferredColorScheme(.dark)
+            
             .onAppear(){
                 store.send(.launchAction)
             }
-        }.onChange(of: phase) { oldValue, newValue in
+            .onReceive(ActivityIntentManager.eventPublisher, perform: { (prevValue,nextValue) in
+                print("TimerStatus")
+                print(prevValue,nextValue)
+            })
+        }
+        .onChange(of: phase) { oldValue, newValue in
             switch newValue{
             case .active: store.send(.setAppState(.active))
             case .inactive: store.send(.setAppState(.inActive))

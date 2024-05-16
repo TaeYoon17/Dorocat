@@ -10,6 +10,7 @@ import ComposableArchitecture
 extension TimerFeature{
     @ObservableState struct State: Equatable{
         var timerStatus = TimerFeatureStatus.standBy
+        var appState = DorocatFeature.AppStateType.active
         var timerInformation = TimerInformation() // 앱에서 설정한 정보...
         var selectedSession: SessionItem = .init(name: "Focus")
         var guideInformation = Guides()
@@ -39,6 +40,6 @@ extension TimerFeature{
         var startDate = Date()
         @Presents var timerSetting: TimerSettingFeature.State?
         @Presents var timerSession: TimerSessionFeature.State?
-        var appState = DorocatFeature.AppStateType.active
+        
     }
 }

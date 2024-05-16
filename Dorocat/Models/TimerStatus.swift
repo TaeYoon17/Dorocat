@@ -24,3 +24,24 @@ enum ActivityTimerStatus:Codable,Hashable{
     case pause
     case breakTime
 }
+extension TimerActivityType{
+    var convertToTimerStatus: TimerFeatureStatus{
+        return switch self{
+        case .breakSleep: TimerFeatureStatus.sleep(.breakSleep)
+        case .focusSleep: .sleep(.focusSleep)
+        case .pause: .pause
+        case .standBy: .standBy
+        }
+    }
+}
+extension TimerFeatureStatus{
+    var convertToTimerActivityType:TimerActivityType?{
+        switch self{
+        case .sleep(.focusSleep): TimerActivityType.focusSleep
+        case .sleep(.breakSleep): TimerActivityType.breakSleep
+        case .pause: TimerActivityType.pause
+        case .standBy: TimerActivityType.standBy
+        default: nil
+        }
+    }
+}

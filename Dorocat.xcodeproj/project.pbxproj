@@ -51,6 +51,13 @@
 		6345AB662BDD28B800FF5D33 /* ContinueBtnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB652BDD28B800FF5D33 /* ContinueBtnStyle.swift */; };
 		634C17BB2BC9207A007AC15F /* AnalyzeFeature+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C17BA2BC9207A007AC15F /* AnalyzeFeature+State.swift */; };
 		634C48B72BDB8F1D002E35DC /* DarumadropOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 634C48B62BDB8F1D002E35DC /* DarumadropOne-Regular.ttf */; };
+		6352AF752BF6190100929F47 /* SessionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EA3222BEF815400203538 /* SessionItem.swift */; };
+		6352AFC42BF626A900929F47 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6352AF7B2BF625D200929F47 /* Intents.framework */; };
+		6352AFC72BF626A900929F47 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352AFC62BF626A900929F47 /* IntentHandler.swift */; };
+		6352AFCB2BF626A900929F47 /* DorocatIntents.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6352AFC32BF626A900929F47 /* DorocatIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6352AFFC2BF6422E00929F47 /* ActivityIntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352AFFB2BF6422E00929F47 /* ActivityIntentManager.swift */; };
+		6352AFFD2BF6422E00929F47 /* ActivityIntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352AFFB2BF6422E00929F47 /* ActivityIntentManager.swift */; };
+		6352AFFE2BF6422E00929F47 /* ActivityIntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352AFFB2BF6422E00929F47 /* ActivityIntentManager.swift */; };
 		635923A62BECFAF4002CC44C /* TimerSessionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635923A52BECFAF4002CC44C /* TimerSessionFeature.swift */; };
 		635923A92BECFE53002CC44C /* TimerSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635923A82BECFE53002CC44C /* TimerSessionView.swift */; };
 		6359D9882BC576C40045DEC7 /* AppStateReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6359D9872BC576C40045DEC7 /* AppStateReducers.swift */; };
@@ -181,6 +188,13 @@
 			remoteGlobalIDString = 632F53842BD7490800357C68;
 			remoteInfo = DoroWidgetExtensionExtension;
 		};
+		6352AFC92BF626A900929F47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63C124C82B9EF93D000A6D35 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6352AFC22BF626A900929F47;
+			remoteInfo = DorocatIntents;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -191,6 +205,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				632F53972BD7490900357C68 /* DoroWidgetExtensionExtension.appex in Embed Foundation Extensions */,
+				6352AFCB2BF626A900929F47 /* DorocatIntents.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,6 +258,12 @@
 		6345AB652BDD28B800FF5D33 /* ContinueBtnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueBtnStyle.swift; sourceTree = "<group>"; };
 		634C17BA2BC9207A007AC15F /* AnalyzeFeature+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnalyzeFeature+State.swift"; sourceTree = "<group>"; };
 		634C48B62BDB8F1D002E35DC /* DarumadropOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DarumadropOne-Regular.ttf"; path = "Darumadrop_One/DarumadropOne-Regular.ttf"; sourceTree = SOURCE_ROOT; };
+		6352AF7B2BF625D200929F47 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		6352AF862BF625D200929F47 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		6352AFC32BF626A900929F47 /* DorocatIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DorocatIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6352AFC62BF626A900929F47 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		6352AFC82BF626A900929F47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6352AFFB2BF6422E00929F47 /* ActivityIntentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIntentManager.swift; sourceTree = "<group>"; };
 		635923A52BECFAF4002CC44C /* TimerSessionFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionFeature.swift; sourceTree = "<group>"; };
 		635923A82BECFE53002CC44C /* TimerSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionView.swift; sourceTree = "<group>"; };
 		6359D9872BC576C40045DEC7 /* AppStateReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateReducers.swift; sourceTree = "<group>"; };
@@ -353,6 +374,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6352AFC02BF626A900929F47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6352AFC42BF626A900929F47 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63C124CD2B9EF93D000A6D35 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -447,6 +476,8 @@
 				633FF07C2BDAB14B00D0F85F /* StoreKit.framework */,
 				632F53872BD7490800357C68 /* WidgetKit.framework */,
 				632F53892BD7490800357C68 /* SwiftUI.framework */,
+				6352AF7B2BF625D200929F47 /* Intents.framework */,
+				6352AF862BF625D200929F47 /* IntentsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -519,6 +550,31 @@
 			path = Reducers;
 			sourceTree = "<group>";
 		};
+		6352AFC52BF626A900929F47 /* DorocatIntents */ = {
+			isa = PBXGroup;
+			children = (
+				6352AFC62BF626A900929F47 /* IntentHandler.swift */,
+				6352AFC82BF626A900929F47 /* Info.plist */,
+			);
+			path = DorocatIntents;
+			sourceTree = "<group>";
+		};
+		6352AFD02BF626CA00929F47 /* App Intent */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "App Intent";
+			sourceTree = "<group>";
+		};
+		6352AFFA2BF6420500929F47 /* PomoLiveDependencies */ = {
+			isa = PBXGroup;
+			children = (
+				6352AFFB2BF6422E00929F47 /* ActivityIntentManager.swift */,
+				632F539E2BD749FF00357C68 /* PomoLiveDependency.swift */,
+			);
+			path = PomoLiveDependencies;
+			sourceTree = "<group>";
+		};
 		635923A42BECFAE9002CC44C /* TimerSessionFeature */ = {
 			isa = PBXGroup;
 			children = (
@@ -562,10 +618,10 @@
 		635C9D3B2BB082A600BFD46D /* PomoDependencies */ = {
 			isa = PBXGroup;
 			children = (
+				6352AFFA2BF6420500929F47 /* PomoLiveDependencies */,
 				63BD3C872BD2519900C80542 /* PomoNotiType.swift */,
 				635C9D3C2BB082E400BFD46D /* PomoDependency.swift */,
 				63F3D6632BD1805B00F1204B /* PomoNotiDependency.swift */,
-				632F539E2BD749FF00357C68 /* PomoLiveDependency.swift */,
 				636EA3292BEF854C00203538 /* PomoSession */,
 			);
 			path = PomoDependencies;
@@ -839,9 +895,11 @@
 		63C124C72B9EF93D000A6D35 = {
 			isa = PBXGroup;
 			children = (
+				6352AFD02BF626CA00929F47 /* App Intent */,
 				63DF61B72BDAB07900D5C458 /* Dorocat.storekit */,
 				63C124D22B9EF93D000A6D35 /* Dorocat */,
 				632F538B2BD7490800357C68 /* DoroWidgetExtension */,
+				6352AFC52BF626A900929F47 /* DorocatIntents */,
 				632F53862BD7490800357C68 /* Frameworks */,
 				63C124D12B9EF93D000A6D35 /* Products */,
 			);
@@ -852,6 +910,7 @@
 			children = (
 				63C124D02B9EF93D000A6D35 /* Dorocat.app */,
 				632F53852BD7490800357C68 /* DoroWidgetExtensionExtension.appex */,
+				6352AFC32BF626A900929F47 /* DorocatIntents.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -993,6 +1052,23 @@
 			productReference = 632F53852BD7490800357C68 /* DoroWidgetExtensionExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		6352AFC22BF626A900929F47 /* DorocatIntents */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6352AFCC2BF626A900929F47 /* Build configuration list for PBXNativeTarget "DorocatIntents" */;
+			buildPhases = (
+				6352AFBF2BF626A900929F47 /* Sources */,
+				6352AFC02BF626A900929F47 /* Frameworks */,
+				6352AFC12BF626A900929F47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DorocatIntents;
+			productName = DorocatIntents;
+			productReference = 6352AFC32BF626A900929F47 /* DorocatIntents.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		63C124CF2B9EF93D000A6D35 /* Dorocat */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63C124DE2B9EF93D000A6D35 /* Build configuration list for PBXNativeTarget "Dorocat" */;
@@ -1006,6 +1082,7 @@
 			);
 			dependencies = (
 				632F53962BD7490900357C68 /* PBXTargetDependency */,
+				6352AFCA2BF626A900929F47 /* PBXTargetDependency */,
 			);
 			name = Dorocat;
 			packageProductDependencies = (
@@ -1031,6 +1108,9 @@
 					632F53842BD7490800357C68 = {
 						CreatedOnToolsVersion = 15.2;
 					};
+					6352AFC22BF626A900929F47 = {
+						CreatedOnToolsVersion = 15.2;
+					};
 					63C124CF2B9EF93D000A6D35 = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -1043,6 +1123,7 @@
 			knownRegions = (
 				en,
 				ko,
+				Base,
 			);
 			mainGroup = 63C124C72B9EF93D000A6D35;
 			packageReferences = (
@@ -1056,6 +1137,7 @@
 			targets = (
 				63C124CF2B9EF93D000A6D35 /* Dorocat */,
 				632F53842BD7490800357C68 /* DoroWidgetExtensionExtension */,
+				6352AFC22BF626A900929F47 /* DorocatIntents */,
 			);
 		};
 /* End PBXProject section */
@@ -1081,6 +1163,13 @@
 				63DE9A962BECDC2100FF6204 /* DarumadropOne-Regular.ttf in Resources */,
 				63DE9AA42BECDC2600FF6204 /* Rubik-ExtraBold.ttf in Resources */,
 				63DE9A9C2BECDC2600FF6204 /* Rubik-SemiBold.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6352AFC12BF626A900929F47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1130,9 +1219,20 @@
 				632F538D2BD7490800357C68 /* DoroWidgetExtensionBundle.swift in Sources */,
 				63DE9A952BECDC0B00FF6204 /* FontManager.swift in Sources */,
 				63E2BC622BD7EE47006FED92 /* TimerStatus.swift in Sources */,
+				6352AFFD2BF6422E00929F47 /* ActivityIntentManager.swift in Sources */,
 				63DE9A922BECDBF900FF6204 /* UIFontExtension.swift in Sources */,
+				6352AF752BF6190100929F47 /* SessionItem.swift in Sources */,
 				632F53912BD7490800357C68 /* DoroWidgetExtension.swift in Sources */,
 				63DE9A942BECDC0400FF6204 /* FontSystem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6352AFBF2BF626A900929F47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6352AFC72BF626A900929F47 /* IntentHandler.swift in Sources */,
+				6352AFFE2BF6422E00929F47 /* ActivityIntentManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1198,6 +1298,7 @@
 				6301F7A32BC3D09500E04214 /* AsyncMap.swift in Sources */,
 				63AD70642BA43F6D00DBD6B9 /* TimerSettingFeature.swift in Sources */,
 				63C5BF562BCAB8BE00E5A89C /* CircularProgressView.swift in Sources */,
+				6352AFFC2BF6422E00929F47 /* ActivityIntentManager.swift in Sources */,
 				639F8D202BCA5F2700D66551 /* AsyncForEach.swift in Sources */,
 				631FA2162BE790CE00E603A2 /* TimerController>Action.swift in Sources */,
 				632F89412BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift in Sources */,
@@ -1256,6 +1357,11 @@
 			target = 632F53842BD7490800357C68 /* DoroWidgetExtensionExtension */;
 			targetProxy = 632F53952BD7490900357C68 /* PBXContainerItemProxy */;
 		};
+		6352AFCA2BF626A900929F47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6352AFC22BF626A900929F47 /* DorocatIntents */;
+			targetProxy = 6352AFC92BF626A900929F47 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -1305,6 +1411,56 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat.DoroWidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6352AFCD2BF626A900929F47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DorocatIntents/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DorocatIntents;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat.DorocatIntents;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6352AFCE2BF626A900929F47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DorocatIntents/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DorocatIntents;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat.DorocatIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1514,6 +1670,15 @@
 			buildConfigurations = (
 				632F53992BD7490900357C68 /* Debug */,
 				632F539A2BD7490900357C68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6352AFCC2BF626A900929F47 /* Build configuration list for PBXNativeTarget "DorocatIntents" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6352AFCD2BF626A900929F47 /* Debug */,
+				6352AFCE2BF626A900929F47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
