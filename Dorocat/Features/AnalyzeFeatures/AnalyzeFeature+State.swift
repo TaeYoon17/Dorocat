@@ -63,7 +63,7 @@ extension AnalyzeFeature{
         var title: String{
             let current = Calendar.current
             guard let weekDay = current.dateComponents([.weekday], from: date).weekday,
-                  let sundayDate = current.date(byAdding: .day, value: -weekDay + 1, to: date),
+                  let sundayDate:Date = current.date(byAdding: .day, value: -weekDay + 1, to: date),
                   let saturdayDate = current.date(byAdding: .day, value: 6, to: sundayDate) else {
                 fatalError("Wow world")
             }

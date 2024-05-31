@@ -23,7 +23,7 @@ extension TimerFeature.StatusReducers{
             let focusTotalTime = state.timerInformation.timeSeconds
             return .run { send in
                 await liveActivity.removeActivity()
-                await liveActivity.addActivity(restCount: count, totalCount: focusTotalTime)
+                await liveActivity.addActivity(type: .focusSleep, restCount: count, totalCount: focusTotalTime)
             }
         }
         
@@ -44,7 +44,7 @@ extension TimerFeature.StatusReducers{
             let breakTotalTime = state.timerInformation.breakTime
             return .run {send in
                 await liveActivity.removeActivity()
-                await liveActivity.addActivity(restCount: count,totalCount: breakTotalTime)
+                await liveActivity.addActivity(type:.breakSleep,restCount: count,totalCount: breakTotalTime)
             }
         }
         

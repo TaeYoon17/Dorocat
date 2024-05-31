@@ -24,6 +24,7 @@ struct DoroMainView: View {
                         .tabItem({
                             Label("Timer",systemImage: "folder.circle").tint(.black)
                         })
+                        
                     SettingView(store: self.store.scope(state: \.settingState, action: \.setting))
                         .tag(DorocatFeature.PageType.setting)
                         .tabItem({

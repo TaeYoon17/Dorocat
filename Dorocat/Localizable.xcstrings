@@ -29,7 +29,16 @@
     "analyze" : {
 
     },
+    "AppAwakeIntent" : {
+
+    },
+    "BreakSleepToStandbyIntent" : {
+
+    },
     "Cat's asleep!" : {
+
+    },
+    "Change TimerStatus" : {
 
     },
     "Continue" : {
@@ -42,6 +51,9 @@
 
     },
     "Focus" : {
+
+    },
+    "FocusSleepToPauseIntent" : {
 
     },
     "Get Started" : {
@@ -63,6 +75,9 @@
 
     },
     "min" : {
+
+    },
+    "PauseToFocusSleepIntent" : {
 
     },
     "Pomodoro mode" : {

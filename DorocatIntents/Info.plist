@@ -8,6 +8,8 @@
 		<dict>
 			<key>IntentsRestrictedWhileLocked</key>
 			<array/>
+			<key>IntentsRestrictedWhileProtectedDataUnavailable</key>
+			<string></string>
 			<key>IntentsSupported</key>
 			<array>
 				<string>DorocatIntents</string>

@@ -19,11 +19,6 @@ enum TimerFeatureStatus:Equatable{
     case breakTime
     case completed
 }
-enum ActivityTimerStatus:Codable,Hashable{
-    case focus
-    case pause
-    case breakTime
-}
 extension TimerActivityType{
     var convertToTimerStatus: TimerFeatureStatus{
         return switch self{

@@ -19,16 +19,7 @@ struct DorocatFeature{
     enum AppStateType:Hashable,Equatable{
         case inActive,active,background
     }
-    @ObservableState struct State: Equatable{
-        var pageSelection: PageType = .timer
-        var appState = AppStateType.active
-        var guideState = Guides()
-        var isAppLaunched = false
-        var showPageIndicator = true
-        var anylzeState = AnalyzeFeature.State()
-        var timerState = TimerFeature.State()
-        var settingState = SettingFeature.State()
-    }
+    
     enum Action:Equatable{
         case pageMove(PageType)
         case setAppState(AppStateType)
@@ -39,12 +30,16 @@ struct DorocatFeature{
         case analyze(AnalyzeFeature.Action)
         case setting(SettingFeature.Action)
         case setGuideStates(Guides)
+        case setActivityAction(prev:TimerActivityType,next:TimerActivityType)
     }
     @Dependency(\.guideDefaults) var guideDefaults
     @Dependency(\.haptic) var haptic
     @Dependency(\.initial) var initial
     @Dependency(\.pomoNotification) var notification
     @Dependency(\.pomoSession) var session
+    @Dependency(\.pomoLiveActivity) var liveActivity
+    @Dependency(\.pomoDefaults) var pomoDefaults
+    @Dependency(\.timeBackground) var timeBackground
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
@@ -130,6 +125,9 @@ struct DorocatFeature{
                     await haptic.setEnable(true)
                     await notification.setEnable(true)
                 }
+            case .setActivityAction(let prev, let next):
+                print("Feature로 전달은 되었다")
+                return timerActivityReducer(state: &state, prev: prev, next: next)
             }
         }
         Scope(state: \.anylzeState,action: /DorocatFeature.Action.analyze){

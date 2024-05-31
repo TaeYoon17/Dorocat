@@ -8,7 +8,7 @@
 import ActivityKit
 import WidgetKit
 import SwiftUI
-
+enum DoroWidgetComponent{}
 struct DoroWidgetExtensionLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: PomoAttributes.self) { context in
@@ -19,28 +19,15 @@ struct DoroWidgetExtensionLiveActivity: Widget {
                 VStack(alignment:.leading,spacing: 0,content: {
                     Text(context.state.timerSession.name).font(.button).foregroundStyle(.grey01)
                     HStack(content: {
-                        Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),since: .now))
-                            .font(.header03).foregroundStyle(.doroWhite)
+                        DoroWidgetComponent.TimerText(context: context)
                         Spacer()
-                        Button(action: {
-                            print("안녕하세요")
-                        }, label: {
-                            Text("Start").font(.header04)
-                                .foregroundStyle(.doroWhite)
-                                .padding(.horizontal,20)
-                                .padding(.vertical,9)
-                                .background(.grey04)
-                                .clipShape(Capsule())
-                        }).buttonBorderShape(.capsule).buttonStyle(.plain)
+                        DoroWidgetComponent.TriggerBtn(context: context)
                     })
                 })
-                
             })
             .activityBackgroundTint(.grey04.opacity(0.85))
             .activitySystemActionForegroundColor(Color.black)
             .padding(.bottom,24).padding([.top,.leading],20).padding(.trailing,18.5)
-            
-
         } dynamicIsland: { context in
             return DynamicIsland {
                 // Expanded UI goes here.  Compose the expanded UI through

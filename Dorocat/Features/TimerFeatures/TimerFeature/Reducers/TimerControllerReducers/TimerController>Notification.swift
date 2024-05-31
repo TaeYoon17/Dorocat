@@ -19,11 +19,11 @@ extension TimerFeature.ControllerReducers{
         func timerFieldTapped(state: inout TimerFeature.State) -> ComposableArchitecture.Effect<TimerFeature.Action> {
             .none
         }
-        func catTapped(state: inout TimerFeature.State) -> ComposableArchitecture.Effect<TimerFeature.Action> {
+        func catTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
             return .none
         }
         
-        func resetTapped(state: inout TimerFeature.State) -> ComposableArchitecture.Effect<TimerFeature.Action> {
+        func resetTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
             .none
         }
         

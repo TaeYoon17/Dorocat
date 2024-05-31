@@ -25,7 +25,8 @@ extension TimerFeature.AppStateReducers{
             case .background:
                 switch state.timerStatus{
                 case .sleep: return .run{[count = state.count] send in
-                    await liveActivity.updateActivity(restCount: count)
+                    let lieveActivityType = state.timerStatus.convertToTimerActivityType
+                    await liveActivity.updateActivity(type: lieveActivityType  ?? .focusSleep,restCount: count)
                     }
                 default: return .none
                 }

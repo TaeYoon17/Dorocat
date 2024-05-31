@@ -58,6 +58,7 @@ struct TimerView: View {
             .sheet(item: $store.scope(state: \.timerSession, action: \.timerSession)) { timerSessionStore in
                 TimerSessionView(store: timerSessionStore).presentationCornerRadius(24)
             }
+        
     }
 }
 
