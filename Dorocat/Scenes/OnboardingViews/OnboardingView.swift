@@ -10,12 +10,11 @@ import ComposableArchitecture
 struct OnboardingView: View {
     let store: StoreOf<DorocatFeature>
     var body: some View {
-        
             ZStack{
                 Image(.defaultBg).resizable(resizingMode: .tile)
                 VStack(spacing:0) {
                     VStack(spacing:0) {
-                        Image(.cat).frame(width: 304,height: 304)
+                        Image(store.catType.imageAssetName(type: .onboardingIcon)).frame(width: 304,height: 304)
                         Text("Meow...").font(.header03).foregroundStyle(.doroWhite)
                             .frame(height: 48)
                         Text("I'll help you focus and stay on track")

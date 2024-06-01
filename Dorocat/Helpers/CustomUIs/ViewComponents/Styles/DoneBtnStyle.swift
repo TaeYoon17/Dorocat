@@ -7,15 +7,17 @@
 
 import SwiftUI
 extension Button{
-    func doneStyle() -> some View{
-        self.buttonStyle(DoneBtnStyle())
+    func doneStyle(vertical:CGFloat = 19.5,horizontal:CGFloat = 28) -> some View{
+        self.buttonStyle(DoneBtnStyle(vertical: vertical, horizontal: horizontal))
     }
 }
 struct DoneBtnStyle: ButtonStyle{
+    let vertical:CGFloat
+    let horizontal:CGFloat
     func makeBody(configuration: Configuration) -> some View {
         configuration.label.font(.button)
-            .padding(.vertical,19.5)
-            .padding(.horizontal,28)
+            .padding(.vertical,vertical)
+            .padding(.horizontal,horizontal)
             .foregroundStyle(.black)
             .background(.doroWhite)
             .clipShape(Capsule())

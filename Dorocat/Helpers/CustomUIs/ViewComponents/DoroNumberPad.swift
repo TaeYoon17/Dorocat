@@ -12,7 +12,7 @@ struct TempView: View{
     @FocusState var showKeyboard: Bool
     var body: some View{
         VStack {
-            Image(.cat)
+            Image(.doroThumbnailLogo)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 100,height: 100)

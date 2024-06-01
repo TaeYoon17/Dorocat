@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import ActivityKit
 @main
-struct DorocatApp: App {
+    struct DorocatApp: App {
     @Environment(\.scenePhase) var phase
     let store = Store(initialState: DorocatFeature.State(), reducer: { DorocatFeature()})
     var body: some Scene {

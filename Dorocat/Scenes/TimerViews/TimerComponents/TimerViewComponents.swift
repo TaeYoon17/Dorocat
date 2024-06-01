@@ -73,9 +73,11 @@ enum TimerViewComponents{
             Group{
                 switch store.timerStatus{
                 case .completed:
-                    LottieView(fileName: "WellDone", loopMode: .autoReverse).frame(width: size,height: size)
+                    LottieView(fileName: store.catType.lottieAssetName(type: .done)
+                               , loopMode: .autoReverse).frame(width: size,height: size)
                 case .breakStandBy:
-                    LottieView(fileName: "Great", loopMode: .autoReverse)
+                    LottieView(fileName: store.catType.lottieAssetName(type: .great)
+                               , loopMode: .autoReverse)
                         .frame(width: size,height: size)
                 case .focus,.breakTime,.sleep:
                     CircularProgress(progress: store.progress,
@@ -83,12 +85,15 @@ enum TimerViewComponents{
                                      backShape: .black,
                                      frontShapes: [Color.grey04.shadow(.inner(color: .black.opacity(0.4), radius: 8, x: 0, y: 2))])
                         .overlay(alignment: .bottom) {
-                            LottieView(fileName: "Sleeping", loopMode: .autoReverse).offset(y:4)
+                            LottieView(fileName: store.catType.lottieAssetName(type: .sleeping)
+                                       , loopMode: .autoReverse).offset(y:4)
                                 .frame(width: 190,height:190)
                         }
                         .frame(width: size,height: size).padding(.bottom,36)
                 case .standBy,.pause:
-                    LottieView(fileName: "Default", loopMode: .autoReverse)
+                    LottieView(fileName:
+                                store.catType.lottieAssetName(type: .basic)
+                               , loopMode: .autoReverse)
                         .frame(width: size,height: size)
                 }
             }.onTapGesture {

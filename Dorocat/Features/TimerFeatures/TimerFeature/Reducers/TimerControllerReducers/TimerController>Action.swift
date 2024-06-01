@@ -31,7 +31,12 @@ extension TimerFeature.ControllerReducers{
             default: return .none
             }
         }
-        func catTapped(state: inout TimerFeature.State) -> ComposableArchitecture.Effect<TimerFeature.Action> {
+        func catTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
+            switch state.timerStatus{
+            case .standBy:
+                state.catSelect = CatSelectFeature.State()
+            default: break
+            }
             return .none
         }
         
@@ -49,7 +54,6 @@ extension TimerFeature.ControllerReducers{
             case .standBy:
                 guard state.count != 0 else {return .none}
                 return .run { send in
-                    
                     await send(.setStatus(.focus,startDate: Date()))
                 }
             case .focus: return .run { send in

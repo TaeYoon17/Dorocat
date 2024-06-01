@@ -68,7 +68,7 @@ struct SettingView: View {
                                 .background(DefaultBG())
                         }
                     })
-                }
+                }.scrollIndicators(.hidden)
                 .sheet(item: $store.scope(state: \.purchaseSheet, action: \.purchaseSheet)) { settingPurchaseStore in
                     PurchaseSheet(store: settingPurchaseStore).presentationDetents([.large])
                         .presentationDragIndicator(.visible)

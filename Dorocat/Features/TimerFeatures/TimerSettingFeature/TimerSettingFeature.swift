@@ -33,7 +33,6 @@ struct TimerSettingFeature{
         var cycleTime:Int = 2
         var breakTime:Int = 1
         var timerInfo = TimerInformation()
-        
     }
     
     enum Action:Equatable{ // 키패드 접근을 어떻게 할 것인지...

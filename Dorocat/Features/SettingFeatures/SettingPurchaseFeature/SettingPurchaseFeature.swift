@@ -14,6 +14,7 @@ struct SettingPurchaseFeature{
         var hello:String = "Hello world"
         var products:[Product] = []
         var isInit = false
+        var catType: CatType = .doro
     }
     enum Action:Equatable{
         case doneWillTapped

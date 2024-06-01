@@ -48,6 +48,7 @@
 		632F893B2BB5717D00F2DC0B /* TimerFeature+ControllType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F893A2BB5717D00F2DC0B /* TimerFeature+ControllType.swift */; };
 		632F89412BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89402BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift */; };
 		632F89462BB5C52300F2DC0B /* TimerLogicReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89452BB5C52300F2DC0B /* TimerLogicReducers.swift */; };
+		6332FC352C0B465B00FBEBB1 /* OfferList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6332FC342C0B465B00FBEBB1 /* OfferList.swift */; };
 		633558992C08D08000059332 /* BreakSleepToStandbyIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633558982C08D08000059332 /* BreakSleepToStandbyIntent.swift */; };
 		6335589A2C08D08000059332 /* BreakSleepToStandbyIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633558982C08D08000059332 /* BreakSleepToStandbyIntent.swift */; };
 		6335589B2C08D08000059332 /* BreakSleepToStandbyIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633558982C08D08000059332 /* BreakSleepToStandbyIntent.swift */; };
@@ -90,8 +91,14 @@
 		636EA3282BEF845700203538 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EA3272BEF845700203538 /* SessionError.swift */; };
 		636EA32B2BEF856B00203538 /* PomoSession+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EA32A2BEF856B00203538 /* PomoSession+Snapshot.swift */; };
 		636EA32D2BEF858D00203538 /* UserDefaultsSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EA32C2BEF858D00203538 /* UserDefaultsSessionStore.swift */; };
+		637104112C09C8B20099075C /* CatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637104102C09C8B20099075C /* CatType.swift */; };
+		637104142C09CD270099075C /* CatSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637104132C09CD270099075C /* CatSelectView.swift */; };
+		637104182C09CD9F0099075C /* CatSelectFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637104172C09CD9F0099075C /* CatSelectFeature.swift */; };
+		6371041A2C0B2A670099075C /* CatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637104192C0B2A670099075C /* CatList.swift */; };
+		6371041C2C0B32FB0099075C /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6371041B2C0B32FB0099075C /* Info.swift */; };
+		6371041F2C0B33A80099075C /* ConfirmBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6371041E2C0B33A80099075C /* ConfirmBtn.swift */; };
+		637104232C0B3D300099075C /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637104222C0B3D300099075C /* Information.swift */; };
 		637340812BA7440900B2A10F /* TimerRecordItemTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637340802BA7440900B2A10F /* TimerRecordItemTable.swift */; };
-		637340832BA7449F00B2A10F /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637340822BA7449F00B2A10F /* ShoppingItem.swift */; };
 		637340852BA745CB00B2A10F /* Legacy-ShoppingListItemsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637340842BA745CB00B2A10F /* Legacy-ShoppingListItemsScreen.swift */; };
 		637340872BA7460900B2A10F /* Legacy-AddShoppingListItemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637340862BA7460900B2A10F /* Legacy-AddShoppingListItemScreen.swift */; };
 		6373408D2BA7478A00B2A10F /* Legacy-ShoppingListItemFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6373408C2BA7478A00B2A10F /* Legacy-ShoppingListItemFeature.swift */; };
@@ -159,11 +166,11 @@
 		63C969F02B9FD509004E79C6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 63C969EF2B9FD509004E79C6 /* RealmSwift */; };
 		63CBAD8C2BCD2247004EE320 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBAD8B2BCD2247004EE320 /* LottieView.swift */; };
 		63CCAFA32BCD1E280045B2A0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 63CCAFA22BCD1E280045B2A0 /* Lottie */; };
-		63CCAFA62BCD1EB20045B2A0 /* Sleeping.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA52BCD1EB20045B2A0 /* Sleeping.json */; };
-		63CCAFA82BCD1EBB0045B2A0 /* Default.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA72BCD1EBB0045B2A0 /* Default.json */; };
-		63CCAFAB2BCD1EC60045B2A0 /* WellDone.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA92BCD1EC60045B2A0 /* WellDone.json */; };
+		63CCAFA62BCD1EB20045B2A0 /* doro_sleeping.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA52BCD1EB20045B2A0 /* doro_sleeping.json */; };
+		63CCAFA82BCD1EBB0045B2A0 /* doro_basic.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA72BCD1EBB0045B2A0 /* doro_basic.json */; };
+		63CCAFAB2BCD1EC60045B2A0 /* doro_done.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA92BCD1EC60045B2A0 /* doro_done.json */; };
 		63CCAFAC2BCD1EC60045B2A0 /* 04_confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFAA2BCD1EC60045B2A0 /* 04_confetti.json */; };
-		63CCAFAE2BCD1ED70045B2A0 /* Great.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFAD2BCD1ED70045B2A0 /* Great.json */; };
+		63CCAFAE2BCD1ED70045B2A0 /* doro_great.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFAD2BCD1ED70045B2A0 /* doro_great.json */; };
 		63DE9A922BECDBF900FF6204 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB632BDCDD9400FF5D33 /* UIFontExtension.swift */; };
 		63DE9A932BECDBFC00FF6204 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3FC412BB04B2500277576 /* FontExtension.swift */; };
 		63DE9A942BECDC0400FF6204 /* FontSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB612BDCDD0100FF5D33 /* FontSystem.swift */; };
@@ -269,6 +276,7 @@
 		632F893A2BB5717D00F2DC0B /* TimerFeature+ControllType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerFeature+ControllType.swift"; sourceTree = "<group>"; };
 		632F89402BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerSettingFeatures+Reducers.swift"; sourceTree = "<group>"; };
 		632F89452BB5C52300F2DC0B /* TimerLogicReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLogicReducers.swift; sourceTree = "<group>"; };
+		6332FC342C0B465B00FBEBB1 /* OfferList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferList.swift; sourceTree = "<group>"; };
 		633558982C08D08000059332 /* BreakSleepToStandbyIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakSleepToStandbyIntent.swift; sourceTree = "<group>"; };
 		6335589C2C08D27800059332 /* AppAwakeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAwakeIntent.swift; sourceTree = "<group>"; };
 		633558A12C08E15900059332 /* CatDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDependency.swift; sourceTree = "<group>"; };
@@ -303,8 +311,14 @@
 		636EA3272BEF845700203538 /* SessionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
 		636EA32A2BEF856B00203538 /* PomoSession+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomoSession+Snapshot.swift"; sourceTree = "<group>"; };
 		636EA32C2BEF858D00203538 /* UserDefaultsSessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsSessionStore.swift; sourceTree = "<group>"; };
+		637104102C09C8B20099075C /* CatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatType.swift; sourceTree = "<group>"; };
+		637104132C09CD270099075C /* CatSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatSelectView.swift; sourceTree = "<group>"; };
+		637104172C09CD9F0099075C /* CatSelectFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatSelectFeature.swift; sourceTree = "<group>"; };
+		637104192C0B2A670099075C /* CatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatList.swift; sourceTree = "<group>"; };
+		6371041B2C0B32FB0099075C /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		6371041E2C0B33A80099075C /* ConfirmBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmBtn.swift; sourceTree = "<group>"; };
+		637104222C0B3D300099075C /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		637340802BA7440900B2A10F /* TimerRecordItemTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordItemTable.swift; sourceTree = "<group>"; };
-		637340822BA7449F00B2A10F /* ShoppingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItem.swift; sourceTree = "<group>"; };
 		637340842BA745CB00B2A10F /* Legacy-ShoppingListItemsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Legacy-ShoppingListItemsScreen.swift"; sourceTree = "<group>"; };
 		637340862BA7460900B2A10F /* Legacy-AddShoppingListItemScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Legacy-AddShoppingListItemScreen.swift"; sourceTree = "<group>"; };
 		6373408C2BA7478A00B2A10F /* Legacy-ShoppingListItemFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Legacy-ShoppingListItemFeature.swift"; sourceTree = "<group>"; };
@@ -372,11 +386,11 @@
 		63C124DA2B9EF93D000A6D35 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		63C5BF552BCAB8BE00E5A89C /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		63CBAD8B2BCD2247004EE320 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		63CCAFA52BCD1EB20045B2A0 /* Sleeping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Sleeping.json; path = Dorocat/Resources/LottieAssets/Doro/Sleeping.json; sourceTree = SOURCE_ROOT; };
-		63CCAFA72BCD1EBB0045B2A0 /* Default.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Default.json; path = Dorocat/Resources/LottieAssets/Doro/Default.json; sourceTree = SOURCE_ROOT; };
-		63CCAFA92BCD1EC60045B2A0 /* WellDone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = WellDone.json; path = Dorocat/Resources/LottieAssets/Doro/WellDone.json; sourceTree = SOURCE_ROOT; };
+		63CCAFA52BCD1EB20045B2A0 /* doro_sleeping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = doro_sleeping.json; path = Dorocat/Resources/LottieAssets/Doro/doro_sleeping.json; sourceTree = SOURCE_ROOT; };
+		63CCAFA72BCD1EBB0045B2A0 /* doro_basic.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = doro_basic.json; path = Dorocat/Resources/LottieAssets/Doro/doro_basic.json; sourceTree = SOURCE_ROOT; };
+		63CCAFA92BCD1EC60045B2A0 /* doro_done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = doro_done.json; path = Dorocat/Resources/LottieAssets/Doro/doro_done.json; sourceTree = SOURCE_ROOT; };
 		63CCAFAA2BCD1EC60045B2A0 /* 04_confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 04_confetti.json; path = Dorocat/Resources/LottieAssets/Doro/04_confetti.json; sourceTree = SOURCE_ROOT; };
-		63CCAFAD2BCD1ED70045B2A0 /* Great.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Great.json; path = Dorocat/Resources/LottieAssets/Doro/Great.json; sourceTree = SOURCE_ROOT; };
+		63CCAFAD2BCD1ED70045B2A0 /* doro_great.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = doro_great.json; path = Dorocat/Resources/LottieAssets/Doro/doro_great.json; sourceTree = SOURCE_ROOT; };
 		63DF61B22BDAACC200D5C458 /* StoreDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDependency.swift; sourceTree = "<group>"; };
 		63DF61B42BDAACF100D5C458 /* Guides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guides.swift; sourceTree = "<group>"; };
 		63DF61B72BDAB07900D5C458 /* Dorocat.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Dorocat.storekit; sourceTree = "<group>"; };
@@ -580,6 +594,14 @@
 			path = Reducers;
 			sourceTree = "<group>";
 		};
+		6332FC362C0B506000FBEBB1 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				636EA3222BEF815400203538 /* SessionItem.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
 		633558A02C08E14B00059332 /* CatDependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -591,13 +613,14 @@
 		633E97EE2BD79E0D00215563 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6332FC362C0B506000FBEBB1 /* Menu */,
 				636EA3262BEF844C00203538 /* Errors */,
 				633E97EF2BD7ADE900215563 /* PomoValues.swift */,
 				633E97F12BD7AE0700215563 /* TimerStatus.swift */,
 				633E97F32BD7AE3C00215563 /* PomoAttributes.swift */,
 				63DF61B42BDAACF100D5C458 /* Guides.swift */,
-				636EA3222BEF815400203538 /* SessionItem.swift */,
 				63FF53762BF2F573006C009B /* TimerRecordItem.swift */,
+				637104102C09C8B20099075C /* CatType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -729,10 +752,10 @@
 		6371040E2C095BFF0099075C /* Doro */ = {
 			isa = PBXGroup;
 			children = (
-				63CCAFA72BCD1EBB0045B2A0 /* Default.json */,
-				63CCAFA52BCD1EB20045B2A0 /* Sleeping.json */,
-				63CCAFA92BCD1EC60045B2A0 /* WellDone.json */,
-				63CCAFAD2BCD1ED70045B2A0 /* Great.json */,
+				63CCAFA72BCD1EBB0045B2A0 /* doro_basic.json */,
+				63CCAFA52BCD1EB20045B2A0 /* doro_sleeping.json */,
+				63CCAFA92BCD1EC60045B2A0 /* doro_done.json */,
+				63CCAFAD2BCD1ED70045B2A0 /* doro_great.json */,
 				63CCAFAA2BCD1EC60045B2A0 /* 04_confetti.json */,
 			);
 			path = Doro;
@@ -743,6 +766,59 @@
 			children = (
 			);
 			path = Gilah;
+			sourceTree = "<group>";
+		};
+		637104122C09CCF50099075C /* CatSelect */ = {
+			isa = PBXGroup;
+			children = (
+				637104152C09CD2D0099075C /* CatSelectElements */,
+				637104132C09CD270099075C /* CatSelectView.swift */,
+			);
+			path = CatSelect;
+			sourceTree = "<group>";
+		};
+		637104152C09CD2D0099075C /* CatSelectElements */ = {
+			isa = PBXGroup;
+			children = (
+				6371041D2C0B33660099075C /* ViewComponents */,
+			);
+			path = CatSelectElements;
+			sourceTree = "<group>";
+		};
+		637104162C09CD520099075C /* CatSelectFeature */ = {
+			isa = PBXGroup;
+			children = (
+				637104172C09CD9F0099075C /* CatSelectFeature.swift */,
+			);
+			path = CatSelectFeature;
+			sourceTree = "<group>";
+		};
+		6371041D2C0B33660099075C /* ViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				637104192C0B2A670099075C /* CatList.swift */,
+				6371041B2C0B32FB0099075C /* Info.swift */,
+				6371041E2C0B33A80099075C /* ConfirmBtn.swift */,
+			);
+			path = ViewComponents;
+			sourceTree = "<group>";
+		};
+		637104202C0B3D0E0099075C /* PurchaseSheet */ = {
+			isa = PBXGroup;
+			children = (
+				637104212C0B3D1E0099075C /* PurchaseComponents */,
+				63A288572BD64ECA00C817E7 /* PurchaseSheet.swift */,
+			);
+			path = PurchaseSheet;
+			sourceTree = "<group>";
+		};
+		637104212C0B3D1E0099075C /* PurchaseComponents */ = {
+			isa = PBXGroup;
+			children = (
+				637104222C0B3D300099075C /* Information.swift */,
+				6332FC342C0B465B00FBEBB1 /* OfferList.swift */,
+			);
+			path = PurchaseComponents;
 			sourceTree = "<group>";
 		};
 		6373407E2BA743CD00B2A10F /* AnalyzeDBDependencies */ = {
@@ -866,6 +942,7 @@
 		63AD705B2BA43A3C00DBD6B9 /* TimerViews */ = {
 			isa = PBXGroup;
 			children = (
+				637104122C09CCF50099075C /* CatSelect */,
 				635923A72BECFE47002CC44C /* TimerSession */,
 				63A9C3FA2BA5AAC20076D42C /* TimerSetting */,
 				631058852BC17A1A008611AD /* TimerComponents */,
@@ -877,9 +954,9 @@
 		63AD705C2BA43A4F00DBD6B9 /* SettingViews */ = {
 			isa = PBXGroup;
 			children = (
+				637104202C0B3D0E0099075C /* PurchaseSheet */,
 				630285412BBD1A07009C32AE /* SettingComponents */,
 				63AD705D2BA43A5900DBD6B9 /* SettingView.swift */,
-				63A288572BD64ECA00C817E7 /* PurchaseSheet.swift */,
 			);
 			path = SettingViews;
 			sourceTree = "<group>";
@@ -887,6 +964,7 @@
 		63AD705F2BA43AE200DBD6B9 /* TimerFeatures */ = {
 			isa = PBXGroup;
 			children = (
+				637104162C09CD520099075C /* CatSelectFeature */,
 				635923A42BECFAE9002CC44C /* TimerSessionFeature */,
 				632F893F2BB584E800F2DC0B /* TimerSettingFeature */,
 				632F89372BB56E0900F2DC0B /* TimerFeature */,
@@ -1093,7 +1171,6 @@
 			children = (
 				637340802BA7440900B2A10F /* TimerRecordItemTable.swift */,
 				63FF53742BF2F4FF006C009B /* TimerSessionTable.swift */,
-				637340822BA7449F00B2A10F /* ShoppingItem.swift */,
 			);
 			path = Tables;
 			sourceTree = "<group>";
@@ -1261,9 +1338,9 @@
 			files = (
 				63C124DB2B9EF93D000A6D35 /* Preview Assets.xcassets in Resources */,
 				63B3FC3A2BB04A6600277576 /* Rubik-ExtraBold.ttf in Resources */,
-				63CCAFA62BCD1EB20045B2A0 /* Sleeping.json in Resources */,
+				63CCAFA62BCD1EB20045B2A0 /* doro_sleeping.json in Resources */,
 				63B3FC392BB04A6600277576 /* Rubik-Bold.ttf in Resources */,
-				63CCAFAB2BCD1EC60045B2A0 /* WellDone.json in Resources */,
+				63CCAFAB2BCD1EC60045B2A0 /* doro_done.json in Resources */,
 				63CCAFAC2BCD1EC60045B2A0 /* 04_confetti.json in Resources */,
 				632721862B9F2E5C007E3206 /* .gitignore in Resources */,
 				633FF07F2BDAB5A000D0F85F /* DoroTest.storekit in Resources */,
@@ -1277,13 +1354,13 @@
 				63C124D82B9EF93D000A6D35 /* Assets.xcassets in Resources */,
 				63B3FC3C2BB04A6600277576 /* Rubik-BoldItalic.ttf in Resources */,
 				63B3FC3B2BB04A6600277576 /* Rubik-Black.ttf in Resources */,
-				63CCAFAE2BCD1ED70045B2A0 /* Great.json in Resources */,
+				63CCAFAE2BCD1ED70045B2A0 /* doro_great.json in Resources */,
 				63B3FC3D2BB04A6600277576 /* Rubik-Italic.ttf in Resources */,
 				63B3FC3E2BB04A6600277576 /* Rubik-Regular.ttf in Resources */,
 				63B3FC322BB04A6600277576 /* Rubik-Medium.ttf in Resources */,
 				63B3FC372BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf in Resources */,
 				634C48B72BDB8F1D002E35DC /* DarumadropOne-Regular.ttf in Resources */,
-				63CCAFA82BCD1EBB0045B2A0 /* Default.json in Resources */,
+				63CCAFA82BCD1EBB0045B2A0 /* doro_basic.json in Resources */,
 				63B3FC352BB04A6600277576 /* Rubik-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1338,6 +1415,7 @@
 				63BD3C8A2BD261CA00C80542 /* TimerDependency.swift in Sources */,
 				6301F7A52BC3D0AF00E04214 /* Legacy-AnalyzeFeature.swift in Sources */,
 				63AD70522BA4297300DBD6B9 /* TimerView.swift in Sources */,
+				637104142C09CD270099075C /* CatSelectView.swift in Sources */,
 				63BD3C882BD2519900C80542 /* PomoNotiType.swift in Sources */,
 				63F3D6642BD1805B00F1204B /* PomoNotiDependency.swift in Sources */,
 				636EA32D2BEF858D00203538 /* UserDefaultsSessionStore.swift in Sources */,
@@ -1357,6 +1435,7 @@
 				63FF53772BF2F573006C009B /* TimerRecordItem.swift in Sources */,
 				636EA3252BEF83CF00203538 /* PomoSessionDependency.swift in Sources */,
 				63BBF51C2BBD453C0094872B /* AnalyzeDurationView.swift in Sources */,
+				6332FC352C0B465B00FBEBB1 /* OfferList.swift in Sources */,
 				6373504C2BB7E3AE00221F20 /* TimeFeature+TimerStatus.swift in Sources */,
 				63A9C4002BA5E2D60076D42C /* AnalyzeView.swift in Sources */,
 				636E9F662BA818000006FE56 /* DBActor.swift in Sources */,
@@ -1364,7 +1443,7 @@
 				637340852BA745CB00B2A10F /* Legacy-ShoppingListItemsScreen.swift in Sources */,
 				631E71562BDA380E00DDD72B /* AppState>Notification.swift in Sources */,
 				6345AB622BDCDD0100FF5D33 /* FontSystem.swift in Sources */,
-				637340832BA7449F00B2A10F /* ShoppingItem.swift in Sources */,
+				637104232C0B3D300099075C /* Information.swift in Sources */,
 				63AD70562BA42A6E00DBD6B9 /* DoroMainView.swift in Sources */,
 				63A2885B2BD6507100C817E7 /* SettingPurchaseFeature.swift in Sources */,
 				631FA2122BE7810300E603A2 /* TimerController>Haptic.swift in Sources */,
@@ -1375,8 +1454,10 @@
 				63A9C3FD2BA5E21A0076D42C /* AnalyzeFeature.swift in Sources */,
 				632F893B2BB5717D00F2DC0B /* TimerFeature+ControllType.swift in Sources */,
 				63F804A42BF4812E007333AF /* TimerSessionRepository.swift in Sources */,
+				6371041A2C0B2A670099075C /* CatList.swift in Sources */,
 				63A9C3F92BA5A3F10076D42C /* NumberPickerView.swift in Sources */,
 				638EAB032BBF7F50007F8CAC /* DoroTogglerView.swift in Sources */,
+				637104112C09C8B20099075C /* CatType.swift in Sources */,
 				63A5175F2BD2D54200FEAEF6 /* HapticDependency.swift in Sources */,
 				63C124D42B9EF93D000A6D35 /* DorocatApp.swift in Sources */,
 				635923A62BECFAF4002CC44C /* TimerSessionFeature.swift in Sources */,
@@ -1392,6 +1473,7 @@
 				6301F7A32BC3D09500E04214 /* AsyncMap.swift in Sources */,
 				63170A592BF84ACB00F35D6A /* FocusSleepToPauseIntent.swift in Sources */,
 				63AD70642BA43F6D00DBD6B9 /* TimerSettingFeature.swift in Sources */,
+				637104182C09CD9F0099075C /* CatSelectFeature.swift in Sources */,
 				63C5BF562BCAB8BE00E5A89C /* CircularProgressView.swift in Sources */,
 				6352AFFC2BF6422E00929F47 /* ActivityIntentManager.swift in Sources */,
 				639F8D202BCA5F2700D66551 /* AsyncForEach.swift in Sources */,
@@ -1402,6 +1484,7 @@
 				63FF53752BF2F4FF006C009B /* TimerSessionTable.swift in Sources */,
 				639F8D152BC97C8700D66551 /* AnalyzeFeautre+Action.swift in Sources */,
 				637350532BB8161D00221F20 /* DateExtensions.swift in Sources */,
+				6371041C2C0B32FB0099075C /* Info.swift in Sources */,
 				635C9D3D2BB082E400BFD46D /* PomoDependency.swift in Sources */,
 				63B521C72BD3C43800400ADB /* DoneBtnStyle.swift in Sources */,
 				6359D9882BC576C40045DEC7 /* AppStateReducers.swift in Sources */,
@@ -1411,6 +1494,7 @@
 				633E97F42BD7AE3C00215563 /* PomoAttributes.swift in Sources */,
 				63AD705E2BA43A5900DBD6B9 /* SettingView.swift in Sources */,
 				636EA32B2BEF856B00203538 /* PomoSession+Snapshot.swift in Sources */,
+				6371041F2C0B33A80099075C /* ConfirmBtn.swift in Sources */,
 				631058892BC17A5A008611AD /* TimerViewComponents.swift in Sources */,
 				63170A632BF9175000F35D6A /* PauseToFocusSleepIntent.swift in Sources */,
 				636EA3282BEF845700203538 /* SessionError.swift in Sources */,

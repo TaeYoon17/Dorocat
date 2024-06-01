@@ -22,6 +22,7 @@ import ComposableArchitecture
         case setStatus(TimerFeatureStatus,count: Int? = nil,startDate:Date? = nil)
         case timerSetting(PresentationAction<TimerSettingFeature.Action>)
         case timerSession(PresentationAction<TimerSessionFeature.Action>)
+        case catSelect(PresentationAction<CatSelectFeature.Action>)
         case setAppState(DorocatFeature.AppStateType)
         case setGuideState(Guides)
     }
@@ -50,6 +51,7 @@ import ComposableArchitecture
                 return .none
             case .timerSession(.presented(.delegate(.cancel))): return .none
             case .timerSession: return .none
+            case .catSelect: return .none
             //MARK: --  내부 로직 Action 처리
             case .timerTick: return self.timerTick(state: &state)
             case .setStatus(let status,let count,let startDate):
@@ -103,6 +105,9 @@ import ComposableArchitecture
         }
         .ifLet(\.$timerSession, action: \.timerSession){
             TimerSessionFeature()
+        }
+        .ifLet(\.$catSelect, action: \.catSelect){
+            CatSelectFeature()
         }
     }
 }

@@ -14,6 +14,7 @@ extension DorocatFeature{
         var guideState = Guides()
         var isAppLaunched = false
         var showPageIndicator = true
+        var catType:CatType = .doro
         
         //MARK: -- 하위 뷰의 State 들...
         var anylzeState = AnalyzeFeature.State()
