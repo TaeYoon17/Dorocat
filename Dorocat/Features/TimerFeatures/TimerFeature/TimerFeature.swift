@@ -40,7 +40,7 @@ import ComposableArchitecture
             case .timerSetting(.presented(.delegate(.cancel))): return .none
             case .timerSetting(.presented(.delegate(.setTimerInfo(let info)))):
                 let count = info.timeSeconds
-                let pomoValues = PomoValues(status: state.timerStatus, information: info, cycle: 0, count: count,startDate: state.startDate)
+                let pomoValues = PomoValues(catType: state.catType, status: state.timerStatus, information: info, cycle: 0, count: count,startDate: state.startDate)
                 return .run { send in
                     await send(.setDefaultValues(pomoValues))
                     await pomoDefaults.setAll(pomoValues)
@@ -79,7 +79,6 @@ import ComposableArchitecture
                     await awakeTimer(send)
                 }
             case .setDefaultValues(let value):
-                print("default Values \(value)")
                 guard let info = value.information else {
                     state.timerInformation = TimerInformation.defaultCreate()
                     state.count = 25 * 60

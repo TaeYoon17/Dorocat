@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>INIntentsSupported</key>
+	<array>
+		<string>FocusSleepToPauseIntent</string>
+		<string>PauseToFocusSleepIntent</string>
+		<string>BreakSleepToStandbyIntent</string>
+		<string>AppAwakeIntent</string>
+	</array>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
@@ -12,7 +19,10 @@
 			<string></string>
 			<key>IntentsSupported</key>
 			<array>
-				<string>DorocatIntents</string>
+				<string>FocusSleepToPauseIntent</string>
+				<string>PauseToFocusSleepIntent</string>
+				<string>BreakSleepToStandbyIntent</string>
+				<string>AppAwakeIntent</string>
 			</array>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>

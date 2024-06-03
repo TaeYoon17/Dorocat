@@ -50,11 +50,12 @@ import UIKit
                     state.isLaunch = true
                     let notificationEffect:Effect<Action> = .run { send in
                         if await !notification.isDetermined{
-                            _ = try await notification.requestPermission()
+                            await send(.setNotiType(.denied))
                         }
                     }
                     let initialEffect:Effect<Action> = .run { send in
-                        let isAvailable = await initial.isUsed // 이미 초기 설정이 끝났다... 기존에 있는 값을 가져오면 됨
+                        // 이미 초기 설정이 끝났다... 기존에 있는 값을 가져오면 됨
+                        let isAvailable = await initial.isUsed
                         if isAvailable{
                             await send(.setHapticEnabled(await haptic.enable))
                             await send(.initAction)
@@ -79,25 +80,39 @@ import UIKit
                 state.notiAuthType = notiType
                 return .none
             case .setNotiAuthorized(let isAuthorized):
-                if isAuthorized{
-                    guard let url = URL(string: UIApplication.openNotificationSettingsURLString) else { return .none }
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url)
+                return .run{ send in
+                    if await !notification.isDetermined{
+                        let permissionResult = try await notification.requestPermission()
+                        if permissionResult{
+                            await send(.setNotiType(.enabled))
+                            await send(.setNotiEnabled(permissionResult))
+                        }
+                    }else{
+                        if isAuthorized{
+                            guard let url = await
+                                    URL(string: UIApplication.openNotificationSettingsURLString) else { return }
+                            if await UIApplication.shared.canOpenURL(url) {
+                                Task{@MainActor in
+                                    await UIApplication.shared.open(url)
+                                }
+                            }
+                        }
                     }
                 }
-                return .run{ send in
+                .merge(with: .run(operation: { send in
                     await haptic.impact(style: .light)
-                }
+                }))
             case .setNotiEnabled(let isEnabled):
                 state.isNotiEnabled = isEnabled
                 let hapticEffect: Effect<Action> = .run { send in
                     await haptic.impact(style: .light)
                 }
                 switch state.notiAuthType{
-                case .denied: return hapticEffect
+                case .denied:
+                    return hapticEffect
                 case .disabled,.enabled: return .run { send in
-                     await notification.setEnable(isEnabled)
-                    }.merge(with: hapticEffect)
+                    await notification.setEnable(isEnabled)
+                }.merge(with: hapticEffect)
                 }
             case .setSoundEnabled(let isSoundEnabled):
                 state.isSoundEnabled = isSoundEnabled
@@ -127,6 +142,7 @@ import UIKit
                             await send(.setNotiType(.denied))
                         }else{
                             let enable = await notification.isEnable
+                            print(enable)
                             await send(.setNotiType(enable ? .enabled : .disabled))
                             await send(.setNotiEnabled(enable))
                         }

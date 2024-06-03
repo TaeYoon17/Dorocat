@@ -30,6 +30,7 @@ fileprivate extension DorocatFeature{
             await timeBackground.set(date: Date())
             let difference = Int(Date().timeIntervalSince(prevDate))
             let pomoDefaultsValue:PomoValues = await pomoDefaults.getAll()
+            let sessionItem = pomoDefaultsValue.sessionItem
             let restTime = pomoDefaultsValue.count
             let timerTotalTime = pomoDefaultsValue.information?.timeSeconds ?? 0
             switch next{
@@ -37,21 +38,24 @@ fileprivate extension DorocatFeature{
             case .focusSleep:
                 await pomoDefaults.setStatus(.focus)
                 await timeBackground.set(timerStatus: .sleep(.focusSleep))
-                await liveActivity.updateActivity(type: .focusSleep,restCount: restTime)
+                await liveActivity.updateActivity(type:.focusSleep,item:pomoDefaultsValue.sessionItem, cat: pomoDefaultsValue.catType,restCount: restTime)
                 try? await setFocusSleepNotification(pomoDefaultValue: pomoDefaultsValue)
             case .pause:
                 var differenceTime = await pomoDefaults.getAll().count - difference - 1
                 differenceTime = max(0, differenceTime)
                 await pomoDefaults.setCount(differenceTime)
                 await pomoDefaults.setStatus(.pause)
-                await liveActivity.updateActivity(type: .pause, restCount: differenceTime)
+                await liveActivity.updateActivity(type: .pause,item: sessionItem, cat: pomoDefaultsValue.catType, restCount: differenceTime)
                 try await notification.removeAllNotifications()
             case .standBy:
                 let differenceTime = await pomoDefaults.getAll().count - difference
                 guard differenceTime > 0 else { return } // 0보다 작으면 이미
                 await pomoDefaults.setCount(timerTotalTime)
                 await pomoDefaults.setStatus(.standBy)
-                await liveActivity.updateActivity(type: .standBy, restCount: 0)
+                await liveActivity.updateActivity(type: .standBy,
+                                                  item: sessionItem,
+                                                  cat: pomoDefaultsValue.catType,
+                                                  restCount: 0)
             }
         }
     }

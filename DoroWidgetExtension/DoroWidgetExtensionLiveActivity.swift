@@ -9,12 +9,13 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 enum DoroWidgetComponent{}
+
 struct DoroWidgetExtensionLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: PomoAttributes.self) { context in
             // Lock screen/banner UI goes here
             HStack(content: {
-                Image(.catLock).resizable().scaledToFill().frame(width: 60,height:60)
+                Image(context.state.catType.lockImageLabel).resizable().scaledToFill().frame(width: 60,height:60)
                     .padding(.trailing,16)
                 VStack(alignment:.leading,spacing: 0,content: {
                     Text(context.state.timerSession.name).font(.button).foregroundStyle(.grey01)
@@ -40,16 +41,24 @@ struct DoroWidgetExtensionLiveActivity: Widget {
                     Text("DoroCat")
                 }
                 DynamicIslandExpandedRegion(.bottom) {
+                    
                     Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),since: .now))
                     // more content
                 }
             } compactLeading: {
-                Image(.compactCat).resizable().scaledToFit()
+                Image(context.state.catType.compactLabel).resizable().scaledToFit()
                     .frame(width: 38)
             } compactTrailing: {
-                Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),
-                                                    since: .now),showsHours: false).monospacedDigit()
-                .frame(width:48)
+                Group{
+                    switch context.state.timerStatus {
+                    case .focusSleep,.breakSleep:
+                        Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),since: .now)).foregroundStyle(.doroWhite)
+                    case .pause,.standBy:
+                        let hour = context.state.count / 60
+                        let min = context.state.count % 60
+                        Text("\(hour):\(min)").foregroundStyle(.doroWhite)
+                    }
+                }.frame(width:48)
             } minimal: {
                 let start = Date.now.addingTimeInterval(TimeInterval(-context.state.endTime+context.state.count))
                 let end = Date.now.addingTimeInterval(TimeInterval(context.state.endTime))

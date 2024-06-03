@@ -13,10 +13,49 @@ extension CatSelectViewComponents{
         let store: StoreOf<CatSelectFeature>
         var body: some View {
             HStack(spacing:20) {
-                ForEach(CatType.allCases,id:\.self){ catType in
-                    CatListItem(catType: catType,isActive: catType == store.catType) {
-                        print("이건 뭘까...")
+                if store.isProUser{
+                    ProCatList(store: store)
+                }else{
+                    StandartCatList(store: store)
+                }
+            }
+        }
+    }
+}
+extension CatSelectViewComponents{
+    struct ProCatList: View {
+        let store: StoreOf<CatSelectFeature>
+        var body: some View {
+            ForEach(CatType.allCases,id:\.self){ catType in
+                if catType.isAssetExist{
+                    if catType == store.catType{
+                        CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailLogo), isLocked: false){
+                            
+                            print("처음 고른 로고 선택")
+                        }
+                    }else{
+                        CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailInActiveLogo), isLocked: false){
+                            store.send(.action(.itemTapped(catType)))
+                        }
                     }
+                }else{
+                    CatSelectStyle.ItemView(name: "untitled",
+                                            imageThumbnail: store.catType.imageAssetName(type: .thumbnailInActiveLogo),
+                                            isLocked: true)
+                }
+            }
+        }
+    }
+    struct StandartCatList:View {
+        let store: StoreOf<CatSelectFeature>
+        var body: some View {
+            ForEach(CatType.allCases,id:\.self){ catType in
+                if catType == store.catType{
+                    CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailLogo), isLocked: false){
+                        print("도로 선택!!")
+                    }
+                }else{
+                    CatSelectStyle.ItemView(name: catType.isAssetExist ? catType.rawValue.capitalized : "untitled", imageThumbnail: catType.isAssetExist ? catType.imageAssetName(type: .thumbnailInActiveLogo) : store.catType.imageAssetName(type: .thumbnailInActiveLogo), isLocked: true)
                 }
             }
         }
@@ -24,10 +63,11 @@ extension CatSelectViewComponents{
 }
 struct CatListItem: View {
     let catType: CatType
+    let selectedCatType:CatType
     var isActive: Bool = true
     var action: (()->())?
     var body: some View {
-        if isActive{
+        if selectedCatType == catType{
             VStack{
                 Button{
                     action?()
@@ -47,9 +87,10 @@ struct CatListItem: View {
             }
         }
     }
-    func itemImage(name:String) -> some View{
-        Image(name).resizable()
-            .aspectRatio(1, contentMode: .fit)
-            .frame(width: 60,height: 60)
-    }
+
+}
+fileprivate func itemImage(name:String) -> some View{
+    Image(name).resizable()
+        .aspectRatio(1, contentMode: .fit)
+        .frame(width: 60,height: 60)
 }

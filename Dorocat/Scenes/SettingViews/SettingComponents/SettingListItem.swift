@@ -65,7 +65,7 @@ enum SettingListItem{
         }
     }
 }
-#Preview {                       
+#Preview {
     VStack {
         SettingListItem.Toggler(title: "Notifications",
                                 description: "Get notified of focus sessions or breaks", isOn: .constant(false))

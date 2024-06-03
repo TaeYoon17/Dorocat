@@ -193,6 +193,10 @@ extension TimerViewComponents{
         let store: StoreOf<TimerFeature>
         var body: some View {
             switch store.timerStatus{
+            case .breakStandBy,.completed:
+                EmptyView()
+            case .breakTime:
+                Text("Break Time").foregroundStyle(.grey01).font(.button)
             case .standBy:
                 Button { store.send(.viewAction(.sessionTapped)) } label: {
                     textItem

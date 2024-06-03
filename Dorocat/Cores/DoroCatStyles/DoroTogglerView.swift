@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ComposableArchitecture
+//import ComposableArchitecture
 struct DoroTogglerView: View {
     enum ToggleSize{
         case small
@@ -133,19 +133,8 @@ struct CustomTogglerView<BackContent: View,CircleContent: View>: View {
        }
    }
 }
-#Preview(body: {
-    TimerSettingView(store: Store(initialState: TimerSettingFeature.State(), reducer: {
-        TimerSettingFeature()
-    }))
-})
-//MARK: -- 세팅 프리뷰 구성
-//#Preview {
-//    VStack {
-//        SettingListItem.Toggler(title: "Notifications",
-//                                description: "Get notified of focus sessions or breaks", isOn: .constant(false))
-//        SettingListItem.Linker(title: "Send Feedback") {
-//            print("hello world")
-//        }
-//    }
-//
-//}
+//#Preview(body: {
+//    TimerSettingView(store: Store(initialState: TimerSettingFeature.State(), reducer: {
+//        TimerSettingFeature()
+//    }))
+//})

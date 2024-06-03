@@ -15,8 +15,10 @@ struct PurchaseSheet: View {
             PurchaseViewComponents.Information(store: store)
             HStack(spacing:20) {
                 ForEach(CatType.allCases,id:\.self){ catType in
-                    CatListItem(catType: catType,isActive: catType == store.catType) {
-                        print("이건 뭘까...")
+                    if catType == store.catType{
+                        CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailLogo), isLocked: false)
+                    }else{
+                        CatSelectStyle.ItemView(name: catType.isAssetExist ? catType.rawValue.capitalized : "untitled", imageThumbnail: catType.isAssetExist ? catType.imageAssetName(type: .thumbnailInActiveLogo) : store.catType.imageAssetName(type: .thumbnailInActiveLogo), isLocked: true)
                     }
                 }
             }.padding(.bottom,56)

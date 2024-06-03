@@ -45,12 +45,7 @@ extension DoroWidgetComponent{
             let intent: any LiveActivityIntent
             var body: some View{
                 Toggle(isOn: false, intent: self.intent) {
-                    Text(info).font(.header04).minimumScaleFactor(0.5)
-                        .foregroundStyle(.doroWhite)
-                        .padding(.horizontal,20)
-                        .padding(.vertical,9)
-                        .background(.grey04)
-                        .clipShape(Capsule())
+                    TriggerBtnView(info: info)
                 }.buttonBorderShape(.capsule).buttonStyle(.plain)
             }
         }
@@ -58,14 +53,20 @@ extension DoroWidgetComponent{
             let info:String
             var body: some View {
                 Toggle(isOn: .constant(false)) {
-                    Text(info).font(.header04).minimumScaleFactor(0.5)
-                        .lineLimit(1)
-                        .foregroundStyle(.doroWhite)
-                        .padding(.horizontal,20)
-                        .padding(.vertical,9)
-                        .background(.grey04)
-                        .clipShape(Capsule())
+                    TriggerBtnView(info: info)
                 }.buttonBorderShape(.capsule).buttonStyle(.plain)
+            }
+        }
+        struct TriggerBtnView: View{
+            let info:String
+            var body: some View{
+                Text(info).font(.header04).minimumScaleFactor(0.5)
+                    .lineLimit(1)
+                    .foregroundStyle(.doroWhite)
+                    .padding(.horizontal,20)
+                    .padding(.vertical,9)
+                    .background(.grey04)
+                    .clipShape(Capsule())
             }
         }
     }

@@ -35,6 +35,9 @@
     "AppAwakeIntent" : {
 
     },
+    "Break Time" : {
+
+    },
     "BreakSleepToStandbyIntent" : {
 
     },

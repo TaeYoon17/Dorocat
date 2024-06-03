@@ -10,6 +10,7 @@ import ActivityKit
 struct PomoAttributes:ActivityAttributes{
     struct ContentState:Codable,Hashable{
         var timerStatus: TimerActivityType = .focusSleep
+        var catType: CatType = .doro
         var timerSession: SessionItem = .init(name: "Focus")
         var count:Int = 0
         var endTime:Int = 0

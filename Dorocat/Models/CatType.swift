@@ -6,9 +6,9 @@
 //
 
 import Foundation
-enum CatType:String,CaseIterable,Identifiable{
+enum CatType:String,CaseIterable,Identifiable,Codable{
     var id:String{self.rawValue}
-    case doro,bbang,gilah,greem
+    case doro,bbang,ace,greem
     func lottieAssetName(type:LottieAssetType)->String{
         let name = "\(self.rawValue)_\(type.rawValue)"
         return name
@@ -20,7 +20,7 @@ enum CatType:String,CaseIterable,Identifiable{
         switch self{
         case .bbang: "Bbang is a calm and curious cat\nwho loves to sleep often!"
         case .doro: "Doro is a calm and curious cat\nwho loves to sleep often!"
-        case .gilah: "Gilah is a calm and curious cat\nwho loves to sleep often!"
+        case .ace: "Ace is a calm and curious cat\nwho loves to sleep often!"
         case .greem: "Greem is a calm and curious cat\nwho loves to sleep often!"
         }
     }
@@ -38,5 +38,11 @@ extension CatType{
         case thumbnailInActiveLogo
         case settingInfoLogo
         case onboardingIcon
+    }
+    var isAssetExist:Bool{
+        switch self{
+        case .bbang: false
+        default: true
+        }
     }
 }

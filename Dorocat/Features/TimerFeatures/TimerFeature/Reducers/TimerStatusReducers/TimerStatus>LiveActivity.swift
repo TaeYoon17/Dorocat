@@ -21,9 +21,10 @@ extension TimerFeature.StatusReducers{
         func setFocus(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> Effect<TimerFeature.Action> {
             let count = count ?? state.timerInformation.timeSeconds
             let focusTotalTime = state.timerInformation.timeSeconds
-            return .run { send in
+            let session = state.selectedSession
+            return .run {[cat = state.catType] send in
                 await liveActivity.removeActivity()
-                await liveActivity.addActivity(type: .focusSleep, restCount: count, totalCount: focusTotalTime)
+                await liveActivity.addActivity(type: .focusSleep,item: session, cat: cat, restCount: count, totalCount: focusTotalTime)
             }
         }
         
@@ -42,9 +43,9 @@ extension TimerFeature.StatusReducers{
         func setBreakTime(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> Effect<TimerFeature.Action> {
             let count = count ?? state.timerInformation.breakTime
             let breakTotalTime = state.timerInformation.breakTime
-            return .run {send in
+            return .run {[item = state.selectedSession,cat = state.catType]send in
                 await liveActivity.removeActivity()
-                await liveActivity.addActivity(type:.breakSleep,restCount: count,totalCount: breakTotalTime)
+                await liveActivity.addActivity(type:.breakSleep,item:item, cat: cat,restCount: count,totalCount: breakTotalTime)
             }
         }
         

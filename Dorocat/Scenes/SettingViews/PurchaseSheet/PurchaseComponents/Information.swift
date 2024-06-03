@@ -7,7 +7,6 @@
 
 import SwiftUI
 import ComposableArchitecture
-
 extension PurchaseViewComponents{
     struct Information:View {
         let store: StoreOf<SettingPurchaseFeature>

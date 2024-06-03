@@ -19,7 +19,7 @@ extension TimerFeature.AppStateReducers{
             case .inActive: return .none
             case .background:
                 let prevStatus = state.timerStatus
-                let values = PomoValues(status: prevStatus, information: state.timerInformation, cycle: state.cycle, count: state.count,startDate: state.startDate)
+                let values = PomoValues(catType: state.catType, status: prevStatus, information: state.timerInformation, cycle: state.cycle, count: state.count,startDate: state.startDate)
                 return .run{ send in
                     try await self.setNotification(send: send, status: prevStatus, value: values)
                 }
