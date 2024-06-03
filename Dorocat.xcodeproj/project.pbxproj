@@ -27,6 +27,8 @@
 		6310FCC62C0DF2BC0068FE29 /* CatSelectControllerReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310FCC52C0DF2BC0068FE29 /* CatSelectControllerReducers.swift */; };
 		6310FCC82C0DF5E80068FE29 /* ControllerReducer>Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310FCC72C0DF5E80068FE29 /* ControllerReducer>Action.swift */; };
 		6310FCCB2C0DFBA30068FE29 /* CatSelectStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310FCCA2C0DFBA30068FE29 /* CatSelectStyle.swift */; };
+		6310FCCD2C0E06510068FE29 /* FeedbackSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310FCCC2C0E06510068FE29 /* FeedbackSheet.swift */; };
+		6310FCD22C0E0EB80068FE29 /* FeedbackDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310FCD12C0E0EB80068FE29 /* FeedbackDependency.swift */; };
 		63170A592BF84ACB00F35D6A /* FocusSleepToPauseIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63170A582BF84ACB00F35D6A /* FocusSleepToPauseIntent.swift */; };
 		63170A5A2BF84ACF00F35D6A /* FocusSleepToPauseIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63170A582BF84ACB00F35D6A /* FocusSleepToPauseIntent.swift */; };
 		63170A5B2BF84AD000F35D6A /* FocusSleepToPauseIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63170A582BF84ACB00F35D6A /* FocusSleepToPauseIntent.swift */; };
@@ -275,6 +277,8 @@
 		6310FCC52C0DF2BC0068FE29 /* CatSelectControllerReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatSelectControllerReducers.swift; sourceTree = "<group>"; };
 		6310FCC72C0DF5E80068FE29 /* ControllerReducer>Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ControllerReducer>Action.swift"; sourceTree = "<group>"; };
 		6310FCCA2C0DFBA30068FE29 /* CatSelectStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatSelectStyle.swift; sourceTree = "<group>"; };
+		6310FCCC2C0E06510068FE29 /* FeedbackSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSheet.swift; sourceTree = "<group>"; };
+		6310FCD12C0E0EB80068FE29 /* FeedbackDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackDependency.swift; sourceTree = "<group>"; };
 		63170A582BF84ACB00F35D6A /* FocusSleepToPauseIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSleepToPauseIntent.swift; sourceTree = "<group>"; };
 		63170A5D2BF854FF00F35D6A /* DorocatFeature+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DorocatFeature+State.swift"; sourceTree = "<group>"; };
 		63170A602BF8677A00F35D6A /* TimerActivityReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerActivityReducer.swift; sourceTree = "<group>"; };
@@ -536,6 +540,22 @@
 				6310FCCA2C0DFBA30068FE29 /* CatSelectStyle.swift */,
 			);
 			path = DoroCatStyles;
+			sourceTree = "<group>";
+		};
+		6310FCCF2C0E065A0068FE29 /* FeedbackSheet */ = {
+			isa = PBXGroup;
+			children = (
+				6310FCCC2C0E06510068FE29 /* FeedbackSheet.swift */,
+			);
+			path = FeedbackSheet;
+			sourceTree = "<group>";
+		};
+		6310FCD02C0E0E750068FE29 /* FeedbackDependencies */ = {
+			isa = PBXGroup;
+			children = (
+				6310FCD12C0E0EB80068FE29 /* FeedbackDependency.swift */,
+			);
+			path = FeedbackDependencies;
 			sourceTree = "<group>";
 		};
 		63170A5C2BF854BB00F35D6A /* DorocatFeatures */ = {
@@ -1007,6 +1027,7 @@
 		63AD705C2BA43A4F00DBD6B9 /* SettingViews */ = {
 			isa = PBXGroup;
 			children = (
+				6310FCCF2C0E065A0068FE29 /* FeedbackSheet */,
 				637104202C0B3D0E0099075C /* PurchaseSheet */,
 				630285412BBD1A07009C32AE /* SettingComponents */,
 				63AD705D2BA43A5900DBD6B9 /* SettingView.swift */,
@@ -1160,6 +1181,7 @@
 		63C124E12B9EFAD5000A6D35 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				6310FCD02C0E0E750068FE29 /* FeedbackDependencies */,
 				633558A02C08E14B00059332 /* CatDependencies */,
 				636EA32E2BEF879300203538 /* DependencyActors */,
 				63FD1AA02BE0E54500E8D6EA /* IntialDependencies */,
@@ -1476,6 +1498,7 @@
 				63BD3C882BD2519900C80542 /* PomoNotiType.swift in Sources */,
 				63F3D6642BD1805B00F1204B /* PomoNotiDependency.swift in Sources */,
 				636EA32D2BEF858D00203538 /* UserDefaultsSessionStore.swift in Sources */,
+				6310FCD22C0E0EB80068FE29 /* FeedbackDependency.swift in Sources */,
 				633E97F02BD7ADE900215563 /* PomoValues.swift in Sources */,
 				63170A5E2BF854FF00F35D6A /* DorocatFeature+State.swift in Sources */,
 				63B2BAE32BEBB473000090C5 /* TimerStatus>LiveActivity.swift in Sources */,
@@ -1565,6 +1588,7 @@
 				631E71582BDA386900DDD72B /* AppState>TimerSaveFetch.swift in Sources */,
 				638EAB062BBF7FDE007F8CAC /* DragGesture+Swipe.swift in Sources */,
 				6373408D2BA7478A00B2A10F /* Legacy-ShoppingListItemFeature.swift in Sources */,
+				6310FCCD2C0E06510068FE29 /* FeedbackSheet.swift in Sources */,
 				633558A22C08E15900059332 /* CatDependency.swift in Sources */,
 				639F8D172BC9954400D66551 /* IntExtensions.swift in Sources */,
 				631FA2102BE780DC00E603A2 /* TimerControllerReducers.swift in Sources */,

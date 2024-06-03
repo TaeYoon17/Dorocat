@@ -22,6 +22,8 @@ import UIKit
         var isHapticEnabled = false
         var notiAuthType: NotificationStateType = .denied
         @Presents var purchaseSheet: SettingPurchaseFeature.State?
+        @Presents var feedbackSheet: FeedbackFeature.State?
+        @Presents var alert: AlertState<Action.Alert>?
         var appState = DorocatFeature.AppStateType.active
     }
     enum Action:Equatable{
@@ -29,18 +31,27 @@ import UIKit
         case setNotiEnabled(Bool)
         case setSoundEnabled(Bool)
         case setHapticEnabled(Bool)
+        
+        case openPurchase
         case ratingItemTapped
         case feedbackItemTapped
+        
         case setNotiType(NotificationStateType)
-        case purchaseSheet(PresentationAction<SettingPurchaseFeature.Action>)
         case launchAction
         case initAction
-        case openPurchase
+        
         case setAppState(DorocatFeature.AppStateType)
+        case feedbackSheet(PresentationAction<FeedbackFeature.Action>)
+        case purchaseSheet(PresentationAction<SettingPurchaseFeature.Action>)
+        case alert(PresentationAction<Alert>)
+        enum Alert:Equatable{
+            case noneExistMailApp
+        }
     }
     @Dependency(\.pomoNotification) var notification
     @Dependency(\.haptic) var haptic
     @Dependency(\.initial) var initial
+    @Dependency(\.feedback) var feedback
     enum CancelID{case initial}
     var body: some ReducerOf<Self>{
         Reduce{ state,action in
@@ -70,6 +81,8 @@ import UIKit
                 }
                 return .none
             case .purchaseSheet: return .none
+            case .feedbackSheet: return .none
+            case .alert: return .none
             case .openPurchase:
                 state.purchaseSheet = .init()
                 let hapticEffect:Effect<Action> = .run { send in await haptic.impact(style: .soft) }
@@ -130,6 +143,17 @@ import UIKit
                     await haptic.impact(style: .soft)
                 }
             case .feedbackItemTapped:
+                if feedback.isMailFeedbackAvailable{
+                    state.feedbackSheet = .init()
+                }else{
+                    state.alert = AlertState(title: {
+                        TextState("Can't open the Mail app.")
+                    },actions: {
+                        ButtonState(role: .cancel) {
+                            TextState("Confirm")
+                        }
+                    })
+                }
                 return .run { send in
                     await haptic.impact(style: .soft)
                 }
@@ -142,7 +166,6 @@ import UIKit
                             await send(.setNotiType(.denied))
                         }else{
                             let enable = await notification.isEnable
-                            print(enable)
                             await send(.setNotiType(enable ? .enabled : .disabled))
                             await send(.setNotiEnabled(enable))
                         }
@@ -154,5 +177,9 @@ import UIKit
         .ifLet(\.$purchaseSheet, action: \.purchaseSheet){
             SettingPurchaseFeature()
         }
+        .ifLet(\.$feedbackSheet, action: \.feedbackSheet){
+            FeedbackFeature()
+        }
+        .ifLet(\.$alert, action: \.alert)
     }
 }

@@ -57,10 +57,15 @@ struct SettingView: View {
                     }
                 })
             }.scrollIndicators(.hidden)
-                .sheet(item: $store.scope(state: \.purchaseSheet, action: \.purchaseSheet)) { settingPurchaseStore in
+            .sheet(item: $store.scope(state: \.purchaseSheet, action: \.purchaseSheet)) { settingPurchaseStore in
                     PurchaseSheet(store: settingPurchaseStore).presentationDetents([.large])
                         .presentationDragIndicator(.visible)
-                }
+            }
+            .sheet(item: $store.scope(state: \.feedbackSheet, action: \.feedbackSheet)) { sheetStore in
+                FeedbackSheet(store: sheetStore).ignoresSafeArea(.container,edges:.bottom).presentationDetents([.large]).tint(.doroWhite)
+                        .presentationDragIndicator(.visible)
+            }
+            .alert($store.scope(state: \.alert, action: \.alert))
         }
         .onAppear(){
             store.send(.launchAction)
