@@ -8,8 +8,21 @@
 import SwiftUI
 import ComposableArchitecture
 import ActivityKit
+import FirebaseCore
+
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+        return true
+    }
+}
+
+
 @main
-    struct DorocatApp: App {
+struct DorocatApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @Environment(\.scenePhase) var phase
     let store = Store(initialState: DorocatFeature.State(), reducer: { DorocatFeature()})
     var body: some Scene {
@@ -18,13 +31,13 @@ import ActivityKit
                 DefaultBG()
                 DoroMainView(store: store)
             }.preferredColorScheme(.dark)
-            .onAppear(){
-                store.send(.launchAction)
-            }
-            .onReceive(ActivityIntentManager.eventPublisher.receive(on: RunLoop.main), perform: { (prevValue,nextValue) in
-                print("TimerStatus: \(prevValue) \(nextValue)")
-                store.send(.setActivityAction(prev: prevValue, next: nextValue))
-            })
+                .onAppear(){
+                    store.send(.launchAction)
+                }
+                .onReceive(ActivityIntentManager.eventPublisher.receive(on: RunLoop.main), perform: { (prevValue,nextValue) in
+                    print("TimerStatus: \(prevValue) \(nextValue)")
+                    store.send(.setActivityAction(prev: prevValue, next: nextValue))
+                })
         }
         .onChange(of: phase) { oldValue, newValue in
             switch newValue{

@@ -45,6 +45,8 @@
 		631FA2122BE7810300E603A2 /* TimerController>Haptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631FA2112BE7810200E603A2 /* TimerController>Haptic.swift */; };
 		631FA2142BE788E800E603A2 /* TimerController>Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631FA2132BE788E800E603A2 /* TimerController>Guide.swift */; };
 		631FA2162BE790CE00E603A2 /* TimerController>Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631FA2152BE790CE00E603A2 /* TimerController>Action.swift */; };
+		6322F5A02C0EFEC900682C2C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6322F59F2C0EFEC900682C2C /* GoogleService-Info.plist */; };
+		6322F5A32C0EFF4800682C2C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6322F5A22C0EFF4800682C2C /* FirebaseAnalytics */; };
 		632721862B9F2E5C007E3206 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 632721852B9F2E5C007E3206 /* .gitignore */; };
 		632F53882BD7490800357C68 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632F53872BD7490800357C68 /* WidgetKit.framework */; };
 		632F538A2BD7490800357C68 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632F53892BD7490800357C68 /* SwiftUI.framework */; };
@@ -291,6 +293,7 @@
 		631FA2112BE7810200E603A2 /* TimerController>Haptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerController>Haptic.swift"; sourceTree = "<group>"; };
 		631FA2132BE788E800E603A2 /* TimerController>Guide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerController>Guide.swift"; sourceTree = "<group>"; };
 		631FA2152BE790CE00E603A2 /* TimerController>Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerController>Action.swift"; sourceTree = "<group>"; };
+		6322F59F2C0EFEC900682C2C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		632721852B9F2E5C007E3206 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		632F53852BD7490800357C68 /* DoroWidgetExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DoroWidgetExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		632F53872BD7490800357C68 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -458,6 +461,7 @@
 				633FF07D2BDAB14B00D0F85F /* StoreKit.framework in Frameworks */,
 				635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */,
 				6351FA162C0C1D9E00FD0C67 /* RealmSwift in Frameworks */,
+				6322F5A32C0EFF4800682C2C /* FirebaseAnalytics in Frameworks */,
 				63CCAFA32BCD1E280045B2A0 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1154,6 +1158,7 @@
 		63C124D22B9EF93D000A6D35 /* Dorocat */ = {
 			isa = PBXGroup;
 			children = (
+				6322F59F2C0EFEC900682C2C /* GoogleService-Info.plist */,
 				63B3FC432BB04CED00277576 /* Info.plist */,
 				633E97EE2BD79E0D00215563 /* Models */,
 				63AD70502BA4292D00DBD6B9 /* Features */,
@@ -1313,6 +1318,7 @@
 				63C124CE2B9EF93D000A6D35 /* Resources */,
 				632F53982BD7490900357C68 /* Embed Foundation Extensions */,
 				6332FC3A2C0B83C100FBEBB1 /* Embed Frameworks */,
+				6322F5A42C0F029900682C2C /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -1325,6 +1331,7 @@
 				635BD55B2B9F5708004480D1 /* ComposableArchitecture */,
 				63CCAFA22BCD1E280045B2A0 /* Lottie */,
 				6351FA152C0C1D9E00FD0C67 /* RealmSwift */,
+				6322F5A22C0EFF4800682C2C /* FirebaseAnalytics */,
 			);
 			productName = Dorocat;
 			productReference = 63C124D02B9EF93D000A6D35 /* Dorocat.app */;
@@ -1365,6 +1372,7 @@
 				635BD55A2B9F5708004480D1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				63CCAFA12BCD1E280045B2A0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				6351FA122C0C1D9E00FD0C67 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				6322F5A12C0EFF2C00682C2C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 63C124D12B9EF93D000A6D35 /* Products */;
 			projectDirPath = "";
@@ -1423,6 +1431,7 @@
 				63DF61B82BDAB07900D5C458 /* Dorocat.storekit in Resources */,
 				63B3FC332BB04A6600277576 /* Rubik-BlackItalic.ttf in Resources */,
 				63B3FC382BB04A6600277576 /* Rubik-LightItalic.ttf in Resources */,
+				6322F5A02C0EFEC900682C2C /* GoogleService-Info.plist in Resources */,
 				635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */,
 				63B3FC362BB04A6600277576 /* Rubik-Light.ttf in Resources */,
 				63B3FC342BB04A6600277576 /* Rubik-MediumItalic.ttf in Resources */,
@@ -1442,6 +1451,32 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6322F5A42C0F029900682C2C /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		632F53812BD7490800357C68 /* Sources */ = {
@@ -1866,6 +1901,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Dorocat/Preview Content\"";
 				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
 				ENABLE_PREVIEWS = YES;
@@ -1974,6 +2010,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6322F5A12C0EFF2C00682C2C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.27.0;
+			};
+		};
 		6351FA122C0C1D9E00FD0C67 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -2001,6 +2045,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6322F5A22C0EFF4800682C2C /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6322F5A12C0EFF2C00682C2C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
 		6351FA152C0C1D9E00FD0C67 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6351FA122C0C1D9E00FD0C67 /* XCRemoteSwiftPackageReference "realm-swift" */;
