@@ -21,6 +21,7 @@ import UIKit
         var isSoundEnabled = false
         var isHapticEnabled = false
         var notiAuthType: NotificationStateType = .denied
+        var catType: CatType = .doro
         @Presents var purchaseSheet: SettingPurchaseFeature.State?
         @Presents var feedbackSheet: FeedbackFeature.State?
         @Presents var alert: AlertState<Action.Alert>?

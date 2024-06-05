@@ -67,7 +67,7 @@ extension AnalyzeFeature{
                   let saturdayDate = current.date(byAdding: .day, value: 6, to: sundayDate) else {
                 fatalError("Wow world")
             }
-            return "\(date.getMonthName()) \(sundayDate.numberOfDay()) - \(date.getMonthName()) \(saturdayDate.numberOfDay())"
+            return "\(sundayDate.getMonthName()) \(sundayDate.numberOfDay()) - \(saturdayDate.getMonthName()) \(saturdayDate.numberOfDay())"
         }
         var isLastDuration: Bool{
             let current = Calendar.current

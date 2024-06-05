@@ -47,6 +47,7 @@
 		631FA2162BE790CE00E603A2 /* TimerController>Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631FA2152BE790CE00E603A2 /* TimerController>Action.swift */; };
 		6322F5A02C0EFEC900682C2C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6322F59F2C0EFEC900682C2C /* GoogleService-Info.plist */; };
 		6322F5A32C0EFF4800682C2C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6322F5A22C0EFF4800682C2C /* FirebaseAnalytics */; };
+		6322F5A62C0F077300682C2C /* Bottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6322F5A52C0F077300682C2C /* Bottom.swift */; };
 		632721862B9F2E5C007E3206 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 632721852B9F2E5C007E3206 /* .gitignore */; };
 		632F53882BD7490800357C68 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632F53872BD7490800357C68 /* WidgetKit.framework */; };
 		632F538A2BD7490800357C68 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632F53892BD7490800357C68 /* SwiftUI.framework */; };
@@ -294,6 +295,7 @@
 		631FA2132BE788E800E603A2 /* TimerController>Guide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerController>Guide.swift"; sourceTree = "<group>"; };
 		631FA2152BE790CE00E603A2 /* TimerController>Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerController>Action.swift"; sourceTree = "<group>"; };
 		6322F59F2C0EFEC900682C2C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6322F5A52C0F077300682C2C /* Bottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bottom.swift; sourceTree = "<group>"; };
 		632721852B9F2E5C007E3206 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		632F53852BD7490800357C68 /* DoroWidgetExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DoroWidgetExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		632F53872BD7490800357C68 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -506,6 +508,7 @@
 				630285442BBD1D39009C32AE /* SettingTitleView.swift */,
 				630285462BBD1E1D009C32AE /* SettingListItem.swift */,
 				6310FCC02C0DD3EB0068FE29 /* NotiListItem.swift */,
+				6322F5A52C0F077300682C2C /* Bottom.swift */,
 			);
 			path = SettingComponents;
 			sourceTree = "<group>";
@@ -1589,6 +1592,7 @@
 				63170A592BF84ACB00F35D6A /* FocusSleepToPauseIntent.swift in Sources */,
 				63AD70642BA43F6D00DBD6B9 /* TimerSettingFeature.swift in Sources */,
 				637104182C09CD9F0099075C /* CatSelectFeature.swift in Sources */,
+				6322F5A62C0F077300682C2C /* Bottom.swift in Sources */,
 				63C5BF562BCAB8BE00E5A89C /* CircularProgressView.swift in Sources */,
 				6310FCC12C0DD3EB0068FE29 /* NotiListItem.swift in Sources */,
 				6352AFFC2BF6422E00929F47 /* ActivityIntentManager.swift in Sources */,
@@ -1919,7 +1923,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.5;
+				MARKETING_VERSION = 0.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1956,7 +1960,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.5;
+				MARKETING_VERSION = 0.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
