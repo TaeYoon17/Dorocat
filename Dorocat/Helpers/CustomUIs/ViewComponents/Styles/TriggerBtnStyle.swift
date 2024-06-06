@@ -35,6 +35,7 @@ struct TriggerBtnStyle:ButtonStyle{
             case .stopBreak: stopBreakStyle(configuration: configuration)
             }
         }.frame(status: status)
+            .shadow(color: !configuration.isPressed ? .black.opacity(0.2) : .clear,radius: 4, y: 8)
             .overlay(alignment: .center, content: {
                 configuration.label.font(.button)
                     .foregroundStyle(configuration.isPressed ? .grey02 :.doroWhite)
@@ -63,6 +64,7 @@ fileprivate extension View{
 fileprivate extension TriggerBtnStyle{
     @ViewBuilder func startStyle(configuration: Configuration)-> some View{
         Image(!configuration.isPressed ? .trigger : .triggerActive).resizable().frame(width: 105,height:64)
+            
     }
 }
 //MARK: -- Complete

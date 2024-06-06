@@ -16,6 +16,7 @@ struct TimerSessionFeature{
     }
     @Dependency(\.pomoSession) var session
     @Dependency(\.dismiss) var dismiss
+    @Dependency(\.haptic) var haptic
     enum Action:Equatable{ // 키패드 접근을 어떻게 할 것인지...
         case delegate(Delegate)
         case setSelectedSession(SessionItem)
@@ -35,7 +36,9 @@ struct TimerSessionFeature{
                 return .run { send in
                     let items = await session.items
                     await send(.allSessions(items))
-                }
+                }.merge(with: .run(operation: { send in
+                    await haptic.impact(style: .soft)
+                }))
             case .allSessions(let sessions):
                 state.sessions = sessions
                 return .none
@@ -45,7 +48,9 @@ struct TimerSessionFeature{
                     await self.session.setSelectedSession(session)
                     await send(.delegate(.setSelectSession(session)))
                     await dismiss()
-                }
+                }.merge(with: .run(operation: { send in
+                    await haptic.impact(style: .soft)
+                }))
             }
         }
     }

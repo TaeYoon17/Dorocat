@@ -33,6 +33,8 @@ import UIKit
         case setSoundEnabled(Bool)
         case setHapticEnabled(Bool)
         
+        case setCatType(CatType)
+        
         case openPurchase
         case ratingItemTapped
         case feedbackItemTapped
@@ -53,7 +55,9 @@ import UIKit
     @Dependency(\.haptic) var haptic
     @Dependency(\.initial) var initial
     @Dependency(\.feedback) var feedback
-    enum CancelID{case initial}
+    @Dependency(\.pomoDefaults) var pomoDefaults
+    @Dependency(\.cat) var cat
+    enum CancelID{case initial, cat}
     var body: some ReducerOf<Self>{
         Reduce{ state,action in
             switch action{
@@ -78,7 +82,16 @@ import UIKit
                             }
                         }
                     }.cancellable(id: CancelID.initial)
-                    return Effect.merge(notificationEffect,initialEffect)
+                    let catEffect:Effect<Action> = .run { send in
+                        let cat = await pomoDefaults.selectedCat
+                        await send(.setCatType(cat))
+                        for await catEvent in await self.cat.catEventStream(){
+                            switch catEvent{
+                            case .updated(let type): await send(.setCatType(type))
+                            }
+                        }
+                    }.cancellable(id: CancelID.cat)
+                    return Effect.merge(notificationEffect,initialEffect,catEffect)
                 }
                 return .none
             case .purchaseSheet: return .none
@@ -139,6 +152,8 @@ import UIKit
                     await haptic.setEnable(isHapticEnabled)
                     await haptic.impact(style: .light)
                 }
+            case .setCatType(let cat): state.catType = cat
+                return .none
             case .ratingItemTapped:
                 return .run{ send in
                     await haptic.impact(style: .soft)

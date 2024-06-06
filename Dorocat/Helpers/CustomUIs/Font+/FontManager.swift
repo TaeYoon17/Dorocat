@@ -42,7 +42,8 @@ extension DoroFontManager{
         let medium = "Rubik-Medium"
         func getFont(fontSystem: FontSystem) -> Font {
             return switch fontSystem{
-            case .header01,.header02,.header03,.header04: .custom(regular, size: fontSystem.size)
+            case .header01,.header02,.header03,.header04:
+                    .custom(regular, size: fontSystem.size)
             case .button: .custom(medium, size: fontSystem.size)
             case .paragraph02(let weight),.paragraph03(let weight):
                 switch weight{
@@ -64,13 +65,23 @@ extension DoroFontManager{
             case .paragraph04: UIFont(name:regular, size: fontSystem.size)!
             }
         }
+        struct FontWithLineHeight: ViewModifier {
+            let font: UIFont // 입력받은 폰트
+            let lineHeight: CGFloat // Text 의 전체 높이 (Full Height)
+
+            func body(content: Content) -> some View {
+                content
+                    .font(Font(font))
+                    .lineSpacing(lineHeight - font.lineHeight)
+                    .padding(.vertical, (lineHeight - font.lineHeight) / 2)
+            }
+        }
     }
 }
 extension DoroFontManager{
     struct DarumadropOne:FontProvider{
         let regular = "DarumadropOne-Regular"
         func getUIFont(fontSystem: FontSystem) -> UIFont {
-            
             return UIFont(name:regular, size: fontSystem.size)!
         }
         func getFont(fontSystem: FontSystem)->Font{

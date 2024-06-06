@@ -12,7 +12,7 @@ extension CatSelectViewComponents{
         let store: StoreOf<CatSelectFeature>
         var body: some View {
             Button {
-                print("wow world")
+                store.send(.action(.doneTapped))
             } label: {
                 Text("Confirm")
             }.doneStyle(vertical: 19, horizontal: 39.5)

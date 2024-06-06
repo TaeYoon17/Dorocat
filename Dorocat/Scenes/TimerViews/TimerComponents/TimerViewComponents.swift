@@ -80,20 +80,22 @@ enum TimerViewComponents{
                                , loopMode: .autoReverse)
                         .frame(width: size,height: size)
                 case .focus,.breakTime,.sleep,.pause:
-                    CircularProgress(progress: store.progress,
-                                     lineWidth: 44,
-                                     backShape: .black,
-                                     frontShapes: [Color.grey04.shadow(.inner(color: .black.opacity(0.4), radius: 8, x: 0, y: 2))])
-                        .overlay(alignment: .bottom) {
-                            LottieView(fileName: store.catType.lottieAssetName(type: .sleeping)
-                                       , loopMode: .autoReverse).offset(y:4)
-                                .frame(width: 190,height:190)
-                        }
-                        .frame(width: size,height: size).padding(.bottom,36)
-                case .standBy:
-                    LottieView(fileName:
-                                store.catType.lottieAssetName(type: .basic)
+//                    CircularProgress(progress: store.progress,
+//                                     lineWidth: 44,
+//                                     backShape: .black,
+//                                     frontShapes: [Color.grey04.shadow(.inner(color: .black.opacity(0.4), radius: 8, x: 0, y: 2))])
+//                        .overlay(alignment: .bottom) {
+//                            LottieView(fileName: store.catType.lottieAssetName(type: .sleeping)
+//                                       , loopMode: .autoReverse).offset(y:4)
+//                                .frame(width: 190,height:190)
+//                        }
+//                        .frame(width: size,height: size)
+//                        .padding(.bottom,36)
+                    LottieView(fileName: store.catType.lottieAssetName(type: .sleeping)
                                , loopMode: .autoReverse)
+                        .frame(width: size,height: size)
+                case .standBy:
+                    LottieView(fileName: store.catType.lottieAssetName(type: .basic), loopMode: .autoReverse)
                         .frame(width: size,height: size)
                 }
             }.onTapGesture {
@@ -102,7 +104,7 @@ enum TimerViewComponents{
         }
         var size: CGFloat{
             switch store.timerStatus{
-            case .focus,.breakTime,.sleep,.pause: 240
+//            case .focus,.breakTime,.sleep,.pause: 240
             default: 375
             }
         }

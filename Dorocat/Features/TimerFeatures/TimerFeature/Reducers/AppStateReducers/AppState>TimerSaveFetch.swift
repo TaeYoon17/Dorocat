@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 extension TimerFeature.AppStateReducers{
     struct TimerReducer: AppStateReducerProtocol{
-        @Dependency(\.timeBackground) var timerBackground
+        @Dependency(\.timer.background) var timerBackground
         @Dependency(\.pomoDefaults) var pomoDefaults
         @Dependency(\.analyzeAPIClients) var analyzeAPI
         func makeReducer(capturedState state: TimerFeature.State, prevAppState: DorocatFeature.AppStateType, nextAppState: DorocatFeature.AppStateType) -> ComposableArchitecture.Effect<TimerFeature.Action> {
@@ -28,7 +28,13 @@ extension TimerFeature.AppStateReducers{
                 case .active:
                     let prevStatus = state.timerStatus
                     let timerStatus = TimerFeatureStatus.getSleep(prevStatus) ?? prevStatus
-                    let values = PomoValues(catType: state.catType, status: prevStatus, information: state.timerInformation, cycle: state.cycle, count: state.count,startDate: state.startDate)
+                    let values = PomoValues(catType: state.catType,
+                                            status: prevStatus,
+                                            information: state.timerInformation,
+                                            cycle: state.cycle,
+                                            count: state.count,
+                                            sessionItem: state.selectedSession,
+                                            startDate: state.startDate)
                     return .run { send in
                         await timerBackground.set(date: Date())
                         await timerBackground.set(timerStatus: timerStatus)
@@ -44,7 +50,7 @@ extension TimerFeature.AppStateReducers{
                     // 이전에 갖고 있던 상태에서 Pause로 이동한 상태를 저장
                     let prevStatus = state.timerStatus
                     let timerStatus = TimerFeatureStatus.getSleep(prevStatus) ?? prevStatus
-                    let values = PomoValues(catType: state.catType, status: prevStatus, information: state.timerInformation, cycle: state.cycle, count: state.count,startDate: state.startDate)
+                    let values = PomoValues(catType: state.catType, status: prevStatus, information: state.timerInformation, cycle: state.cycle, count: state.count,sessionItem: state.selectedSession, startDate: state.startDate)
                     return .run { send in
                         await timerBackground.set(date: Date())
                         await timerBackground.set(timerStatus: timerStatus)

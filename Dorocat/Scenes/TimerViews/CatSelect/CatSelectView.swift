@@ -19,6 +19,9 @@ struct CatSelectView: View {
             Spacer()
             CatSelectViewComponents.ConfirmBtn(store: store)
         })
+        .onAppear(){
+            store.send(.launchAction)
+        }
         .clipShape(.rect(topLeadingRadius: 24, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 24, style: .circular))
         .padding(.top,40).padding(.bottom,26)
         .presentationDragIndicator(.visible)

@@ -14,6 +14,7 @@ enum TimerSettingViewComponent{
         var body: some View{
             VStack(spacing: 21) {
                 HStack{
+                    
                     if text.isEmpty{
                         Text("00").foregroundStyle(.grey03)
                     }else{
@@ -23,10 +24,9 @@ enum TimerSettingViewComponent{
                             (Text("0").foregroundColor(.grey03) + Text(text).foregroundColor(.doroWhite))
                         }
                     }
-                    Spacer()
                     Text("min")
                 }
-                .frame(width:178)
+//                .frame(width:173)
                 .font(.header02)
                 .foregroundStyle(.doroWhite)
                 HStack(content: {

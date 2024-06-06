@@ -22,7 +22,7 @@ struct SettingView: View {
                             VStack(spacing:8){
                                 ProListItemView{ store.send(.openPurchase) }.padding(.bottom,16)
                                 SettingViewComponents.NotiListItem(store: store)
-                                SettingListItem.Toggler(title: "Sound", isOn: $store.isSoundEnabled.sending(\.setSoundEnabled))
+//                                SettingListItem.Toggler(title: "Sound", isOn: $store.isSoundEnabled.sending(\.setSoundEnabled))
                                 SettingListItem.Toggler(title: "Haptics", isOn: $store.isHapticEnabled.sending(\.setHapticEnabled))
                                 SettingListItem.Linker(title: "Your Rating Matters") {
                                     store.send(.ratingItemTapped)

@@ -20,24 +20,25 @@ extension DorocatFeature{
 fileprivate extension DorocatFeature{
     func liveActivityReducer(state: inout State,prev:TimerActivityType,next:TimerActivityType)->Effect<Action>{
         return .run { send in
-            guard let prevDate = await timeBackground.date else {
+            guard let prevDate = await timerBackground.date else {
                 print("이게 문제")
                 return
             }
             if Date().isOverTwoDays(prevDate: prevDate){
                 return
             }
-            await timeBackground.set(date: Date())
+            await timerBackground.set(date: Date())
             let difference = Int(Date().timeIntervalSince(prevDate))
             let pomoDefaultsValue:PomoValues = await pomoDefaults.getAll()
             let sessionItem = pomoDefaultsValue.sessionItem
             let restTime = pomoDefaultsValue.count
             let timerTotalTime = pomoDefaultsValue.information?.timeSeconds ?? 0
+            print("바뀐 세션 아이템 \(sessionItem)")
             switch next{
             case .breakSleep: break
             case .focusSleep:
                 await pomoDefaults.setStatus(.focus)
-                await timeBackground.set(timerStatus: .sleep(.focusSleep))
+                await timerBackground.set(timerStatus: .sleep(.focusSleep))
                 await liveActivity.updateActivity(type:.focusSleep,item:pomoDefaultsValue.sessionItem, cat: pomoDefaultsValue.catType,restCount: restTime)
                 try? await setFocusSleepNotification(pomoDefaultValue: pomoDefaultsValue)
             case .pause:

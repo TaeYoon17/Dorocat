@@ -33,9 +33,11 @@ extension CatSelectControllerProtocol{
 extension CatSelectFeature{
     enum ControllReducers:CaseIterable{
         case action
+        case haptic
         private var myReducer: CatSelectControllerProtocol{
             switch self{
             case .action: ActionReducer()
+            case .haptic: HapticReducer()
             }
         }
         static func makeAllReducers(state: inout State,act: ControllType) -> Effect<Action>{

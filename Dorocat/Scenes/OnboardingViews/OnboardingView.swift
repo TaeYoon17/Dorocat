@@ -11,21 +11,22 @@ struct OnboardingView: View {
     let store: StoreOf<DorocatFeature>
     var body: some View {
             ZStack{
-                Image(.defaultBg).resizable(resizingMode: .tile)
-                VStack(spacing:0) {
+                DefaultBG()
                     VStack(spacing:0) {
-                        Image(store.catType.imageAssetName(type: .onboardingIcon)).frame(width: 304,height: 304)
+                        Rectangle().fill(.clear).frame(width: 375,height: 375)
                         Text("Meow...").font(.header03).foregroundStyle(.doroWhite)
                             .frame(height: 48)
                         Text("I'll help you focus and stay on track")
                             .font(.paragraph02()).foregroundStyle(.doroWhite)
                             .padding(.top,9)
-                    }
+                    }.offset(y:-78 + 35)
+                Image(store.catType.imageAssetName(type: .onboardingIcon)).frame(width: 375,height: 375)
+                    .offset(y:-78)
                     
-                }
             }.overlay(alignment: .bottom) {
                 triggerBtn.padding(.bottom,97)
             }
+            .ignoresSafeArea(.container,edges: .bottom)
             .background(.grey04)
     }
     var triggerBtn: some View{

@@ -28,10 +28,9 @@ extension CatSelectViewComponents{
         var body: some View {
             ForEach(CatType.allCases,id:\.self){ catType in
                 if catType.isAssetExist{
-                    if catType == store.catType{
+                    if catType == store.tappedCatType{
                         CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailLogo), isLocked: false){
-                            
-                            print("처음 고른 로고 선택")
+                            store.send(.action(.itemTapped(catType)))
                         }
                     }else{
                         CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailInActiveLogo), isLocked: false){
@@ -40,7 +39,7 @@ extension CatSelectViewComponents{
                     }
                 }else{
                     CatSelectStyle.ItemView(name: "untitled",
-                                            imageThumbnail: store.catType.imageAssetName(type: .thumbnailInActiveLogo),
+                                            imageThumbnail: store.tappedCatType.imageAssetName(type: .thumbnailInActiveLogo),
                                             isLocked: true)
                 }
             }
@@ -50,12 +49,12 @@ extension CatSelectViewComponents{
         let store: StoreOf<CatSelectFeature>
         var body: some View {
             ForEach(CatType.allCases,id:\.self){ catType in
-                if catType == store.catType{
+                if catType == store.tappedCatType{
                     CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailLogo), isLocked: false){
                         print("도로 선택!!")
                     }
                 }else{
-                    CatSelectStyle.ItemView(name: catType.isAssetExist ? catType.rawValue.capitalized : "untitled", imageThumbnail: catType.isAssetExist ? catType.imageAssetName(type: .thumbnailInActiveLogo) : store.catType.imageAssetName(type: .thumbnailInActiveLogo), isLocked: true)
+                    CatSelectStyle.ItemView(name: catType.isAssetExist ? catType.rawValue.capitalized : "untitled", imageThumbnail: catType.isAssetExist ? catType.imageAssetName(type: .thumbnailInActiveLogo) : store.tappedCatType.imageAssetName(type: .thumbnailInActiveLogo), isLocked: true)
                 }
             }
         }

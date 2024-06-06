@@ -74,7 +74,9 @@ struct TimerSettingFeature{
             case .setTime(let time):
                 if time.count > 2{ return .none }
                 state.time = time
-                return .none
+                return .run { send in
+                    await haptic.impact(style: .soft)
+                }
             case .setPomodoroMode(let isPomodoro):
                 state.isPomodoroMode = isPomodoro
                 state.timerInfo.isPomoMode = isPomodoro

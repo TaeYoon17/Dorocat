@@ -57,9 +57,9 @@ extension FeedbackSheet{
             super.init()
         }
         func setContent(){
-            vc.setSubject("Feedback Dorocat")
-            vc.setToRecipients(["dorocat.app@gmail.com"])
-            vc.setMessageBody("Hello world", isHTML: false)
+            vc.setSubject("🐈‍⬛ I have a suggestion!")
+            vc.setToRecipients(["Hi.dorocat@gmail.com"])
+            vc.setMessageBody("", isHTML: false)
         }
         func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: (any Error)?) {
             // Check the result or perform other tasks.

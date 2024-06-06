@@ -28,7 +28,7 @@ import ComposableArchitecture
     }
     @Dependency(\.pomoDefaults) var pomoDefaults
     @Dependency(\.pomoSession) var pomoSession
-    @Dependency(\.timeBackground) var timeBackground
+    @Dependency(\.timer.background) var timeBackground
     @Dependency(\.analyzeAPIClients) var analyzeAPI
     @Dependency(\.timer) var timer
     var body: some ReducerOf<Self>{
@@ -51,6 +51,10 @@ import ComposableArchitecture
                 return .none
             case .timerSession(.presented(.delegate(.cancel))): return .none
             case .timerSession: return .none
+            case .catSelect(.presented(.delegate(.setCatType(let type)))):
+                print("delegate 발생 \(type)")
+                state.catType = type
+                return .none
             case .catSelect: return .none
             //MARK: --  내부 로직 Action 처리
             case .timerTick: return self.timerTick(state: &state)
@@ -59,7 +63,7 @@ import ComposableArchitecture
             case .setTimerRunning(let count):
                 state.count = count
                 return .run(priority: .high) { send in
-                    for try await _ in Timer.eventAsyncStream(){ await send(.timerTick) }
+                    for try await _ in timer.tickEventStream(){ await send(.timerTick) }
                 }.cancellable(id: CancelID.timer)
             case .initAction:
                 if !state.isAppLaunched {
@@ -84,11 +88,13 @@ import ComposableArchitecture
                     state.count = 25 * 60
                     state.timerStatus = value.status
                     state.cycle = value.cycle
+                    state.catType = value.catType
                     return .none
                 }
                 state.timerInformation = info
                 state.count = value.count
                 state.cycle = value.cycle
+                state.catType = value.catType
                 state.timerStatus = value.status
                 return .none
             case .setGuideState(let guides):
