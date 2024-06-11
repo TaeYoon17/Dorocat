@@ -32,6 +32,7 @@ struct DurationPickerView: View{
                     }, label: {
                         Text(type.name)
                             .font(.paragraph02())
+                            .fontCoordinator()
                             .padding(.vertical,8)
                             .padding(.horizontal,16)
                             .foregroundStyle(type == selectedDuration ? .doroWhite : .grey01)

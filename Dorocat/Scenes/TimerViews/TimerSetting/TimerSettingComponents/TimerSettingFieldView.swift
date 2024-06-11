@@ -45,7 +45,7 @@ enum TimerSettingViewComponent{
         @Binding var selectedIdx:Int
         var body: some View{
             HStack {
-                Text(title).font(.paragraph02()).foregroundStyle(.doroWhite)
+                Text(title).font(.paragraph02()).foregroundStyle(.doroWhite).fontCoordinator()
                 Spacer()
                 HStack(spacing:0,content: {
                     NumberPickerView(number: $selectedIdx, range: type.range)
@@ -56,7 +56,7 @@ enum TimerSettingViewComponent{
                     case .breakDuration: Text("min")
                     case .cycle: EmptyView()
                     }
-                }).font(.paragraph02(.bold)).foregroundStyle(.doroWhite)
+                }).font(.paragraph02(.bold)).foregroundStyle(.doroWhite).fontCoordinator()
             }.modifier(ListItemBgModifier())
         }
     }

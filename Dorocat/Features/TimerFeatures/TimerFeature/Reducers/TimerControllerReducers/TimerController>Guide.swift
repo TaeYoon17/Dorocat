@@ -33,10 +33,8 @@ extension TimerFeature.ControllerReducers{
         
         func triggerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
             if !state.guideInformation.startGuide{
-                var guide = state.guideInformation
-                guide.startGuide = true
-                return .run {[guide] send in
-                    try await Task.sleep(for: .seconds(3))
+                state.guideInformation.standByGuide = true
+                return .run {[guide = state.guideInformation] send in
                     await send(.setGuideState(guide),animation: .easeInOut)
                 }
             }

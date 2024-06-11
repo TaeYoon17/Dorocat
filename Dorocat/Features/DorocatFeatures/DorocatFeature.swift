@@ -16,6 +16,7 @@ struct DorocatFeature{
         case launchAction
         case initialAction
         case onBoardingTapped
+        case onBoardingWillTap
         case timer(TimerFeature.Action)
         case analyze(AnalyzeFeature.Action)
         case setting(SettingFeature.Action)
@@ -53,8 +54,12 @@ struct DorocatFeature{
                 var guide = state.guideState
                 guide.onBoarding = true
                 return .run{[guide] send in
-                    await haptic.impact(style: .soft)
+                    
                     await send(.setGuideStates(guide))
+                }
+            case .onBoardingWillTap:
+                return .run { send in
+                    await haptic.impact(style: .soft)
                 }
             case .initialAction:
                 return .run{ send in

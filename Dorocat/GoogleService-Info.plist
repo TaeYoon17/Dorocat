@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.tistory.arpple.Dorocat</string>
+	<string>Hi.dorocat</string>
 	<key>PROJECT_ID</key>
 	<string>dorocat-de8db</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:6108969081:ios:ea62150aef337e0807fca8</string>
+	<string>1:6108969081:ios:fe0c3593007493c607fca8</string>
 </dict>
 </plist>

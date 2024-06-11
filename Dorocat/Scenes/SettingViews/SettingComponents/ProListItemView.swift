@@ -16,10 +16,11 @@ struct ProListItemView: View {
                     Text("Dorocat")
                         .font(.paragraph02(.bold))
                         .foregroundStyle(.doroWhite)
+                        .fontCoordinator()
                     Text("Purrs")
                         .frame(height:20)
                         .font(.paragraph02(.bold))
-                        .foregroundStyle(.doroPink)
+                        .foregroundStyle(.doroPink).fontCoordinator()
                 })
                 Spacer()
                 Button(action: {
@@ -27,6 +28,7 @@ struct ProListItemView: View {
                 }, label: {
                     Text("Learn More")
                         .font(.paragraph03(.bold))
+                        .fontCoordinator()
                         .frame(height: 20)
                         .foregroundStyle(.doroWhite)
                         .padding(.vertical,12)

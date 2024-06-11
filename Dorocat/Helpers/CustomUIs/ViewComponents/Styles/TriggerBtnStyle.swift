@@ -40,6 +40,7 @@ struct TriggerBtnStyle:ButtonStyle{
                 configuration.label.font(.button)
                     .foregroundStyle(configuration.isPressed ? .grey02 :.doroWhite)
                     .animation(nil, value: configuration.isPressed)
+                    .offset(y:-2) // 여기 올림
             })
             .onChange(of: configuration.isPressed) { oldValue, newValue in
                 if oldValue == false && newValue == true{

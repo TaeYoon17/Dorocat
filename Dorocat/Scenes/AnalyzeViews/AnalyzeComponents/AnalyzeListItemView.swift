@@ -17,11 +17,13 @@ struct AnalyzeListItemView:View{
                 Image(.haptic).resizable().frame(width: 20,height:20).opacity(0.6)
                 HStack(spacing:6) {
                     Text("\(timerListItem.duration)m").font(.paragraph03()).foregroundStyle(.doroWhite)
+                        .fontCoordinator()
                     Text("\(timerListItem.session.name)").font(.paragraph03()).foregroundStyle(.grey02)
+                        .fontCoordinator()
                 }
             }
             Spacer()
-            Text(convertTimerText).font(.paragraph03()).foregroundStyle(.grey02)
+            Text(convertTimerText).font(.paragraph03()).foregroundStyle(.grey02).fontCoordinator()
         }
         .padding(.horizontal,20)
         .frame(height: 60)

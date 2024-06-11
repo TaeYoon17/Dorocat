@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Replace Me.png",
+      "filename" : "SessionDisclosure.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Replace Me@2x.png",
+      "filename" : "SessionDisclosure@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Replace Me@3x.png",
+      "filename" : "SessionDisclosure@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

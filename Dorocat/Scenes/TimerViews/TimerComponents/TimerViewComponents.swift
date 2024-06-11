@@ -169,23 +169,23 @@ extension TimerViewComponents{
         struct StandBy:View{
             var body: some View{
                 Text("Let the cat snooze and get started!")
-                    .foregroundStyle(.grey00)
+                    .foregroundStyle(.doroWhite)
                     .font(.paragraph03())
                     .padding(.horizontal,20)
                     .padding(.vertical,14)
-                    .background(.grey03)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+//                    .background(.grey03)
+//                    .clipShape(RoundedRectangle(cornerRadius: 12))
             }
         }
         struct Focus: View{
             var body: some View{
                 Text("Cat's asleep!")
-                    .foregroundStyle(.grey00)
+                    .foregroundStyle(.doroWhite)
                     .font(.paragraph03())
                     .padding(.horizontal,20)
                     .padding(.vertical,14)
-                    .background(.grey03)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+//                    .background(.grey03)
+//                    .clipShape(RoundedRectangle(cornerRadius: 12))
             }
         }
     }
@@ -201,7 +201,10 @@ extension TimerViewComponents{
                 Text("Break Time").foregroundStyle(.grey01).font(.button)
             case .standBy:
                 Button { store.send(.viewAction(.sessionTapped)) } label: {
-                    textItem
+                    HStack(alignment:.center,spacing:0){
+                        textItem
+                        Image(.sessionDisclosure).padding(.leading,3)
+                    }
                 }
             case .focus:
                 if store.timerInformation.isPomoMode{
@@ -213,7 +216,7 @@ extension TimerViewComponents{
             }
         }
         var textItem: some View{
-            Text(store.selectedSession.name).foregroundStyle(.grey01).font(.button)
+            Text(store.selectedSession.name).foregroundStyle(.grey01).font(.button).fontCoordinator()
         }
     }
 }

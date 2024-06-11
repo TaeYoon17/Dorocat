@@ -16,6 +16,7 @@ struct DoneBtnStyle: ButtonStyle{
     let horizontal:CGFloat
     func makeBody(configuration: Configuration) -> some View {
         configuration.label.font(.button)
+            .fontCoordinator()
             .padding(.vertical,vertical)
             .padding(.horizontal,horizontal)
             .foregroundStyle(.black)

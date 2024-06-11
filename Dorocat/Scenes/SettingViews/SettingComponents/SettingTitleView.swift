@@ -13,6 +13,7 @@ struct SettingTitleView: View {
             Text("Meow...")
                 .foregroundStyle(.doroWhite)
                 .font(.header03)
+                .fontCoordinator()
             Spacer()
         }.frame(height: 48)
     }

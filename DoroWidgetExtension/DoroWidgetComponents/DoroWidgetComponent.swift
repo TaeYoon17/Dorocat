@@ -60,7 +60,7 @@ extension DoroWidgetComponent{
         struct TriggerBtnView: View{
             let info:String
             var body: some View{
-                Text(info).font(.header04).minimumScaleFactor(0.5)
+                Text(info).font(.custom("DarumadropOne-Regular", size: 18)).minimumScaleFactor(0.5).fontCoordinator()
                     .lineLimit(1)
                     .foregroundStyle(.doroWhite)
                     .padding(.horizontal,20)
@@ -78,12 +78,14 @@ extension DoroWidgetComponent{
             switch context.state.timerStatus {
             case .focusSleep,.breakSleep:
                 Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),since: .now))
-                    .font(.header03).foregroundStyle(.doroWhite)
+                    .font(.custom("DarumadropOne-Regular", size: 46)).foregroundStyle(.doroWhite)
+                    .fontCoordinator()
             case .pause,.standBy:
                 let hour = context.state.count / 60
                 let min = context.state.count % 60
                 Text("\(hour):\(min)")
-                    .font(.header03).foregroundStyle(.doroWhite)
+                    .font(.custom("DarumadropOne-Regular", size: 46)).foregroundStyle(.doroWhite)
+                    .fontCoordinator()
             }
             
         }

@@ -81,7 +81,7 @@ fileprivate extension AnalyzeDurationView{
                     Image(systemName: "chevron.left")
                 }
                 Spacer()
-                Text(title).font(.paragraph03()).foregroundStyle(.grey00)
+                Text(title).font(.paragraph03()).foregroundStyle(.grey00).fontCoordinator()
                 Spacer()
                 Button{ rightTapped() }label: {
                     Image(systemName: "chevron.right")
@@ -94,7 +94,7 @@ fileprivate extension AnalyzeDurationView{
         let totalTime:String
         var body: some View{
             HStack(content: {
-                VStack(alignment:.leading,spacing:4) {
+                VStack(alignment:.leading,spacing:-4) {
                     Text("Total Time").font(.paragraph04).foregroundStyle(.grey02)
                     Text(totalTime)
                         .font(.header03)
@@ -110,11 +110,10 @@ fileprivate extension AnalyzeDurationView{
         
         var body: some View{
             HStack(content: {
-                VStack(alignment:.leading,spacing:4) {
-                    
+                VStack(alignment:.leading,spacing:-4) {
                     Text(title).font(.paragraph04).foregroundStyle(.grey02)
                     Text(dailyAverage)
-                        .font(.header03)
+                        .font(.header03).fontCoordinator()
                         .foregroundStyle(.doroWhite)
                 }
                 Spacer()
