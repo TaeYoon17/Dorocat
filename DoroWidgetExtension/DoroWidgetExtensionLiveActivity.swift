@@ -47,18 +47,6 @@ struct DoroWidgetExtensionLiveActivity: Widget {
                         })
                     })
                 }
-                
-//                DynamicIslandExpandedRegion(.leading) {
-////                    Image(.cat).resizable().scaledToFit()
-//                    Text("Dorodoro")
-//                }
-//                DynamicIslandExpandedRegion(.trailing) {
-//                    Text("DoroCat")
-//                }
-//                DynamicIslandExpandedRegion(.bottom) {
-//                    Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),since: .now))
-//                    // more content
-//                }
             } compactLeading: {
                 Image(context.state.catType.compactLabel).resizable().scaledToFit()
                     .frame(width:24)

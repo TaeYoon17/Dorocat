@@ -121,6 +121,8 @@
 		635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 635BD55B2B9F5708004480D1 /* ComposableArchitecture */; };
 		635C9D3D2BB082E400BFD46D /* PomoDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C9D3C2BB082E400BFD46D /* PomoDependency.swift */; };
 		63616FC12BC666B8003A7211 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63616FC02BC666B8003A7211 /* OnboardingView.swift */; };
+		636D59EF2C182A17000A9CC2 /* SessionMenuEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636D59ED2C182A17000A9CC2 /* SessionMenuEntity+CoreDataClass.swift */; };
+		636D59F02C182A17000A9CC2 /* SessionMenuEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636D59EE2C182A17000A9CC2 /* SessionMenuEntity+CoreDataProperties.swift */; };
 		636E9F662BA818000006FE56 /* DBActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636E9F652BA818000006FE56 /* DBActor.swift */; };
 		636E9F6A2BAD0A880006FE56 /* Legacy-AddShoppingListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636E9F692BAD0A880006FE56 /* Legacy-AddShoppingListFeature.swift */; };
 		636EA3232BEF815400203538 /* SessionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EA3222BEF815400203538 /* SessionItem.swift */; };
@@ -382,6 +384,8 @@
 		635BD5582B9F56CA004480D1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		635C9D3C2BB082E400BFD46D /* PomoDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoDependency.swift; sourceTree = "<group>"; };
 		63616FC02BC666B8003A7211 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		636D59ED2C182A17000A9CC2 /* SessionMenuEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionMenuEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		636D59EE2C182A17000A9CC2 /* SessionMenuEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionMenuEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		636E9F652BA818000006FE56 /* DBActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBActor.swift; sourceTree = "<group>"; };
 		636E9F692BAD0A880006FE56 /* Legacy-AddShoppingListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Legacy-AddShoppingListFeature.swift"; sourceTree = "<group>"; };
 		636EA3222BEF815400203538 /* SessionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionItem.swift; sourceTree = "<group>"; };
@@ -1228,6 +1232,8 @@
 		63C124C72B9EF93D000A6D35 = {
 			isa = PBXGroup;
 			children = (
+				636D59ED2C182A17000A9CC2 /* SessionMenuEntity+CoreDataClass.swift */,
+				636D59EE2C182A17000A9CC2 /* SessionMenuEntity+CoreDataProperties.swift */,
 				631217822C1597D800144189 /* TimerRecordItemEntity+CoreDataClass.swift */,
 				631217832C1597D800144189 /* TimerRecordItemEntity+CoreDataProperties.swift */,
 				6352AFD02BF626CA00929F47 /* App Intent */,
@@ -1681,6 +1687,8 @@
 				633266162C117ABF001A71C2 /* AnalyzeRealmClient.swift in Sources */,
 				63F804A42BF4812E007333AF /* TimerSessionRepository.swift in Sources */,
 				6371041A2C0B2A670099075C /* CatList.swift in Sources */,
+				636D59EF2C182A17000A9CC2 /* SessionMenuEntity+CoreDataClass.swift in Sources */,
+				636D59F02C182A17000A9CC2 /* SessionMenuEntity+CoreDataProperties.swift in Sources */,
 				63A9C3F92BA5A3F10076D42C /* NumberPickerView.swift in Sources */,
 				633266312C119847001A71C2 /* ControllerReducer>Haptic.swift in Sources */,
 				638EAB032BBF7F50007F8CAC /* DoroTogglerView.swift in Sources */,
