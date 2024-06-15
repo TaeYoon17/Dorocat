@@ -50,7 +50,7 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <StoreKitConfigurationFileReference
-         identifier = "../../Dorocat/Resources/DoroTest.storekit">
+         identifier = "../../DorocatMain.storekit">
       </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction

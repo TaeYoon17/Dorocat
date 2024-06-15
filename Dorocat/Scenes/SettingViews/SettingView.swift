@@ -56,6 +56,10 @@ struct SettingView: View {
         }
         .onAppear(){
             store.send(.launchAction)
+            print("Setting OnAppear")
+        }
+        .onDisappear(){
+            print("Setting Disappear")
         }
         .tint(.black)
         .foregroundStyle(.black)

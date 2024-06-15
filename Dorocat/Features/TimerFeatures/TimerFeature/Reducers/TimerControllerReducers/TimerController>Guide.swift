@@ -9,6 +9,10 @@ import Foundation
 import ComposableArchitecture
 extension TimerFeature.ControllerReducers{
     struct GuideReducer: TimerControllerProtocol{
+        func resetDialogTapped(state: inout TimerFeature.State, type: TimerFeature.ConfirmationDialog) -> Effect<TimerFeature.Action> {
+            .none
+        }
+        
         func sessionTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
             .none
         }
@@ -41,7 +45,7 @@ extension TimerFeature.ControllerReducers{
             return .none
         }
         
-        func triggerWillTap(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
+        func triggerWillTap(state: inout TimerFeature.State,type: TimerFeature.HapticType) -> Effect<TimerFeature.Action>{
             return .none
         }
     }

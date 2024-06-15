@@ -36,7 +36,6 @@ struct TimerView: View {
                         Rectangle().fill(.clear).frame(width: 375,height: 375)
                         TimerViewComponents.TotalFocusTimeView(store: store)
                     }.offset(y:11)
-                    
                 }
             case .breakStandBy:
                 ZStack{
@@ -59,6 +58,7 @@ struct TimerView: View {
             })
             .ignoresSafeArea(.container,edges: .bottom)
             .timerViewModifiers(store: store)
+            .preferredColorScheme(.dark)
             .sheet(item: $store.scope(state: \.timerSetting, action: \.timerSetting)) { timerSettingStore in
                 TimerSettingView(store: timerSettingStore).presentationDetents([.large])
                     .presentationDragIndicator(.visible)
@@ -69,12 +69,15 @@ struct TimerView: View {
             .sheet(item: $store.scope(state: \.catSelect, action: \.catSelect)) { catSelectStore in
                 CatSelectView(store: catSelectStore)
             }
+            .confirmationDialog($store.scope(state:\.resetDialog,action:\.confirmationDialog))
+            
     }
 }
 
 fileprivate extension View{
     func timerViewModifiers(store: StoreOf<TimerFeature>) -> some View{
-        self.modifier(TimerViewModifiers.Reset(store: store))
+        self
+//            .modifier(TimerViewModifiers.Reset(store: store))
             .modifier(TimerViewModifiers.Session(store: store))
             .modifier(TimerViewModifiers.Guide.Focus(store: store))
             .modifier(TimerViewModifiers.Guide.StandBy(store: store))

@@ -1,16 +1,32 @@
 {
-  "identifier" : "9216408E",
+  "identifier" : "8E1B048E",
   "nonRenewingSubscriptions" : [
 
   ],
   "products" : [
-
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6504363893",
+      "localizations" : [
+        {
+          "description" : "Additional Cats",
+          "displayName" : "Plus",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "Hi.dorocat.Plus",
+      "referenceName" : "Plus",
+      "type" : "NonConsumable"
+    }
   ],
   "settings" : {
-    "_applicationInternalID" : "6480333786",
-    "_developerTeamID" : "3W9F68ZTUJ",
+    "_applicationInternalID" : "6504150438",
+    "_developerTeamID" : "7G29J234C9",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 735753153.45624006,
+    "_lastSynchronizedDate" : 740152679.15127504,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
     "_storeKitErrors" : [
       {
         "current" : null,

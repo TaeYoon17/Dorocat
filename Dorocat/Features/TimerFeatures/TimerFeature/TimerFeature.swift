@@ -8,6 +8,13 @@
 import Foundation
 import ComposableArchitecture
 // MARK: -- Dorocat Tab과 Feature를 완전히 분리해서 구현해보기
+extension TimerFeature{
+    @CasePathable
+    enum ConfirmationDialog{
+        case sessionReset
+        case timerReset
+    }
+}
 @Reducer struct TimerFeature{
     enum CancelID { case timer }
     enum Action:Equatable{
@@ -25,6 +32,7 @@ import ComposableArchitecture
         case catSelect(PresentationAction<CatSelectFeature.Action>)
         case setAppState(DorocatFeature.AppStateType)
         case setGuideState(Guides)
+        case confirmationDialog(PresentationAction<Action>)
     }
     @Dependency(\.pomoDefaults) var pomoDefaults
     @Dependency(\.pomoSession) var pomoSession
@@ -56,6 +64,9 @@ import ComposableArchitecture
                 state.catType = type
                 return .none
             case .catSelect: return .none
+            case .confirmationDialog(.presented(.viewAction(let viewAction))):
+                return self.viewAction(&state,viewAction)
+            case .confirmationDialog: return .none
             //MARK: --  내부 로직 Action 처리
             case .timerTick: return self.timerTick(state: &state)
             case .setStatus(let status,let count,let startDate):
@@ -113,7 +124,7 @@ import ComposableArchitecture
         }
         .ifLet(\.$catSelect, action: \.catSelect){
             CatSelectFeature()
-        }
+        }.ifLet(\.$resetDialog, action: \.confirmationDialog)
     }
 }
 

@@ -42,5 +42,6 @@ extension TimerFeature{
         @Presents var timerSetting: TimerSettingFeature.State?
         @Presents var timerSession: TimerSessionFeature.State?
         @Presents var catSelect: CatSelectFeature.State?
+        @Presents var resetDialog: ConfirmationDialogState<Action>?
     }
 }

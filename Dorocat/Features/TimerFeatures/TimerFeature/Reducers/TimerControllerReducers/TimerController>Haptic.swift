@@ -11,6 +11,12 @@ extension TimerFeature.ControllerReducers{
     struct HapticReducer: TimerControllerProtocol{
         @Dependency(\.haptic) var haptic
         
+        func resetDialogTapped(state: inout TimerFeature.State, type: TimerFeature.ConfirmationDialog) -> Effect<TimerFeature.Action> {
+            print("asadfasdfa")
+            return .run { send in
+                await haptic.impact(style: .soft)
+            }
+        }
         func sessionTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
             .run { send in
                 await haptic.impact(style: .soft)
@@ -23,7 +29,7 @@ extension TimerFeature.ControllerReducers{
             switch state.timerStatus{
             case .standBy: return .run { send in
                 await haptic.impact(style: .soft)
-                }
+            }
             default: return .none
             }
         }
@@ -36,8 +42,11 @@ extension TimerFeature.ControllerReducers{
         
         func resetTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
             return .run { send in
-                await haptic.notification(type: .warning)
+                await haptic.impact(style: .soft)
             }
+//            return .run { send in
+//                await haptic.notification(type: .soft)
+//            }
         }
         
         func triggerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
@@ -47,13 +56,14 @@ extension TimerFeature.ControllerReducers{
             return hapticEffect
         }
         
-        func triggerWillTap(state: inout TimerFeature.State) -> ComposableArchitecture.Effect<TimerFeature.Action> {
-            switch state.timerStatus{
-            case .completed,.breakStandBy,.breakTime,.standBy,.focus,.pause:
-                return .run { send in
-                    await haptic.impact(style: .heavy)
-                }
-            default: return .none
+        func triggerWillTap(state: inout TimerFeature.State,type: TimerFeature.HapticType) -> ComposableArchitecture.Effect<TimerFeature.Action> {
+            switch type{
+            case .heavy: return .run { send in
+                await haptic.impact(style: .heavy)
+            }
+            case .soft: return .run { send in
+                await haptic.impact(style: .soft)
+            }
             }
         }
     }

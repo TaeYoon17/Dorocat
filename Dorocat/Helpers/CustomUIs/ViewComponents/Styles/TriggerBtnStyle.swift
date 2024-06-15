@@ -16,6 +16,7 @@ extension TriggerBtnStyle{
         case start
         case complete
         case goBreak
+        case resume
         case getStarted
         case stopBreak
         case pause
@@ -33,31 +34,21 @@ struct TriggerBtnStyle:ButtonStyle{
             case .getStarted: getStartedStyle(configuration: configuration)
             case .pause: pauseStyle(configuration: configuration)
             case .stopBreak: stopBreakStyle(configuration: configuration)
+            case .resume:
+                resumeStyle(configuration: configuration)
             }
-        }.frame(status: status)
-            .shadow(color: !configuration.isPressed ? .black.opacity(0.2) : .clear,radius: 4, y: 8)
-            .overlay(alignment: .center, content: {
-                configuration.label.font(.button)
-                    .foregroundStyle(configuration.isPressed ? .grey02 :.doroWhite)
-                    .animation(nil, value: configuration.isPressed)
-                    .offset(y:-2) // 여기 올림
-            })
-            .onChange(of: configuration.isPressed) { oldValue, newValue in
-                if oldValue == false && newValue == true{
-                    willTap?()
-                }
+        }
+        .shadow(color: !configuration.isPressed ? .black.opacity(0.2) : .clear, radius: 4, y: 8)
+        .overlay(alignment: .center, content: {
+            configuration.label.font(.button)
+                .foregroundStyle(configuration.isPressed ? .grey02 :.doroWhite)
+                .animation(nil, value: configuration.isPressed)
+                .offset(y:-2) // 여기 올림
+        })
+        .onChange(of: configuration.isPressed) { oldValue, newValue in
+            if oldValue == false && newValue == true{
+                willTap?()
             }
-    }
-}
-fileprivate extension View{
-    func frame(status:TriggerBtnStyle.TriggerType)-> some View{
-        switch status{
-        case .start: frame(width: 105,height: 64)
-        case .complete: frame(width: 144,height: 64)
-        case .goBreak: frame(width: 111,height: 64)
-        case .getStarted: frame(width: 161,height: 64)
-        case .pause: frame(width: 105,height: 64)
-        case .stopBreak: frame(width: 140,height: 64)
         }
     }
 }
@@ -65,12 +56,12 @@ fileprivate extension View{
 fileprivate extension TriggerBtnStyle{
     @ViewBuilder func startStyle(configuration: Configuration)-> some View{
         Image(!configuration.isPressed ? .trigger : .triggerActive).resizable().frame(width: 105,height:64)
-            
     }
 }
 //MARK: -- Complete
 fileprivate extension TriggerBtnStyle{
     @ViewBuilder func completeStyle(configuration: Configuration)-> some View{
+        
         if !configuration.isPressed{
             Image(.complete).frame(width: 144, height: 64)
         }else{
@@ -96,26 +87,36 @@ fileprivate extension TriggerBtnStyle{
         }else{
             Image(.getStartedActive).frame(width: 161,height:64)
         }
+        
     }
 }
 //MARK: -- Pause
 fileprivate extension TriggerBtnStyle{
     @ViewBuilder func pauseStyle(configuration: Configuration)-> some View{
-        if !configuration.isPressed{
-            Image(.pause).frame(width: 105,height:64)
-        }else{
-            Image(.pauseActive).frame(width: 105,height:64)
-        }
+            if !configuration.isPressed{
+                Image(.pause).frame(width: 101,height:64)
+            }else{
+                Image(.pauseActive).frame(width: 101,height:64)
+            }
     }
 }
 //MARK: -- StopBreak
 fileprivate extension TriggerBtnStyle{
     @ViewBuilder func stopBreakStyle(configuration: Configuration)-> some View{
-        if !configuration.isPressed{
-            Image(.stopBreak).frame(width: 140,height:64)
-        }else{
-            Image(.stopBreakActive).frame(width: 140,height:64)
-        }
+            if !configuration.isPressed{
+                Image(.stopBreak).frame(width: 140,height:64)
+            }else{
+                Image(.stopBreakActive).frame(width: 140,height:64)
+            }
     }
 }
 
+extension TriggerBtnStyle{
+    @ViewBuilder func resumeStyle(configuration: Configuration)-> some View{
+            if !configuration.isPressed{
+                Image(.complete).resizable().scaledToFit().frame(height: 60)
+            }else{
+                Image(.completeActive).resizable().scaledToFit().frame(height: 60)
+            }
+    }
+}

@@ -10,6 +10,25 @@ import ComposableArchitecture
 
 extension TimerFeature.ControllerReducers{
     struct ActionReducer: TimerControllerProtocol{
+        func resetDialogTapped(state: inout TimerFeature.State, type: TimerFeature.ConfirmationDialog) -> Effect<TimerFeature.Action> {
+            switch type{
+            case .sessionReset:
+                switch state.timerStatus{
+                case .pause:
+                    state.count = state.timerInformation.timeSeconds
+                    return .none
+                default: return .none
+                }
+            case .timerReset:
+                switch state.timerStatus{
+                case .breakTime,.pause: return .run { send in
+                    await send(.setStatus(.standBy, count: nil))
+                }
+                default: return .none
+                }
+            }
+        }
+        
         typealias Action = TimerFeature.Action
         func timerFieldTapped(state: inout TimerFeature.State) -> ComposableArchitecture.Effect<TimerFeature.Action> {
             switch state.timerStatus{
@@ -41,12 +60,26 @@ extension TimerFeature.ControllerReducers{
         }
         
         func resetTapped(state: inout TimerFeature.State) -> ComposableArchitecture.Effect<TimerFeature.Action> {
-            switch state.timerStatus{
-            case .breakTime,.pause: return .run { send in
-                await send(.setStatus(.standBy, count: nil))
-                }
-            default: return .none
+            let isPomoMode = state.timerInformation.isPomoMode
+            if isPomoMode{
+                state.resetDialog = .init(title: {
+                    TextState("reset button tapped")
+                }, actions: {
+                    ButtonState(role: .none, action: .viewAction(.resetDialogTapped(.sessionReset))) {
+                        TextState("Reset This session")
+                    }
+                    ButtonState(role: .destructive, action: .viewAction(.resetDialogTapped(.timerReset)), label: {TextState("Reset Timer")})
+                    ButtonState(role: .cancel, action: .confirmationDialog(.dismiss), label:{ TextState("Cancel")})
+                }, message: nil)
+            }else{
+                state.resetDialog = .init(title: {
+                    TextState("reset button tapped")
+                }, actions: {
+                    ButtonState(role: .destructive, action: .viewAction(.resetDialogTapped(.timerReset)), label: {TextState("Reset Timer")})
+                    ButtonState(role: .cancel, action: .confirmationDialog(.dismiss), label:{ TextState("Cancel")})
+                }, message: nil)
             }
+            return .none
         }
         
         func triggerTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
@@ -74,7 +107,7 @@ extension TimerFeature.ControllerReducers{
             case .sleep: return .none
             }
         }
-        func triggerWillTap(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
+        func triggerWillTap(state: inout TimerFeature.State,type: TimerFeature.HapticType) -> Effect<TimerFeature.Action>{
             return .none
         }
     }

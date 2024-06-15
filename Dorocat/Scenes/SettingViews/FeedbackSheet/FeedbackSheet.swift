@@ -8,26 +8,6 @@
 import SwiftUI
 import MessageUI
 import ComposableArchitecture
-@Reducer
-struct FeedbackFeature{
-    @ObservableState struct State: Equatable{}
-    @Dependency(\.dismiss) var dismiss
-    enum Action:Equatable{
-        case delegate
-        case close
-    }
-    var body: some ReducerOf<Self>{
-        Reduce{ state, action in
-            switch action{
-            case .delegate: return .none
-            case .close:
-                return .run { send in
-                    await dismiss()
-                }
-            }
-        }
-    }
-}
 struct FeedbackSheet: UIViewControllerRepresentable {
     @Bindable var store:StoreOf<FeedbackFeature>
     func makeCoordinator() -> Coordinator {
@@ -55,6 +35,8 @@ extension FeedbackSheet{
         init(store:StoreOf<FeedbackFeature>){
             self.store = store
             super.init()
+        }
+        deinit{
         }
         func setContent(){
             vc.setSubject("🐈‍⬛ I have a suggestion!")

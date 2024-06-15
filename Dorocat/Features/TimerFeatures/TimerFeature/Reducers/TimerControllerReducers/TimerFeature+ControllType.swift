@@ -9,12 +9,17 @@ import Foundation
 import ComposableArchitecture
 
 extension TimerFeature{
+    enum HapticType:Equatable{
+        case heavy
+        case soft
+    }
     enum ControllType:Equatable{
         case timerFieldTapped
         case catTapped
         case resetTapped
         case triggerTapped
-        case triggerWillTap
+        case triggerWillTap(HapticType = .heavy)
         case sessionTapped
+        case resetDialogTapped(ConfirmationDialog)
     }
 }
