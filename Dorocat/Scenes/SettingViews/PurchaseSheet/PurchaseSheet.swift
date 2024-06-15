@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import StoreKit
 enum PurchaseViewComponents{}
 struct PurchaseSheet: View {
     @Bindable var store: StoreOf<SettingPurchaseFeature>
@@ -22,7 +23,7 @@ struct PurchaseSheet: View {
                     }
                 }
             }.padding(.bottom,56)
-            PurchaseViewComponents.OfferList().padding(.horizontal,16)
+            PurchaseViewComponents.OfferList(store:store).padding(.horizontal,16)
             Spacer()
             VStack(spacing: 16,content: {
                 Button("Continue") {
@@ -31,11 +32,15 @@ struct PurchaseSheet: View {
                     store.send(.doneWillTapped)
                 }
                 Button {
+                    store.send(.setRefundPresent(true))
                 } label: {
                     Text("Restore Purchase").font(.paragraph03(.bold)).foregroundStyle(.grey02)
                 }
             })
         }
+        .refundRequestSheet(for: store.transactionID, isPresented: Binding(get: {
+            store.isRefundPresent
+        }, set: { store.send(.setRefundPresent($0)) }))
     }
 }
 

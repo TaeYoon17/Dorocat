@@ -8,6 +8,7 @@
 import Foundation
 import ComposableArchitecture
 import UIKit
+import StoreKit
 @Reducer struct SettingFeature{
     enum NotificationStateType{
         case denied
@@ -17,9 +18,12 @@ import UIKit
     @ObservableState struct State: Equatable{
         var isLaunch = false
         var isNotiAuthorized = false
+        var isProUser = false
         var isNotiEnabled = false
         var isSoundEnabled = false
         var isHapticEnabled = false
+        var isRefundPresent = false
+        var refundTransactionID: Transaction.ID = 0
         var notiAuthType: NotificationStateType = .denied
         var catType: CatType = .doro
         @Presents var purchaseSheet: SettingPurchaseFeature.State?
@@ -32,6 +36,9 @@ import UIKit
         case setNotiEnabled(Bool)
         case setSoundEnabled(Bool)
         case setHapticEnabled(Bool)
+        case setProUser(Bool)
+        case setRefundPresent(Bool)
+        case setRefundTransaction(Transaction.ID)
         
         case setCatType(CatType)
         
@@ -57,6 +64,7 @@ import UIKit
     @Dependency(\.feedback) var feedback
     @Dependency(\.pomoDefaults) var pomoDefaults
     @Dependency(\.cat) var cat
+    @Dependency(\.store) var store
     enum CancelID{case initial, cat}
     var body: some ReducerOf<Self>{
         Reduce{ state,action in
@@ -91,7 +99,17 @@ import UIKit
                             }
                         }
                     }.cancellable(id: CancelID.cat)
-                    return Effect.merge(notificationEffect,initialEffect,catEffect)
+                    return Effect.merge(notificationEffect,initialEffect,catEffect).merge(with: .run(operation: { send in
+                        await send(.setProUser(store.isProUser))
+                        await send(.setRefundTransaction(store.refundTransactionID))
+                        for await event in await store.eventAsyncStream(){
+                            switch event{
+                            case .userProUpdated(let isPro): 
+                                await send(.setProUser(isPro))
+                                await send(.setRefundTransaction(store.refundTransactionID))
+                            }
+                        }
+                    }))
                 }
                 return .none
             case .purchaseSheet: return .none
@@ -187,6 +205,15 @@ import UIKit
                         }
                     }
                 }
+                return .none
+            case .setProUser(let isProUser):
+                state.isProUser = isProUser
+                return .none
+            case .setRefundPresent(let isRefund):
+                state.isRefundPresent = isRefund
+                return .none
+            case .setRefundTransaction(let id):
+                state.refundTransactionID = id
                 return .none
             }
         }

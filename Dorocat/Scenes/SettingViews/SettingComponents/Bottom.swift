@@ -25,6 +25,13 @@ extension SettingViewComponents{
                         Text("Privacy Policy").font(.paragraph03(.bold)).foregroundStyle(.grey02)
                     }
                 }
+                if store.isProUser{
+                    Button{
+                        store.send(.setRefundPresent(true))
+                    }label: {
+                        Text("Refund Pro-Version").font(.paragraph03(.bold)).foregroundStyle(.grey02)
+                    }
+                }
             }
         }
     }

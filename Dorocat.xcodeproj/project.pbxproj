@@ -97,7 +97,7 @@
 		633E97F22BD7AE0700215563 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633E97F12BD7AE0700215563 /* TimerStatus.swift */; };
 		633E97F42BD7AE3C00215563 /* PomoAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633E97F32BD7AE3C00215563 /* PomoAttributes.swift */; };
 		633FF07D2BDAB14B00D0F85F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633FF07C2BDAB14B00D0F85F /* StoreKit.framework */; };
-		633FF0812BDABAD300D0F85F /* StoreKitExampleCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633FF0802BDABAD300D0F85F /* StoreKitExampleCode.swift */; };
+		633FF0812BDABAD300D0F85F /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633FF0802BDABAD300D0F85F /* PurchaseManager.swift */; };
 		6345AB602BDCDCFA00FF5D33 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB5F2BDCDCFA00FF5D33 /* FontManager.swift */; };
 		6345AB622BDCDD0100FF5D33 /* FontSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB612BDCDD0100FF5D33 /* FontSystem.swift */; };
 		6345AB642BDCDD9400FF5D33 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB632BDCDD9400FF5D33 /* UIFontExtension.swift */; };
@@ -370,7 +370,7 @@
 		633E97F32BD7AE3C00215563 /* PomoAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoAttributes.swift; sourceTree = "<group>"; };
 		633FF07C2BDAB14B00D0F85F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		633FF07E2BDAB5A000D0F85F /* DoroTest.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = DoroTest.storekit; sourceTree = "<group>"; };
-		633FF0802BDABAD300D0F85F /* StoreKitExampleCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitExampleCode.swift; sourceTree = "<group>"; };
+		633FF0802BDABAD300D0F85F /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		6345AB5F2BDCDCFA00FF5D33 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 		6345AB612BDCDD0100FF5D33 /* FontSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSystem.swift; sourceTree = "<group>"; };
 		6345AB632BDCDD9400FF5D33 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
@@ -1360,7 +1360,7 @@
 			isa = PBXGroup;
 			children = (
 				63DF61B22BDAACC200D5C458 /* StoreDependency.swift */,
-				633FF0802BDABAD300D0F85F /* StoreKitExampleCode.swift */,
+				633FF0802BDABAD300D0F85F /* PurchaseManager.swift */,
 				635490F42C19C8C600BC5A2A /* StoreClient.swift */,
 			);
 			path = StoreDependencies;
@@ -1700,7 +1700,7 @@
 				63AD70562BA42A6E00DBD6B9 /* DoroMainView.swift in Sources */,
 				63A2885B2BD6507100C817E7 /* SettingPurchaseFeature.swift in Sources */,
 				631FA2122BE7810300E603A2 /* TimerController>Haptic.swift in Sources */,
-				633FF0812BDABAD300D0F85F /* StoreKitExampleCode.swift in Sources */,
+				633FF0812BDABAD300D0F85F /* PurchaseManager.swift in Sources */,
 				632F89392BB5716400F2DC0B /* TimerFeature+State.swift in Sources */,
 				631217772C1588BA00144189 /* AnalyzeCoreDataClient.swift in Sources */,
 				632F539F2BD749FF00357C68 /* PomoLiveDependency.swift in Sources */,

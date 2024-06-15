@@ -47,7 +47,13 @@ struct CatSelectFeature{
                         await send(.setCatType(selectedCat))
                         await send(.setSelectedCatType(selectedCat))
                         await send(.setProUser(isPro))
-                    }
+                    }.merge(with: .run(operation: { send in
+                        for await event in await store.eventAsyncStream(){
+                            switch event{
+                                case .userProUpdated(let value): await send(.setProUser(value))
+                            }
+                        }
+                    }))
                 }
                 return .none
             case .setProUser(let isPro):

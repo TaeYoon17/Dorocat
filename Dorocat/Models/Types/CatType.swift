@@ -39,9 +39,10 @@ extension CatType{
         case settingInfoLogo
         case onboardingIcon
     }
+    // MARK: -- 에셋이 존재하는지 나타내는 가장 중요한 값
     var isAssetExist:Bool{
         switch self{
-        case .bbang: false
+        case .bbang,.ace,.greem: false
         default: true
         }
     }

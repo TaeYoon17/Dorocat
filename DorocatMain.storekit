@@ -22,19 +22,26 @@
   ],
   "settings" : {
     "_applicationInternalID" : "6504150438",
+    "_askToBuyEnabled" : false,
     "_developerTeamID" : "7G29J234C9",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 740152679.15127504,
+    "_lastSynchronizedDate" : 740154933.48618603,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [
       {
-        "current" : null,
+        "current" : {
+          "index" : 2,
+          "type" : "generic"
+        },
         "enabled" : false,
         "name" : "Load Products"
       },
       {
-        "current" : null,
+        "current" : {
+          "index" : 1,
+          "type" : "purchase"
+        },
         "enabled" : false,
         "name" : "Purchase"
       },

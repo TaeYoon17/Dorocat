@@ -22,7 +22,6 @@ extension CatSelectFeature.ControllReducers{
         func doneTapped(state: inout CatSelectFeature.State) -> Effect<CatSelectFeature.Action> {
             if state.isProUser && state.tappedCatType != state.catType {
                 return .run {[selectedType = state.tappedCatType] send in
-                    print("메시지 전송!!")
                     await defaults.setCatType(selectedType)
                     await send(.delegate(.setCatType(selectedType)))
                     await cat.updateCatType(selectedType)

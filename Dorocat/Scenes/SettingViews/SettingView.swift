@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 import ComposableArchitecture
 enum SettingViewComponents{}
 struct SettingView: View {
@@ -20,7 +21,9 @@ struct SettingView: View {
                     Section {
                         VStack(spacing:0) {
                             VStack(spacing:8){
-                                ProListItemView{ store.send(.openPurchase) }.padding(.bottom,16)
+                                if !store.isProUser{
+                                    ProListItemView{ store.send(.openPurchase) }.padding(.bottom,16)
+                                }
                                 SettingViewComponents.NotiListItem(store: store)
 //                                SettingListItem.Toggler(title: "Sound", isOn: $store.isSoundEnabled.sending(\.setSoundEnabled))
                                 SettingListItem.Toggler(title: "Haptics", isOn: $store.isHapticEnabled.sending(\.setHapticEnabled))
@@ -44,6 +47,9 @@ struct SettingView: View {
                     }
                 })
             }.scrollIndicators(.hidden)
+            .refundRequestSheet(for: store.refundTransactionID, isPresented: Binding(get: {
+                    store.isRefundPresent
+            }, set: { store.send(.setRefundPresent($0)) }))
             .sheet(item: $store.scope(state: \.purchaseSheet, action: \.purchaseSheet)) { settingPurchaseStore in
                     PurchaseSheet(store: settingPurchaseStore).presentationDetents([.large])
                         .presentationDragIndicator(.visible)
