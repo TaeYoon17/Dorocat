@@ -50,7 +50,7 @@ extension CatSelectViewComponents{
                         print("도로 선택!!")
                     }
                 }else{
-                    CatSelectStyle.ItemView(name: catType.isAssetExist ? catType.rawValue.capitalized : "untitled", imageThumbnail: catType.isAssetExist ? catType.imageAssetName(type: .thumbnailInActiveLogo) : store.tappedCatType.imageAssetName(type: .thumbnailInActiveLogo),isActive: false, isLocked: true)
+                    CatSelectStyle.ItemView(name: catType.isAssetExist ? catType.rawValue.capitalized : "untitled", imageThumbnail: catType.isAssetExist ? catType.imageAssetName(type: .thumbnailLogo) : store.tappedCatType.imageAssetName(type: .thumbnailLogo),isActive: false, isLocked: true)
                 }
             }
         }

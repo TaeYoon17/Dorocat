@@ -18,7 +18,7 @@ enum CatSelectStyle{
                 VStack{
                     ZStack{
                         itemImage(name: imageThumbnail)
-                        Image(.themeLock).resizable().aspectRatio(1, contentMode: .fit).frame(width: 16,height: 16).opacity(0.333)
+                        Image(.themeLock).resizable().aspectRatio(1, contentMode: .fit).frame(width: 16,height: 16)
                     }
                     Text(name).foregroundStyle(.grey01).font(.paragraph04)
                 }
@@ -28,7 +28,7 @@ enum CatSelectStyle{
 //                        print("처음 고른 로고 선택")
                         action?()
                     }label: {
-                        itemImage(name: imageThumbnail).opacity(!isActive ? 1 : 0.333)
+                        itemImage(name: imageThumbnail)
                     }
                     Text(name).foregroundStyle(.grey01).font(.paragraph04)
                 }
@@ -39,6 +39,7 @@ enum CatSelectStyle{
             Image(name).resizable()
                 .aspectRatio(1, contentMode: .fit)
                 .frame(width: 60,height: 60)
+                .opacity(isActive ? 1: 0.333)
         }
     }
 }
