@@ -27,20 +27,16 @@ extension CatSelectViewComponents{
         let store: StoreOf<CatSelectFeature>
         var body: some View {
             ForEach(CatType.allCases,id:\.self){ catType in
-                if catType.isAssetExist{
-                    if catType == store.tappedCatType{
-                        CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailLogo), isLocked: false){
+                Group{
+                    if catType.isAssetExist{
+                        CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailLogo),isActive: catType == store.tappedCatType, isLocked: false){
                             store.send(.action(.itemTapped(catType)))
                         }
                     }else{
-                        CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailInActiveLogo), isLocked: false){
-                            store.send(.action(.itemTapped(catType)))
-                        }
+                        CatSelectStyle.ItemView(name: "untitled",
+                                                imageThumbnail: store.tappedCatType.imageAssetName(type: .thumbnailLogo),isActive: false,
+                                                isLocked: true)
                     }
-                }else{
-                    CatSelectStyle.ItemView(name: "untitled",
-                                            imageThumbnail: store.tappedCatType.imageAssetName(type: .thumbnailInActiveLogo),
-                                            isLocked: true)
                 }
             }
         }
@@ -50,11 +46,11 @@ extension CatSelectViewComponents{
         var body: some View {
             ForEach(CatType.allCases,id:\.self){ catType in
                 if catType == store.tappedCatType{
-                    CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailLogo), isLocked: false){
+                    CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailLogo),isActive: true, isLocked: false){
                         print("도로 선택!!")
                     }
                 }else{
-                    CatSelectStyle.ItemView(name: catType.isAssetExist ? catType.rawValue.capitalized : "untitled", imageThumbnail: catType.isAssetExist ? catType.imageAssetName(type: .thumbnailInActiveLogo) : store.tappedCatType.imageAssetName(type: .thumbnailInActiveLogo), isLocked: true)
+                    CatSelectStyle.ItemView(name: catType.isAssetExist ? catType.rawValue.capitalized : "untitled", imageThumbnail: catType.isAssetExist ? catType.imageAssetName(type: .thumbnailInActiveLogo) : store.tappedCatType.imageAssetName(type: .thumbnailInActiveLogo),isActive: false, isLocked: true)
                 }
             }
         }
@@ -86,7 +82,7 @@ struct CatListItem: View {
             }
         }
     }
-
+    
 }
 fileprivate func itemImage(name:String) -> some View{
     Image(name).resizable()

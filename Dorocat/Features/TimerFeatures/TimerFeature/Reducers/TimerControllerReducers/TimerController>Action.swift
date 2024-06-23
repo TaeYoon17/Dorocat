@@ -16,7 +16,7 @@ extension TimerFeature.ControllerReducers{
                 switch state.timerStatus{
                 case .pause:
                     state.count = state.timerInformation.timeSeconds
-                    return .none
+                    return .cancel(id: TimerFeature.CancelID.timer)
                 default: return .none
                 }
             case .timerReset:
@@ -75,7 +75,9 @@ extension TimerFeature.ControllerReducers{
                 state.resetDialog = .init(title: {
                     TextState("reset button tapped")
                 }, actions: {
-                    ButtonState(role: .destructive, action: .viewAction(.resetDialogTapped(.timerReset)), label: {TextState("Reset Timer")})
+                    ButtonState(role: .destructive, action: .viewAction(.resetDialogTapped(.timerReset)), label: {
+                        TextState("Reset Timer")
+                    })
                     ButtonState(role: .cancel, action: .confirmationDialog(.dismiss), label:{ TextState("Cancel")})
                 }, message: nil)
             }

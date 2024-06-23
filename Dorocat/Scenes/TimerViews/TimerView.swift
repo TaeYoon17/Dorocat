@@ -17,9 +17,9 @@ struct TimerView: View {
             case .standBy,.focus,.pause,.breakTime,.sleep:
                 ZStack {
                     // Focus 모드시 고양이가 Session 버튼을 가림!!
-                    VStack(spacing:0) {
+                    VStack(spacing:0) { // 타이머 숫자 조금 더 올림
                         Rectangle().fill(.clear).frame(width: 375,height: 375)
-                        TimerViewComponents.Timer.NumberField(store: store).frame(height: 102)
+                        TimerViewComponents.Timer.NumberField(store: store).frame(height: 102).offset(y: -8)
                     }.offset(y:-78 + 50)
                     TimerViewComponents.DoroCat(store:store).offset(y:-78)
                 }
@@ -63,14 +63,11 @@ struct TimerView: View {
                 TimerSettingView(store: timerSettingStore).presentationDetents([.large])
                     .presentationDragIndicator(.visible)
             }
-            .sheet(item: $store.scope(state: \.timerSession, action: \.timerSession)) { timerSessionStore in
-                TimerSessionView(store: timerSessionStore).presentationCornerRadius(24)
-            }
             .sheet(item: $store.scope(state: \.catSelect, action: \.catSelect)) { catSelectStore in
                 CatSelectView(store: catSelectStore)
             }
-            .confirmationDialog($store.scope(state:\.resetDialog,action:\.confirmationDialog))
             
+            .environment(\.colorScheme, .dark)
     }
 }
 

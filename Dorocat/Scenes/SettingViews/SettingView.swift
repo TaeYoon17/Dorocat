@@ -27,12 +27,14 @@ struct SettingView: View {
                                 SettingViewComponents.NotiListItem(store: store)
 //                                SettingListItem.Toggler(title: "Sound", isOn: $store.isSoundEnabled.sending(\.setSoundEnabled))
                                 SettingListItem.Toggler(title: "Haptics", isOn: $store.isHapticEnabled.sending(\.setHapticEnabled))
-                                SettingListItem.Linker(title: "Your Rating Matters") {
-                                    store.send(.ratingItemTapped)
-                                }
+//                                SettingListItem.Linker(title: "Your Rating Matters") {
+//                                    store.send(.ratingItemTapped)
+//                                }
+                                SettingViewComponents.WriteReviewLink(title: "Your Rating Matters")
                                 SettingListItem.Linker(title: "Send Feedback") {
                                     store.send(.feedbackItemTapped)
                                 }
+                                
                             }
                             SettingViewComponents.Bottom(store: store)
                         }

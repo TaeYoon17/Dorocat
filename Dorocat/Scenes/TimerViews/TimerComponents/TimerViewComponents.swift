@@ -22,7 +22,7 @@ fileprivate extension TimerFeatureStatus{
 }
 enum TimerViewComponents{
     struct TriggerBtn: View{
-        let store: StoreOf<TimerFeature>
+        @Bindable var store: StoreOf<TimerFeature>
         var body: some View{
             Group{
                 switch store.timerStatus{
@@ -33,6 +33,7 @@ enum TimerViewComponents{
                         }.resetStyle {
                             store.send(.viewAction(.triggerWillTap(.soft)))
                         }
+                        .confirmationDialog($store.scope(state:\.resetDialog,action:\.confirmationDialog))
                         Button(store.timerStatus.text){
                             store.send(.viewAction(.triggerTapped))
                         }.triggerStyle(status: btnType, willTap: {

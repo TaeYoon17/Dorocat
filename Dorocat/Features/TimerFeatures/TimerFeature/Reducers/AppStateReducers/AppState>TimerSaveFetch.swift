@@ -38,7 +38,7 @@ extension TimerFeature.AppStateReducers{
                     return .run { send in
                         await timerBackground.set(date: Date())
                         await timerBackground.set(timerStatus: timerStatus)
-//                        await send(.setStatus(timerStatus))
+                        await send(.setStatus(timerStatus))
                         await pomoDefaults.setAll(values)
                     }
                 case .inActive: return .none

@@ -10,6 +10,7 @@ enum CatSelectStyle{
     struct ItemView: View{
         let name:String
         let imageThumbnail:String
+        let isActive:Bool
         let isLocked:Bool
         var action:(()->())? = nil
         var body: some View{
@@ -17,7 +18,7 @@ enum CatSelectStyle{
                 VStack{
                     ZStack{
                         itemImage(name: imageThumbnail)
-                        Image(.themeLock).resizable().aspectRatio(1, contentMode: .fit).frame(width: 16,height: 16)
+                        Image(.themeLock).resizable().aspectRatio(1, contentMode: .fit).frame(width: 16,height: 16).opacity(0.333)
                     }
                     Text(name).foregroundStyle(.grey01).font(.paragraph04)
                 }
@@ -27,7 +28,7 @@ enum CatSelectStyle{
 //                        print("처음 고른 로고 선택")
                         action?()
                     }label: {
-                        itemImage(name: imageThumbnail)
+                        itemImage(name: imageThumbnail).opacity(!isActive ? 1 : 0.333)
                     }
                     Text(name).foregroundStyle(.grey01).font(.paragraph04)
                 }

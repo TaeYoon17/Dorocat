@@ -70,10 +70,13 @@ enum TimerViewModifiers{
         }
     }
     struct Session: ViewModifier{
-        let store: StoreOf<TimerFeature>
+        @Bindable var store: StoreOf<TimerFeature>
         func body(content: Content) -> some View {
             content.overlay(alignment: .top, content: {
                     TimerViewComponents.FocusSessionButton(store: store).padding(.top,93)
+                    .sheet(item: $store.scope(state: \.timerSession, action: \.timerSession)) { timerSessionStore in
+                        TimerSessionView(store: timerSessionStore).presentationCornerRadius(24)
+                    }
             })
         }
     }

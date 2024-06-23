@@ -35,6 +35,7 @@ extension TimerFeature{
             }
         }
     }
+    // 기본 타이머 모드일 때 타이머에서 1초가 줄어들 때
     private func defaultTick(state: inout TimerFeature.State) -> Effect<TimerFeature.Action>{
         guard state.timerStatus == .focus else{ return .cancel(id: CancelID.timer)}
         let num = state.count - 1

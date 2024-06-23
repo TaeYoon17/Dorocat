@@ -17,6 +17,7 @@ struct SettingPurchaseFeature{
         var isRefundPresent:Bool = false
         var transactionID:Transaction.ID = 0
     }
+    
     enum Action:Equatable{
         case doneWillTapped
         case doneTapped
@@ -28,12 +29,12 @@ struct SettingPurchaseFeature{
             case cancel
         }
     }
+    
     @Dependency(\.dismiss) var dismiss
     @Dependency(\.store) var store
     @Dependency(\.haptic) var haptic
-    enum CancelID{
-        case purchase
-    }
+    enum CancelID{ case purchase }
+    
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{

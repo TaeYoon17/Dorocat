@@ -34,8 +34,7 @@ struct TriggerBtnStyle:ButtonStyle{
             case .getStarted: getStartedStyle(configuration: configuration)
             case .pause: pauseStyle(configuration: configuration)
             case .stopBreak: stopBreakStyle(configuration: configuration)
-            case .resume:
-                resumeStyle(configuration: configuration)
+            case .resume: resumeStyle(configuration: configuration)
             }
         }
         .shadow(color: !configuration.isPressed ? .black.opacity(0.2) : .clear, radius: 4, y: 8)
