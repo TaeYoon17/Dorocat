@@ -14,7 +14,7 @@ extension TimerFeature.AppStateReducers{
         @Dependency(\.pomoDefaults) var pomoDefaults
         @Dependency(\.analyzeAPIClients) var analyzeAPI
         func makeReducer(capturedState state: TimerFeature.State, prevAppState: DorocatFeature.AppStateType, nextAppState: DorocatFeature.AppStateType) -> ComposableArchitecture.Effect<TimerFeature.Action> {
-            print("-- App State",prevAppState,nextAppState)
+            print("-- App State ","prev: ",prevAppState,"next: ",nextAppState)
             switch nextAppState {
             case .active:
                 return .run { send in

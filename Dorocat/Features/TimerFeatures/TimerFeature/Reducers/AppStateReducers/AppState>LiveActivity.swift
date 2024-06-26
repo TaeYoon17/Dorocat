@@ -24,11 +24,16 @@ extension TimerFeature.AppStateReducers{
             case .inActive: return .none
             case .background:
                 switch state.timerStatus{
-                case .sleep: return .run{[count = state.count,cat = state.catType] send in
-                    let lieveActivityType = state.timerStatus.convertToTimerActivityType
-                    await liveActivity.updateActivity(type: lieveActivityType  ?? .focusSleep,
-                                                      item: state.selectedSession, cat: cat,restCount: count)
+                case .sleep(let sleepType): return .run{[count = state.count,cat = state.catType] send in
+                    let lieveActivityType: TimerActivityType? = state.timerStatus.convertToTimerActivityType ?? .focusSleep
+                    let totalTime:Int = switch sleepType {
+                        case .focusSleep: state.timerInformation.timeSeconds
+                        case .breakSleep: state.timerInformation.breakTime
                     }
+                    await liveActivity.createActivity(type: lieveActivityType ,item:state.selectedSession,
+                                                      cat: cat ,restCount:count,totalCount: totalTime)
+                    }
+                    
                 default: return .none
                 }
             }

@@ -8,7 +8,7 @@
 import Foundation
 enum CatType:String,CaseIterable,Identifiable,Codable{
     var id:String{self.rawValue}
-    case doro,monet,muya,pomo
+    case doro,pomo,monet,muya
     func lottieAssetName(type:LottieAssetType)->String{
         let name = "\(self.rawValue)_\(type.rawValue)"
         return name
@@ -36,7 +36,7 @@ extension CatType{
         case icon = "appIcon"
         case mainLogo
         case thumbnailLogo
-        case thumbnailInActiveLogo
+//        case thumbnailInActiveLogo
         case settingInfoLogo
         case onboardingIcon
     }

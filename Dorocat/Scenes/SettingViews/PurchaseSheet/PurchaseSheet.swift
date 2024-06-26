@@ -19,7 +19,7 @@ struct PurchaseSheet: View {
                     if catType == store.catType{
                         CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailLogo),isActive: false, isLocked: false)
                     }else{
-                        CatSelectStyle.ItemView(name: catType.isAssetExist ? catType.rawValue.capitalized : "untitled", imageThumbnail: catType.isAssetExist ? catType.imageAssetName(type: .thumbnailInActiveLogo) : store.catType.imageAssetName(type: .thumbnailInActiveLogo),isActive: false, isLocked: true)
+                        CatSelectStyle.ItemView(name: catType.isAssetExist ? catType.rawValue.capitalized : "untitled", imageThumbnail: catType.isAssetExist ? catType.imageAssetName(type: .thumbnailLogo) : store.catType.imageAssetName(type: .thumbnailLogo),isActive: false, isLocked: true)
                     }
                 }
             }.padding(.bottom,56)

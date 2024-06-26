@@ -76,7 +76,7 @@ struct CatListItem: View {
                 Button{
                     action?()
                 }label: {
-                    itemImage(name: catType.imageAssetName(type: .thumbnailInActiveLogo))
+                    itemImage(name: catType.imageAssetName(type: .thumbnailLogo)).opacity(0.333)
                 }
                 Text("untitled").foregroundStyle(.grey01).font(.paragraph04)
             }
