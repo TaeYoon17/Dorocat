@@ -10,7 +10,7 @@ import ComposableArchitecture
 fileprivate extension TimerFeatureStatus{
     var text:String{
         switch self{
-        case .breakTime: "Stop Break"
+        case .breakTime: "Skip Break"
         case .completed: "Complete"
         case .standBy: "Start"
         case .focus:"Pause"
@@ -48,17 +48,6 @@ enum TimerViewComponents{
                     })
                     .animation(nil, value: store.timerStatus)
                 }
-            }
-        }
-        var text:String{
-            switch store.timerStatus{
-            case .breakTime: "Stop Break"
-            case .completed: "Complete"
-            case .standBy: "Start"
-            case .focus:"Pause"
-            case .pause: "Start"
-            case .breakStandBy: "Break"
-            default: ""
             }
         }
         var btnType:TriggerBtnStyle.TriggerType{

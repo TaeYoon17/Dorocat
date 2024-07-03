@@ -23,10 +23,16 @@ extension TimerFeature.StatusReducers{
             if let startDate{ state.startDate = startDate }
             let count = count ?? state.timerInformation.timeSeconds
             state.count = count
+            // Focus에서 나오는 Set Sleep을 감춘다.
+            var guides = state.guideInformation
+            guides.startGuide = true
             return .concatenate(.cancel(id: cancelID),
                                 .run(priority: .high)  { send in
                                     await send(.setTimerRunning(count))
-                                })
+                                },.run(operation: {[guides] send in
+                                    try await Task.sleep(for: .seconds(2))
+                                    await send(.setGuideState(guides))
+                                }).animation(.easeInOut))
         }
         
         func setPause(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> Effect<TimerFeature.Action> {

@@ -29,8 +29,8 @@ extension CatType{
     enum LottieAssetType:String{
         case basic
         case sleeping
-        case done
-        case great
+        case done = "done"
+//        case great
     }
     enum ImageType:String{
         case icon = "appIcon"

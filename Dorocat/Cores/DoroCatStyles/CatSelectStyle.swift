@@ -25,7 +25,6 @@ enum CatSelectStyle{
             }else{
                 VStack{
                     Button{
-//                        print("처음 고른 로고 선택")
                         action?()
                     }label: {
                         itemImage(name: imageThumbnail)

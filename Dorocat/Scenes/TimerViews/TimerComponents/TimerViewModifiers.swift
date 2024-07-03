@@ -88,4 +88,20 @@ enum TimerViewModifiers{
             }
         }
     }
+    struct SkipBreakInfo: ViewModifier{
+        let store: StoreOf<TimerFeature>
+        func body(content: Content) -> some View {
+            content.overlay(alignment:.top) {
+                ZStack {
+                    if store.isSkipped{
+                        TimerViewComponents.SkipInfo()
+                            .padding(.top,25)
+                            .opacity(store.isSkipped ? 1 : 0)
+                    }else{
+                        EmptyView()
+                    }
+                }.transition(.opacity)
+            }
+        }
+    }
 }

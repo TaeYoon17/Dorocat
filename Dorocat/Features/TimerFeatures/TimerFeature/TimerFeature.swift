@@ -25,6 +25,7 @@ extension TimerFeature{
         case setDefaultValues(PomoValues)
         case setPomoSessionValue(SessionItem)
         case setTimerRunning(Int)
+        case setSkipInfo(Bool)
         case timerTick
         case setStatus(TimerFeatureStatus,count: Int? = nil,startDate:Date? = nil)
         case timerSetting(PresentationAction<TimerSettingFeature.Action>)
@@ -113,6 +114,9 @@ extension TimerFeature{
                 return .none
             case .setPomoSessionValue(let sessionItem):
                 state.selectedSession = sessionItem
+                return .none
+            case .setSkipInfo(let skipInfo):
+                state.isSkipped = skipInfo
                 return .none
             }
         }

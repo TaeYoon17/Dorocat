@@ -35,7 +35,6 @@ extension TimerControllerProtocol{
         case .triggerWillTap(let type): triggerWillTap(state: &state,type: type)
         case .sessionTapped: sessionTapped(state: &state)
         case .resetDialogTapped(let dialog):
-            
             resetDialogTapped(state: &state,type: dialog)
         }
     }

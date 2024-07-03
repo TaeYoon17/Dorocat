@@ -66,7 +66,6 @@ struct TimerView: View {
             .sheet(item: $store.scope(state: \.catSelect, action: \.catSelect)) { catSelectStore in
                 CatSelectView(store: catSelectStore)
             }
-            
             .environment(\.colorScheme, .dark)
     }
 }
@@ -81,6 +80,7 @@ fileprivate extension View{
             .modifier(TimerViewModifiers.Guide.GoLeft(store: store))
             .modifier(TimerViewModifiers.Guide.GoRight(store: store))
             .modifier(TimerViewModifiers.Init(store: store))
+            .modifier(TimerViewModifiers.SkipBreakInfo(store: store))
     }
 }
 #Preview {

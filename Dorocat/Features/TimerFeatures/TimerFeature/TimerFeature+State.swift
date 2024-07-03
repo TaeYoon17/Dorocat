@@ -19,6 +19,8 @@ extension TimerFeature{
         var count = 0
         var cycle = 0
         var isAppLaunched = false
+        // BreakTime Skip할 때 Trigger View를 Trigger 시키는 값
+        var isSkipped = false
         var progress:Double{
             switch timerStatus{
             case .focus: Double(count) / (60 * 60)

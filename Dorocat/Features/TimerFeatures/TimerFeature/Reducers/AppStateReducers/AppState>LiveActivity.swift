@@ -25,7 +25,7 @@ extension TimerFeature.AppStateReducers{
             case .background:
                 switch state.timerStatus{
                 case .sleep(let sleepType): return .run{[count = state.count,cat = state.catType] send in
-                    let lieveActivityType: TimerActivityType? = state.timerStatus.convertToTimerActivityType ?? .focusSleep
+                    let lieveActivityType: TimerActivityType = state.timerStatus.convertToTimerActivityType ?? .focusSleep
                     let totalTime:Int = switch sleepType {
                         case .focusSleep: state.timerInformation.timeSeconds
                         case .breakSleep: state.timerInformation.breakTime

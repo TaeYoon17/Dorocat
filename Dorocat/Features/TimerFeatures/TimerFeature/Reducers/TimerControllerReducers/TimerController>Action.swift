@@ -105,7 +105,15 @@ extension TimerFeature.ControllerReducers{
                 return .run { send in
                     await send(.setStatus(.breakTime,startDate: Date()))
                 }
-            case .breakTime: return .run { await $0(.setStatus(.standBy)) }
+            case .breakTime:
+                return .run {[count = state.count] send in
+                    await send(.setStatus(.focus, startDate: Date()))
+                }.concatenate(with: .run(operation: { send in
+                    await send(.setSkipInfo(true))
+                    try await Task.sleep(for: .seconds(2))
+                    await send(.setSkipInfo(false)
+                    )
+                }).animation(.easeInOut))
             case .sleep: return .none
             }
         }
