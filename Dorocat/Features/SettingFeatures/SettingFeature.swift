@@ -40,6 +40,7 @@ import StoreKit
         case setRefundPresent(Bool)
         case setRefundTransaction(Transaction.ID)
         
+        
         case setCatType(CatType)
         
         case openPurchase
@@ -207,8 +208,13 @@ import StoreKit
                 }
                 return .none
             case .setProUser(let isProUser):
+                let prevProUser = state.isProUser
                 state.isProUser = isProUser
-                return .none
+                return .run { send in
+                    if !isProUser && prevProUser != isProUser{
+                        await cat.updateCatType(.doro)
+                    }
+                }
             case .setRefundPresent(let isRefund):
                 state.isRefundPresent = isRefund
                 return .none

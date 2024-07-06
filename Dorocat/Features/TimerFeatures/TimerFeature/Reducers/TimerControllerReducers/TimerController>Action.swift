@@ -30,7 +30,7 @@ extension TimerFeature.ControllerReducers{
         }
         
         typealias Action = TimerFeature.Action
-        func timerFieldTapped(state: inout TimerFeature.State) -> ComposableArchitecture.Effect<TimerFeature.Action> {
+        func timerFieldTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
             switch state.timerStatus{
             case .standBy: // standby일때 탭하면 세팅하는 화면으로 설정한다.
                 state.timerSetting = TimerSettingFeature.State()
@@ -59,7 +59,7 @@ extension TimerFeature.ControllerReducers{
             return .none
         }
         
-        func resetTapped(state: inout TimerFeature.State) -> ComposableArchitecture.Effect<TimerFeature.Action> {
+        func resetTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
             let isPomoMode = state.timerInformation.isPomoMode
             if isPomoMode{
                 state.resetDialog = .init(title: {

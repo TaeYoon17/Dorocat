@@ -25,6 +25,7 @@ struct SettingPurchaseFeature{
         case setProducts([Product])
         case setRefundPresent(Bool)
         case setTransactionID(Transaction.ID)
+        case restoreTapped
         enum Delegate: Equatable{
             case cancel
         }
@@ -32,6 +33,7 @@ struct SettingPurchaseFeature{
     
     @Dependency(\.dismiss) var dismiss
     @Dependency(\.store) var store
+    @Dependency(\.cat) var cat
     @Dependency(\.haptic) var haptic
     enum CancelID{ case purchase }
     
@@ -70,9 +72,14 @@ struct SettingPurchaseFeature{
             case .setRefundPresent(let isPresent):
                 state.isRefundPresent = isPresent
                 return .none
-            case .setTransactionID(let id): 
+            case .setTransactionID(let id):
                 state.transactionID = id
                 return .none
+            case .restoreTapped:
+                return .run { send in
+                    let isRestoreSuccessed = await store.restore()
+                    print("restore successed",isRestoreSuccessed)
+                }
             }
         }
     }

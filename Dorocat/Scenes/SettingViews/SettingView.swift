@@ -25,11 +25,7 @@ struct SettingView: View {
                                     ProListItemView{ store.send(.openPurchase) }.padding(.bottom,16)
                                 }
                                 SettingViewComponents.NotiListItem(store: store)
-//                                SettingListItem.Toggler(title: "Sound", isOn: $store.isSoundEnabled.sending(\.setSoundEnabled))
                                 SettingListItem.Toggler(title: "Haptics", isOn: $store.isHapticEnabled.sending(\.setHapticEnabled))
-//                                SettingListItem.Linker(title: "Your Rating Matters") {
-//                                    store.send(.ratingItemTapped)
-//                                }
                                 SettingViewComponents.WriteReviewLink(title: "Your Rating Matters")
                                 SettingListItem.Linker(title: "Send Feedback") {
                                     store.send(.feedbackItemTapped)
@@ -51,7 +47,14 @@ struct SettingView: View {
             }.scrollIndicators(.hidden)
             .refundRequestSheet(for: store.refundTransactionID, isPresented: Binding(get: {
                     store.isRefundPresent
-            }, set: { store.send(.setRefundPresent($0)) }))
+            }, set: { store.send(.setRefundPresent($0)) }), onDismiss: { res in
+                switch res{
+                case .success(let status): break
+//                    print("res success:",res)
+//                    store.send(.setCatType(.doro))
+                case .failure(let error): print("res error",error)
+                }
+            })
             .sheet(item: $store.scope(state: \.purchaseSheet, action: \.purchaseSheet)) { settingPurchaseStore in
                     PurchaseSheet(store: settingPurchaseStore).presentationDetents([.large])
                         .presentationDragIndicator(.visible)
@@ -62,13 +65,7 @@ struct SettingView: View {
             }
             .alert($store.scope(state: \.alert, action: \.alert))
         }
-        .onAppear(){
-            store.send(.launchAction)
-            print("Setting OnAppear")
-        }
-        .onDisappear(){
-            print("Setting Disappear")
-        }
+        .onAppear(){ store.send(.launchAction) }
         .tint(.black)
         .foregroundStyle(.black)
         .toolbar(.hidden, for: .navigationBar)

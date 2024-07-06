@@ -20,7 +20,7 @@ struct ContinueBtnStyle: ButtonStyle{
             .padding(.horizontal,28)
             .padding(.vertical,19.5)
             .background(.doroPink)
-            .foregroundStyle(Color.init(red: 0.34, green: 0.34, blue: 0.34))
+            .foregroundStyle(.grey04)
             .clipShape(Capsule())
             .scaleEffect(x: !configuration.isPressed ? 1.0 : 0.9,y: !configuration.isPressed ? 1.0 : 0.9)
             .animation(.interactiveSpring,value:configuration.isPressed)

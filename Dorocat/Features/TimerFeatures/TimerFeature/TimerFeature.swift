@@ -26,6 +26,8 @@ extension TimerFeature{
         case setPomoSessionValue(SessionItem)
         case setTimerRunning(Int)
         case setSkipInfo(Bool)
+        case setCatType(CatType)
+        
         case timerTick
         case setStatus(TimerFeatureStatus,count: Int? = nil,startDate:Date? = nil)
         case timerSetting(PresentationAction<TimerSettingFeature.Action>)
@@ -40,6 +42,7 @@ extension TimerFeature{
     @Dependency(\.timer.background) var timeBackground
     @Dependency(\.analyzeAPIClients) var analyzeAPI
     @Dependency(\.timer) var timer
+    @Dependency(\.cat) var cat
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
@@ -61,8 +64,7 @@ extension TimerFeature{
             case .timerSession(.presented(.delegate(.cancel))): return .none
             case .timerSession: return .none
             case .catSelect(.presented(.delegate(.setCatType(let type)))):
-                print("delegate 발생 \(type)")
-                state.catType = type
+//                state.catType = type
                 return .none
             case .catSelect: return .none
             case .confirmationDialog(.presented(.viewAction(let viewAction))):
@@ -87,6 +89,12 @@ extension TimerFeature{
                             await send(.setDefaultValues(savedValues)) // 디스크에 저장된 값을 State에 보냄
                             await send(.setPomoSessionValue(sessionItem))
                             await send(.diskInfoToMemory)
+                        }, .run{ send in
+                            for await event in await cat.catEventStream(){
+                                switch event{
+                                    case .updated(let catType): await send(.setCatType(catType))
+                                }
+                            }
                         })
                 }else{ return .none }
             case .diskInfoToMemory:
@@ -117,6 +125,9 @@ extension TimerFeature{
                 return .none
             case .setSkipInfo(let skipInfo):
                 state.isSkipped = skipInfo
+                return .none
+            case .setCatType(let type):
+                state.catType = type
                 return .none
             }
         }

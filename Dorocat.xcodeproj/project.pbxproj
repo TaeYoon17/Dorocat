@@ -214,6 +214,9 @@
 		63C124D82B9EF93D000A6D35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C124D72B9EF93D000A6D35 /* Assets.xcassets */; };
 		63C124DB2B9EF93D000A6D35 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C124DA2B9EF93D000A6D35 /* Preview Assets.xcassets */; };
 		63C5BF562BCAB8BE00E5A89C /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C5BF552BCAB8BE00E5A89C /* CircularProgressView.swift */; };
+		63C9F9152C35B70D00451694 /* muya_basic.json in Resources */ = {isa = PBXBuildFile; fileRef = 63C9F9122C35B70D00451694 /* muya_basic.json */; };
+		63C9F9162C35B70D00451694 /* muya_sleeping.json in Resources */ = {isa = PBXBuildFile; fileRef = 63C9F9132C35B70D00451694 /* muya_sleeping.json */; };
+		63C9F9172C35B70D00451694 /* muya_done.json in Resources */ = {isa = PBXBuildFile; fileRef = 63C9F9142C35B70D00451694 /* muya_done.json */; };
 		63CBAD8C2BCD2247004EE320 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBAD8B2BCD2247004EE320 /* LottieView.swift */; };
 		63CCAFA32BCD1E280045B2A0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 63CCAFA22BCD1E280045B2A0 /* Lottie */; };
 		63CCAFA62BCD1EB20045B2A0 /* doro_sleeping.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA52BCD1EB20045B2A0 /* doro_sleeping.json */; };
@@ -493,6 +496,9 @@
 		63C124D72B9EF93D000A6D35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63C124DA2B9EF93D000A6D35 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		63C5BF552BCAB8BE00E5A89C /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		63C9F9122C35B70D00451694 /* muya_basic.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = muya_basic.json; sourceTree = "<group>"; };
+		63C9F9132C35B70D00451694 /* muya_sleeping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = muya_sleeping.json; sourceTree = "<group>"; };
+		63C9F9142C35B70D00451694 /* muya_done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = muya_done.json; sourceTree = "<group>"; };
 		63CBAD8B2BCD2247004EE320 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		63CCAFA52BCD1EB20045B2A0 /* doro_sleeping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = doro_sleeping.json; path = Dorocat/Resources/LottieAssets/Doro/doro_sleeping.json; sourceTree = SOURCE_ROOT; };
 		63CCAFA72BCD1EBB0045B2A0 /* doro_basic.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = doro_basic.json; path = Dorocat/Resources/LottieAssets/Doro/doro_basic.json; sourceTree = SOURCE_ROOT; };
@@ -1378,9 +1384,20 @@
 			path = Cores;
 			sourceTree = "<group>";
 		};
+		63C9F9112C35B6FD00451694 /* Muya */ = {
+			isa = PBXGroup;
+			children = (
+				63C9F9122C35B70D00451694 /* muya_basic.json */,
+				63C9F9142C35B70D00451694 /* muya_done.json */,
+				63C9F9132C35B70D00451694 /* muya_sleeping.json */,
+			);
+			path = Muya;
+			sourceTree = "<group>";
+		};
 		63CCAFA42BCD1E520045B2A0 /* LottieAssets */ = {
 			isa = PBXGroup;
 			children = (
+				63C9F9112C35B6FD00451694 /* Muya */,
 				6342D3DC2C345E0200AB335A /* Pomo */,
 				6371040F2C095C080099075C /* Monet */,
 				6371040E2C095BFF0099075C /* Doro */,
@@ -1589,6 +1606,7 @@
 				63CCAFA62BCD1EB20045B2A0 /* doro_sleeping.json in Resources */,
 				63B3FC392BB04A6600277576 /* Rubik-Bold.ttf in Resources */,
 				63CCAFAB2BCD1EC60045B2A0 /* doro_done.json in Resources */,
+				63C9F9152C35B70D00451694 /* muya_basic.json in Resources */,
 				63CCAFAC2BCD1EC60045B2A0 /* 04_confetti.json in Resources */,
 				632721862B9F2E5C007E3206 /* .gitignore in Resources */,
 				63B3FC332BB04A6600277576 /* Rubik-BlackItalic.ttf in Resources */,
@@ -1596,6 +1614,7 @@
 				63F88D342C1B5B2900A712AA /* DorocatMain.storekit in Resources */,
 				63B5DFD62C3400AC00513E90 /* monet_basic.json in Resources */,
 				6312177E2C158F9000144189 /* GoogleService-Info.plist in Resources */,
+				63C9F9172C35B70D00451694 /* muya_done.json in Resources */,
 				635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */,
 				63B3FC362BB04A6600277576 /* Rubik-Light.ttf in Resources */,
 				63B3FC342BB04A6600277576 /* Rubik-MediumItalic.ttf in Resources */,
@@ -1615,6 +1634,7 @@
 				634C48B72BDB8F1D002E35DC /* DarumadropOne-Regular.ttf in Resources */,
 				63CCAFA82BCD1EBB0045B2A0 /* doro_basic.json in Resources */,
 				63B3FC352BB04A6600277576 /* Rubik-SemiBold.ttf in Resources */,
+				63C9F9162C35B70D00451694 /* muya_sleeping.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2122,7 +2142,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.5;
+				MARKETING_VERSION = 0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = Hi.dorocat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2163,7 +2183,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.5;
+				MARKETING_VERSION = 0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = Hi.dorocat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

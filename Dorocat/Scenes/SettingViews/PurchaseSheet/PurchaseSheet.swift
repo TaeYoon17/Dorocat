@@ -12,8 +12,8 @@ enum PurchaseViewComponents{}
 struct PurchaseSheet: View {
     @Bindable var store: StoreOf<SettingPurchaseFeature>
     var body: some View {
-        VStack(spacing:0) {
-            PurchaseViewComponents.Information(store: store)
+        VStack {
+            PurchaseViewComponents.Information(store: store).padding(.bottom,31)
             HStack(spacing:20) {
                 ForEach(CatType.allCases,id:\.self){ catType in
                     if catType == store.catType{
@@ -32,7 +32,7 @@ struct PurchaseSheet: View {
                     store.send(.doneWillTapped)
                 }
                 Button {
-                    store.send(.setRefundPresent(true))
+                    store.send(.restoreTapped)
                 } label: {
                     Text("Restore Purchase").font(.paragraph03(.bold)).foregroundStyle(.grey02)
                 }
