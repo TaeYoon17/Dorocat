@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 extension TimerViewComponents{
     struct DoroCat:View{
-        let store: StoreOf<TimerFeature>
+        @Bindable var store: StoreOf<TimerFeature>
         var body: some View{
             Button(action: {
             }, label: {

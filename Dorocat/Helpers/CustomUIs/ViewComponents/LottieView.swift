@@ -13,6 +13,7 @@ import SwiftUI
 
 struct LottieView: UIViewRepresentable{
     func updateUIView(_ uiView: UIViewType, context: Context) {
+        
         context.coordinator.fileName = fileName
     }
     var fileName: String
@@ -47,6 +48,7 @@ extension LottieView{
             didSet{
                 guard oldValue != fileName else {return}
                 animationView.animation = LottieAnimation.named(fileName)
+                animationView.play()
             }
         }
     }
