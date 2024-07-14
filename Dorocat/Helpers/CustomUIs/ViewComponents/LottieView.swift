@@ -13,7 +13,6 @@ import SwiftUI
 
 struct LottieView: UIViewRepresentable{
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        
         context.coordinator.fileName = fileName
     }
     var fileName: String

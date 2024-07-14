@@ -42,7 +42,7 @@ struct ProListItemView: View {
             .padding(.trailing,16)
             .background(.grey03)
             .clipShape(RoundedRectangle(cornerRadius: 16))
-            Text("Remove ads and unlock all future features.").font(.paragraph04).foregroundStyle(.grey02)
+//            Text("Remove ads and unlock all future features.").font(.paragraph04).foregroundStyle(.grey02)
         }
     }
 }
