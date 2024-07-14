@@ -16,6 +16,7 @@ fileprivate extension TimerFeatureStatus{
         case .focus:"Pause"
         case .pause: "Resume"
         case .breakStandBy: "Break"
+        case .focusStandBy: "Start"
         default: ""
         }
     }
@@ -53,6 +54,7 @@ enum TimerViewComponents{
         var btnType:TriggerBtnStyle.TriggerType{
             switch store.timerStatus{
             case .breakStandBy: return .goBreak
+            case .focusStandBy: return .goBreak
             case .breakTime: return .stopBreak
             case .focus: return .pause
             case .standBy: return .start

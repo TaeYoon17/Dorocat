@@ -13,7 +13,7 @@ extension TimerViewComponents{
         let store: StoreOf<TimerFeature>
         var body: some View {
             switch store.timerStatus{
-            case .breakStandBy,.completed:
+            case .breakStandBy,.focusStandBy,.completed:
                 EmptyView()
             case .breakTime:
                 Text("Break Time").foregroundStyle(.grey01).font(.button)

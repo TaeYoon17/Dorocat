@@ -19,7 +19,7 @@ extension TimerViewComponents{
                     case .completed:
                         LottieView(fileName: store.catType.lottieAssetName(type: .done)
                                    , loopMode: .autoReverse).frame(width: size,height: size)
-                    case .breakStandBy:
+                    case .breakStandBy,.focusStandBy:
                         LottieView(fileName: store.catType.lottieAssetName(type: .done)
                                    , loopMode: .autoReverse)
                         .frame(width: size,height: size)

@@ -9,6 +9,8 @@ import Foundation
 import ComposableArchitecture
 extension TimerFeature.StatusReducers{
     struct AnalyzeReducer:TimerStatusProtocol{
+        
+        
         @Dependency(\.analyzeAPIClients) var analyze
         var cancelID: TimerFeature.CancelID
         
@@ -28,7 +30,9 @@ extension TimerFeature.StatusReducers{
                 await analyze.append(.init(createdAt: startDate, duration: duration,session: session))
             }
         }
-        
+        func setFocusStandBy(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> Effect<TimerFeature.Action> {
+            return .none
+        }
         func setBreakTime(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> Effect<TimerFeature.Action> { .none }
         
         func setCompleted(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<TimerFeature.Action> {

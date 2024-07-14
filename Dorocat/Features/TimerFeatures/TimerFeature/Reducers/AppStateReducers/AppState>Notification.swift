@@ -34,7 +34,7 @@ extension TimerFeature.AppStateReducers.NotificationReducer{
     }
     fileprivate func setNotification(send:Send<TimerFeature.Action>,status: TimerFeatureStatus,value:PomoValues) async throws {
         switch status{
-        case .breakStandBy,.completed,.standBy,.pause: break
+        case .breakStandBy,.focusStandBy,.completed,.standBy,.pause: break
         case .breakTime,.sleep(.breakSleep):
             guard let information = value.information else {fatalError("정보가 없음!!")}
             try await notification.sendNotification(message: .breakTimeToFocus(focusMinutes: information.timeSeconds / 60),

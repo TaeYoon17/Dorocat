@@ -29,9 +29,10 @@ protocol TimerStatusProtocol{
     func setFocus(state:inout TimerFeature.State,count:Int?,startDate:Date?)-> Effect<TimerFeature.Action>
     func setPause(state:inout TimerFeature.State,count:Int?,startDate:Date?)-> Effect<TimerFeature.Action>
     func setSleep(state:inout TimerFeature.State,sleepStatus: SleepStatus,count:Int?,startDate:Date?)-> Effect<TimerFeature.Action>
-    func setBreakStandBy(state:inout TimerFeature.State,count:Int?,startDate:Date?)-> Effect<TimerFeature.Action>
     func setBreakTime(state:inout TimerFeature.State,count:Int?,startDate:Date?)-> Effect<TimerFeature.Action>
     func setCompleted(state:inout TimerFeature.State,count:Int?,startDate:Date?)-> Effect<TimerFeature.Action>
+    func setBreakStandBy(state:inout TimerFeature.State,count:Int?,startDate:Date?)-> Effect<TimerFeature.Action>
+    func setFocusStandBy(state:inout TimerFeature.State,count:Int?,startDate:Date?)-> Effect<TimerFeature.Action>
 }
 extension TimerStatusProtocol{
     func makeReducer(state: inout TimerFeature.State,
@@ -47,12 +48,11 @@ extension TimerStatusProtocol{
             return setPause(state: &state, count: count, startDate: startDate)
         case .sleep(let sleepStatus):
             return setSleep(state: &state,sleepStatus: sleepStatus,count: count, startDate: startDate)
-        case .breakStandBy:
-            return setBreakStandBy(state: &state, count: count, startDate: startDate)
         case .breakTime:
             return setBreakTime(state: &state, count: count, startDate: startDate)
-        case .completed:
-            return setCompleted(state: &state, count: count, startDate: startDate)
+        case .completed: return setCompleted(state: &state, count: count, startDate: startDate)
+        case .breakStandBy: return setBreakStandBy(state: &state, count: count, startDate: startDate)
+        case .focusStandBy: return setFocusStandBy(state: &state, count: count, startDate: startDate)
         }
     }
 }

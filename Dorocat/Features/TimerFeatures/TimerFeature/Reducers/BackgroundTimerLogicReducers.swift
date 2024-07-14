@@ -28,7 +28,7 @@ extension TimerFeature{
         //MARK: -- 이전 상태와 저장된 상태를 통해서 메서드를 호출
         print("**Timer Status",prevStatus,pauseStatus,difference )
         switch prevStatus {
-        case .standBy,.pause,.completed,.breakStandBy: break
+        case .standBy,.pause,.completed,.breakStandBy,.focusStandBy: break
         case .focus:
             switch pauseStatus{
             case .sleep(.focusSleep):
@@ -99,9 +99,7 @@ extension TimerFeature{
         if restTime > 0{
             await send(.setStatus(.breakTime, count:restTime))
         }else{
-            newValue.count = info.timeSeconds
-            newValue.status = .sleep(.focusSleep)
-            await pomoTimerFocus(send, value: newValue, diff: diff - value.count)
+            await send(.setStatus(.focusStandBy))
         }
     }
 }

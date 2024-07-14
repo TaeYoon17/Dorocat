@@ -31,6 +31,7 @@ extension TimerFeatureStatus{
         case .sleep(.focusSleep): "focusSleep"
         case .breakTime: "breakTime"
         case .breakStandBy: "breakStandBy"
+        case .focusStandBy: "focusStandBy"
         }
     }
     static func getSleep(_ prevStatus:Self)->Self?{

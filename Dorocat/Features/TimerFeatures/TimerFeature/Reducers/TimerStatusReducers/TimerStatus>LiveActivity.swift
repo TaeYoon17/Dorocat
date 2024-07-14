@@ -10,6 +10,8 @@ import ComposableArchitecture
 
 extension TimerFeature.StatusReducers{
     struct LiveActivityReducer: TimerStatusProtocol{
+        
+        
         @Dependency(\.pomoLiveActivity) var liveActivity
         var cancelID: TimerFeature.CancelID
         func setStandBy(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> Effect<TimerFeature.Action> {
@@ -38,6 +40,9 @@ extension TimerFeature.StatusReducers{
         
         func setBreakStandBy(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> Effect<TimerFeature.Action> {
             return .run { send in await liveActivity.removeActivity() }
+        }
+        func setFocusStandBy(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> Effect<TimerFeature.Action> {
+            return .run{ send in await liveActivity.removeActivity() }
         }
         
         func setBreakTime(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> Effect<TimerFeature.Action> {

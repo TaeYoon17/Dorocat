@@ -37,15 +37,17 @@ struct TimerView: View {
                         TimerViewComponents.TotalFocusTimeView(store: store)
                     }.offset(y:11)
                 }
-            case .breakStandBy:
+                
+            case .breakStandBy,.focusStandBy:
                 ZStack{
                     VStack(spacing:0,content: {
                         Text("Great!").font(.header03)
                         Text("You've completed this session").font(.paragraph02())
                         Rectangle().fill(.clear).frame(width: 375,height: 375)
                     }).foregroundStyle(.doroWhite)
-                        .offset(y: -78)
-                    TimerViewComponents.DoroCat(store:store).offset(y:-78)
+                        .offset(y:-78)
+                    TimerViewComponents.DoroCat(store:store)
+
                 }
             }
         }

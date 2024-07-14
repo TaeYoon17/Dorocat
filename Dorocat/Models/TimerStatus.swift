@@ -16,9 +16,12 @@ enum TimerFeatureStatus:Equatable{
     case pause
     case sleep(SleepStatus)
     case breakStandBy
+    case focusStandBy
     case breakTime
     case completed
 }
+
+
 extension TimerActivityType{
     var convertToTimerStatus: TimerFeatureStatus{
         return switch self{

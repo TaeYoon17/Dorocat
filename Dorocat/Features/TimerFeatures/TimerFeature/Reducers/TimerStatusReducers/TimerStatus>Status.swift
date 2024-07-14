@@ -9,6 +9,8 @@ import Foundation
 import ComposableArchitecture
 extension TimerFeature.StatusReducers{
     struct StatusReducer: TimerStatusProtocol{
+        
+        
         @Dependency(\.haptic) var haptic
         @Dependency(\.pomoDefaults) var defaults
         var cancelID: TimerFeature.CancelID
@@ -52,9 +54,14 @@ extension TimerFeature.StatusReducers{
                 await send(.setTimerRunning(count))
             })
         }
-        func setBreakStandBy(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<TimerFeature.Action> {
+        func setBreakStandBy(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> Effect<TimerFeature.Action> {
             if count != nil{ fatalError("여기에 존재하면 안된다!!")}
             state.count = state.timerInformation.breakTime
+            return .concatenate(.cancel(id: cancelID))
+        }
+        func setFocusStandBy(state: inout TimerFeature.State, count: Int?, startDate: Date?) -> Effect<TimerFeature.Action> {
+            if count != nil{ fatalError("여기에 존재하면 안된다!!")}
+            state.count = state.timerInformation.timeSeconds
             return .concatenate(.cancel(id: cancelID))
         }
         
