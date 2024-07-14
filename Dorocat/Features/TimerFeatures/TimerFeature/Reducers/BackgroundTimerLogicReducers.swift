@@ -26,7 +26,7 @@ extension TimerFeature{
         let pauseStatus = await timeBackground.timerStatus  // 이전 상태에서 Sleep한 상태
         let prevStatus = savedValues.status // 이전 상태
         //MARK: -- 이전 상태와 저장된 상태를 통해서 메서드를 호출
-        print("**Timer Status",prevStatus,pauseStatus)
+        print("**Timer Status",prevStatus,pauseStatus,difference )
         switch prevStatus {
         case .standBy,.pause,.completed,.breakStandBy: break
         case .focus:

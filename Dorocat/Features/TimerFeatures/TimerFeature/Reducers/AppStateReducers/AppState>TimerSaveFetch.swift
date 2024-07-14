@@ -17,14 +17,19 @@ extension TimerFeature.AppStateReducers{
             print("-- App State ","prev: ",prevAppState,"next: ",nextAppState)
             switch nextAppState {
             case .active:
-                return .run { send in
-                    await timerBackground.set(date: Date())
+                switch prevAppState {
+                case .inActive:
+                    return .run { send in
+                        await send(.diskInfoToMemory)
+                    }
+                default:
+                    return .run { send in
+                        await timerBackground.set(date: Date())
+                    }
                 }
             case .inActive:
                 switch prevAppState{
-                case .background: return .run { send in
-                    await send(.diskInfoToMemory)
-                }
+                case .background: return .none
                 case .active:
                     let prevStatus = state.timerStatus
                     let timerStatus = TimerFeatureStatus.getSleep(prevStatus) ?? prevStatus
@@ -43,22 +48,7 @@ extension TimerFeature.AppStateReducers{
                     }
                 case .inActive: return .none
                 }
-            case .background:
-                switch prevAppState {
-                case .inActive:return .none
-                case .active,.background:
-                    // 이전에 갖고 있던 상태에서 Pause로 이동한 상태를 저장
-                    let prevStatus = state.timerStatus
-                    let timerStatus = TimerFeatureStatus.getSleep(prevStatus) ?? prevStatus
-                    let values = PomoValues(catType: state.catType, status: prevStatus, information: state.timerInformation, cycle: state.cycle, count: state.count,sessionItem: state.selectedSession, startDate: state.startDate)
-                    return .run { send in
-                        await timerBackground.set(date: Date())
-                        await timerBackground.set(timerStatus: timerStatus)
-                        await send(.setStatus(timerStatus))
-                        await pomoDefaults.setAll(values)
-                    }
-                }
-               
+            case .background: return .none
             }
         }
     }
