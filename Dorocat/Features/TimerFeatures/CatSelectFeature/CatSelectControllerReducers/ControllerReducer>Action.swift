@@ -11,12 +11,22 @@ import ComposableArchitecture
 extension CatSelectFeature.ControllReducers{
     struct ActionReducer:CatSelectControllerProtocol{
         typealias Action = CatSelectFeature.Action
+        typealias CancelID = CatSelectFeature.CancelID
         @Dependency(\.dismiss) var dismiss
         @Dependency(\.pomoDefaults) var defaults
         @Dependency(\.cat) var cat
+        @Dependency(\.store) var store
+        
         func itemTapped(state: inout CatSelectFeature.State,catType:CatType) -> Effect<CatSelectFeature.Action> {
-            state.tappedCatType = catType
-            return .none
+            if state.isProUser{
+                state.tappedCatType = catType
+                return .none
+            }else{
+                print("여기가 실행되어야 함...")
+                return .run { send in
+                    try await store.purchase()
+                }.cancellable(id: CancelID.purchase)
+            }
         }
         
         func doneTapped(state: inout CatSelectFeature.State) -> Effect<CatSelectFeature.Action> {

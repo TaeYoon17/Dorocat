@@ -14,23 +14,18 @@ enum CatSelectStyle{
         let isLocked:Bool
         var action:(()->())? = nil
         var body: some View{
-            if isLocked{
-                VStack{
+            VStack{
+                Button{
+                    action?()
+                }label: {
                     ZStack{
                         itemImage(name: imageThumbnail)
-                        Image(.themeLock).resizable().aspectRatio(1, contentMode: .fit).frame(width: 16,height: 16)
+                        if isLocked{
+                            Image(.themeLock).resizable().aspectRatio(1, contentMode: .fit).frame(width: 16,height: 16)
+                        }
                     }
-                    Text(name).foregroundStyle(.grey01).font(.paragraph04)
                 }
-            }else{
-                VStack{
-                    Button{
-                        action?()
-                    }label: {
-                        itemImage(name: imageThumbnail)
-                    }
-                    Text(name).foregroundStyle(.grey01).font(.paragraph04)
-                }
+                Text(name).foregroundStyle(.grey01).font(.paragraph04)
             }
             
         }

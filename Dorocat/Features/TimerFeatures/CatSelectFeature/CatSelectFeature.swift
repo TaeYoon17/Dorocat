@@ -31,6 +31,7 @@ struct CatSelectFeature{
             case setCatType(CatType)
         }
     }
+    enum CancelID{ case purchase }
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
@@ -43,10 +44,14 @@ struct CatSelectFeature{
                     state.isLaunched = true
                     return .run { send in
                         let isPro = store.isProUser
-                        let selectedCat = await  defaults.selectedCat
+                        let selectedCat = await defaults.selectedCat
                         await send(.setCatType(selectedCat))
                         await send(.setSelectedCatType(selectedCat))
                         await send(.setProUser(isPro))
+                        if !isPro{
+                            try await store.loadProducts()
+                            await store.updatePurchasedProducts()
+                        }
                     }.merge(with: .run(operation: { send in
                         for await event in await store.eventAsyncStream(){
                             switch event{

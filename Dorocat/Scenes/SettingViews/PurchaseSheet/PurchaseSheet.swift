@@ -17,9 +17,13 @@ struct PurchaseSheet: View {
             HStack(spacing:20) {
                 ForEach(CatType.allCases,id:\.self){ catType in
                     if catType == store.catType{
-                        CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailLogo),isActive: false, isLocked: false)
+                        CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailLogo),isActive: false, isLocked: false){
+                            store.send(.doneTapped)
+                        }
                     }else{
-                        CatSelectStyle.ItemView(name: catType.isAssetExist ? catType.rawValue.capitalized : "untitled", imageThumbnail: catType.isAssetExist ? catType.imageAssetName(type: .thumbnailLogo) : store.catType.imageAssetName(type: .thumbnailLogo),isActive: false, isLocked: true)
+                        CatSelectStyle.ItemView(name: catType.isAssetExist ? catType.rawValue.capitalized : "untitled", imageThumbnail: catType.isAssetExist ? catType.imageAssetName(type: .thumbnailLogo) : store.catType.imageAssetName(type: .thumbnailLogo),isActive: false, isLocked: true){
+                            store.send(.doneTapped)
+                        }
                     }
                 }
             }.padding(.bottom,56)

@@ -47,10 +47,12 @@ extension CatSelectViewComponents{
             ForEach(CatType.allCases,id:\.self){ catType in
                 if catType == store.tappedCatType{
                     CatSelectStyle.ItemView(name: catType.rawValue.capitalized, imageThumbnail: catType.imageAssetName(type: .thumbnailLogo),isActive: true, isLocked: false){
-                        print("도로 선택!!")
+                        store.send(.action(.itemTapped(catType)))
                     }
                 }else{
-                    CatSelectStyle.ItemView(name: catType.isAssetExist ? catType.rawValue.capitalized : "untitled", imageThumbnail: catType.isAssetExist ? catType.imageAssetName(type: .thumbnailLogo) : store.tappedCatType.imageAssetName(type: .thumbnailLogo),isActive: false, isLocked: true)
+                    CatSelectStyle.ItemView(name: catType.isAssetExist ? catType.rawValue.capitalized : "untitled", imageThumbnail: catType.isAssetExist ? catType.imageAssetName(type: .thumbnailLogo) : store.tappedCatType.imageAssetName(type: .thumbnailLogo),isActive: false, isLocked: true){
+                        store.send(.action(.itemTapped(catType)))
+                    }
                 }
             }
         }
