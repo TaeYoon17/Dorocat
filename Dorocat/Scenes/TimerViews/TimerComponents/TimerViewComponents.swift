@@ -10,14 +10,13 @@ import ComposableArchitecture
 fileprivate extension TimerFeatureStatus{
     var text:String{
         switch self{
-        case .breakTime: "Skip Break"
+        case .breakTime,.sleep(.breakSleep): "Skip Break"
         case .completed: "Complete"
         case .standBy: "Start"
-        case .focus:"Pause"
+        case .focus,.sleep(.focusSleep):"Pause"
         case .pause: "Resume"
         case .breakStandBy: "Break"
         case .focusStandBy: "Start"
-        default: ""
         }
     }
 }
