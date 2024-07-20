@@ -18,15 +18,8 @@ extension CatSelectFeature.ControllReducers{
         @Dependency(\.store) var store
         
         func itemTapped(state: inout CatSelectFeature.State,catType:CatType) -> Effect<CatSelectFeature.Action> {
-            if state.isProUser{
-                state.tappedCatType = catType
-                return .none
-            }else{
-                print("여기가 실행되어야 함...")
-                return .run { send in
-                    try await store.purchase()
-                }.cancellable(id: CancelID.purchase)
-            }
+            state.tappedCatType = catType
+            return .none
         }
         
         func doneTapped(state: inout CatSelectFeature.State) -> Effect<CatSelectFeature.Action> {

@@ -27,6 +27,7 @@ extension TimerFeature{
         case setTimerRunning(Int)
         case setSkipInfo(Bool)
         case setCatType(CatType)
+        case setProUser(Bool)
         
         case timerTick
         case setStatus(TimerFeatureStatus,count: Int? = nil,startDate:Date? = nil)
@@ -36,6 +37,7 @@ extension TimerFeature{
         case setAppState(DorocatFeature.AppStateType)
         case setGuideState(Guides)
         case confirmationDialog(PresentationAction<Action>)
+        case purchaseSheet(PresentationAction<SettingPurchaseFeature.Action>)
     }
     @Dependency(\.pomoDefaults) var pomoDefaults
     @Dependency(\.pomoSession) var pomoSession
@@ -70,6 +72,7 @@ extension TimerFeature{
             case .confirmationDialog(.presented(.viewAction(let viewAction))):
                 return self.viewAction(&state,viewAction)
             case .confirmationDialog: return .none
+            case .purchaseSheet: return .none
             //MARK: --  내부 로직 Action 처리
             case .timerTick: return self.timerTick(state: &state)
             case .setStatus(let status,let count,let startDate):
@@ -129,6 +132,10 @@ extension TimerFeature{
             case .setCatType(let type):
                 state.catType = type
                 return .none
+            case .setProUser(let isProUser):
+                state.isProUser = isProUser
+                print("pro user 바뀜")
+                return .none
             }
         }
         .ifLet(\.$timerSetting, action: \.timerSetting){
@@ -140,6 +147,9 @@ extension TimerFeature{
         .ifLet(\.$catSelect, action: \.catSelect){
             CatSelectFeature()
         }.ifLet(\.$resetDialog, action: \.confirmationDialog)
+        .ifLet(\.$purchaseSheet, action: \.purchaseSheet){
+            SettingPurchaseFeature()
+        }
     }
 }
 

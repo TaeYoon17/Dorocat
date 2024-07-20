@@ -53,7 +53,15 @@ extension TimerFeature.ControllerReducers{
         func catTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
             switch state.timerStatus{
             case .standBy:
-                state.catSelect = CatSelectFeature.State()
+                if state.isProUser{
+                    state.catSelect = CatSelectFeature.State()
+                }else{
+                    state.purchaseSheet = .init()
+//                    let hapticEffect:Effect<Action> = .run { send in await haptic.impact(style: .soft) }
+                    return .run{ send in
+                        await send(.purchaseSheet(.presented(.initAction)))
+                    }
+                }
             default: break
             }
             return .none

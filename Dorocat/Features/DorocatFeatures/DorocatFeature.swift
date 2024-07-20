@@ -13,10 +13,12 @@ struct DorocatFeature{
     enum Action:Equatable{
         case pageMove(PageType)
         case setAppState(AppStateType)
+        case setProUser(Bool)
         case launchAction
         case initialAction
         case onBoardingTapped
         case onBoardingWillTap
+        
         case timer(TimerFeature.Action)
         case analyze(AnalyzeFeature.Action)
         case setting(SettingFeature.Action)
@@ -31,6 +33,7 @@ struct DorocatFeature{
     @Dependency(\.pomoLiveActivity) var liveActivity
     @Dependency(\.pomoDefaults) var pomoDefaults
     @Dependency(\.timer.background) var timerBackground
+    @Dependency(\.store) var store
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
@@ -40,6 +43,12 @@ struct DorocatFeature{
                 return .run{ send in
                     await send(.timer(.setAppState(appState)))
                     await send(.setting(.setAppState(appState)))
+                }
+            case .setProUser(let isProUser):
+                state.isProUser = isProUser
+                return .run { send in
+                    await send(.timer(.setProUser(isProUser)))
+                    await send(.setting(.setProUser(isProUser)))
                 }
             case .launchAction: return launchReducer(state: &state)
             case .timer(let action): return timerFeatureReducer(state: &state, subAction: action)
@@ -54,7 +63,6 @@ struct DorocatFeature{
                 var guide = state.guideState
                 guide.onBoarding = true
                 return .run{[guide] send in
-                    
                     await send(.setGuideStates(guide))
                 }
             case .onBoardingWillTap:
@@ -65,6 +73,7 @@ struct DorocatFeature{
                 return .run{ send in
                     await haptic.setEnable(true)
                     await notification.setEnable(true)
+
                 }
             case .setActivityAction(let prev, let next):
                 return timerActivityReducer(state: &state, prev: prev, next: next)

@@ -68,6 +68,10 @@ struct TimerView: View {
             .sheet(item: $store.scope(state: \.catSelect, action: \.catSelect)) { catSelectStore in
                 CatSelectView(store: catSelectStore)
             }
+            .sheet(item: $store.scope(state: \.purchaseSheet, action: \.purchaseSheet)) { settingPurchaseStore in
+                    PurchaseSheet(store: settingPurchaseStore).presentationDetents([.large])
+                        .presentationDragIndicator(.visible)
+            }
             .environment(\.colorScheme, .dark)
     }
 }

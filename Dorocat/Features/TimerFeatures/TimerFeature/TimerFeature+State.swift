@@ -18,9 +18,10 @@ extension TimerFeature{
         // 앱에서 running일 때 사용할 정보들
         var count = 0
         var cycle = 0
-        var isAppLaunched = false
+        var isAppLaunched:Bool = false
         // BreakTime Skip할 때 Trigger View를 Trigger 시키는 값
-        var isSkipped = false
+        var isSkipped:Bool = false
+        var isProUser:Bool = false
         var progress:Double{
             switch timerStatus{
             case .focus: Double(count) / (60 * 60)
@@ -43,6 +44,7 @@ extension TimerFeature{
         var startDate = Date()
         @Presents var timerSetting: TimerSettingFeature.State?
         @Presents var timerSession: TimerSessionFeature.State?
+        @Presents var purchaseSheet: SettingPurchaseFeature.State?
         @Presents var catSelect: CatSelectFeature.State?
         @Presents var resetDialog: ConfirmationDialogState<Action>?
     }

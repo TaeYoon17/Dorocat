@@ -15,7 +15,7 @@ extension DorocatFeature{
         var isAppLaunched = false
         var showPageIndicator = true
         var catType:CatType = .doro
-        
+        var isProUser: Bool = false
         //MARK: -- 하위 뷰의 State 들...
         var anylzeState = AnalyzeFeature.State()
         var timerState = TimerFeature.State()

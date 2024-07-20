@@ -100,17 +100,7 @@ import StoreKit
                             }
                         }
                     }.cancellable(id: CancelID.cat)
-                    return Effect.merge(notificationEffect,initialEffect,catEffect).merge(with: .run(operation: { send in
-                        await send(.setProUser(store.isProUser))
-                        await send(.setRefundTransaction(store.refundTransactionID))
-                        for await event in await store.eventAsyncStream(){
-                            switch event{
-                            case .userProUpdated(let isPro): 
-                                await send(.setProUser(isPro))
-                                await send(.setRefundTransaction(store.refundTransactionID))
-                            }
-                        }
-                    }))
+                    return Effect.merge(notificationEffect,initialEffect,catEffect)
                 }
                 return .none
             case .purchaseSheet: return .none
@@ -214,6 +204,7 @@ import StoreKit
                     if !isProUser && prevProUser != isProUser{
                         await cat.updateCatType(.doro)
                     }
+                    await send(.setRefundTransaction(store.refundTransactionID))
                 }
             case .setRefundPresent(let isRefund):
                 state.isRefundPresent = isRefund

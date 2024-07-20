@@ -40,7 +40,6 @@ struct CatSelectFeature{
                 return viewAction(&state, controllType)
             case .launchAction:
                 if !state.isLaunched{
-                    print("Launch가 일어난다...")
                     state.isLaunched = true
                     return .run { send in
                         let isPro = store.isProUser

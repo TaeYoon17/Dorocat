@@ -49,7 +49,8 @@ struct SettingView: View {
                     store.isRefundPresent
             }, set: { store.send(.setRefundPresent($0)) }), onDismiss: { res in
                 switch res{
-                case .success(let status): break
+                case .success(let status):
+                    print(status)
 //                    print("res success:",res)
 //                    store.send(.setCatType(.doro))
                 case .failure(let error): print("res error",error)

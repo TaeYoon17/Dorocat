@@ -16,6 +16,15 @@ extension DorocatFeature{
                 let guides = await self.guideDefaults.get()
                 await send(.setGuideStates(guides))
                 await send(.timer(.setGuideState(guides)))
+                let isPro = store.isProUser
+                await send(.setProUser(isPro))
+                print("isPro \(isPro)")
+                for await storeEvent in await store.eventAsyncStream(){
+                    switch storeEvent{
+                    case .userProUpdated(let isPro):
+                        await send(.setProUser(isPro))
+                    }
+                }
             },.run(operation: { send in
                 if await !initial.isUsed{
                     await initial.offInitial()
