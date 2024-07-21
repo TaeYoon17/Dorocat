@@ -34,7 +34,7 @@ extension DoroWidgetComponent{
         }
         var info:String{
             switch context.state.timerStatus{
-            case .breakSleep: "Break Check"
+            case .breakSleep: "Open"
             case .focusSleep: "Pause"
             case .pause: "Resume"
             case .standBy: "Start"

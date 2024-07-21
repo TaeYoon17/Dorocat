@@ -28,7 +28,7 @@ extension TimerFeature{
             case .breakTime: // breakTime 시간이 끝남...
                 state.count = state.timerInformation.timeSeconds
                 return Effect.merge([.cancel(id: CancelID.timer),.run { send in
-                        await send(.setStatus(.focus))
+                        await send(.setStatus(.focusStandBy))
                     }
                 ])
             default: return .cancel(id: CancelID.timer)

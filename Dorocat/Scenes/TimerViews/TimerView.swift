@@ -40,14 +40,24 @@ struct TimerView: View {
                 
             case .breakStandBy,.focusStandBy:
                 ZStack{
-                    VStack(spacing:0,content: {
-                        Text("Great!").font(.header03)
-                        Text("You've completed this session").font(.paragraph02())
+                    if store.timerStatus == .breakStandBy{
+                        VStack(spacing:0,content: {
+                            Text("Great!").font(.header03)
+                            Text("You've completed this session").font(.paragraph02())
+                            Rectangle().fill(.clear).frame(width: 375,height: 375)
+                        }).foregroundStyle(.doroWhite).offset(y:-78)
+                    }else{
+                        VStack(spacing:0,content: {
+                            Text("Great!").font(.header03)
+                            Text("Let's start session \(store.cycle + 1)").font(.paragraph02())
+                            Rectangle().fill(.clear).frame(width: 375,height: 375)
+                        }).foregroundStyle(.doroWhite).offset(y:-78)
+                    }
+                    VStack(spacing:0) { // 타이머 숫자 조금 더 올림
                         Rectangle().fill(.clear).frame(width: 375,height: 375)
-                    }).foregroundStyle(.doroWhite)
-                        .offset(y:-78)
-                    TimerViewComponents.DoroCat(store:store)
-
+                        TimerViewComponents.Timer.NumberField(store: store).frame(height: 102).offset(y: -8)
+                    }.offset(y:-78 + 50)
+                    TimerViewComponents.DoroCat(store:store).offset(y:-78)
                 }
             }
         }

@@ -119,7 +119,8 @@ extension TimerFeature.ControllerReducers{
                 }
             case .breakTime:
                 return .run { send in
-                    await send(.setStatus(.focusStandBy))
+//                    await send(.setStatus(.focusStandBy))
+                    await send(.setStatus(.focus,startDate: Date()))
                 }.concatenate(with: .run(operation: { send in
                     await send(.setSkipInfo(true))
                     try await Task.sleep(for: .seconds(2))

@@ -18,7 +18,12 @@ struct DoroWidgetExtensionLiveActivity: Widget {
                 Image(context.state.catType.lockImageLabel).resizable().scaledToFill().frame(width: 60,height:60)
                     .padding(.trailing,16 * 0.5)
                 VStack(alignment:.leading,spacing:0,content: {
-                    Text(context.state.timerSession.name).font(.button).foregroundStyle(.grey01).offset(x:2,y:8)
+                    let topInfo:String = if context.state.timerStatus == .breakSleep{
+                        "Break"
+                    }else{
+                        context.state.timerSession.name
+                    }
+                    Text(topInfo).font(.button).foregroundStyle(.grey01).offset(x:2,y:8)
                     HStack(content: {
                         DoroWidgetComponent.TimerText(context: context).fontCoordinator()
                         Spacer()
