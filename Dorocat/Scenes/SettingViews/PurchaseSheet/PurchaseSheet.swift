@@ -42,6 +42,7 @@ struct PurchaseSheet: View {
                 }
             })
         }
+        .alert($store.scope(state: \.restoreAlert, action: \.restoreAlert))
         .refundRequestSheet(for: store.transactionID, isPresented: Binding(get: {
             store.isRefundPresent
         }, set: { store.send(.setRefundPresent($0)) }))

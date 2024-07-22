@@ -18,7 +18,6 @@ extension DorocatFeature{
                 await send(.timer(.setGuideState(guides)))
                 let isPro = store.isProUser
                 await send(.setProUser(isPro))
-                print("isPro \(isPro)")
                 for await storeEvent in await store.eventAsyncStream(){
                     switch storeEvent{
                     case .userProUpdated(let isPro):

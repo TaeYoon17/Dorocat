@@ -16,6 +16,7 @@ struct SettingPurchaseFeature{
         var catType: CatType = .doro
         var isRefundPresent:Bool = false
         var transactionID:Transaction.ID = 0
+        var restoreAlert: AlertState<Action.Alert>?
     }
     
     enum Action:Equatable{
@@ -26,9 +27,15 @@ struct SettingPurchaseFeature{
         case setRefundPresent(Bool)
         case setTransactionID(Transaction.ID)
         case restoreTapped
+        case restoreAlert(PresentationAction<Alert>)
+        case nonExistPurchase
         enum Delegate: Equatable{
             case cancel
         }
+        @CasePathable
+        enum Alert {
+            case incrementButtonTapped
+       }
     }
     
     @Dependency(\.dismiss) var dismiss
@@ -78,8 +85,23 @@ struct SettingPurchaseFeature{
             case .restoreTapped:
                 return .run { send in
                     let isRestoreSuccessed = await store.restore()
-                    print("restore successed",isRestoreSuccessed)
+                    if !isRestoreSuccessed{
+                        await send(.nonExistPurchase)
+                    }
                 }
+            case .nonExistPurchase:
+                state.restoreAlert = AlertState {
+                    TextState("Alert!")
+                  } actions: {
+                    ButtonState(role: .cancel) {
+                      TextState("Cancel")
+                    }
+                  } message: {
+                    TextState("This is an alert")
+                  }
+                return .none
+            case .restoreAlert(_):
+                return .none
             }
         }
     }
