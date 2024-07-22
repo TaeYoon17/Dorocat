@@ -91,13 +91,13 @@ struct SettingPurchaseFeature{
                 }
             case .nonExistPurchase:
                 state.restoreAlert = AlertState {
-                    TextState("Alert!")
+                    TextState("Nothing to restore")
                   } actions: {
                     ButtonState(role: .cancel) {
-                      TextState("Cancel")
+                      TextState("OK")
                     }
                   } message: {
-                    TextState("This is an alert")
+                    TextState("No previous purchases were found.")
                   }
                 return .none
             case .restoreAlert(_):

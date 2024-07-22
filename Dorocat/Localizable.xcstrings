@@ -29,9 +29,6 @@
     "00" : {
 
     },
-    "Alert!" : {
-
-    },
     "analyze" : {
 
     },
@@ -89,9 +86,6 @@
     "I'll help you focus and stay on track" : {
 
     },
-    "Increment" : {
-
-    },
     "Learn More" : {
 
     },
@@ -107,6 +101,15 @@
     "min" : {
 
     },
+    "No previous purchases were found." : {
+
+    },
+    "Nothing to restore" : {
+
+    },
+    "OK" : {
+
+    },
     "PauseToFocusSleepIntent" : {
 
     },
@@ -117,9 +120,6 @@
 
     },
     "Purrs" : {
-
-    },
-    "Refund Pro-Version" : {
 
     },
     "Reset" : {
@@ -144,9 +144,6 @@
 
     },
     "Terms" : {
-
-    },
-    "This is an alert" : {
 
     },
     "Timer" : {

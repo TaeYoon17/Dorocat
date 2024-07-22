@@ -5,18 +5,18 @@
   ],
   "products" : [
     {
-      "displayPrice" : "0.99",
+      "displayPrice" : "2.99",
       "familyShareable" : false,
       "internalID" : "6504363893",
       "localizations" : [
         {
-          "description" : "Additional Cats",
-          "displayName" : "Plus",
+          "description" : "Lifetime · Limited time offer",
+          "displayName" : "Dorocat Purrs",
           "locale" : "en_US"
         }
       ],
       "productID" : "Hi.dorocat.Plus",
-      "referenceName" : "Plus",
+      "referenceName" : "Dorocat Purrs",
       "type" : "NonConsumable"
     }
   ],
@@ -25,7 +25,7 @@
     "_askToBuyEnabled" : false,
     "_developerTeamID" : "7G29J234C9",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 741954300.11757004,
+    "_lastSynchronizedDate" : 743357610.24214196,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [

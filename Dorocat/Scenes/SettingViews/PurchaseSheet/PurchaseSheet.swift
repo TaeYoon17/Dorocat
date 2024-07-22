@@ -40,7 +40,7 @@ struct PurchaseSheet: View {
                 } label: {
                     Text("Restore Purchase").font(.paragraph03(.bold)).foregroundStyle(.grey02)
                 }
-            })
+            }).padding(.bottom,8)
         }
         .alert($store.scope(state: \.restoreAlert, action: \.restoreAlert))
         .refundRequestSheet(for: store.transactionID, isPresented: Binding(get: {
