@@ -27,13 +27,19 @@ fileprivate extension DorocatFeature{
             if Date().isOverTwoDays(prevDate: prevDate){
                 return
             }
-            await timerBackground.set(date: Date())
             let difference = Int(Date().timeIntervalSince(prevDate))
             let pomoDefaultsValue:PomoValues = await pomoDefaults.getAll()
             let sessionItem = pomoDefaultsValue.sessionItem
             let restTime = pomoDefaultsValue.count
             let timerTotalTime = pomoDefaultsValue.information?.timeSeconds ?? 0
-            print("바뀐 세션 아이템 \(sessionItem)")
+            
+            let differenceTime = restTime - difference
+            if next == .pause && differenceTime <= 0 {
+                ActivityIntentManager.setTimerActivityType(prev)
+                return
+            }
+            
+            await timerBackground.set(date: Date())
             switch next{
             case .breakSleep: break
             case .focusSleep:
@@ -42,12 +48,18 @@ fileprivate extension DorocatFeature{
                 await liveActivity.updateActivity(type:.focusSleep,item:pomoDefaultsValue.sessionItem, cat: pomoDefaultsValue.catType,restCount: restTime)
                 try? await setFocusSleepNotification(pomoDefaultValue: pomoDefaultsValue)
             case .pause:
-                var differenceTime = await pomoDefaults.getAll().count - difference - 1
-                differenceTime = max(0, differenceTime)
-                await pomoDefaults.setCount(differenceTime)
-                await pomoDefaults.setStatus(.pause)
-                await liveActivity.updateActivity(type: .pause,item: sessionItem, cat: pomoDefaultsValue.catType, restCount: differenceTime)
-                try await notification.removeAllNotifications()
+                let differenceTime = await pomoDefaults.getAll().count - difference
+                print("불리긴한다 \(differenceTime)")
+                if differenceTime <= 0{
+                    print("여긴데... \(differenceTime)")
+                    ActivityIntentManager.setTimerActivityType(prev)
+                    return
+                }else{
+                    await pomoDefaults.setCount(differenceTime)
+                    await pomoDefaults.setStatus(.pause)
+                    await liveActivity.updateActivity(type: .pause,item: sessionItem, cat: pomoDefaultsValue.catType, restCount: differenceTime)
+                    try await notification.removeAllNotifications()
+                }
             case .standBy:
                 let differenceTime = await pomoDefaults.getAll().count - difference
                 guard differenceTime > 0 else { return } // 0보다 작으면 이미

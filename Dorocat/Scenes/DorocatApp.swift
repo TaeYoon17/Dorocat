@@ -31,9 +31,7 @@ struct DorocatApp: App {
                 DefaultBG()
                 DoroMainView(store: store)
             }.preferredColorScheme(.dark)
-                .onAppear(){
-                    store.send(.launchAction)
-                }
+                .onAppear(){ store.send(.launchAction) }
                 .onReceive(ActivityIntentManager.eventPublisher.receive(on: RunLoop.main), perform: { (prevValue,nextValue) in
                     print("TimerStatus: \(prevValue) \(nextValue)")
                     store.send(.setActivityAction(prev: prevValue, next: nextValue))
