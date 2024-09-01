@@ -9,7 +9,7 @@ import Foundation
 //MARK: -- static methods...
 extension Date{
     static func getMonthNumberToName(_ num: Int) -> String{
-        let months = ["January","February","March","April","May","July","June","August","September","October","November","December"]
+        let months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
         return months[num]
     }
     static func numberOfDaysInMonth(year: Int, month: Int) -> Int? {

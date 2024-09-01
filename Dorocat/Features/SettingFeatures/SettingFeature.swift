@@ -9,6 +9,7 @@ import Foundation
 import ComposableArchitecture
 import UIKit
 import StoreKit
+import FirebaseAnalytics
 @Reducer struct SettingFeature{
     enum NotificationStateType{
         case denied
@@ -107,6 +108,7 @@ import StoreKit
             case .feedbackSheet: return .none
             case .alert: return .none
             case .openPurchase:
+                Analytics.logEvent("Setting Purchase", parameters: nil)
                 state.purchaseSheet = .init()
                 let hapticEffect:Effect<Action> = .run { send in await haptic.impact(style: .soft) }
                 return .run{ send in

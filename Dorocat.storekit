@@ -1,5 +1,5 @@
 {
-  "identifier" : "8E1B048E",
+  "identifier" : "B394E59C",
   "nonRenewingSubscriptions" : [
 
   ],
@@ -7,41 +7,34 @@
     {
       "displayPrice" : "2.99",
       "familyShareable" : false,
-      "internalID" : "6504363893",
+      "internalID" : "6499347057",
       "localizations" : [
         {
-          "description" : "Lifetime · Limited time offer",
-          "displayName" : "Dorocat Purrs",
+          "description" : "Use all cats!",
+          "displayName" : "Plus",
           "locale" : "en_US"
         }
       ],
-      "productID" : "Hi.dorocat.Plus",
-      "referenceName" : "Dorocat Purrs",
+      "productID" : "com.tistory.arpple.Dorocat.ProVersion",
+      "referenceName" : "Plus",
       "type" : "NonConsumable"
     }
   ],
   "settings" : {
-    "_applicationInternalID" : "6504150438",
-    "_askToBuyEnabled" : false,
-    "_developerTeamID" : "7G29J234C9",
+    "_applicationInternalID" : "6480333786",
+    "_developerTeamID" : "3W9F68ZTUJ",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 743615279.71132505,
+    "_lastSynchronizedDate" : 743697484.06440794,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [
       {
-        "current" : {
-          "index" : 2,
-          "type" : "generic"
-        },
+        "current" : null,
         "enabled" : false,
         "name" : "Load Products"
       },
       {
-        "current" : {
-          "index" : 1,
-          "type" : "purchase"
-        },
+        "current" : null,
         "enabled" : false,
         "name" : "Purchase"
       },

@@ -27,6 +27,7 @@ extension TimerFeature.StatusReducers{
             let duration = state.timerInformation.timeSeconds / 60
             let session = state.selectedSession
             return .run(priority: .medium) { send in
+                try await Task.sleep(for: .seconds(0.666))
                 await analyze.append(.init(createdAt: startDate, duration: duration,session: session))
             }
         }
@@ -40,6 +41,7 @@ extension TimerFeature.StatusReducers{
             let duration = state.timerInformation.timeSeconds / 60
             let session = state.selectedSession
             return .run(priority: .medium) { send in
+                try await Task.sleep(for: .seconds(0.666))
                 await analyze.append(.init(createdAt: startDate, duration: duration,session: session))
             }
         }

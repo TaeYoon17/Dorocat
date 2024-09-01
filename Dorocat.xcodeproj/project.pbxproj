@@ -32,7 +32,6 @@
 		631217772C1588BA00144189 /* AnalyzeCoreDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631217762C1588BA00144189 /* AnalyzeCoreDataClient.swift */; };
 		6312177A2C15897B00144189 /* DoroModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 631217782C15897B00144189 /* DoroModel.xcdatamodeld */; };
 		6312177C2C158E4B00144189 /* CoreDataSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6312177B2C158E4B00144189 /* CoreDataSessionStore.swift */; };
-		6312177E2C158F9000144189 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6312177D2C158F9000144189 /* GoogleService-Info.plist */; };
 		631217812C1595BA00144189 /* CoreDataCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631217802C1595BA00144189 /* CoreDataCore.swift */; };
 		631217842C1597D800144189 /* TimerRecordItemEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631217822C1597D800144189 /* TimerRecordItemEntity+CoreDataClass.swift */; };
 		631217852C1597D800144189 /* TimerRecordItemEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631217832C1597D800144189 /* TimerRecordItemEntity+CoreDataProperties.swift */; };
@@ -55,7 +54,6 @@
 		631FA2122BE7810300E603A2 /* TimerController>Haptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631FA2112BE7810200E603A2 /* TimerController>Haptic.swift */; };
 		631FA2142BE788E800E603A2 /* TimerController>Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631FA2132BE788E800E603A2 /* TimerController>Guide.swift */; };
 		631FA2162BE790CE00E603A2 /* TimerController>Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631FA2152BE790CE00E603A2 /* TimerController>Action.swift */; };
-		6322F5A32C0EFF4800682C2C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6322F5A22C0EFF4800682C2C /* FirebaseAnalytics */; };
 		6322F5A62C0F077300682C2C /* Bottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6322F5A52C0F077300682C2C /* Bottom.swift */; };
 		632721862B9F2E5C007E3206 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 632721852B9F2E5C007E3206 /* .gitignore */; };
 		632F53882BD7490800357C68 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632F53872BD7490800357C68 /* WidgetKit.framework */; };
@@ -123,6 +121,11 @@
 		635618AC2C1DD098002816BD /* FeedbackFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635618AB2C1DD098002816BD /* FeedbackFeature.swift */; };
 		635923A62BECFAF4002CC44C /* TimerSessionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635923A52BECFAF4002CC44C /* TimerSessionFeature.swift */; };
 		635923A92BECFE53002CC44C /* TimerSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635923A82BECFE53002CC44C /* TimerSessionView.swift */; };
+		63597A762C84299D0003E880 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63597A752C84299D0003E880 /* GoogleService-Info.plist */; };
+		63597A8A2C843A2C0003E880 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 63597A892C843A2C0003E880 /* FirebaseAnalytics */; };
+		63597A8C2C843A2C0003E880 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 63597A8B2C843A2C0003E880 /* FirebaseAnalyticsOnDeviceConversion */; };
+		63597A8E2C843A2C0003E880 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 63597A8D2C843A2C0003E880 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		63597A902C843A2C0003E880 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 63597A8F2C843A2C0003E880 /* FirebaseCrashlytics */; };
 		6359D9882BC576C40045DEC7 /* AppStateReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6359D9872BC576C40045DEC7 /* AppStateReducers.swift */; };
 		635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 635BD5582B9F56CA004480D1 /* Localizable.xcstrings */; };
 		635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 635BD55B2B9F5708004480D1 /* ComposableArchitecture */; };
@@ -155,6 +158,7 @@
 		6373504E2BB7E3E500221F20 /* TimerFeature+TimerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6373504D2BB7E3E500221F20 /* TimerFeature+TimerInformation.swift */; };
 		637350512BB7EEE300221F20 /* BackgroundTimerLogicReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637350502BB7EEE300221F20 /* BackgroundTimerLogicReducers.swift */; };
 		637350532BB8161D00221F20 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637350522BB8161D00221F20 /* DateExtensions.swift */; };
+		638C92872C52AB5F00F62CA4 /* Dorocat.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 638C92862C52AB5F00F62CA4 /* Dorocat.storekit */; };
 		638EAB032BBF7F50007F8CAC /* DoroTogglerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638EAB022BBF7F50007F8CAC /* DoroTogglerView.swift */; };
 		638EAB062BBF7FDE007F8CAC /* DragGesture+Swipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638EAB052BBF7FDE007F8CAC /* DragGesture+Swipe.swift */; };
 		638EAB082BBFD1C7007F8CAC /* DoroNumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638EAB072BBFD1C7007F8CAC /* DoroNumberPad.swift */; };
@@ -325,7 +329,6 @@
 		631217762C1588BA00144189 /* AnalyzeCoreDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeCoreDataClient.swift; sourceTree = "<group>"; };
 		631217792C15897B00144189 /* DoroModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DoroModel.xcdatamodel; sourceTree = "<group>"; };
 		6312177B2C158E4B00144189 /* CoreDataSessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSessionStore.swift; sourceTree = "<group>"; };
-		6312177D2C158F9000144189 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		631217802C1595BA00144189 /* CoreDataCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCore.swift; sourceTree = "<group>"; };
 		631217822C1597D800144189 /* TimerRecordItemEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerRecordItemEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		631217832C1597D800144189 /* TimerRecordItemEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerRecordItemEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -403,6 +406,7 @@
 		635618AB2C1DD098002816BD /* FeedbackFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackFeature.swift; sourceTree = "<group>"; };
 		635923A52BECFAF4002CC44C /* TimerSessionFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionFeature.swift; sourceTree = "<group>"; };
 		635923A82BECFE53002CC44C /* TimerSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionView.swift; sourceTree = "<group>"; };
+		63597A752C84299D0003E880 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6359D9872BC576C40045DEC7 /* AppStateReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateReducers.swift; sourceTree = "<group>"; };
 		635BD5582B9F56CA004480D1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		635C9D3C2BB082E400BFD46D /* PomoDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoDependency.swift; sourceTree = "<group>"; };
@@ -435,6 +439,7 @@
 		6373504D2BB7E3E500221F20 /* TimerFeature+TimerInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerFeature+TimerInformation.swift"; sourceTree = "<group>"; };
 		637350502BB7EEE300221F20 /* BackgroundTimerLogicReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTimerLogicReducers.swift; sourceTree = "<group>"; };
 		637350522BB8161D00221F20 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		638C92862C52AB5F00F62CA4 /* Dorocat.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Dorocat.storekit; sourceTree = "<group>"; };
 		638EAB022BBF7F50007F8CAC /* DoroTogglerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroTogglerView.swift; sourceTree = "<group>"; };
 		638EAB052BBF7FDE007F8CAC /* DragGesture+Swipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DragGesture+Swipe.swift"; sourceTree = "<group>"; };
 		638EAB072BBFD1C7007F8CAC /* DoroNumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroNumberPad.swift; sourceTree = "<group>"; };
@@ -541,9 +546,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				633FF07D2BDAB14B00D0F85F /* StoreKit.framework in Frameworks */,
+				63597A8C2C843A2C0003E880 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */,
 				6351FA162C0C1D9E00FD0C67 /* RealmSwift in Frameworks */,
-				6322F5A32C0EFF4800682C2C /* FirebaseAnalytics in Frameworks */,
+				63597A8E2C843A2C0003E880 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				63597A902C843A2C0003E880 /* FirebaseCrashlytics in Frameworks */,
+				63597A8A2C843A2C0003E880 /* FirebaseAnalytics in Frameworks */,
 				63CCAFA32BCD1E280045B2A0 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1291,6 +1299,7 @@
 		63C124C72B9EF93D000A6D35 = {
 			isa = PBXGroup;
 			children = (
+				638C92862C52AB5F00F62CA4 /* Dorocat.storekit */,
 				63F88D332C1B5B2900A712AA /* DorocatMain.storekit */,
 				636D59ED2C182A17000A9CC2 /* SessionMenuEntity+CoreDataClass.swift */,
 				636D59EE2C182A17000A9CC2 /* SessionMenuEntity+CoreDataProperties.swift */,
@@ -1318,7 +1327,7 @@
 		63C124D22B9EF93D000A6D35 /* Dorocat */ = {
 			isa = PBXGroup;
 			children = (
-				6312177D2C158F9000144189 /* GoogleService-Info.plist */,
+				63597A752C84299D0003E880 /* GoogleService-Info.plist */,
 				63B3FC432BB04CED00277576 /* Info.plist */,
 				633E97EE2BD79E0D00215563 /* Models */,
 				63AD70502BA4292D00DBD6B9 /* Features */,
@@ -1497,7 +1506,7 @@
 				63C124CE2B9EF93D000A6D35 /* Resources */,
 				632F53982BD7490900357C68 /* Embed Foundation Extensions */,
 				6332FC3A2C0B83C100FBEBB1 /* Embed Frameworks */,
-				6322F5A42C0F029900682C2C /* Run Script */,
+				63597A742C8420FA0003E880 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -1510,7 +1519,10 @@
 				635BD55B2B9F5708004480D1 /* ComposableArchitecture */,
 				63CCAFA22BCD1E280045B2A0 /* Lottie */,
 				6351FA152C0C1D9E00FD0C67 /* RealmSwift */,
-				6322F5A22C0EFF4800682C2C /* FirebaseAnalytics */,
+				63597A892C843A2C0003E880 /* FirebaseAnalytics */,
+				63597A8B2C843A2C0003E880 /* FirebaseAnalyticsOnDeviceConversion */,
+				63597A8D2C843A2C0003E880 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				63597A8F2C843A2C0003E880 /* FirebaseCrashlytics */,
 			);
 			productName = Dorocat;
 			productReference = 63C124D02B9EF93D000A6D35 /* Dorocat.app */;
@@ -1551,7 +1563,7 @@
 				635BD55A2B9F5708004480D1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				63CCAFA12BCD1E280045B2A0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				6351FA122C0C1D9E00FD0C67 /* XCRemoteSwiftPackageReference "realm-swift" */,
-				6322F5A12C0EFF2C00682C2C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				63597A882C843A2C0003E880 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 63C124D12B9EF93D000A6D35 /* Products */;
 			projectDirPath = "";
@@ -1605,6 +1617,7 @@
 				6342D3E22C345E0D00AB335A /* pomo_sleeping.json in Resources */,
 				63CCAFA62BCD1EB20045B2A0 /* doro_sleeping.json in Resources */,
 				63B3FC392BB04A6600277576 /* Rubik-Bold.ttf in Resources */,
+				63597A762C84299D0003E880 /* GoogleService-Info.plist in Resources */,
 				63CCAFAB2BCD1EC60045B2A0 /* doro_done.json in Resources */,
 				63C9F9152C35B70D00451694 /* muya_basic.json in Resources */,
 				63CCAFAC2BCD1EC60045B2A0 /* 04_confetti.json in Resources */,
@@ -1613,7 +1626,6 @@
 				63B3FC382BB04A6600277576 /* Rubik-LightItalic.ttf in Resources */,
 				63F88D342C1B5B2900A712AA /* DorocatMain.storekit in Resources */,
 				63B5DFD62C3400AC00513E90 /* monet_basic.json in Resources */,
-				6312177E2C158F9000144189 /* GoogleService-Info.plist in Resources */,
 				63C9F9172C35B70D00451694 /* muya_done.json in Resources */,
 				635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */,
 				63B3FC362BB04A6600277576 /* Rubik-Light.ttf in Resources */,
@@ -1626,6 +1638,7 @@
 				63B3FC3B2BB04A6600277576 /* Rubik-Black.ttf in Resources */,
 				63CCAFAE2BCD1ED70045B2A0 /* doro_great.json in Resources */,
 				63B3FC3D2BB04A6600277576 /* Rubik-Italic.ttf in Resources */,
+				638C92872C52AB5F00F62CA4 /* Dorocat.storekit in Resources */,
 				6342D3E12C345E0D00AB335A /* pomo_basic.json in Resources */,
 				63B3FC3E2BB04A6600277576 /* Rubik-Regular.ttf in Resources */,
 				63B3FC322BB04A6600277576 /* Rubik-Medium.ttf in Resources */,
@@ -1641,7 +1654,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6322F5A42C0F029900682C2C /* Run Script */ = {
+		63597A742C8420FA0003E880 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1897,7 +1910,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7G29J234C9;
+				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DoroWidgetExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DoroWidgetExtension;
@@ -1908,7 +1921,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Hi.dorocat.DoroWidgetExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat.WidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1924,7 +1937,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7G29J234C9;
+				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DoroWidgetExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DoroWidgetExtension;
@@ -1935,7 +1948,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Hi.dorocat.DoroWidgetExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat.WidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1949,7 +1962,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7G29J234C9;
+				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DorocatIntents/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DorocatIntents;
@@ -1960,7 +1973,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Hi.dorocat.DorocatIntents;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1974,7 +1987,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7G29J234C9;
+				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DorocatIntents/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DorocatIntents;
@@ -1985,7 +1998,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Hi.dorocat.DorocatIntents;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat.Intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2125,10 +2138,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Dorocat/Preview Content\"";
-				DEVELOPMENT_TEAM = 7G29J234C9;
+				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Dorocat/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2142,8 +2157,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.1;
-				PRODUCT_BUNDLE_IDENTIFIER = Hi.dorocat;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -2166,10 +2181,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Dorocat/Preview Content\"";
-				DEVELOPMENT_TEAM = 7G29J234C9;
+				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Dorocat/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2183,8 +2200,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.1;
-				PRODUCT_BUNDLE_IDENTIFIER = Hi.dorocat;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tistory.arpple.Dorocat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -2238,20 +2255,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6322F5A12C0EFF2C00682C2C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.27.0;
-			};
-		};
 		6351FA122C0C1D9E00FD0C67 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
 				branch = master;
 				kind = branch;
+			};
+		};
+		63597A882C843A2C0003E880 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
 			};
 		};
 		635BD55A2B9F5708004480D1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
@@ -2273,15 +2290,30 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6322F5A22C0EFF4800682C2C /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6322F5A12C0EFF2C00682C2C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
 		6351FA152C0C1D9E00FD0C67 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6351FA122C0C1D9E00FD0C67 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		63597A892C843A2C0003E880 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63597A882C843A2C0003E880 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		63597A8B2C843A2C0003E880 /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63597A882C843A2C0003E880 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		63597A8D2C843A2C0003E880 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63597A882C843A2C0003E880 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		63597A8F2C843A2C0003E880 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63597A882C843A2C0003E880 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 		635BD55B2B9F5708004480D1 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;

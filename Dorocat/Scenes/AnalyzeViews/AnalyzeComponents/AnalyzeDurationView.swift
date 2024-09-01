@@ -12,7 +12,7 @@ extension DurationType{
         return switch self{
         case .day: ""
         case .week: "Weekly Average"
-        case .month: "Montly Average"
+        case .month: "Monthly Average"
         }
     }
 }

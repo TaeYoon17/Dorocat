@@ -12,7 +12,9 @@ struct TimerSessionView: View {
     var body: some View {
         VStack(spacing:0,content: {
             Text("Select Session").font(.header04).foregroundStyle(.doroWhite)
+                .padding(.bottom,12)
             Spacer()
+        
             VStack(spacing:12) {
                 ForEach(store.sessions){ item in
                     SessionBtn(name: item.name,
@@ -21,6 +23,7 @@ struct TimerSessionView: View {
                     }
                 }
             }
+            Spacer()
         })
         .clipShape(.rect(topLeadingRadius: 24, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 24, style: .circular))
         .padding(.top,40).padding(.bottom,26)

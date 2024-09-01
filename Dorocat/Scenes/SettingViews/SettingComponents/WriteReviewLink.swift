@@ -40,7 +40,7 @@ extension SettingViewComponents{
         private func requestReviewManually() {
             // Replace the placeholder value below with the App Store ID for your app.
             // You can find the App Store ID in your app's product URL.
-            let url = "https://apps.apple.com/app/id<#Your App Store ID#>?action=write-review"
+            let url = "https://apps.apple.com/app/id6480333786?action=write-review"
             
             guard let writeReviewURL = URL(string: url) else {
                 fatalError("Expected a valid URL")

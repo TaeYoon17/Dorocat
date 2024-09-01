@@ -49,8 +49,14 @@
             ReferencedContainer = "container:Dorocat.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "~FIRDebugEnabled"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <StoreKitConfigurationFileReference
-         identifier = "../../DorocatMain.storekit">
+         identifier = "../../Dorocat.storekit">
       </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction

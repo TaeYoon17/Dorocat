@@ -8,7 +8,8 @@
 import SwiftUI
 import ComposableArchitecture
 import ActivityKit
-import FirebaseCore
+import Firebase
+import FirebaseCrashlytics
 import UIKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -36,7 +37,9 @@ struct DorocatApp: App {
                     print("TimerStatus: \(prevValue) \(nextValue)")
                     store.send(.setActivityAction(prev: prevValue, next: nextValue))
                 })
-                .onAppear(){ UIView.appearance().tintColor = .doroWhite }
+                .onAppear(){
+                    UIView.appearance().tintColor = .doroWhite
+                }
         }
         .onChange(of: phase) { oldValue, newValue in
             switch newValue{

@@ -3,28 +3,30 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyDhR3_MeWXBCgOwnQkKdDzWDxyHAuYZc-Y</string>
+	<string>AIzaSyDJ6_FJNGQb_3reGKhEGwC5bktNG2IJbEk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>6108969081</string>
+	<string>961968149617</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>Hi.dorocat</string>
+	<string>com.tistory.arpple.Dorocat</string>
 	<key>PROJECT_ID</key>
-	<string>dorocat-de8db</string>
+	<string>dorocat-85fe1</string>
 	<key>STORAGE_BUCKET</key>
-	<string>dorocat-de8db.appspot.com</string>
+	<string>dorocat-85fe1.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<true/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
+	<key></key>
+	<string></string>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:6108969081:ios:fe0c3593007493c607fca8</string>
+	<string>1:961968149617:ios:53cf7206144b4c0cde37d0</string>
 </dict>
 </plist>

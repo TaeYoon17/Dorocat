@@ -7,7 +7,7 @@
 
 import Foundation
 import ComposableArchitecture
-
+import FirebaseAnalytics
 extension TimerFeature.ControllerReducers{
     struct ActionReducer: TimerControllerProtocol{
         func resetDialogTapped(state: inout TimerFeature.State, type: TimerFeature.ConfirmationDialog) -> Effect<TimerFeature.Action> {
@@ -51,6 +51,7 @@ extension TimerFeature.ControllerReducers{
             }
         }
         func catTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
+            Analytics.logEvent("Timer Feature Cat",parameters: nil)
             switch state.timerStatus{
             case .standBy:
                 if state.isProUser{
