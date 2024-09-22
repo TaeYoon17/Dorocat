@@ -51,7 +51,9 @@ extension TimerFeature.ControllerReducers{
             }
         }
         func catTapped(state: inout TimerFeature.State) -> Effect<TimerFeature.Action> {
+            
             Analytics.logEvent("Timer Feature Cat",parameters: nil)
+            
             switch state.timerStatus{
             case .standBy:
                 if state.isProUser{

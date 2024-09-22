@@ -121,7 +121,6 @@
 		635618AC2C1DD098002816BD /* FeedbackFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635618AB2C1DD098002816BD /* FeedbackFeature.swift */; };
 		635923A62BECFAF4002CC44C /* TimerSessionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635923A52BECFAF4002CC44C /* TimerSessionFeature.swift */; };
 		635923A92BECFE53002CC44C /* TimerSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635923A82BECFE53002CC44C /* TimerSessionView.swift */; };
-		63597A762C84299D0003E880 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63597A752C84299D0003E880 /* GoogleService-Info.plist */; };
 		63597A8A2C843A2C0003E880 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 63597A892C843A2C0003E880 /* FirebaseAnalytics */; };
 		63597A8C2C843A2C0003E880 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 63597A8B2C843A2C0003E880 /* FirebaseAnalyticsOnDeviceConversion */; };
 		63597A8E2C843A2C0003E880 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 63597A8D2C843A2C0003E880 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -256,6 +255,7 @@
 		63F804A22BF4805B007333AF /* RealmSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F804A12BF4805B007333AF /* RealmSessionStore.swift */; };
 		63F804A42BF4812E007333AF /* TimerSessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F804A32BF4812E007333AF /* TimerSessionRepository.swift */; };
 		63F88D342C1B5B2900A712AA /* DorocatMain.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 63F88D332C1B5B2900A712AA /* DorocatMain.storekit */; };
+		63FC1DA22C93528900E7F2B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63FC1DA12C93528900E7F2B3 /* GoogleService-Info.plist */; };
 		63FD1AA22BE0E9F000E8D6EA /* InitialDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FD1AA12BE0E9F000E8D6EA /* InitialDependency.swift */; };
 		63FD44792BBC48D500FA528F /* GuideDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FD44782BBC48D500FA528F /* GuideDependencies.swift */; };
 		63FF53752BF2F4FF006C009B /* TimerSessionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF53742BF2F4FF006C009B /* TimerSessionTable.swift */; };
@@ -406,7 +406,6 @@
 		635618AB2C1DD098002816BD /* FeedbackFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackFeature.swift; sourceTree = "<group>"; };
 		635923A52BECFAF4002CC44C /* TimerSessionFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionFeature.swift; sourceTree = "<group>"; };
 		635923A82BECFE53002CC44C /* TimerSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionView.swift; sourceTree = "<group>"; };
-		63597A752C84299D0003E880 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6359D9872BC576C40045DEC7 /* AppStateReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateReducers.swift; sourceTree = "<group>"; };
 		635BD5582B9F56CA004480D1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		635C9D3C2BB082E400BFD46D /* PomoDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoDependency.swift; sourceTree = "<group>"; };
@@ -517,6 +516,7 @@
 		63F804A12BF4805B007333AF /* RealmSessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSessionStore.swift; sourceTree = "<group>"; };
 		63F804A32BF4812E007333AF /* TimerSessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionRepository.swift; sourceTree = "<group>"; };
 		63F88D332C1B5B2900A712AA /* DorocatMain.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = DorocatMain.storekit; sourceTree = "<group>"; };
+		63FC1DA12C93528900E7F2B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		63FD1AA12BE0E9F000E8D6EA /* InitialDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialDependency.swift; sourceTree = "<group>"; };
 		63FD44782BBC48D500FA528F /* GuideDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDependencies.swift; sourceTree = "<group>"; };
 		63FF53742BF2F4FF006C009B /* TimerSessionTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionTable.swift; sourceTree = "<group>"; };
@@ -1327,7 +1327,7 @@
 		63C124D22B9EF93D000A6D35 /* Dorocat */ = {
 			isa = PBXGroup;
 			children = (
-				63597A752C84299D0003E880 /* GoogleService-Info.plist */,
+				63FC1DA12C93528900E7F2B3 /* GoogleService-Info.plist */,
 				63B3FC432BB04CED00277576 /* Info.plist */,
 				633E97EE2BD79E0D00215563 /* Models */,
 				63AD70502BA4292D00DBD6B9 /* Features */,
@@ -1617,7 +1617,7 @@
 				6342D3E22C345E0D00AB335A /* pomo_sleeping.json in Resources */,
 				63CCAFA62BCD1EB20045B2A0 /* doro_sleeping.json in Resources */,
 				63B3FC392BB04A6600277576 /* Rubik-Bold.ttf in Resources */,
-				63597A762C84299D0003E880 /* GoogleService-Info.plist in Resources */,
+				63FC1DA22C93528900E7F2B3 /* GoogleService-Info.plist in Resources */,
 				63CCAFAB2BCD1EC60045B2A0 /* doro_done.json in Resources */,
 				63C9F9152C35B70D00451694 /* muya_basic.json in Resources */,
 				63CCAFAC2BCD1EC60045B2A0 /* 04_confetti.json in Resources */,
@@ -1656,7 +1656,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		63597A742C8420FA0003E880 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -2148,6 +2148,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -2191,6 +2192,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
