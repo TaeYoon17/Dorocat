@@ -30,7 +30,6 @@ extension CatType{
         case basic
         case sleeping
         case done = "done"
-//        case great
     }
     enum ImageType:String{
         case icon = "appIcon"

@@ -1,5 +1,5 @@
 {
-  "originHash" : "129aa49a7ea47ba9d715ea3d437da0e3b221ce85846168dc376185684e0c92b6",
+  "originHash" : "7108c5c30dffd7bd49f77ccb46cc4de559f2a6aa41485b79846130444de1005b",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -62,6 +62,15 @@
       "state" : {
         "revision" : "53156c7ec267db846e6b64c9f4c4e31ba4cf75eb",
         "version" : "8.0.2"
+      }
+    },
+    {
+      "identity" : "greemswiftpackage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TaeYoon17/GreemSwiftPackage.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "e8d1cc1aa1a58cf8fcec158c297ae1ac24937b21"
       }
     },
     {

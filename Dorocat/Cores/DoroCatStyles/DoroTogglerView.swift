@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//import ComposableArchitecture
+
 struct DoroTogglerView: View {
     enum ToggleSize{
         case small
@@ -87,7 +87,6 @@ struct CustomTogglerView<BackContent: View,CircleContent: View>: View {
    var body: some View {
        GeometryReader { reader in
            HStack(spacing:0) {
-//               Rectangle().fill(.clear).frame(width: 2)
                Rectangle().fill(.clear).frame(width: 5)
                if isOn {
                    Spacer()
@@ -101,9 +100,6 @@ struct CustomTogglerView<BackContent: View,CircleContent: View>: View {
                }
                .padding(.vertical,3)
                .padding(.horizontal,2)
-               //MARK: -- 설정에서 사용한 패딩 값들
-//               .padding(.vertical,4)
-//               .padding(.horizontal,4.5)
                .frame(width: reader.frame(in: .global).height)
                .onTapGesture {
                    withAnimation {
@@ -123,18 +119,11 @@ struct CustomTogglerView<BackContent: View,CircleContent: View>: View {
                if !isOn {
                    Spacer()
                }
-//               Rectangle().fill(.clear).frame(width: 2)
                Rectangle().fill(.clear).frame(width: 5)
            }
            .background{backGround}
            .clipShape(Capsule())
            .frame(width: 50, height: 26)
-//           .frame(width: 60, height: 30)//control the frame or remove it and add it to ToggleView
        }
    }
 }
-//#Preview(body: {
-//    TimerSettingView(store: Store(initialState: TimerSettingFeature.State(), reducer: {
-//        TimerSettingFeature()
-//    }))
-//})
