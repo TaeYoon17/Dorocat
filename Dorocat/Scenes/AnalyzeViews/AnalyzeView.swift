@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
-import RealmSwift
+
 struct AnalyzeView: View {
     @Bindable var store: StoreOf<AnalyzeFeature>
     var body: some View {

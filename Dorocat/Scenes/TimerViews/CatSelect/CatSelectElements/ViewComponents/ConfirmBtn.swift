@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
+
 extension CatSelectViewComponents{
     struct ConfirmBtn: View {
         let store: StoreOf<CatSelectFeature>

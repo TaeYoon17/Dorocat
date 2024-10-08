@@ -7,6 +7,8 @@
 
 import Foundation
 import ComposableArchitecture
+import GreemSwiftPackage
+
 @Reducer struct AnalyzeFeature{
     @ObservableState struct State:Equatable{
         var durationType: DurationType = .day

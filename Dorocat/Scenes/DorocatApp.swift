@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
+import UIKit
+
 import ComposableArchitecture
 import ActivityKit
+
 import Firebase
 import FirebaseCrashlytics
-import UIKit
+
+
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
@@ -39,7 +44,7 @@ struct DorocatApp: App {
                 })
                 .onAppear(){
                     UIView.appearance().tintColor = .doroWhite
-                }
+                }.loadDoroFontSystem()
         }
         .onChange(of: phase) { oldValue, newValue in
             switch newValue{

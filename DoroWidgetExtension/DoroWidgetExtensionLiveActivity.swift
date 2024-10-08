@@ -8,6 +8,7 @@
 import ActivityKit
 import WidgetKit
 import SwiftUI
+import DoroDesignSystem
 enum DoroWidgetComponent{}
 
 struct DoroWidgetExtensionLiveActivity: Widget {
@@ -32,7 +33,7 @@ struct DoroWidgetExtensionLiveActivity: Widget {
                 })
             })
             .activityBackgroundTint(.grey04.opacity(0.85))
-            .activitySystemActionForegroundColor(Color.black)
+            .activitySystemActionForegroundColor(.doroBlack)
             .padding(.bottom,16).padding([.top,.leading],20).padding(.trailing,18.5)
         } dynamicIsland: { context in
             return DynamicIsland {

@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
+
 fileprivate extension TimerFeatureStatus{
     var text:String{
         switch self{
@@ -97,10 +99,10 @@ enum TimerViewComponents{
                 Image(.completeIcon)
                 Text(store.totalTime)
             }.font(.paragraph03())
-                .foregroundStyle(.grey00)
+                .foregroundStyle(Color.grey00)
                 .padding(.horizontal,20)
                 .padding(.vertical,10)
-                .background(.grey03)
+                .background(Color.grey03)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 .frame(height: 40)
                 .padding(.bottom,22)

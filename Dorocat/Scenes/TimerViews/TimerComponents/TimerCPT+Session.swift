@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
 
 extension TimerViewComponents{
@@ -16,7 +17,7 @@ extension TimerViewComponents{
             case .breakStandBy,.focusStandBy,.completed:
                 EmptyView()
             case .breakTime:
-                Text("Break Time").foregroundStyle(.grey01).font(.button)
+                Text("Break Time").foregroundStyle(Color.grey01).font(.button)
             case .standBy:
                 Button { store.send(.viewAction(.sessionTapped)) } label: {
                     HStack(alignment:.center,spacing:0){
@@ -34,7 +35,7 @@ extension TimerViewComponents{
             }
         }
         var textItem: some View{
-            Text(store.selectedSession.name).foregroundStyle(.grey01).font(.button).fontCoordinator()
+            Text(store.selectedSession.name).foregroundStyle(Color.grey01).font(.button).fontCoordinator()
         }
     }
 }

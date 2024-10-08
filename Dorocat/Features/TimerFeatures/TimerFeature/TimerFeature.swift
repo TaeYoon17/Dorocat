@@ -138,18 +138,11 @@ extension TimerFeature{
                 return .none
             }
         }
-        .ifLet(\.$timerSetting, action: \.timerSetting){
-            TimerSettingFeature()
-        }
-        .ifLet(\.$timerSession, action: \.timerSession){
-            TimerSessionFeature()
-        }
-        .ifLet(\.$catSelect, action: \.catSelect){
-            CatSelectFeature()
-        }.ifLet(\.$resetDialog, action: \.confirmationDialog)
-        .ifLet(\.$purchaseSheet, action: \.purchaseSheet){
-            SettingPurchaseFeature()
-        }
+        .ifLet(\.$timerSetting, action: \.timerSetting){ TimerSettingFeature() }
+        .ifLet(\.$timerSession, action: \.timerSession){ TimerSessionFeature() }
+        .ifLet(\.$catSelect, action: \.catSelect){ CatSelectFeature() }
+        .ifLet(\.$resetDialog, action: \.confirmationDialog)
+        .ifLet(\.$purchaseSheet, action: \.purchaseSheet){ SettingPurchaseFeature() }
     }
 }
 

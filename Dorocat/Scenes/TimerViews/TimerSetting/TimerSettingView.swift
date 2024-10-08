@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
+
 struct TimerSettingView:View {
     @Bindable var store: StoreOf<TimerSettingFeature>
     var body: some View {
@@ -38,7 +40,7 @@ struct TimerSettingView:View {
                     DoroNumberPad(text: $store.time.sending(\.setTime)).frame(maxWidth: .infinity)
                 }
             }.frame(maxWidth: .infinity)
-            .background(.grey04)
+            .background(Color.grey04)
     }
 }
 extension TimerSettingView{

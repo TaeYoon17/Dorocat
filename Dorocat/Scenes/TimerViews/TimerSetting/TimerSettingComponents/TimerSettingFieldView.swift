@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
+
 enum TimerSettingViewComponent{
     struct Field:View{
         var text:String
@@ -14,24 +16,22 @@ enum TimerSettingViewComponent{
         var body: some View{
             VStack(spacing: 21) {
                 HStack{
-                    
                     if text.isEmpty{
-                        Text("00").foregroundStyle(.grey03)
+                        Text("00").foregroundStyle(Color.grey03)
                     }else{
                         if text.count == 2{
-                            Text(text).foregroundStyle(.doroWhite)
+                            Text(text).foregroundStyle(Color.doroWhite)
                         }else if text.count == 1{
-                            (Text("0").foregroundColor(.grey03) + Text(text).foregroundColor(.doroWhite))
+                            (Text("0").foregroundColor(Color.grey03) + Text(text).foregroundColor(Color.doroWhite))
                         }
                     }
                     Text("min")
                 }
-//                .frame(width:173)
                 .font(.header02)
-                .foregroundStyle(.doroWhite)
+                .foregroundStyle(Color.doroWhite)
                 HStack(content: {
                     Text("Pomodoro mode")
-                        .foregroundStyle(.grey01)
+                        .foregroundStyle(Color.grey01)
                         .font(.paragraph03(.bold))
                     DoroTogglerView(isOn: $isOn,toggleSize: .small)
                         .frame(width: 40,height:22)
@@ -45,7 +45,7 @@ enum TimerSettingViewComponent{
         @Binding var selectedIdx:Int
         var body: some View{
             HStack {
-                Text(title).font(.paragraph02()).foregroundStyle(.doroWhite).fontCoordinator()
+                Text(title).font(.paragraph02()).foregroundStyle(Color.doroWhite).fontCoordinator()
                 Spacer()
                 HStack(spacing:0,content: {
                     NumberPickerView(number: $selectedIdx, range: type.range)
@@ -56,7 +56,7 @@ enum TimerSettingViewComponent{
                     case .breakDuration: Text("min")
                     case .cycle: EmptyView()
                     }
-                }).font(.paragraph02(.bold)).foregroundStyle(.doroWhite).fontCoordinator()
+                }).font(.paragraph02(.bold)).foregroundStyle(Color.doroWhite).fontCoordinator()
             }.modifier(ListItemBgModifier())
         }
     }
@@ -66,7 +66,7 @@ struct ListItemBgModifier:ViewModifier{
         content
             .frame(height: 60)
             .padding(.horizontal,16)
-            .background(.grey03)
+            .background(Color.grey03)
             .clipShape(RoundedRectangle(cornerRadius: 20))
     }
 }

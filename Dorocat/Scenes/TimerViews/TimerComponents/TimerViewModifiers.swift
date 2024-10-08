@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
+
 enum TimerViewModifiers{
     enum Guide{
         struct GoLeft:ViewModifier{

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
 
 extension CatSelectViewComponents{
@@ -71,7 +72,7 @@ struct CatListItem: View {
                 }label: {
                     itemImage(name: catType.imageAssetName(type: .thumbnailLogo))
                 }
-                Text(catType.rawValue.uppercased()).foregroundStyle(.grey01).font(.paragraph04)
+                Text(catType.rawValue.uppercased()).foregroundStyle(Color.grey01).font(.paragraph04)
             }
         }else{
             VStack{
@@ -80,7 +81,7 @@ struct CatListItem: View {
                 }label: {
                     itemImage(name: catType.imageAssetName(type: .thumbnailLogo)).opacity(0.333)
                 }
-                Text("untitled").foregroundStyle(.grey01).font(.paragraph04)
+                Text("untitled").foregroundStyle(Color.grey01).font(.paragraph04)
             }
         }
     }

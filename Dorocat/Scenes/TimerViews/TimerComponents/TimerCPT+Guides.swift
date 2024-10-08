@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
 
 extension TimerViewComponents{
@@ -35,7 +36,7 @@ extension TimerViewComponents{
                             .resizable()
                             .scaledToFit()
                             .frame(width: 16,height: 16)
-                            .foregroundStyle(.grey01)
+                            .foregroundStyle(Color.grey01)
                             .padding(.trailing,4)
                     }
             }
@@ -43,7 +44,7 @@ extension TimerViewComponents{
         struct StandBy:View{
             var body: some View{
                 Text("Let the cat snooze and get started!")
-                    .foregroundStyle(.doroWhite)
+                    .foregroundStyle(Color.doroWhite)
                     .font(.paragraph03())
                     .padding(.horizontal,20)
                     .padding(.vertical,14)

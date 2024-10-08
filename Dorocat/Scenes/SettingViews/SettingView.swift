@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import StoreKit
 import ComposableArchitecture
+
 enum SettingViewComponents{}
 struct SettingView: View {
     @Bindable var store: StoreOf<SettingFeature>
@@ -67,10 +69,10 @@ struct SettingView: View {
             .alert($store.scope(state: \.alert, action: \.alert))
         }
         .onAppear(){ store.send(.launchAction) }
-        .tint(.black)
-        .foregroundStyle(.black)
+        .tint(.doroBlack)
+        .foregroundStyle(Color.doroBlack)
         .toolbar(.hidden, for: .navigationBar)
-        .background(.grey04)
+        .background(Color.grey04)
     }
 }
 

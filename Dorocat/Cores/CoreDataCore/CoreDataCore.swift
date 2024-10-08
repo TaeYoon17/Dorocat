@@ -7,6 +7,9 @@
 
 import Foundation
 import CoreData
+@globalActor actor DBActor: GlobalActor {
+    static var shared = DBActor()
+}
 
 final class CoreDataCore{
     static let shared = CoreDataCore()

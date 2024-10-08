@@ -9,13 +9,7 @@ import Foundation
 import AppIntents
 import ActivityKit
 import Combine
-enum TimerActivityType:String,Identifiable,Codable{
-    var id:String{ self.rawValue }
-    case focusSleep
-    case pause
-    case breakSleep
-    case standBy
-}
+
 
 enum ActivityIntentManager{
     static let appGroup = "com.tistory.arpple.Dorocat.liveActivity"

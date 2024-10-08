@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
+
 struct TimerSessionView: View {
     @Bindable var store: StoreOf<TimerSessionFeature>
     var body: some View {
         VStack(spacing:0,content: {
-            Text("Select Session").font(.header04).foregroundStyle(.doroWhite)
+            Text("Select Session").font(.header04).foregroundStyle(Color.doroWhite)
                 .padding(.bottom,12)
             Spacer()
         
@@ -38,8 +40,8 @@ struct TimerSessionView: View {
             ZStack{
                 Text(name).font(.button)
             }.frame(width: 140,height: 60)
-                .foregroundStyle(isSelected ? .black : .grey01)
-                .background(isSelected ? .doroWhite: .grey03)
+                .foregroundStyle(isSelected ? Color.doroBlack : Color.grey01)
+                .background(isSelected ? Color.doroWhite: Color.grey03)
                 .clipShape(Capsule())
         }.frame(width: 140,height: 60)
     }
@@ -51,8 +53,8 @@ struct TimerSessionView: View {
                 .font(.button)
                 .padding(.horizontal,48.5)
                 .padding(.vertical,19)
-                .foregroundStyle(.black)
-                .background(.doroWhite)
+                .foregroundStyle(Color.doroBlack)
+                .background(Color.doroWhite)
                 .clipShape(Capsule())
         }.frame(width: 140,height: 60)
     }
@@ -64,8 +66,8 @@ struct TimerSessionView: View {
                 .font(.button)
                 .padding(.horizontal,48.5)
                 .padding(.vertical,19)
-                .foregroundStyle(.grey01)
-                .background(.grey03)
+                .foregroundStyle(Color.grey01)
+                .background(Color.grey03)
                 .clipShape(Capsule())
         }.frame(width: 140,height: 60)
     }

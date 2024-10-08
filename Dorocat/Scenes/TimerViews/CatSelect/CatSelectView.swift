@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
 enum CatSelectViewComponents{}
  

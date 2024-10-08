@@ -6,7 +6,10 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
+
+
 struct TimerView: View {
     @Bindable var store: StoreOf<TimerFeature>
     @Environment(\.scenePhase) var phase
@@ -26,8 +29,8 @@ struct TimerView: View {
             case .completed:
                 ZStack{
                     VStack(alignment:.center,spacing:0) {
-                        Text("Well done!").font(.header03).foregroundStyle(.doroWhite)
-                        Text("You've completed successfully\nLet's stretch together.").font(.paragraph02()).foregroundStyle(.doroWhite)
+                        Text("Well done!").font(.header03).foregroundStyle(Color.doroWhite)
+                        Text("You've completed successfully\nLet's stretch together.").font(.paragraph02()).foregroundStyle(Color.doroWhite)
                             .multilineTextAlignment(.center).lineSpacing(4)
                         Rectangle().fill(.clear).frame(width: 375,height: 375)
                     }.offset(y:-78)

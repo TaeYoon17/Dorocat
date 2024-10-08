@@ -25,7 +25,7 @@ enum CatSelectStyle{
                         }
                     }
                 }
-                Text(name).foregroundStyle(.grey01).font(.paragraph04)
+                Text(name).foregroundStyle(Color.grey01).font(.paragraph04)
             }
             
         }

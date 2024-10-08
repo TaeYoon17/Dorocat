@@ -18,11 +18,11 @@ extension PurchaseViewComponents{
             }
         }
         var titleView:some View{
-            (Text("Dorocat ").foregroundStyle(.doroWhite) + Text("Purrs").foregroundStyle(.doroPink))
+            (Text("Dorocat ").foregroundStyle(Color.doroWhite) + Text("Purrs").foregroundStyle(Color.doroPink))
                 .font(.header04)
         }
         var descView: some View{
-            Text("Unlock all the adorable cats!\nAnd Stay tuned for the new cats.").foregroundStyle(.grey01).font(.paragraph03()).multilineTextAlignment(.center)
+            Text("Unlock all the adorable cats!\nAnd Stay tuned for the new cats.").foregroundStyle(Color.grey01).font(.paragraph03()).multilineTextAlignment(.center)
         }
     }
 }

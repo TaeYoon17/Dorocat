@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
 
 extension CatSelectViewComponents{
@@ -20,9 +21,9 @@ extension CatSelectViewComponents{
                 Text(store.tappedCatType.rawValue.capitalized)
                     .multilineTextAlignment(.center)
                     .font(.header04)
-                    .foregroundStyle(.doroWhite)
+                    .foregroundStyle(Color.doroWhite)
                 Text(store.tappedCatType.desc).font(.paragraph03())
-                    .foregroundStyle(.grey01)
+                    .foregroundStyle(Color.grey01)
                     .frame(maxWidth: .infinity)
                     .multilineTextAlignment(.center)
             }

@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
+
 extension SettingViewComponents{
     struct NotiListItem:View {
         let store: StoreOf<SettingFeature>

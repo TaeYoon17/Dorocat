@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct PomoValues:Equatable{
+struct PomoValues:Equatable {
     var catType: CatType
     var isProMode:Bool = false
     var status:TimerFeatureStatus
@@ -16,7 +16,7 @@ struct PomoValues:Equatable{
     var sessionItem: SessionItem = .init(name: "Focus")
     var startDate:Date
 }
-extension PomoValues{
+extension PomoValues {
     static func deafultCreate()->Self{
         PomoValues(catType: .doro, isProMode: false, status: .standBy,
                    information: TimerInformation(timeSeconds: 25 * 60, cycle: 1, breakTime: 1, isPomoMode: false),

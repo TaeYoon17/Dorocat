@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
+
 struct SettingTitleView: View {
     var body: some View {
         HStack {
             Text("Meow...")
-                .foregroundStyle(.doroWhite)
+                .foregroundStyle(Color.doroWhite)
                 .font(.header03)
                 .fontCoordinator()
             Spacer()
