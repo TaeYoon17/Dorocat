@@ -19,7 +19,7 @@ struct DorocatFeature{
         case onBoardingTapped
         case onBoardingWillTap
         
-        case timer(TimerFeature.Action)
+        case timer(MainFeature.Action)
         case analyze(AnalyzeFeature.Action)
         case setting(SettingFeature.Action)
         case setGuideStates(Guides)
@@ -83,7 +83,7 @@ struct DorocatFeature{
             AnalyzeFeature()
         }
         Scope(state: \.timerState, action: /DorocatFeature.Action.timer) {
-            TimerFeature()
+            MainFeature()
         }
         Scope(state: \.settingState,action: /DorocatFeature.Action.setting){
             SettingFeature()

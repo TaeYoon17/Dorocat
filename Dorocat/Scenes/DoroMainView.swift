@@ -21,7 +21,7 @@ struct DoroMainView: View {
                             Label("analyze", systemImage: "pencil.circle").tint(.doroBlack)
                         })
                     // 슬라이딩마다 부모 Store에서 저장한 값을 가져온다!!
-                    TimerView(store: store.scope(state: \.timerState, action: \.timer))
+                    MainView(store: store.scope(state: \.timerState, action: \.timer))
                         .tag(DorocatFeature.PageType.timer)
                         .tabItem({
                             Label("Timer",systemImage: "folder.circle").tint(.doroBlack)
@@ -37,7 +37,7 @@ struct DoroMainView: View {
                 .ignoresSafeArea(.container,edges: .bottom)
                 PageIndicatorView(itemCount: DorocatFeature.PageType.allCases,selectedIndex: store.pageSelection)
             }else{
-                TimerView(store: store.scope(state: \.timerState, action: \.timer))
+                MainView(store: store.scope(state: \.timerState, action: \.timer))
                     .tag(DorocatFeature.PageType.timer)
                     .tabItem({
                         Label("Timer",systemImage: "folder.circle").tint(.doroBlack)

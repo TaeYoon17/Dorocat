@@ -49,9 +49,7 @@ fileprivate extension DorocatFeature{
                 try? await setFocusSleepNotification(pomoDefaultValue: pomoDefaultsValue)
             case .pause:
                 let differenceTime = await pomoDefaults.getAll().count - difference
-                print("불리긴한다 \(differenceTime)")
                 if differenceTime <= 0{
-                    print("여긴데... \(differenceTime)")
                     ActivityIntentManager.setTimerActivityType(prev)
                     return
                 }else{

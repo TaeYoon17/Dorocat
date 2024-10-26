@@ -10,7 +10,8 @@ enum SleepStatus: Equatable{
     case focusSleep
     case breakSleep
 }
-enum TimerFeatureStatus:Equatable{
+
+enum TimerStatus:Equatable{
     case standBy
     case focus
     case pause
@@ -23,16 +24,16 @@ enum TimerFeatureStatus:Equatable{
 
 
 extension TimerActivityType{
-    var convertToTimerStatus: TimerFeatureStatus{
+    var convertToTimerStatus: TimerStatus{
         return switch self{
-        case .breakSleep: TimerFeatureStatus.sleep(.breakSleep)
+        case .breakSleep: TimerStatus.sleep(.breakSleep)
         case .focusSleep: .sleep(.focusSleep)
         case .pause: .pause
         case .standBy: .standBy
         }
     }
 }
-extension TimerFeatureStatus{
+extension TimerStatus{
     var convertToTimerActivityType:TimerActivityType?{
         switch self{
         case .sleep(.focusSleep): TimerActivityType.focusSleep

@@ -63,7 +63,7 @@
 		632F53932BD7490900357C68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 632F53922BD7490900357C68 /* Assets.xcassets */; };
 		632F53972BD7490900357C68 /* DoroWidgetExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 632F53852BD7490800357C68 /* DoroWidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		632F539F2BD749FF00357C68 /* PomoLiveDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F539E2BD749FF00357C68 /* PomoLiveDependency.swift */; };
-		632F89392BB5716400F2DC0B /* TimerFeature+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89382BB5716400F2DC0B /* TimerFeature+State.swift */; };
+		632F89392BB5716400F2DC0B /* MainFeature+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89382BB5716400F2DC0B /* MainFeature+State.swift */; };
 		632F893B2BB5717D00F2DC0B /* TimerFeature+ControllType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F893A2BB5717D00F2DC0B /* TimerFeature+ControllType.swift */; };
 		632F89412BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89402BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift */; };
 		632F89462BB5C52300F2DC0B /* TimerLogicReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89452BB5C52300F2DC0B /* TimerLogicReducers.swift */; };
@@ -148,6 +148,7 @@
 		63860A4A2CB415E80058D4EE /* NotificationDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 63860A492CB415E80058D4EE /* NotificationDependency */; };
 		63860A502CB416B50058D4EE /* NotificationDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 63860A4F2CB416B50058D4EE /* NotificationDependency */; };
 		638C92872C52AB5F00F62CA4 /* Dorocat.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 638C92862C52AB5F00F62CA4 /* Dorocat.storekit */; };
+		638E6AC82CCCF3C00003688F /* MainFeature+State+ViewComputedProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E6AC72CCCF3C00003688F /* MainFeature+State+ViewComputedProperty.swift */; };
 		638EAB062BBF7FDE007F8CAC /* DragGesture+Swipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638EAB052BBF7FDE007F8CAC /* DragGesture+Swipe.swift */; };
 		638EAB082BBFD1C7007F8CAC /* DoroNumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638EAB072BBFD1C7007F8CAC /* DoroNumberPad.swift */; };
 		639F8D132BC97BF300D66551 /* Anaylze+ViewReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639F8D122BC97BF300D66551 /* Anaylze+ViewReducers.swift */; };
@@ -161,10 +162,10 @@
 		63A9C3F92BA5A3F10076D42C /* NumberPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3F82BA5A3F10076D42C /* NumberPickerView.swift */; };
 		63A9C3FD2BA5E21A0076D42C /* AnalyzeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3FC2BA5E21A0076D42C /* AnalyzeFeature.swift */; };
 		63A9C4002BA5E2D60076D42C /* AnalyzeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3FF2BA5E2D60076D42C /* AnalyzeView.swift */; };
-		63AD70522BA4297300DBD6B9 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70512BA4297300DBD6B9 /* TimerView.swift */; };
+		63AD70522BA4297300DBD6B9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70512BA4297300DBD6B9 /* MainView.swift */; };
 		63AD70542BA429E300DBD6B9 /* DorocatFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70532BA429E300DBD6B9 /* DorocatFeature.swift */; };
 		63AD70562BA42A6E00DBD6B9 /* DoroMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70552BA42A6E00DBD6B9 /* DoroMainView.swift */; };
-		63AD70582BA437EB00DBD6B9 /* TimerFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70572BA437EB00DBD6B9 /* TimerFeature.swift */; };
+		63AD70582BA437EB00DBD6B9 /* MainFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70572BA437EB00DBD6B9 /* MainFeature.swift */; };
 		63AD705A2BA439D600DBD6B9 /* TimerSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70592BA439D600DBD6B9 /* TimerSettingView.swift */; };
 		63AD705E2BA43A5900DBD6B9 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD705D2BA43A5900DBD6B9 /* SettingView.swift */; };
 		63AD70622BA43EB800DBD6B9 /* SettingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70612BA43EB800DBD6B9 /* SettingFeature.swift */; };
@@ -337,7 +338,7 @@
 		632F53922BD7490900357C68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		632F53942BD7490900357C68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		632F539E2BD749FF00357C68 /* PomoLiveDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoLiveDependency.swift; sourceTree = "<group>"; };
-		632F89382BB5716400F2DC0B /* TimerFeature+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerFeature+State.swift"; sourceTree = "<group>"; };
+		632F89382BB5716400F2DC0B /* MainFeature+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainFeature+State.swift"; sourceTree = "<group>"; };
 		632F893A2BB5717D00F2DC0B /* TimerFeature+ControllType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerFeature+ControllType.swift"; sourceTree = "<group>"; };
 		632F89402BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerSettingFeatures+Reducers.swift"; sourceTree = "<group>"; };
 		632F89452BB5C52300F2DC0B /* TimerLogicReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLogicReducers.swift; sourceTree = "<group>"; };
@@ -410,6 +411,7 @@
 		637350502BB7EEE300221F20 /* BackgroundTimerLogicReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTimerLogicReducers.swift; sourceTree = "<group>"; };
 		637350522BB8161D00221F20 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		638C92862C52AB5F00F62CA4 /* Dorocat.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Dorocat.storekit; sourceTree = "<group>"; };
+		638E6AC72CCCF3C00003688F /* MainFeature+State+ViewComputedProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainFeature+State+ViewComputedProperty.swift"; sourceTree = "<group>"; };
 		638EAB052BBF7FDE007F8CAC /* DragGesture+Swipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DragGesture+Swipe.swift"; sourceTree = "<group>"; };
 		638EAB072BBFD1C7007F8CAC /* DoroNumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroNumberPad.swift; sourceTree = "<group>"; };
 		639F8D122BC97BF300D66551 /* Anaylze+ViewReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Anaylze+ViewReducers.swift"; sourceTree = "<group>"; };
@@ -423,10 +425,10 @@
 		63A9C3F82BA5A3F10076D42C /* NumberPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPickerView.swift; sourceTree = "<group>"; };
 		63A9C3FC2BA5E21A0076D42C /* AnalyzeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeFeature.swift; sourceTree = "<group>"; };
 		63A9C3FF2BA5E2D60076D42C /* AnalyzeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeView.swift; sourceTree = "<group>"; };
-		63AD70512BA4297300DBD6B9 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		63AD70512BA4297300DBD6B9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		63AD70532BA429E300DBD6B9 /* DorocatFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DorocatFeature.swift; sourceTree = "<group>"; };
 		63AD70552BA42A6E00DBD6B9 /* DoroMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroMainView.swift; sourceTree = "<group>"; };
-		63AD70572BA437EB00DBD6B9 /* TimerFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFeature.swift; sourceTree = "<group>"; };
+		63AD70572BA437EB00DBD6B9 /* MainFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeature.swift; sourceTree = "<group>"; };
 		63AD70592BA439D600DBD6B9 /* TimerSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSettingView.swift; sourceTree = "<group>"; };
 		63AD705D2BA43A5900DBD6B9 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		63AD70612BA43EB800DBD6B9 /* SettingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFeature.swift; sourceTree = "<group>"; };
@@ -701,16 +703,16 @@
 			path = DoroWidgetExtension;
 			sourceTree = "<group>";
 		};
-		632F89372BB56E0900F2DC0B /* TimerFeature */ = {
+		632F89372BB56E0900F2DC0B /* MainFeature */ = {
 			isa = PBXGroup;
 			children = (
+				638E6AC62CCCF3480003688F /* MainFeature+State */,
 				6373504F2BB7E3EF00221F20 /* Models */,
 				632F89422BB5C49600F2DC0B /* Reducers */,
-				63AD70572BA437EB00DBD6B9 /* TimerFeature.swift */,
-				632F89382BB5716400F2DC0B /* TimerFeature+State.swift */,
+				63AD70572BA437EB00DBD6B9 /* MainFeature.swift */,
 				6373504A2BB7D5B600221F20 /* TimeFeature 기능 명세.md */,
 			);
-			path = TimerFeature;
+			path = MainFeature;
 			sourceTree = "<group>";
 		};
 		632F893F2BB584E800F2DC0B /* TimerSettingFeature */ = {
@@ -874,12 +876,12 @@
 			path = TimerSessionFeature;
 			sourceTree = "<group>";
 		};
-		635923A72BECFE47002CC44C /* TimerSession */ = {
+		635923A72BECFE47002CC44C /* Session */ = {
 			isa = PBXGroup;
 			children = (
 				635923A82BECFE53002CC44C /* TimerSessionView.swift */,
 			);
-			path = TimerSession;
+			path = Session;
 			sourceTree = "<group>";
 		};
 		635BD55D2B9F573D004480D1 /* Scenes */ = {
@@ -890,7 +892,7 @@
 				63616FBF2BC666A2003A7211 /* OnboardingViews */,
 				63A9C3FE2BA5E2CA0076D42C /* AnalyzeViews */,
 				63AD705C2BA43A4F00DBD6B9 /* SettingViews */,
-				63AD705B2BA43A3C00DBD6B9 /* TimerViews */,
+				63AD705B2BA43A3C00DBD6B9 /* MainViews */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -1035,6 +1037,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		638E6AC62CCCF3480003688F /* MainFeature+State */ = {
+			isa = PBXGroup;
+			children = (
+				632F89382BB5716400F2DC0B /* MainFeature+State.swift */,
+				638E6AC72CCCF3C00003688F /* MainFeature+State+ViewComputedProperty.swift */,
+			);
+			path = "MainFeature+State";
+			sourceTree = "<group>";
+		};
 		638EAB042BBF7FB9007F8CAC /* ViewComponents */ = {
 			isa = PBXGroup;
 			children = (
@@ -1118,22 +1129,22 @@
 			children = (
 				63170A5C2BF854BB00F35D6A /* DorocatFeatures */,
 				63A9C3FB2BA5E1CD0076D42C /* AnalyzeFeatures */,
-				63AD705F2BA43AE200DBD6B9 /* TimerFeatures */,
+				63AD705F2BA43AE200DBD6B9 /* MainFeaures */,
 				63AD70602BA43E9900DBD6B9 /* SettingFeatures */,
 			);
 			path = Features;
 			sourceTree = "<group>";
 		};
-		63AD705B2BA43A3C00DBD6B9 /* TimerViews */ = {
+		63AD705B2BA43A3C00DBD6B9 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
 				637104122C09CCF50099075C /* CatSelect */,
-				635923A72BECFE47002CC44C /* TimerSession */,
+				635923A72BECFE47002CC44C /* Session */,
 				63A9C3FA2BA5AAC20076D42C /* TimerSetting */,
 				631058852BC17A1A008611AD /* TimerComponents */,
-				63AD70512BA4297300DBD6B9 /* TimerView.swift */,
+				63AD70512BA4297300DBD6B9 /* MainView.swift */,
 			);
-			path = TimerViews;
+			path = MainViews;
 			sourceTree = "<group>";
 		};
 		63AD705C2BA43A4F00DBD6B9 /* SettingViews */ = {
@@ -1147,15 +1158,15 @@
 			path = SettingViews;
 			sourceTree = "<group>";
 		};
-		63AD705F2BA43AE200DBD6B9 /* TimerFeatures */ = {
+		63AD705F2BA43AE200DBD6B9 /* MainFeaures */ = {
 			isa = PBXGroup;
 			children = (
 				637104162C09CD520099075C /* CatSelectFeature */,
 				635923A42BECFAE9002CC44C /* TimerSessionFeature */,
 				632F893F2BB584E800F2DC0B /* TimerSettingFeature */,
-				632F89372BB56E0900F2DC0B /* TimerFeature */,
+				632F89372BB56E0900F2DC0B /* MainFeature */,
 			);
-			path = TimerFeatures;
+			path = MainFeaures;
 			sourceTree = "<group>";
 		};
 		63AD70602BA43E9900DBD6B9 /* SettingFeatures */ = {
@@ -1699,7 +1710,7 @@
 				63E63AB42BB709EA00A601E3 /* TimeBackgroundClient.swift in Sources */,
 				63616FC12BC666B8003A7211 /* OnboardingView.swift in Sources */,
 				63BD3C8A2BD261CA00C80542 /* TimerDependency.swift in Sources */,
-				63AD70522BA4297300DBD6B9 /* TimerView.swift in Sources */,
+				63AD70522BA4297300DBD6B9 /* MainView.swift in Sources */,
 				637104142C09CD270099075C /* CatSelectView.swift in Sources */,
 				633266262C119126001A71C2 /* SettingFeatureReducer.swift in Sources */,
 				63F3D6642BD1805B00F1204B /* PomoNotiDependency.swift in Sources */,
@@ -1736,7 +1747,7 @@
 				631FA2122BE7810300E603A2 /* TimerController>Haptic.swift in Sources */,
 				633FF0812BDABAD300D0F85F /* PurchaseManager.swift in Sources */,
 				63560A392C20ABD1009762A2 /* WriteReviewLink.swift in Sources */,
-				632F89392BB5716400F2DC0B /* TimerFeature+State.swift in Sources */,
+				632F89392BB5716400F2DC0B /* MainFeature+State.swift in Sources */,
 				631217772C1588BA00144189 /* AnalyzeCoreDataClient.swift in Sources */,
 				632F539F2BD749FF00357C68 /* PomoLiveDependency.swift in Sources */,
 				63CBAD8C2BCD2247004EE320 /* LottieView.swift in Sources */,
@@ -1749,6 +1760,7 @@
 				63A9C3F92BA5A3F10076D42C /* NumberPickerView.swift in Sources */,
 				633266312C119847001A71C2 /* ControllerReducer>Haptic.swift in Sources */,
 				6332662F2C11932F001A71C2 /* LaunchReducer.swift in Sources */,
+				638E6AC82CCCF3C00003688F /* MainFeature+State+ViewComputedProperty.swift in Sources */,
 				637104112C09C8B20099075C /* CatType.swift in Sources */,
 				6332661E2C1181A2001A71C2 /* TimerClient.swift in Sources */,
 				63A5175F2BD2D54200FEAEF6 /* HapticDependency.swift in Sources */,
@@ -1799,7 +1811,7 @@
 				631058892BC17A5A008611AD /* TimerViewComponents.swift in Sources */,
 				63170A632BF9175000F35D6A /* PauseToFocusSleepIntent.swift in Sources */,
 				636EA3282BEF845700203538 /* SessionError.swift in Sources */,
-				63AD70582BA437EB00DBD6B9 /* TimerFeature.swift in Sources */,
+				63AD70582BA437EB00DBD6B9 /* MainFeature.swift in Sources */,
 				633E97F22BD7AE0700215563 /* TimerStatus.swift in Sources */,
 				63088F202BBEC24600BF654D /* TriggerBtnStyle.swift in Sources */,
 				631E71582BDA386900DDD72B /* AppState>TimerSaveFetch.swift in Sources */,

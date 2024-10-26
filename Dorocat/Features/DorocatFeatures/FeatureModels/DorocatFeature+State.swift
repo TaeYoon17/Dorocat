@@ -18,7 +18,7 @@ extension DorocatFeature{
         var isProUser: Bool = false
         //MARK: -- 하위 뷰의 State 들...
         var anylzeState = AnalyzeFeature.State()
-        var timerState = TimerFeature.State()
+        var timerState = MainFeature.State()
         var settingState = SettingFeature.State()
     }
 }
