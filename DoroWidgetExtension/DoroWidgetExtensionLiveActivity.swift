@@ -51,7 +51,7 @@ struct DoroWidgetExtensionLiveActivity: Widget {
                                 DoroWidgetComponent.TriggerBtn(context: context)
                             })
                         })
-                    })
+                    }).loadDoroFontSystem()
                 }
             } compactLeading: {
                 Image(context.state.catType.compactLabel).resizable().scaledToFit()
@@ -61,13 +61,17 @@ struct DoroWidgetExtensionLiveActivity: Widget {
                     Spacer()
                     switch context.state.timerStatus {
                     case .focusSleep,.breakSleep:
-                        Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),since: .now)).foregroundStyle(.doroWhite).font(.custom("DarumadropOne-Regular", size: 16)).fontCoordinator()
+                        Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),since: .now))
+                            .foregroundStyle(.doroWhite)
+                            .font(.custom(name: "DarumadropOne-Regular", size: 16)).fontCoordinator()
                     case .pause,.standBy:
                         let hour = context.state.count / 60
                         let min = context.state.count % 60
-                        Text("\(hour):\(min)").foregroundStyle(.doroWhite).font(.custom("DarumadropOne-Regular", size: 16)).fontCoordinator()
+                        Text("\(hour):\(min)").foregroundStyle(.doroWhite)
+                            .font(.custom(name: "DarumadropOne-Regular", size: 16))
+                            .fontCoordinator()
                     }
-                }.frame(width:50)
+                }.frame(width:50).loadDoroFontSystem()
             } minimal: {
                 Image(context.state.catType.compactLabel).resizable().scaledToFit()
                     .frame(width:24)

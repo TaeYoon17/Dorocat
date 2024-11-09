@@ -32,7 +32,7 @@ protocol TimerStatusProtocol{
     func setStandBy(state:inout MainFeature.State,count:Int?,startDate:Date?)-> Effect<MainFeature.Action>
     func setFocus(state:inout MainFeature.State,count:Int?,startDate:Date?)-> Effect<MainFeature.Action>
     func setPause(state:inout MainFeature.State,count:Int?,startDate:Date?)-> Effect<MainFeature.Action>
-    func setSleep(state:inout MainFeature.State,sleepStatus: SleepStatus,count:Int?,startDate:Date?)-> Effect<MainFeature.Action>
+    func setSleep(state:inout MainFeature.State,count:Int?,startDate:Date?)-> Effect<MainFeature.Action>
     func setBreakTime(state:inout MainFeature.State,count:Int?,startDate:Date?)-> Effect<MainFeature.Action>
     func setCompleted(state:inout MainFeature.State,count:Int?,startDate:Date?)-> Effect<MainFeature.Action>
     func setBreakStandBy(state:inout MainFeature.State,count:Int?,startDate:Date?)-> Effect<MainFeature.Action>
@@ -51,8 +51,8 @@ extension TimerStatusProtocol{
             return setFocus(state: &state, count: count, startDate: startDate)
         case .pause:
             return setPause(state: &state, count: count, startDate: startDate)
-        case .sleep(let sleepStatus):
-            return setSleep(state: &state,sleepStatus: sleepStatus,count: count, startDate: startDate)
+        case .breakSleep,.focusSleep:
+            return setSleep(state: &state,count: count, startDate: startDate)
         case .breakTime:
             return setBreakTime(state: &state, count: count, startDate: startDate)
         case .completed: return setCompleted(state: &state, count: count, startDate: startDate)

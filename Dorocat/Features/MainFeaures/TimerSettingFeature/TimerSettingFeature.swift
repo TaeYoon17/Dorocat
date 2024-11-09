@@ -60,7 +60,10 @@ struct TimerSettingFeature{
                     await haptic.impact(style: .soft)
                 }
                 if let time = Int(state.time){
-                    let timerInfo = TimerSettingEntity(timeSeconds: time * 60, cycle: state.cycleTime, breakTime: state.breakTime * 60, isPomoMode: state.isPomodoroMode)
+                    let timerInfo = TimerSettingEntity(timeSeconds: time * 60,
+                                                       cycle: state.cycleTime,
+                                                       breakTime: state.breakTime * 60,
+                                                       isPomoMode: state.isPomodoroMode)
                     return .run {send in
                         await send(.delegate(.setTimerInfo(timerInfo)))
                         await self.dismiss()

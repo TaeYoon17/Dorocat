@@ -31,7 +31,7 @@ struct DorocatFeature{
     @Dependency(\.pomoNotification) var notification
     @Dependency(\.pomoSession) var session
     @Dependency(\.pomoLiveActivity) var liveActivity
-    @Dependency(\.pomoDefaults) var pomoDefaults
+    @Dependency(\.doroStateDefaults) var doroStateDefaults
     @Dependency(\.timer.background) var timerBackground
     @Dependency(\.store) var store
     var body: some ReducerOf<Self>{

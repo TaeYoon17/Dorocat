@@ -18,7 +18,7 @@ struct CatSelectFeature{
     @Dependency(\.pomoSession) var session
     @Dependency(\.dismiss) var dismiss
     @Dependency(\.store) var store
-    @Dependency(\.pomoDefaults) var defaults
+    @Dependency(\.doroStateDefaults) var doroStateDefaults
     enum Action:Equatable{
         case delegate(Delegate)
         case action(ControllType)
@@ -43,7 +43,7 @@ struct CatSelectFeature{
                     state.isLaunched = true
                     return .run { send in
                         let isPro = store.isProUser
-                        let selectedCat = await defaults.selectedCat
+                        let selectedCat = await doroStateDefaults.getCatType()
                         await send(.setCatType(selectedCat))
                         await send(.setSelectedCatType(selectedCat))
                         await send(.setProUser(isPro))

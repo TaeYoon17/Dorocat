@@ -13,7 +13,8 @@ extension CatSelectFeature.ControllReducers{
         typealias Action = CatSelectFeature.Action
         typealias CancelID = CatSelectFeature.CancelID
         @Dependency(\.dismiss) var dismiss
-        @Dependency(\.pomoDefaults) var defaults
+        @Dependency(\.doroStateDefaults) var doroStateDefaults
+        
         @Dependency(\.cat) var cat
         @Dependency(\.store) var store
         
@@ -25,7 +26,7 @@ extension CatSelectFeature.ControllReducers{
         func doneTapped(state: inout CatSelectFeature.State) -> Effect<CatSelectFeature.Action> {
             if state.isProUser && state.tappedCatType != state.catType {
                 return .run {[selectedType = state.tappedCatType] send in
-                    await defaults.setCatType(selectedType)
+                    await doroStateDefaults.setCatType(selectedType)
                     await send(.delegate(.setCatType(selectedType)))
                     await cat.updateCatType(selectedType)
                     await dismiss()

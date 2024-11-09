@@ -34,14 +34,3 @@ extension MainFeature{
 
 
 
-struct TimerProgressEntity:Equatable {
-    var startDate: Date = .init()
-    var cycle: Int = 0
-    var count: Int = 0
-    var status: TimerStatus = .standBy
-    var session: SessionItem = .init(name: "Focus")
-}
-struct DoroStateEntity {
-    var progressEntity = TimerProgressEntity()
-    var settingEntity = TimerSettingEntity()
-}

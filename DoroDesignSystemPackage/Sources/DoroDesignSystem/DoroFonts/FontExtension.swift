@@ -26,6 +26,9 @@ import SwiftUI
     static var paragraph04: Self {
         fontName.getFont(fontSystem: .paragraph04)
     }
+    static func custom(name: String,size: CGFloat) -> Self {
+        .custom(name, size: size)
+    }
 }
 @MainActor public extension UIFont{
     static let fontName:FontName = .darumadropOne

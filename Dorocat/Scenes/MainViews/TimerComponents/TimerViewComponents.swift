@@ -12,10 +12,10 @@ import ComposableArchitecture
 fileprivate extension TimerStatus{
     var text:String{
         switch self{
-        case .breakTime,.sleep(.breakSleep): "Skip Break"
+        case .breakTime,.breakSleep: "Skip Break"
         case .completed: "Complete"
         case .standBy: "Start"
-        case .focus,.sleep(.focusSleep):"Pause"
+        case .focus,.focusSleep:"Pause"
         case .pause: "Resume"
         case .breakStandBy: "Break"
         case .focusStandBy: "Start"
@@ -61,8 +61,8 @@ enum TimerViewComponents{
             case .standBy: return .start
             case .completed: return .complete
             case .pause: return .resume
-            case .sleep(.focusSleep): return .pause
-            case .sleep(.breakSleep): return .stopBreak
+            case .focusSleep: return .pause
+            case .breakSleep: return .stopBreak
             }
         }
     }

@@ -16,7 +16,7 @@ extension MainFeature.State {
     }
     
     var timer:String {
-        "\(count / 60 < 10 ? "0" : "")\(count / 60):\((count % 60) < 10 ? "0":"")\(count % 60)"
+        return "\(count / 60 < 10 ? "0" : "")\(count / 60):\((count % 60) < 10 ? "0":"")\(count % 60)"
     }
     var progress:Double{
         switch timerProgressEntity.status{
