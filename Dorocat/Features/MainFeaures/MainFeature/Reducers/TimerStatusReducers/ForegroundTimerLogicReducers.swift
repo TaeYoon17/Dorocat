@@ -20,7 +20,7 @@ extension MainFeature{
                 let isCompletedCycle = state.timerProgressEntity.cycle >= state.timerSettingEntity.cycle
                 
                 return Effect.merge([.cancel(id: CancelID.timer), .run {
-                    await $0(.setStatus( isCompletedCycle ? .completed : .breakStandBy ))
+                    await $0(.setStatus( isCompletedCycle ? TimerStatus.completed : TimerStatus.breakStandBy ))
                 }])
             case .breakTime: // breakTime 시간이 끝남...
                 state.timerProgressEntity.count = state.timerSettingEntity.timeSeconds
