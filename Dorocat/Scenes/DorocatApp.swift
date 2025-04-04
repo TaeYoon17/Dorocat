@@ -6,18 +6,34 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
+import UIKit
+import CloudKit
+
 import ComposableArchitecture
 import ActivityKit
+
 import Firebase
 import FirebaseCrashlytics
-import UIKit
+
+
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
+        
         return true
     }
+    lazy var allowCloudKitSync: Bool = {
+        let arguments = ProcessInfo.processInfo.arguments
+        var allow = true
+        for index in 0..<arguments.count - 1 where arguments[index] == "-CDCKDAllowCloudKitSync" {
+            allow = arguments.count >= (index + 1) ? arguments[index + 1] == "1" : true
+            break
+        }
+        return allow
+    }()
 }
 
 
@@ -39,7 +55,7 @@ struct DorocatApp: App {
                 })
                 .onAppear(){
                     UIView.appearance().tintColor = .doroWhite
-                }
+                }.loadDoroFontSystem()
         }
         .onChange(of: phase) { oldValue, newValue in
             switch newValue{

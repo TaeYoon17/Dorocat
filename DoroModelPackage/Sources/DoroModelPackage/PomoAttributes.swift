@@ -1,0 +1,24 @@
+//
+//  ActivityValue.swift
+//  Dorocat
+//
+//  Created by Developer on 4/23/24.
+//
+
+import Foundation
+
+struct PomoAttributes {
+    struct ContentState:Codable,Hashable {
+        var timerStatus: TimerActivityType = .focusSleep
+        var catType: CatType = .doro
+        var timerSession: SessionItem = .init(name: "Focus")
+        var count:Int = 0
+        var endTime:Int = 0
+    }
+    
+}
+enum Status: String, CaseIterable, Codable, Equatable {
+    case received = "eraser"
+    case progress = "plus.fill"
+    case ready = "pencil.circle.fill"
+}

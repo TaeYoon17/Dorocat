@@ -7,21 +7,22 @@
 
 
 import SwiftUI
+import DoroDesignSystem
+
 extension SettingViewComponents{
     struct WriteReviewLink: View {
         @Environment(\.openURL) private var openURL
         let title:String
         var description: String? = nil
         var body: some View {
-            //        Button("Write a Review", action: requestReviewManually)
             Button(action: requestReviewManually) {
                 HStack(content: {
                     VStack {
-                        Text(title).font(.paragraph02()).foregroundStyle(.doroWhite).fontCoordinator()
+                        Text(title).font(.paragraph02()).foregroundStyle(Color.doroWhite).fontCoordinator()
                         if let description{
                             Text(description)
                                 .font(.paragraph04)
-                                .foregroundStyle(.grey02)
+                                .foregroundStyle(Color.grey02)
                                 .fontCoordinator().fontCoordinator()
                         }
                     }
@@ -31,7 +32,7 @@ extension SettingViewComponents{
                 })
                 .frame(height: 68)
                 .padding(.leading,23)
-                .background(.grey03)
+                .background(Color.grey03)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
             }
         }

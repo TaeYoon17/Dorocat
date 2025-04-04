@@ -12,11 +12,12 @@ extension Button{
         self.buttonStyle(ResetBtnStyle(willTap: willTap))
     }
 }
+
 struct ResetBtnStyle: ButtonStyle{
     var willTap:(()->())?
     func makeBody(configuration: Configuration) -> some View {
         Image(!configuration.isPressed ? .reset : .resetActive).resizable().scaledToFit().frame(height: 60)
-            .shadow(color: !configuration.isPressed ? .black.opacity(0.2) : .clear, radius: 4, y: 8)
+            .shadow(color: !configuration.isPressed ? .doroBlack.opacity(0.2) : .clear, radius: 4, y: 8)
             .overlay(alignment: .center, content: {
                 configuration.label.font(.button)
                     .foregroundStyle(configuration.isPressed ? .grey02 :.doroWhite)

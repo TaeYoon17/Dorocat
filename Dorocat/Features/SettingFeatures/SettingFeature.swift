@@ -64,7 +64,8 @@ import FirebaseAnalytics
     @Dependency(\.haptic) var haptic
     @Dependency(\.initial) var initial
     @Dependency(\.feedback) var feedback
-    @Dependency(\.pomoDefaults) var pomoDefaults
+//    @Dependency(\.pomoDefaults) var pomoDefaults
+    @Dependency(\.doroStateDefaults) var doroStateDefaults
     @Dependency(\.cat) var cat
     @Dependency(\.store) var store
     enum CancelID{case initial, cat}
@@ -93,7 +94,7 @@ import FirebaseAnalytics
                         }
                     }.cancellable(id: CancelID.initial)
                     let catEffect:Effect<Action> = .run { send in
-                        let cat = await pomoDefaults.selectedCat
+                        let cat = await doroStateDefaults.getCatType()
                         await send(.setCatType(cat))
                         for await catEvent in await self.cat.catEventStream(){
                             switch catEvent{

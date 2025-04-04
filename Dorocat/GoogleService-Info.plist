@@ -17,15 +17,13 @@
 	<key>IS_ADS_ENABLED</key>
 	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<true/>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
 	<true/>
 	<key>IS_GCM_ENABLED</key>
 	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
-	<key></key>
-	<string></string>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:961968149617:ios:53cf7206144b4c0cde37d0</string>
 </dict>

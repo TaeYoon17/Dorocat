@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
+
 struct ProListItemView: View {
     var action: ()->()
     var body: some View {
@@ -15,12 +17,12 @@ struct ProListItemView: View {
                 HStack(spacing:6,content: {
                     Text("Dorocat")
                         .font(.paragraph02(.bold))
-                        .foregroundStyle(.doroWhite)
+                        .foregroundStyle(Color.doroWhite)
                         .fontCoordinator()
                     Text("Purrs")
                         .frame(height:20)
                         .font(.paragraph02(.bold))
-                        .foregroundStyle(.doroPink).fontCoordinator()
+                        .foregroundStyle(Color.doroPink).fontCoordinator()
                 })
                 Spacer()
                 Button(action: {
@@ -30,19 +32,18 @@ struct ProListItemView: View {
                         .font(.paragraph03(.bold))
                         .fontCoordinator()
                         .frame(height: 20)
-                        .foregroundStyle(.doroWhite)
+                        .foregroundStyle(Color.doroWhite)
                         .padding(.vertical,12)
                         .padding(.horizontal,16)
-                        .background(.black)
+                        .background(Color.doroBlack)
                         .clipShape(Capsule())
                 })
             }
             .frame(height: 76)
             .padding(.leading,24)
             .padding(.trailing,16)
-            .background(.grey03)
+            .background(Color.grey03)
             .clipShape(RoundedRectangle(cornerRadius: 16))
-//            Text("Remove ads and unlock all future features.").font(.paragraph04).foregroundStyle(.grey02)
         }
     }
 }
