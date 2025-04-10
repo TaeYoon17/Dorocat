@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import CoreData
+import CloudKit
 @globalActor actor DBActor: GlobalActor {
     static var shared = DBActor()
 }
@@ -36,11 +37,11 @@ final class CoreDataCore {
 //        return container
 //    }()
     var cancellabe = Set<AnyCancellable>()
-    var cloudKitContainer : NSPersistentCloudKitContainerOptions?
+    var cloudKitContainerOptions : NSPersistentCloudKitContainerOptions?
     lazy var persistentContainer: NSPersistentCloudKitContainer = {
         let container = NSPersistentCloudKitContainer(name: "DoroModel")
         if let description = container.persistentStoreDescriptions.first {
-            self.cloudKitContainer = description.cloudKitContainerOptions
+            self.cloudKitContainerOptions = description.cloudKitContainerOptions
             if !isICloudSyncEnabled {
                 description.cloudKitContainerOptions = nil // CloudKit 연결 끊기
             }
@@ -66,7 +67,22 @@ final class CoreDataCore {
             }.store(in: &cancellabe)
 
         container.viewContext.automaticallyMergesChangesFromParent = true
-
+        print("[CloudKit Container] persistentStoreDescriptions count: \(container.persistentStoreDescriptions.count)")
+        print("[CloudKit Container] options: \(cloudKitContainerOptions?.containerIdentifier)")
+//        CKContainer().status(forApplicationPermission: .userDiscoverability) { status, error in
+//            print("status \(status)")
+//        }
+        Task {
+            let status = try? await CKContainer.default().accountStatus()
+            switch status {
+            case .available: print("available")
+            case .couldNotDetermine: print("couldNotDetermine")
+            case .noAccount: print("noAccount")
+            case .restricted: print("restricted")
+            case .temporarilyUnavailable: print("temporarilyUnavailable")
+            default: break
+            }
+        }
         return container
     }()
     

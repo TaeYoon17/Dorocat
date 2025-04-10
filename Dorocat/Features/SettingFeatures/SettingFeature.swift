@@ -24,6 +24,7 @@ import FirebaseAnalytics
         var isSoundEnabled = false
         var isHapticEnabled = false
         var isRefundPresent = false
+        var isIcloudSync = false
         var refundTransactionID: Transaction.ID = 0
         var notiAuthType: NotificationStateType = .denied
         var catType: CatType = .doro
@@ -40,11 +41,13 @@ import FirebaseAnalytics
         case setProUser(Bool)
         case setRefundPresent(Bool)
         case setRefundTransaction(Transaction.ID)
-        
+        case setIcloudSync(Bool)
         
         case setCatType(CatType)
         
         case openPurchase
+        case openICloudSettings
+        
         case ratingItemTapped
         case feedbackItemTapped
         
@@ -55,21 +58,21 @@ import FirebaseAnalytics
         case setAppState(DorocatFeature.AppStateType)
         case feedbackSheet(PresentationAction<FeedbackFeature.Action>)
         case purchaseSheet(PresentationAction<SettingPurchaseFeature.Action>)
-        case alert(PresentationAction<Alert>)
+        case alert(PresentationAction<Action>)
         enum Alert:Equatable{
             case noneExistMailApp
+            case showICloudSettings
         }
     }
     @Dependency(\.pomoNotification) var notification
     @Dependency(\.haptic) var haptic
     @Dependency(\.initial) var initial
     @Dependency(\.feedback) var feedback
-//    @Dependency(\.pomoDefaults) var pomoDefaults
     @Dependency(\.doroStateDefaults) var doroStateDefaults
     @Dependency(\.cat) var cat
     @Dependency(\.store) var store
     enum CancelID{case initial, cat}
-    var body: some ReducerOf<Self>{
+    var body: some ReducerOf<Self> {
         Reduce{ state,action in
             switch action{
             case .launchAction:
@@ -111,7 +114,9 @@ import FirebaseAnalytics
             case .openPurchase:
                 Analytics.logEvent("Setting Purchase", parameters: nil)
                 state.purchaseSheet = .init()
-                let hapticEffect:Effect<Action> = .run { send in await haptic.impact(style: .soft) }
+                let hapticEffect: Effect<Action> = .run {
+                    send in await haptic.impact(style: .soft)
+                }
                 return .run{ send in
                     await send(.purchaseSheet(.presented(.initAction)))
                 }.merge(with: hapticEffect)
@@ -131,7 +136,7 @@ import FirebaseAnalytics
                             guard let url = await
                                     URL(string: UIApplication.openNotificationSettingsURLString) else { return }
                             if await UIApplication.shared.canOpenURL(url) {
-                                Task{@MainActor in
+                                Task { @MainActor in
                                     await UIApplication.shared.open(url)
                                 }
                             }
@@ -146,12 +151,14 @@ import FirebaseAnalytics
                 let hapticEffect: Effect<Action> = .run { send in
                     await haptic.impact(style: .light)
                 }
-                switch state.notiAuthType{
+                switch state.notiAuthType {
                 case .denied:
                     return hapticEffect
-                case .disabled,.enabled: return .run { send in
-                    await notification.setEnable(isEnabled)
-                }.merge(with: hapticEffect)
+                case .disabled, .enabled:
+                    return .run { send in
+                        await notification.setEnable(isEnabled)
+                    }
+                    .merge(with: hapticEffect)
                 }
             case .setSoundEnabled(let isSoundEnabled):
                 state.isSoundEnabled = isSoundEnabled
@@ -164,16 +171,17 @@ import FirebaseAnalytics
                     await haptic.setEnable(isHapticEnabled)
                     await haptic.impact(style: .light)
                 }
-            case .setCatType(let cat): state.catType = cat
+            case .setCatType(let cat):
+                state.catType = cat
                 return .none
             case .ratingItemTapped:
-                return .run{ send in
+                return .run { send in
                     await haptic.impact(style: .soft)
                 }
             case .feedbackItemTapped:
-                if feedback.isMailFeedbackAvailable{
+                if feedback.isMailFeedbackAvailable {
                     state.feedbackSheet = .init()
-                }else{
+                } else {
                     state.alert = AlertState(title: {
                         TextState("Can't open the Mail app.")
                     },actions: {
@@ -190,7 +198,7 @@ import FirebaseAnalytics
             case .setAppState(let appState):
                 if appState == .active{
                     return .run { send in
-                        if await notification.isDenied{
+                        if await notification.isDenied {
                             await send(.setNotiType(.denied))
                         }else{
                             let enable = await notification.isEnable
@@ -214,6 +222,38 @@ import FirebaseAnalytics
                 return .none
             case .setRefundTransaction(let id):
                 state.refundTransactionID = id
+                return .none
+            case .openICloudSettings:
+                guard let url = await
+                        URL(string: UIApplication.openNotificationSettingsURLString) else { return }
+                if await UIApplication.shared.canOpenURL(url) {
+                    Task { @MainActor in
+                        await UIApplication.shared.open(url)
+                    }
+                }
+                return .none
+            case .setIcloudSync(let isSync):
+//                state.isIcloudSync = isSync
+                if isSync { // 동기화를 키려는 시도
+                    state.alert = AlertState(
+                        title: {
+                            TextState("Can not support iCloud sync")
+                        },
+                        actions: {
+                            ButtonState(role: .none, action: .send()) {
+                                TextState("Open iCloud settings")
+                            }
+                            ButtonState(role: .cancel) {
+                                TextState("Do it later")
+                            }
+                        },
+                        message: {
+                            TextState("You should sign in your iCloud account.")
+                        }
+                    )
+                } else {
+                    print("왜이럴까...")
+                }
                 return .none
             }
         }

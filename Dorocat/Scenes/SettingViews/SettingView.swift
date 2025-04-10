@@ -22,13 +22,24 @@ struct SettingView: View {
                 LazyVStack(alignment: .center, pinnedViews: [.sectionHeaders], content: {
                     Section {
                         VStack(spacing:0) {
-                            VStack(spacing:8){
-                                if !store.isProUser{
-                                    ProListItemView{ store.send(.openPurchase) }.padding(.bottom,16)
+                            VStack(spacing:8) {
+                                if !store.isProUser {
+                                    ProListItemView {
+                                        store.send(.openPurchase)
+                                    }
+                                    .padding(.bottom,16)
                                 }
+                                
+                                SettingListItem.Toggler(
+                                    title: "iCloud Sync",
+                                    description: "Backup your records across devices",
+                                    isOn: $store.isIcloudSync.sending(\.setIcloudSync)
+                                )
+                                .padding(.bottom, 16)
+                                
                                 SettingViewComponents.NotiListItem(store: store)
                                 SettingListItem.Toggler(title: "Haptics", isOn: $store.isHapticEnabled.sending(\.setHapticEnabled))
-                                SettingListItem.Toggler(title: "iCloud Sync", isOn: $store.isHapticEnabled.sending(\.setHapticEnabled))
+                                
                                 SettingViewComponents.WriteReviewLink(title: "Your Rating Matters")
                                 SettingListItem.Linker(title: "Send Feedback") {
                                     store.send(.feedbackItemTapped)
