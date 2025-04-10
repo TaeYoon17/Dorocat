@@ -37,10 +37,10 @@ struct TriggerBtnStyle:ButtonStyle{
             case .resume: resumeStyle(configuration: configuration)
             }
         }
-        .shadow(color: !configuration.isPressed ? .black.opacity(0.2) : .clear, radius: 4, y: 8)
+        .shadow(color: !configuration.isPressed ? .doroBlack.opacity(0.2) : .clear, radius: 4, y: 8)
         .overlay(alignment: .center, content: {
             configuration.label.font(.button)
-                .foregroundStyle(configuration.isPressed ? .grey02 :.doroWhite)
+                .foregroundStyle(configuration.isPressed ? Color.grey02 : Color.doroWhite)
                 .animation(nil, value: configuration.isPressed)
                 .offset(y:-2) // 여기 올림
         })

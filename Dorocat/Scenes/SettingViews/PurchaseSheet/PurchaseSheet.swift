@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
 import StoreKit
+
 enum PurchaseViewComponents{}
+
 struct PurchaseSheet: View {
     @Bindable var store: StoreOf<SettingPurchaseFeature>
     var body: some View {
@@ -38,7 +41,7 @@ struct PurchaseSheet: View {
                 Button {
                     store.send(.restoreTapped)
                 } label: {
-                    Text("Restore Purchase").font(.paragraph03(.bold)).foregroundStyle(.grey02)
+                    Text("Restore Purchase").font(.paragraph03(.bold)).foregroundStyle(Color.grey02)
                 }
             }).padding(.bottom,8)
         }

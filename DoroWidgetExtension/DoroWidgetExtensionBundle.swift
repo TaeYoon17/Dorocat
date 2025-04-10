@@ -7,11 +7,10 @@
 
 import WidgetKit
 import SwiftUI
-
+import DoroDesignSystem
 @main
 struct DoroWidgetExtensionBundle: WidgetBundle {
     var body: some Widget {
-//        DoroWidgetExtension()
         DoroWidgetExtensionLiveActivity()
     }
 }

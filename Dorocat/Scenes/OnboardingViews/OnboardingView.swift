@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
+
 struct OnboardingView: View {
     let store: StoreOf<DorocatFeature>
     var body: some View {
@@ -14,10 +16,10 @@ struct OnboardingView: View {
                 DefaultBG()
                     VStack(spacing:0) {
                         Rectangle().fill(.clear).frame(width: 375,height: 375)
-                        Text("Meow...").font(.header03).foregroundStyle(.doroWhite)
+                        Text("Meow...").font(.header03).foregroundStyle(Color.doroWhite)
                             .frame(height: 48)
                         Text("I'll help you focus and stay on track")
-                            .font(.paragraph02()).foregroundStyle(.doroWhite)
+                            .font(.paragraph02()).foregroundStyle(Color.doroWhite)
                             .padding(.top,9)
                     }.offset(y:-78 + 35)
                 Image(store.catType.imageAssetName(type: .onboardingIcon)).frame(width: 375,height: 375)
@@ -27,7 +29,7 @@ struct OnboardingView: View {
                 triggerBtn.padding(.bottom,97)
             }
             .ignoresSafeArea(.container,edges: .bottom)
-            .background(.grey04)
+            .background(Color.grey04)
     }
     var triggerBtn: some View{
         Button("Get Started"){

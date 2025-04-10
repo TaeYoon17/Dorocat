@@ -25,16 +25,16 @@ extension PurchaseViewComponents{
         var body: some View {
             HStack{
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(description).foregroundStyle(.doroPink).font(.paragraph03(.bold))
+                    Text(description).foregroundStyle(Color.doroPink).font(.paragraph03(.bold))
                     Text(displayPrice)
-                        .foregroundStyle(.doroWhite)
+                        .foregroundStyle(Color.doroWhite)
                         .font(.header04)
                         .frame(height: 40)
                 }
                 Spacer()
             }.padding(.horizontal,24)
                 .padding(.vertical,21)
-                .background(.grey03)
+                .background(Color.grey03)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
         }
     }

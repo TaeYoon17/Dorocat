@@ -9,8 +9,13 @@ import Foundation
 import ComposableArchitecture
 
 extension AnalyzeFeature{
-    enum ViewAction: Equatable{
+    
+    enum ViewAction: Equatable {
+        
         case signRightTapped
+        
         case signLeftTapped
+        
     }
+    
 }
