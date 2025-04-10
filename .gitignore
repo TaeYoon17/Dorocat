@@ -105,9 +105,4 @@ xcuserdata
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-<<<<<<< HEAD
-# End of https://www.toptal.com/developers/gitignore/api/xcode,swift,swiftpackagemanager
-=======
-# End of https://www.toptal.com/developers/gitignore/api/xcode,swift,swiftpackagemanager
->>>>>>> develop
->>>>>>> Refactor1
+*.DS_Store

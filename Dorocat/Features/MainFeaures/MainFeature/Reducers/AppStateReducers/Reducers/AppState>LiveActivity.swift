@@ -24,16 +24,21 @@ extension MainFeature.AppStateReducers{
             case .inActive: return .none
             case .background:
                 let totalTime = switch state.timerProgressEntity.status {
-                case .focusSleep: state.timerSettingEntity.timeSeconds
-                case .breakSleep: state.timerSettingEntity.breakTime
-                default: 0
+                    case .focusSleep: state.timerSettingEntity.timeSeconds
+                    case .breakSleep: state.timerSettingEntity.breakTime
+                    default: 0
                 }
                 let lieveActivityType = state.timerProgressEntity.status.convertToTimerActivityType ?? .focusSleep
-                switch state.timerProgressEntity.status{
-                case .breakSleep, .focusSleep:
-                    return .run { [count = state.timerProgressEntity.count, cat = state.catType] send in
-                        await liveActivity.createActivity(type: lieveActivityType ,item: state.timerProgressEntity.session,
-                                                          cat: cat ,restCount:count,totalCount: totalTime)
+                switch state.timerProgressEntity.status {
+                    case .breakSleep, .focusSleep:
+                        return .run { [count = state.timerProgressEntity.count, cat = state.catType] send in
+                        await liveActivity.createActivity(
+                            type: lieveActivityType,
+                            item: state.timerProgressEntity.session,
+                            cat: cat,
+                            restCount:count,
+                            totalCount: totalTime
+                        )
                 }
                 default: return .none
                 }

@@ -28,6 +28,7 @@ struct SettingView: View {
                                 }
                                 SettingViewComponents.NotiListItem(store: store)
                                 SettingListItem.Toggler(title: "Haptics", isOn: $store.isHapticEnabled.sending(\.setHapticEnabled))
+                                SettingListItem.Toggler(title: "iCloud Sync", isOn: $store.isHapticEnabled.sending(\.setHapticEnabled))
                                 SettingViewComponents.WriteReviewLink(title: "Your Rating Matters")
                                 SettingListItem.Linker(title: "Send Feedback") {
                                     store.send(.feedbackItemTapped)
@@ -47,17 +48,21 @@ struct SettingView: View {
                     }
                 })
             }.scrollIndicators(.hidden)
-            .refundRequestSheet(for: store.refundTransactionID, isPresented: Binding(get: {
-                    store.isRefundPresent
-            }, set: { store.send(.setRefundPresent($0)) }), onDismiss: { res in
-                switch res{
-                case .success(let status):
-                    print(status)
-//                    print("res success:",res)
-//                    store.send(.setCatType(.doro))
-                case .failure(let error): print("res error",error)
+            .refundRequestSheet(
+                for: store.refundTransactionID,
+                isPresented:
+                    Binding(
+                        get: { store.isRefundPresent },
+                        set: { store.send(.setRefundPresent($0)) }
+                    ),
+                onDismiss: { res in
+                    switch res{
+                    case .success(let status):
+                        print(status)
+                    case .failure(let error): print("res error",error)
+                    }
                 }
-            })
+            )
             .sheet(item: $store.scope(state: \.purchaseSheet, action: \.purchaseSheet)) { settingPurchaseStore in
                     PurchaseSheet(store: settingPurchaseStore).presentationDetents([.large])
                         .presentationDragIndicator(.visible)

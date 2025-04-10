@@ -12,8 +12,16 @@ import CoreData
     static var shared = DBActor()
 }
 
-final class CoreDataCore{
+final class CoreDataCore {
     static let shared = CoreDataCore()
+    var isICloudSyncEnabled: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "isIcloudSyncEnabled")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "isIcloudSyncEnabled")
+        }
+    }
     private init(){}
 //    lazy var persistentContainer: NSPersistentContainer = {
 //        let container = NSPersistentContainer(name: "DoroModel")
@@ -28,8 +36,15 @@ final class CoreDataCore{
 //        return container
 //    }()
     var cancellabe = Set<AnyCancellable>()
+    var cloudKitContainer : NSPersistentCloudKitContainerOptions?
     lazy var persistentContainer: NSPersistentCloudKitContainer = {
         let container = NSPersistentCloudKitContainer(name: "DoroModel")
+        if let description = container.persistentStoreDescriptions.first {
+            self.cloudKitContainer = description.cloudKitContainerOptions
+            if !isICloudSyncEnabled {
+                description.cloudKitContainerOptions = nil // CloudKit 연결 끊기
+            }
+        }
         
         // Load both stores.
         container.loadPersistentStores { storeDescription, error in
@@ -37,6 +52,8 @@ final class CoreDataCore{
                 fatalError("Could not load persistent stores. \(error!)")
             }
         }
+        
+        // 클라우드 킷 저장소에서 이벤트가 발생하면 알려준다..!
         NotificationCenter
             .default
             .publisher(for: NSPersistentCloudKitContainer.eventChangedNotification,
@@ -48,8 +65,81 @@ final class CoreDataCore{
                 print("NSPersistentCloudKitContainer.eventChangedNotification")
             }.store(in: &cancellabe)
 
+        container.viewContext.automaticallyMergesChangesFromParent = true
 
         return container
     }()
     
+    func turnOnCloudKitSync() {
+//        self.c
+    }
+    
+    private func setupContainer() -> NSPersistentContainer {
+        let iCloud = isICloudSyncEnabled
+        do {
+            let newContainer: NSPersistentContainer = try PersistentContainer.getContainer(iCloud: iCloud)
+            guard let description: NSPersistentStoreDescription = newContainer.persistentStoreDescriptions.first else {
+                fatalError("No description found")
+            }
+            
+            if iCloud {
+                newContainer.viewContext.automaticallyMergesChangesFromParent = true
+                newContainer.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
+            } else {
+                description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+            }
+
+            description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+
+            newContainer.loadPersistentStores { (storeDescription, error) in
+                if let error = error as NSError? { fatalError("Unresolved error \(error), \(error.userInfo)") }
+            }
+            
+            return newContainer
+            
+        } catch {
+            print(error)
+        }
+        
+        fatalError("Could not setup Container")
+    }
+}
+final class PersistentContainer {
+    
+    private static var _model: NSManagedObjectModel?
+    
+    private static func model(name: String) throws -> NSManagedObjectModel {
+        if _model == nil {
+            _model = try loadModel(name: name, bundle: Bundle.main)
+        }
+        return _model!
+    }
+    
+    
+    private static func loadModel(name: String, bundle: Bundle) throws -> NSManagedObjectModel {
+        guard let modelURL = bundle.url(forResource: name, withExtension: "momd") else {
+            throw CoreDataModelError.modelURLNotFound(forResourceName: name)
+        }
+
+        guard let model = NSManagedObjectModel(contentsOf: modelURL) else {
+            throw CoreDataModelError.modelLoadingFailed(forURL: modelURL)
+       }
+        return model
+    }
+
+    
+    enum CoreDataModelError: Error {
+        case modelURLNotFound(forResourceName: String)
+        case modelLoadingFailed(forURL: URL)
+    }
+
+    
+    public static func getContainer(iCloud: Bool) throws -> NSPersistentContainer {
+        let name = "YOUR APP"
+        if iCloud {
+            return NSPersistentCloudKitContainer(name: name, managedObjectModel: try model(name: name))
+        } else {
+            return NSPersistentContainer(name: name, managedObjectModel: try model(name: name))
+        }
+    }
 }

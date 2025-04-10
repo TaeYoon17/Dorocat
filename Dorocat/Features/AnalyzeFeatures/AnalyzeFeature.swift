@@ -10,7 +10,8 @@ import ComposableArchitecture
 import GreemSwiftPackage
 
 @Reducer struct AnalyzeFeature{
-    @ObservableState struct State:Equatable{
+    
+    @ObservableState struct State: Equatable{
         var durationType: DurationType = .day
         var dayInfo = DayInformation()
         var weekInfo = WeekInformation()
@@ -24,23 +25,27 @@ import GreemSwiftPackage
         }
         var isLaunched = false
     }
+    
     enum Action: Equatable{
         case viewAction(ViewAction)
         case selectDuration(DurationType)
         case setDurationType(DurationType)
         case initAnalyzeFeature
         case getAllRecordsThenUpdate(DurationType? = nil)
-        case updateRecords([TimerRecordItem],type:DurationType? = nil)
+        case updateRecords([TimerRecordItem], type:DurationType? = nil)
     }
+    
     @DBActor @Dependency(\.analyzeAPIClients) var apiClient
     @Dependency(\.haptic) var haptic
     @Dependency(\.pomoSession) var session
+    
     enum CancelID{ case dbCancel }
+    
     var body: some ReducerOf<Self>{
         Reduce{ state, action in
             switch action{
             case .viewAction(let action): return self.viewAction(&state, action)
-            case .selectDuration(let duartionType): return selectDuration(&state,duartionType)
+            case .selectDuration(let duartionType): return selectDuration(&state, duartionType)
             case .setDurationType(let durationType):
                 state.durationType = durationType
                 return .run { send in
