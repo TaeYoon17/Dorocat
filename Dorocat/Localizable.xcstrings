@@ -44,9 +44,6 @@
     "BreakSleepToStandbyIntent" : {
 
     },
-    "Can not support iCloud sync" : {
-
-    },
     "Can't open the Mail app." : {
 
     },
@@ -63,9 +60,6 @@
 
     },
     "Continue" : {
-
-    },
-    "Do it later" : {
 
     },
     "Done" : {
@@ -114,9 +108,6 @@
 
     },
     "OK" : {
-
-    },
-    "Open iCloud settings" : {
 
     },
     "PauseToFocusSleepIntent" : {
@@ -171,9 +162,6 @@
 
     },
     "Work" : {
-
-    },
-    "You should sign in your iCloud account." : {
 
     },
     "You've completed successfully\nLet's stretch together." : {

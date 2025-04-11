@@ -10,6 +10,8 @@ import ComposableArchitecture
 import UIKit
 import StoreKit
 import FirebaseAnalytics
+import CloudKit
+/// 이거 추상화 해야함
 @Reducer struct SettingFeature{
     enum NotificationStateType{
         case denied
@@ -30,7 +32,9 @@ import FirebaseAnalytics
         var catType: CatType = .doro
         @Presents var purchaseSheet: SettingPurchaseFeature.State?
         @Presents var feedbackSheet: FeedbackFeature.State?
+        
         @Presents var alert: AlertState<Action.Alert>?
+        
         var appState = DorocatFeature.AppStateType.active
     }
     enum Action:Equatable{
@@ -46,7 +50,6 @@ import FirebaseAnalytics
         case setCatType(CatType)
         
         case openPurchase
-        case openICloudSettings
         
         case ratingItemTapped
         case feedbackItemTapped
@@ -58,7 +61,7 @@ import FirebaseAnalytics
         case setAppState(DorocatFeature.AppStateType)
         case feedbackSheet(PresentationAction<FeedbackFeature.Action>)
         case purchaseSheet(PresentationAction<SettingPurchaseFeature.Action>)
-        case alert(PresentationAction<Action>)
+        case alert(PresentationAction<Alert>)
         enum Alert:Equatable{
             case noneExistMailApp
             case showICloudSettings
@@ -71,7 +74,11 @@ import FirebaseAnalytics
     @Dependency(\.doroStateDefaults) var doroStateDefaults
     @Dependency(\.cat) var cat
     @Dependency(\.store) var store
-    enum CancelID{case initial, cat}
+    
+    @Dependency(\.analyzeAPIClients) var analyzeAPIClients
+    
+    enum CancelID { case initial, cat }
+    
     var body: some ReducerOf<Self> {
         Reduce{ state,action in
             switch action{
@@ -108,14 +115,28 @@ import FirebaseAnalytics
                     return Effect.merge(notificationEffect,initialEffect,catEffect)
                 }
                 return .none
+            case .alert(.presented(.showICloudSettings)):
+                return .run { send in
+                    guard let url = URL(string:"App-Prefs:root=CASTLE") else {
+                        print("못열어")
+                        return
+                    }
+                    print("[show setting url] - \(url)")
+                    if await UIApplication.shared.canOpenURL(url) {
+                        Task { @MainActor in
+                            await UIApplication.shared.open(url)
+                        }
+                    }
+                }
+//                return .none
             case .purchaseSheet: return .none
             case .feedbackSheet: return .none
             case .alert: return .none
             case .openPurchase:
                 Analytics.logEvent("Setting Purchase", parameters: nil)
                 state.purchaseSheet = .init()
-                let hapticEffect: Effect<Action> = .run {
-                    send in await haptic.impact(style: .soft)
+                let hapticEffect: Effect<Action> = .run { send in
+                    await haptic.impact(style: .soft)
                 }
                 return .run{ send in
                     await send(.purchaseSheet(.presented(.initAction)))
@@ -133,8 +154,9 @@ import FirebaseAnalytics
                         }
                     }else{
                         if isAuthorized{
-                            guard let url = await
-                                    URL(string: UIApplication.openNotificationSettingsURLString) else { return }
+                            guard let url = URL(string: UIApplication.openNotificationSettingsURLString) else {
+                                return
+                            }
                             if await UIApplication.shared.canOpenURL(url) {
                                 Task { @MainActor in
                                     await UIApplication.shared.open(url)
@@ -223,36 +245,44 @@ import FirebaseAnalytics
             case .setRefundTransaction(let id):
                 state.refundTransactionID = id
                 return .none
-            case .openICloudSettings:
-                guard let url = await
-                        URL(string: UIApplication.openNotificationSettingsURLString) else { return }
-                if await UIApplication.shared.canOpenURL(url) {
-                    Task { @MainActor in
-                        await UIApplication.shared.open(url)
+
+            case .setIcloudSync(let isSync):
+                let wow: Effect<Action> = .run { send in
+                    let status = try! await CKContainer.default().accountStatus();
+                    switch status {
+                    case .available: print("이게 되네...")
+                    case .couldNotDetermine: print("이게 안되네...")
+                    case .restricted: print("제한됨")
+                    case .temporarilyUnavailable: print("일시적 중단 상태 - iCloud sync")
+                    case .noAccount:
+                        print("이게 안되네...")
+                    @unknown default:
+                        print("하이하이")
                     }
                 }
-                return .none
-            case .setIcloudSync(let isSync):
-//                state.isIcloudSync = isSync
                 if isSync { // 동기화를 키려는 시도
-                    state.alert = AlertState(
-                        title: {
-                            TextState("Can not support iCloud sync")
-                        },
-                        actions: {
-                            ButtonState(role: .none, action: .send()) {
-                                TextState("Open iCloud settings")
-                            }
-                            ButtonState(role: .cancel) {
-                                TextState("Do it later")
-                            }
-                        },
-                        message: {
-                            TextState("You should sign in your iCloud account.")
-                        }
-                    )
+                    print("동기화를 켜보다")
+                    state.isIcloudSync = true
+//                    state.alert = AlertState(
+//                        title: {
+//                            TextState("Can not support iCloud sync")
+//                        },
+//                        actions: {
+//                            ButtonState(role: .none, action: .send(.showICloudSettings)) {
+//                                TextState("Open iCloud settings")
+//                            }
+//                            ButtonState(role: .cancel) {
+//                                TextState("Do it later")
+//                            }
+//                        },
+//                        message: {
+//                            TextState("You should sign in your iCloud account.")
+//                        }
+//                    )
+                    return wow
                 } else {
-                    print("왜이럴까...")
+                    state.isIcloudSync = false
+                    print("동기화를 꺼보자 - 이미 이전엔 동기화가 잘 된거임")
                 }
                 return .none
             }
@@ -263,6 +293,8 @@ import FirebaseAnalytics
         .ifLet(\.$feedbackSheet, action: \.feedbackSheet){
             FeedbackFeature()
         }
-        .ifLet(\.$alert, action: \.alert)
+        .ifLet(\.$alert, action: \.alert) {
+            
+        }
     }
 }
