@@ -60,72 +60,6 @@ extension Contact : Codable, Identifiable, Hashable, Equatable, Sendable, Compar
     }
 }
 
-extension TimerRecordItem : Identifiable, Hashable, Equatable, Comparable {
-    static func == (lhs: TimerRecordItem, rhs: TimerRecordItem) -> Bool {
-        lhs.id == rhs.id
-    }
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
-    }
-    
-    static func < (lhs: TimerRecordItem, rhs: TimerRecordItem) -> Bool {
-        return lhs.recordCode.localizedCompare(rhs.recordCode) == .orderedAscending
-    }
-    static let zoneName = "DoroTimerZone"
-    
-    /// The record type to use when saving a contact.
-    static let recordType: CKRecord.RecordType = "TimerRecordItem"
-    
-    var zoneID: CKRecordZone.ID { CKRecordZone.ID(zoneName: Self.zoneName) }
-    var recordID: CKRecord.ID { CKRecord.ID(recordName: self.recordCode, zoneID: self.zoneID) }
-    
-    /// A CKRecord 타입으로 변형한 `lastKnownRecordData` 변수
-    /// 타입 변환이 실패하거나 이전 레코드 값이 없으면 nil 반환
-    var lastKnownRecord: CKRecord? {
-        get {
-            if let data = self.lastKnownRecordData {
-                do {
-                    let unarchiver = try NSKeyedUnarchiver(forReadingFrom: data)
-                    unarchiver.requiresSecureCoding = true
-                    return CKRecord(coder: unarchiver)
-                } catch {
-                    // Why would this happen? What could go wrong? 🔥
-                    Logger.dataModel.fault("Failed to decode local system fields record: \(error)")
-                    return nil
-                }
-            } else {
-                return nil
-            }
-        }
-        
-        set {
-            if let newValue {
-                let archiver = NSKeyedArchiver(requiringSecureCoding: true)
-                newValue.encodeSystemFields(with: archiver)
-                self.lastKnownRecordData = archiver.encodedData
-            } else {
-                self.lastKnownRecordData = nil
-            }
-        }
-    }
-}
-
-extension TimerRecordItem {
-    /// 이 연락처의 `lastKnownRecordData`를 설정합니다.
-    /// 단, 다른 레코드가 기존의 마지막으로 알려진 레코드보다 더 최신 버전일 경우에만 설정됩니다.
-    mutating func setLastKnownRecordIfNewer(_ otherRecord: CKRecord) {
-        let localRecord = self.lastKnownRecord
-        if let localDate = localRecord?.modificationDate {
-            if let otherDate = otherRecord.modificationDate, localDate < otherDate {
-                self.lastKnownRecord = otherRecord
-            } else {
-                // The other record is older than the one we already have.
-            }
-        } else {
-            self.lastKnownRecord = otherRecord
-        }
-    }
-}
 
 
 
@@ -143,7 +77,7 @@ extension Contact {
     var zoneID: CKRecordZone.ID { CKRecordZone.ID(zoneName: Self.zoneName) }
     
     /// The CloudKit record ID for this contact.
-    var recordID: CKRecord.ID { CKRecord.ID(recordName: self.id, zoneID: self.zoneID) }
+    var ckRecordID: CKRecord.ID { CKRecord.ID(recordName: self.id, zoneID: self.zoneID) }
     
     /// Merges data from a record into this contact.
     /// This handles any conflict resolution if necessary.
@@ -213,7 +147,6 @@ extension Contact {
     /// A deserialized version of `lastKnownRecordData`.
     /// Will return `nil` if there is no data or if the deserialization fails for some reason.
     var lastKnownRecord: CKRecord? {
-        
         get {
             if let data = self.lastKnownRecordData {
                 do {
@@ -247,6 +180,8 @@ extension CKRecord.FieldKey {
     static let contact_name = "name"
     static let contact_userModificationDate = "userModificationDate"
 }
+
+
 
 // MARK: - Helpers
 

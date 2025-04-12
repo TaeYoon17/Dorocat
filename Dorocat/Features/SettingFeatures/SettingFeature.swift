@@ -157,13 +157,13 @@ import FirebaseAnalytics
                 case .openICloudSignIn:
                     state.isIcloudSync = false
                     state.alert = .openSignIn
+                case .openErrorAlert(message: let message):
+                    state.isIcloudSync = false
+                    state.alert = .openErrorAlert(message: message.rawValue)
                 case .startICloudSync:
                     state.isIcloudSync = true
                 case .stopICloudSync:
                     state.isIcloudSync = false
-                case .openErrorAlert(message: let message):
-                    state.isIcloudSync = false
-                    state.alert = .openErrorAlert(message: message.rawValue)
                 }
                 return .none
             }
