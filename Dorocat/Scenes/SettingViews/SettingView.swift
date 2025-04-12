@@ -45,20 +45,13 @@ struct SettingView: View {
                                     title: "Haptics",
                                     isOn: Binding(
                                         get: { store.isHapticEnabled },
-                                        set: {
-                                            store.send(
-                                                .viewAction(.setHapticEnabled($0)),
-                                                animation: .default
-                                            )
-                                        }
+                                        set: { store.send(.viewAction(.setHapticEnabled($0))) }
                                     )
                                 )
-                                
                                 SettingViewComponents.WriteReviewLink(title: "Your Rating Matters")
                                 SettingListItem.Linker(title: "Send Feedback") {
                                     store.send(.viewAction(.feedbackItemTapped))
                                 }
-                                
                             }
                             SettingViewComponents.Bottom(store: store)
                         }
@@ -84,7 +77,8 @@ struct SettingView: View {
                     switch res {
                     case .success(let status):
                         print(status)
-                    case .failure(let error): print("res error",error)
+                    case .failure(let error):
+                        print("res error",error)
                     }
                 }
             )
@@ -93,8 +87,11 @@ struct SettingView: View {
                         .presentationDragIndicator(.visible)
             }
             .sheet(item: $store.scope(state: \.feedbackSheet, action: \.feedbackSheet)) { sheetStore in
-                FeedbackSheet(store: sheetStore).ignoresSafeArea(.container,edges:.bottom).presentationDetents([.large]).tint(.doroWhite)
-                        .presentationDragIndicator(.visible)
+                FeedbackSheet(store: sheetStore)
+                    .ignoresSafeArea(.container,edges:.bottom)
+                    .presentationDetents([.large])
+                    .tint(.doroWhite)
+                    .presentationDragIndicator(.visible)
             }
             .alert($store.scope(state: \.alert, action: \.alert))
         }

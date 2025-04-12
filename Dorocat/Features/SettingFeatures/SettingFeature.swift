@@ -128,11 +128,11 @@ import FirebaseAnalytics
             case .initAction:
                 return .cancel(id: CancelID.initial)
             case .setAppState(let appState):
-                if appState == .active{
+                if appState == .active {
                     return .run { send in
                         if await notification.isDenied {
                             await send(.setNotiType(.denied))
-                        }else{
+                        } else {
                             let enable = await notification.isEnable
                             await send(.setNotiType(enable ? .enabled : .disabled))
                             await send(.viewAction(.setNotiEnabled(enable)))
@@ -144,7 +144,7 @@ import FirebaseAnalytics
                 let prevProUser = state.isProUser
                 state.isProUser = isProUser
                 return .run { send in
-                    if !isProUser && prevProUser != isProUser{
+                    if !isProUser && prevProUser != isProUser {
                         await cat.updateCatType(.doro)
                     }
                     await send(.setRefundTransaction(store.refundTransactionID))
@@ -156,49 +156,26 @@ import FirebaseAnalytics
                 switch cloudToggleType {
                 case .openICloudSignIn:
                     state.isIcloudSync = false
-                    state.alert = AlertState(
-                        title: {
-                            TextState("Can not support iCloud sync")
-                        },
-                        actions: {
-                            ButtonState(role: .none, action: .send(.showICloudSettings)) {
-                                TextState("Open iCloud settings")
-                            }
-                            ButtonState(role: .cancel) {
-                                TextState("Do it later")
-                            }
-                        },
-                        message: {
-                            TextState("You should sign in your iCloud account.")
-                        }
-                    )
+                    state.alert = .openSignIn
                 case .startICloudSync:
                     state.isIcloudSync = true
                 case .stopICloudSync:
                     state.isIcloudSync = false
                 case .openErrorAlert(message: let message):
                     state.isIcloudSync = false
-                    state.alert = AlertState(
-                        title: { TextState("Can't now iCloud sync") },
-                        actions: {
-                            ButtonState(role: .cancel) {
-                                TextState("Cancel")
-                            }
-                        },
-                        message: {
-                            TextState(message.rawValue)
-                        }
-                    )
+                    state.alert = .openErrorAlert(message: message.rawValue)
                 }
                 return .none
             }
         }
-        .ifLet(\.$purchaseSheet, action: \.purchaseSheet){
+        .ifLet(\.$purchaseSheet, action: \.purchaseSheet) {
             SettingPurchaseFeature()
         }
-        .ifLet(\.$feedbackSheet, action: \.feedbackSheet){
+        .ifLet(\.$feedbackSheet, action: \.feedbackSheet) {
             FeedbackFeature()
         }
-        .ifLet(\.$alert, action: \.alert) {}
+        .ifLet(\.$alert, action: \.alert) { }
     }
 }
+
+

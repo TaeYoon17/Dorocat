@@ -100,19 +100,7 @@ extension SettingFeature.Controller {
             if feedback.isMailFeedbackAvailable {
                 state.feedbackSheet = .init()
             } else {
-                state.alert = AlertState(
-                    title: {
-                        TextState("Can't open the Mail app.")
-                    },
-                    actions: {
-                        ButtonState(role: .cancel) {
-                            TextState("Confirm")
-                        }
-                    },
-                    message: {
-                        TextState("Download Mail app from the App Store.")
-                    }
-                )
+                state.alert = .mailFeedbackNotAvailable
             }
             return .none
         }
