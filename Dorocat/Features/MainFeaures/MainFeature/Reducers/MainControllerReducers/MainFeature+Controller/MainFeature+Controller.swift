@@ -8,8 +8,8 @@
 import Foundation
 import ComposableArchitecture
 extension MainFeature{
-    enum Controller:CaseIterable{
-        case haptic,guide,action, notification
+    enum Controller: CaseIterable {
+        case haptic, guide, action, notification
         
         private var reducer: MainControllerProtocol {
             switch self {

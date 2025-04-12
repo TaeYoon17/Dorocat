@@ -10,14 +10,8 @@ import ComposableArchitecture
 import UIKit
 import StoreKit
 import FirebaseAnalytics
-import CloudKit
-/// 이거 추상화 해야함
+//import CloudKit
 @Reducer struct SettingFeature{
-    enum NotificationStateType{
-        case denied
-        case enabled
-        case disabled
-    }
     @ObservableState struct State: Equatable{
         var isLaunch = false
         var isNotiAuthorized = false
@@ -38,35 +32,29 @@ import CloudKit
         var appState = DorocatFeature.AppStateType.active
     }
     enum Action:Equatable{
-        case setNotiAuthorized(Bool)
-        case setNotiEnabled(Bool)
-        case setSoundEnabled(Bool)
-        case setHapticEnabled(Bool)
+        case viewAction(ViewActionType)
+        
         case setProUser(Bool)
-        case setRefundPresent(Bool)
-        case setRefundTransaction(Transaction.ID)
-        case setIcloudSync(Bool)
-        
         case setCatType(CatType)
-        
-        case openPurchase
-        
-        case ratingItemTapped
-        case feedbackItemTapped
+        case setRefundTransaction(Transaction.ID)
         
         case setNotiType(NotificationStateType)
         case launchAction
         case initAction
         
+        case iCloudToggleRouter(iCloudStatusType)
+        
         case setAppState(DorocatFeature.AppStateType)
         case feedbackSheet(PresentationAction<FeedbackFeature.Action>)
         case purchaseSheet(PresentationAction<SettingPurchaseFeature.Action>)
         case alert(PresentationAction<Alert>)
-        enum Alert:Equatable{
+        
+        enum Alert: Equatable {
             case noneExistMailApp
             case showICloudSettings
         }
     }
+    
     @Dependency(\.pomoNotification) var notification
     @Dependency(\.haptic) var haptic
     @Dependency(\.initial) var initial
@@ -74,14 +62,15 @@ import CloudKit
     @Dependency(\.doroStateDefaults) var doroStateDefaults
     @Dependency(\.cat) var cat
     @Dependency(\.store) var store
-    
     @Dependency(\.analyzeAPIClients) var analyzeAPIClients
     
     enum CancelID { case initial, cat }
     
     var body: some ReducerOf<Self> {
-        Reduce{ state,action in
-            switch action{
+        Reduce { state, action in
+            switch action {
+            case .viewAction(let viewActionType):
+                return viewAction(&state, viewActionType)
             case .launchAction:
                 if !state.isLaunch{
                     state.isLaunch = true
@@ -93,12 +82,12 @@ import CloudKit
                     let initialEffect:Effect<Action> = .run { send in
                         // 이미 초기 설정이 끝났다... 기존에 있는 값을 가져오면 됨
                         let isAvailable = await initial.isUsed
-                        if isAvailable{
-                            await send(.setHapticEnabled(await haptic.enable))
+                        if isAvailable {
+                            await send(.viewAction(.setHapticEnabled(await haptic.enable)))
                             await send(.initAction)
-                        }else{
-                            for await _ in await initial.eventStream(){
-                                await send(.setHapticEnabled(true))
+                        } else {
+                            for await _ in await initial.eventStream() {
+                                await send(.viewAction(.setHapticEnabled(true)))
                                 await send(.initAction)
                             }
                         }
@@ -106,8 +95,8 @@ import CloudKit
                     let catEffect:Effect<Action> = .run { send in
                         let cat = await doroStateDefaults.getCatType()
                         await send(.setCatType(cat))
-                        for await catEvent in await self.cat.catEventStream(){
-                            switch catEvent{
+                        for await catEvent in await self.cat.catEventStream() {
+                            switch catEvent {
                             case .updated(let type): await send(.setCatType(type))
                             }
                         }
@@ -118,7 +107,6 @@ import CloudKit
             case .alert(.presented(.showICloudSettings)):
                 return .run { send in
                     guard let url = URL(string:"App-Prefs:root=CASTLE") else {
-                        print("못열어")
                         return
                     }
                     print("[show setting url] - \(url)")
@@ -128,93 +116,15 @@ import CloudKit
                         }
                     }
                 }
-//                return .none
             case .purchaseSheet: return .none
             case .feedbackSheet: return .none
             case .alert: return .none
-            case .openPurchase:
-                Analytics.logEvent("Setting Purchase", parameters: nil)
-                state.purchaseSheet = .init()
-                let hapticEffect: Effect<Action> = .run { send in
-                    await haptic.impact(style: .soft)
-                }
-                return .run{ send in
-                    await send(.purchaseSheet(.presented(.initAction)))
-                }.merge(with: hapticEffect)
             case .setNotiType(let notiType):
                 state.notiAuthType = notiType
                 return .none
-            case .setNotiAuthorized(let isAuthorized):
-                return .run{ send in
-                    if await !notification.isDetermined{
-                        let permissionResult = try await notification.requestPermission()
-                        if permissionResult{
-                            await send(.setNotiType(.enabled))
-                            await send(.setNotiEnabled(permissionResult))
-                        }
-                    }else{
-                        if isAuthorized{
-                            guard let url = URL(string: UIApplication.openNotificationSettingsURLString) else {
-                                return
-                            }
-                            if await UIApplication.shared.canOpenURL(url) {
-                                Task { @MainActor in
-                                    await UIApplication.shared.open(url)
-                                }
-                            }
-                        }
-                    }
-                }
-                .merge(with: .run(operation: { send in
-                    await haptic.impact(style: .light)
-                }))
-            case .setNotiEnabled(let isEnabled):
-                state.isNotiEnabled = isEnabled
-                let hapticEffect: Effect<Action> = .run { send in
-                    await haptic.impact(style: .light)
-                }
-                switch state.notiAuthType {
-                case .denied:
-                    return hapticEffect
-                case .disabled, .enabled:
-                    return .run { send in
-                        await notification.setEnable(isEnabled)
-                    }
-                    .merge(with: hapticEffect)
-                }
-            case .setSoundEnabled(let isSoundEnabled):
-                state.isSoundEnabled = isSoundEnabled
-                return .run { send in
-                    await haptic.impact(style: .light)
-                }
-            case .setHapticEnabled(let isHapticEnabled):
-                state.isHapticEnabled = isHapticEnabled
-                return .run { send in
-                    await haptic.setEnable(isHapticEnabled)
-                    await haptic.impact(style: .light)
-                }
             case .setCatType(let cat):
                 state.catType = cat
                 return .none
-            case .ratingItemTapped:
-                return .run { send in
-                    await haptic.impact(style: .soft)
-                }
-            case .feedbackItemTapped:
-                if feedback.isMailFeedbackAvailable {
-                    state.feedbackSheet = .init()
-                } else {
-                    state.alert = AlertState(title: {
-                        TextState("Can't open the Mail app.")
-                    },actions: {
-                        ButtonState(role: .cancel) {
-                            TextState("Confirm")
-                        }
-                    })
-                }
-                return .run { send in
-                    await haptic.impact(style: .soft)
-                }
             case .initAction:
                 return .cancel(id: CancelID.initial)
             case .setAppState(let appState):
@@ -225,7 +135,7 @@ import CloudKit
                         }else{
                             let enable = await notification.isEnable
                             await send(.setNotiType(enable ? .enabled : .disabled))
-                            await send(.setNotiEnabled(enable))
+                            await send(.viewAction(.setNotiEnabled(enable)))
                         }
                     }
                 }
@@ -239,50 +149,46 @@ import CloudKit
                     }
                     await send(.setRefundTransaction(store.refundTransactionID))
                 }
-            case .setRefundPresent(let isRefund):
-                state.isRefundPresent = isRefund
-                return .none
             case .setRefundTransaction(let id):
                 state.refundTransactionID = id
                 return .none
-
-            case .setIcloudSync(let isSync):
-                let wow: Effect<Action> = .run { send in
-                    let status = try! await CKContainer.default().accountStatus();
-                    switch status {
-                    case .available: print("이게 되네...")
-                    case .couldNotDetermine: print("이게 안되네...")
-                    case .restricted: print("제한됨")
-                    case .temporarilyUnavailable: print("일시적 중단 상태 - iCloud sync")
-                    case .noAccount:
-                        print("이게 안되네...")
-                    @unknown default:
-                        print("하이하이")
-                    }
-                }
-                if isSync { // 동기화를 키려는 시도
-                    print("동기화를 켜보다")
-                    state.isIcloudSync = true
-//                    state.alert = AlertState(
-//                        title: {
-//                            TextState("Can not support iCloud sync")
-//                        },
-//                        actions: {
-//                            ButtonState(role: .none, action: .send(.showICloudSettings)) {
-//                                TextState("Open iCloud settings")
-//                            }
-//                            ButtonState(role: .cancel) {
-//                                TextState("Do it later")
-//                            }
-//                        },
-//                        message: {
-//                            TextState("You should sign in your iCloud account.")
-//                        }
-//                    )
-                    return wow
-                } else {
+            case .iCloudToggleRouter(let cloudToggleType):
+                switch cloudToggleType {
+                case .openICloudSignIn:
                     state.isIcloudSync = false
-                    print("동기화를 꺼보자 - 이미 이전엔 동기화가 잘 된거임")
+                    state.alert = AlertState(
+                        title: {
+                            TextState("Can not support iCloud sync")
+                        },
+                        actions: {
+                            ButtonState(role: .none, action: .send(.showICloudSettings)) {
+                                TextState("Open iCloud settings")
+                            }
+                            ButtonState(role: .cancel) {
+                                TextState("Do it later")
+                            }
+                        },
+                        message: {
+                            TextState("You should sign in your iCloud account.")
+                        }
+                    )
+                case .startICloudSync:
+                    state.isIcloudSync = true
+                case .stopICloudSync:
+                    state.isIcloudSync = false
+                case .openErrorAlert(message: let message):
+                    state.isIcloudSync = false
+                    state.alert = AlertState(
+                        title: { TextState("Can't now iCloud sync") },
+                        actions: {
+                            ButtonState(role: .cancel) {
+                                TextState("Cancel")
+                            }
+                        },
+                        message: {
+                            TextState(message.rawValue)
+                        }
+                    )
                 }
                 return .none
             }
@@ -293,8 +199,6 @@ import CloudKit
         .ifLet(\.$feedbackSheet, action: \.feedbackSheet){
             FeedbackFeature()
         }
-        .ifLet(\.$alert, action: \.alert) {
-            
-        }
+        .ifLet(\.$alert, action: \.alert) {}
     }
 }

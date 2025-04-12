@@ -10,7 +10,7 @@ import DoroDesignSystem
 import StoreKit
 import ComposableArchitecture
 
-enum SettingViewComponents{}
+enum SettingViewComponents { }
 struct SettingView: View {
     @Bindable var store: StoreOf<SettingFeature>
     @State private var isOn: Bool = false
@@ -25,7 +25,7 @@ struct SettingView: View {
                             VStack(spacing:8) {
                                 if !store.isProUser {
                                     ProListItemView {
-                                        store.send(.openPurchase)
+                                        store.send(.viewAction(.openPurchase))
                                     }
                                     .padding(.bottom,16)
                                 }
@@ -33,16 +33,30 @@ struct SettingView: View {
                                 SettingListItem.Toggler(
                                     title: "iCloud Sync",
                                     description: "Backup your records across devices",
-                                    isOn: $store.isIcloudSync.sending(\.setIcloudSync)
+                                    isOn: Binding(
+                                        get: { store.isIcloudSync },
+                                        set: { store.send(.viewAction(.setIcloudSync($0))) }
+                                    )
                                 )
                                 .padding(.bottom, 16)
                                 
                                 SettingViewComponents.NotiListItem(store: store)
-                                SettingListItem.Toggler(title: "Haptics", isOn: $store.isHapticEnabled.sending(\.setHapticEnabled))
+                                SettingListItem.Toggler(
+                                    title: "Haptics",
+                                    isOn: Binding(
+                                        get: { store.isHapticEnabled },
+                                        set: {
+                                            store.send(
+                                                .viewAction(.setHapticEnabled($0)),
+                                                animation: .default
+                                            )
+                                        }
+                                    )
+                                )
                                 
                                 SettingViewComponents.WriteReviewLink(title: "Your Rating Matters")
                                 SettingListItem.Linker(title: "Send Feedback") {
-                                    store.send(.feedbackItemTapped)
+                                    store.send(.viewAction(.feedbackItemTapped))
                                 }
                                 
                             }
@@ -64,10 +78,10 @@ struct SettingView: View {
                 isPresented:
                     Binding(
                         get: { store.isRefundPresent },
-                        set: { store.send(.setRefundPresent($0)) }
+                        set: { store.send(.viewAction(.setRefundPresent($0))) }
                     ),
                 onDismiss: { res in
-                    switch res{
+                    switch res {
                     case .success(let status):
                         print(status)
                     case .failure(let error): print("res error",error)
@@ -84,7 +98,7 @@ struct SettingView: View {
             }
             .alert($store.scope(state: \.alert, action: \.alert))
         }
-        .onAppear(){ store.send(.launchAction) }
+        .onAppear() { store.send(.launchAction) }
         .tint(.doroBlack)
         .foregroundStyle(Color.doroBlack)
         .toolbar(.hidden, for: .navigationBar)

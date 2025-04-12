@@ -21,7 +21,7 @@ typealias MainState = MainFeature.State
 
 @Reducer struct MainFeature {
     enum CancelID { case timer }
-    enum Action:Equatable {
+    enum Action: Equatable {
         case viewAction(ControllType)
         // 내부 로직 Action
         case initAction
