@@ -17,8 +17,9 @@ import CoreData
 
 @DBActor final class AnalyzeCoreDataClient: AnalyzeAPIs {
     private let coreDataService = CoreDataService()
-    private lazy var syncedDatabase: SyncedDatabase = {
+    lazy var syncedDatabase: SyncedDatabase = {
         let syncedDatabase = SyncedDatabase(coreDataService: self)
+        
         return syncedDatabase
     }()
     enum Label {
@@ -50,7 +51,10 @@ import CoreData
         }
     }
     
-    func initAction() async throws { }
+    func initAction() async throws {
+        await syncedDatabase.setAutomaticallySync(isOn: true)
+        try await syncedDatabase.fetchChanges()
+    }
     
     @objc func storeRemoteChange(_ notification: Notification) {
         print("과연 가져올까??")
@@ -126,6 +130,7 @@ extension AnalyzeCoreDataClient {
     }
     
     func coredataDelete(items: [TimerRecordItem]) async throws {
+        guard !items.isEmpty else { return }
         let ids: [TimerRecordItem.ID] = items.map((\.id))
         try await coreDataService.managedObjectContext.perform { [weak self] in
             guard let self else { return }
@@ -158,7 +163,7 @@ extension AnalyzeCoreDataClient {
         }
     }
     
-    #warning("상호의존성이 발생하는 코드")
+#warning("상호의존성이 발생하는 코드")
     func coredataAppend(item: TimerRecordItem) async {
         
         await coreDataService.managedObjectContext.perform { [weak self] in
@@ -176,7 +181,6 @@ extension AnalyzeCoreDataClient {
             } catch {
                 fatalError("여기 문제가 있다")
             }
-            analyzeEventContinuation?.yield(.append)
         }
     }
     
@@ -184,12 +188,13 @@ extension AnalyzeCoreDataClient {
     func append(_ item: TimerRecordItem) async {
         /// 여기 상호 의존성을 해제해야한다.
         await self.syncedDatabase.saveTimerRecordItem(client: self, item)
+        self.analyzeEventContinuation?.yield(.append)
     }
 }
 
 
 
-fileprivate extension AnalyzeCoreDataClient{
+fileprivate extension AnalyzeCoreDataClient {
     /// date타입을 CoreData에 저장한 코드로 변환
     func getCode(weekDate date:Date) -> [String]{
         guard let weekDay = Calendar.current.dateComponents([.weekday], from: date).weekday,
@@ -224,7 +229,7 @@ fileprivate extension AnalyzeCoreDataClient{
 
 
 extension TimerRecordItemEntity{
-    static var dateSortDescriptor: NSSortDescriptor{ NSSortDescriptor(key: "createdAt", ascending: false) }
+    static var dateSortDescriptor: NSSortDescriptor { NSSortDescriptor(key: "createdAt", ascending: false) }
     
     func applyItem(_ item: TimerRecordItem) {
         self.id = item.id

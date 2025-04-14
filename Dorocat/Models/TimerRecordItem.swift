@@ -7,7 +7,7 @@
 
 import Foundation
 struct TimerRecordItem {
-    var id: UUID = UUID()
+    var id: UUID
     // 기록 코드, 년월일로 구분해서 중복된 것을 모두 가져온다.
     var recordCode:String = "" // 이게 고유 ID라고 보기는 애매해진다.
     var createdAt: Date = .init()

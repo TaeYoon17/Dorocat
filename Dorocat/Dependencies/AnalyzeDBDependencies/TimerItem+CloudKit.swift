@@ -13,13 +13,22 @@ extension TimerRecordItem {
     static let zoneName = "DoroTimerZone"
     
     /// The record type to use when saving a contact.
-    static let recordType: CKRecord.RecordType = "TimerRecordItem"
+    static let recordType: CKRecord.RecordType = CKRecord.RecordEntityType.timerItem.rawValue
     
     var ckRecordZoneID: CKRecordZone.ID { CKRecordZone.ID(zoneName: Self.zoneName) }
     var ckRecordID: CKRecord.ID {
-        CKRecord.ID(recordName: self.recordCode, zoneID: self.ckRecordZoneID)
+        CKRecord.ID(recordName: self.id.uuidString, zoneID: self.ckRecordZoneID)
     }
-    
+    init(record: CKRecord) {
+        let values: any CKRecordKeyValueSetting = record.encryptedValues
+//        self.id = values[.id] ?? UUID()
+        self.id = UUID(uuidString: record.recordID.recordName) ?? UUID()
+        self.recordCode = values[.timerRecordItem_recordCode] ?? ""
+        self.createdAt = values[.timerRecordItem_createdAt] ?? Date()
+        self.duration = values[.timerRecordItem_duration] ?? 0
+        self.session = .init(name:values[.timerRecordItem_sessionName] ?? "Study")
+        self.userModificationDate = values[.timerRecordItem_userModificationDate] ?? Date.distantPast
+    }
     // 서버에서 가져온 데이터와 동기화시킨다.
     mutating func mergeFromServerRecord(_ record: CKRecord) {
         let values: any CKRecordKeyValueSetting = record.encryptedValues
@@ -52,13 +61,7 @@ extension TimerRecordItem {
         values[.timerRecordItem_userModificationDate] = self.userModificationDate
     }
 }
-extension CKRecord.FieldKey {
-    static let timerRecordItem_recordCode: String = "RecordCode"
-    static let timerRecordItem_sessionName: String = "SessionName"
-    static let timerRecordItem_duration = "Duration"
-    static let timerRecordItem_createdAt = "CreatedAt"
-    static let timerRecordItem_userModificationDate = "UserModificationDate"
-}
+
 
 extension TimerRecordItem : Identifiable, Hashable, Equatable, Comparable {
     static func == (lhs: TimerRecordItem, rhs: TimerRecordItem) -> Bool {
@@ -77,6 +80,16 @@ extension TimerRecordItem : Identifiable, Hashable, Equatable, Comparable {
     }
 
 }
+
+extension CKRecord.FieldKey {
+    static let timerRecordItem_recordCode: String = "RecordCode"
+    static let timerRecordItem_sessionName: String = "SessionName"
+    static let timerRecordItem_duration: String = "Duration"
+    static let timerRecordItem_createdAt: String = "CreatedAt"
+    static let timerRecordItem_userModificationDate: String = "UserModificationDate"
+}
+
+
 /*
 extension TimerRecordItem {
     

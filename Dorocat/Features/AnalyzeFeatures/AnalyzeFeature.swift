@@ -62,6 +62,8 @@ import GreemSwiftPackage
                             switch event{
                             case .append:
                                 await send(.getAllRecordsThenUpdate())
+                            case .fetch:
+                                await send(.getAllRecordsThenUpdate())
                             }
                         }
                     }).cancellable(id: CancelID.dbCancel)

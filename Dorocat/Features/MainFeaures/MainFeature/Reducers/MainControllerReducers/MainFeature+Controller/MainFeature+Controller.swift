@@ -10,7 +10,6 @@ import ComposableArchitecture
 extension MainFeature{
     enum Controller: CaseIterable {
         case haptic, guide, action, notification
-        
         private var reducer: MainControllerProtocol {
             switch self {
                 case .haptic: HapticReducer()
@@ -19,7 +18,6 @@ extension MainFeature{
                 case .notification: NotificationReducer()
             }
         }
-        
         static func makeAllReducers(state:inout MainFeature.State,act:ControllType) -> Effect<Action> {
             Effect.concatenate(
                 notification.reducer.makeReducer(state: &state, act: act),

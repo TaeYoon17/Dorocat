@@ -1,110 +1,16 @@
 //
-//  SyncedDatabase.swift
-//  SyncEngine
+//  SyncJobs.swift
+//  Dorocat
+//
+//  Created by Greem on 4/14/25.
 //
 
-import CloudKit
 import Foundation
-import os.log
-/// CKContainer 연동 접근 방법
-/// 1. 로컬 데이터는 CoreData에 둔다.
-/// 2. 사용자에게 iCloud 연동을 할 것인지 물어본다..! => 유료가 아니라면 유료를 유도하자
-///     2-1. 앱을 처음 깐 사용자에게는 온보딩에서 물어보자
-///     2-2. 앱을 이미 사용 중인 사용자에게는 시트로 물어보자 (한 번만 띄우는 시트...)
-/// 3. iCloud 연동을 할 경우임) 처음 Cloud 연동 시, 기존 CloudKit에 존재하는 모든 데이터를 fetch 한다. - (비동기 작업으로 진행)
-/// 4. iCloud 연동을 하지 않을 경우임) 기존 CoreData 기반 데이터들을 모두 가져온다.
-/// - 추가할 화면
-/// 1. 동기화를 할 것인가 / 아이클라우드에서 사용한 데이터가 얼마인가? -> 이게 되려나?
-///     2.0 동기화를 한다면 수동 업데이트 버튼을 누르게 한다.
-///     2.1 동기화를 한다면 네트워크 상관없이 할 것인가?
-
-extension CKRecord {
-    enum RecordEntityType: String {
-        case timerItem = "TimerRecordItem"
-        case session
-    }
-    var convertIDToRecordType: RecordEntityType {
-        RecordEntityType(rawValue: self.recordType)!
-    }
-}
-extension CKRecord.RecordType {
-    var convertToEntityType: CKRecord.RecordEntityType {
-        CKRecord.RecordEntityType(rawValue: self)!
-    }
-}
-
-final actor SyncedDatabase : Sendable {
-    private var userDefaultsSerialization: String { "stateSerialization" }
-    private static var ckContainerIdentifier: String { "iCloud.com.tistory.arpple.Dorocat" }
-    private weak var coreDataClient: AnalyzeCoreDataClient!
-    /// iCloud 컨테이너를 설정한다.
-    private static let container: CKContainer = CKContainer(identifier: ckContainerIdentifier)
-    
-    var stateSerialization: CKSyncEngine.State.Serialization? {
-        get {
-            guard let data = UserDefaults.standard.data(forKey: self.userDefaultsSerialization),
-                  let serialization = try? JSONDecoder().decode(CKSyncEngine.State.Serialization.self, from: data) else {
-                return nil
-            }
-            return serialization
-        }
-        set {
-            guard let newValue = newValue else { return }
-            UserDefaults.standard.set(try? JSONEncoder().encode(newValue), forKey: self.userDefaultsSerialization)
-        }
-    }
-    
-    /// The sync engine being used to sync.
-    /// This is lazily initialized. You can re-initialize the sync engine by setting `_syncEngine` to nil then calling `self.syncEngine`.
-    private var syncEngine: CKSyncEngine {
-        if _syncEngine == nil {
-            self.initializeSyncEngine()
-        }
-        return _syncEngine!
-    }
-    private var _syncEngine: CKSyncEngine?
-    
-    private var automaticallySync: Bool = false { // 일단 자동 싱크를 막는다. 추후에 수정해야할 필요 있음
-        didSet {
-            if automaticallySync { // 자동 싱크를 true로 할 경우
-                initializeSyncEngine()
-            } else { // 자동 싱크를 false로 바꿀 경우
-                initializeSyncEngine()
-            }
-        }
-    }
-    
-    
-    /// 자동 싱크는 set으로 사용자가 변경할 수 있다..!
-    init(coreDataService: AnalyzeCoreDataClient) {
-        self.coreDataClient = coreDataService
-    }
-    
-    func setAutomaticallySync(isOn: Bool) {
-        print("자동 싱크 변경..!")
-        self.automaticallySync = isOn
-    }
-    
-    func setStateSerialization(_ event: CKSyncEngine.Event.StateUpdate) {
-        self.stateSerialization = event.stateSerialization
-    }
-    
-    private func initializeSyncEngine() {
-        var configuration = CKSyncEngine.Configuration(
-            database: Self.container.privateCloudDatabase,
-            stateSerialization: self.stateSerialization,
-            delegate: self
-        )
-        configuration.automaticallySync = self.automaticallySync
-        let syncEngine = CKSyncEngine(configuration)
-        _syncEngine = syncEngine
-        Logger.database.log("Initialized sync engine: \(syncEngine)")
-    }
-}
+import CloudKit
 
 // MARK: - CKSyncEngineDelegate
 
-extension SyncedDatabase : CKSyncEngineDelegate {
+extension AnalyzeCoreDataClient : CKSyncEngineDelegate {
     
     /// CKSyncEngine에서 이벤트가 발생한 것을 알려준다.
     /// CKSyncEngine.Event는 CloudKit에서 동기화 엔진(CKSyncEngine)이 동작 중에 발생하는 이벤트를 나타내는 열거형(enum)
@@ -114,8 +20,9 @@ extension SyncedDatabase : CKSyncEngineDelegate {
         /// State는 그 엔진이 현재까지 동기화를 어디까지 했는지, 어떤 레코드들을 처리했는지 등을 기억하는 객체
         /// Serialization은 직렬화하여 CoreData나 로컬에 저장할 수 있게 만듦
         switch event {
-        case .stateUpdate(let event): // 상태 업데이트, 저장 공간에 최신 상태가 무엇인지 저장하게 만들 필요가 있다.
-            self.stateSerialization = event.stateSerialization
+            // 상태 업데이트, 저장 공간에 최신 상태가 무엇인지 저장하게 만들 필요가 있다.
+        case .stateUpdate(let event):
+            await self.syncedDatabase.setStateSerialization(event)
         case .accountChange(let event): // 계정이 바뀜
             self.handleAccountChange(event)
         case .fetchedDatabaseChanges(let event): // 처리할 데이터베이스 변경 사항을 가져왔음. -> 레코드 존의 변경 사항을 알 것이다.
@@ -389,7 +296,7 @@ extension SyncedDatabase {
 //            self.appData.contacts[id] = nil
 //        }
 //        try self.persistLocalData()
-//        
+//
 //        let pendingDeletions: [CKSyncEngine.PendingRecordZoneChange] = contacts.map { .deleteRecord($0.ckRecordID) }
 //        self.syncEngine.state.add(pendingRecordZoneChanges: pendingDeletions)
 //    }

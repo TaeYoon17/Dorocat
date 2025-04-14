@@ -38,7 +38,7 @@ actor PomoLiveActivityClient:PomoLiveActivity{
         do{
             let activity = try Activity<PomoAttributes>.request(attributes: pomoAttributes, content: content)
             self.currentID = activity.id
-            print("추가 성공 \(activity.content.state.count)")
+            print("[PomoLiveActivity] 추가 성공 \(activity.content.state.count)")
         }catch{
             print("추가 실패")
             print(error.localizedDescription)
