@@ -8,8 +8,15 @@
 import Foundation
 import CloudKit
 import os.log
-
-extension TimerRecordItem {
+protocol CKWritable {
+    var recordType: CKRecord.RecordType { get }
+    func populateRecord(_ record: CKRecord)
+}
+extension TimerRecordItem: CKWritable {
+    var recordType: CKRecord.RecordType {
+        CKRecord.RecordEntityType.timerItem.rawValue
+    }
+    
     static let zoneName = "DoroTimerZone"
     
     /// The record type to use when saving a contact.

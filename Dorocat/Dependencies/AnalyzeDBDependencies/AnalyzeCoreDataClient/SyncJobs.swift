@@ -8,68 +8,21 @@
 import Foundation
 import CloudKit
 
+protocol SyncJobs {
+    func handleFetchedRecordZoneChanges(_ event: CKSyncEngine.Event.FetchedRecordZoneChanges) async
+    func handleFetchedDatabaseChanges(_ event: CKSyncEngine.Event.FetchedDatabaseChanges) async
+    func handleSentRecordZoneChanges(_ event: CKSyncEngine.Event.SentRecordZoneChanges) async
+    func handleAccountChange(_ event: CKSyncEngine.Event.AccountChange) async
+    
+    func batchJob() async -> CKWritable?
+}
+
 // MARK: - CKSyncEngineDelegate
 
-extension AnalyzeCoreDataClient : CKSyncEngineDelegate {
+extension AnalyzeCoreDataClient : SyncJobs {
     
-    /// CKSyncEngine에서 이벤트가 발생한 것을 알려준다.
-    /// CKSyncEngine.Event는 CloudKit에서 동기화 엔진(CKSyncEngine)이 동작 중에 발생하는 이벤트를 나타내는 열거형(enum)
-    func handleEvent(_ event: CKSyncEngine.Event, syncEngine: CKSyncEngine) async {
-        
-        Logger.database.debug("Handling event \(event)")
-        /// State는 그 엔진이 현재까지 동기화를 어디까지 했는지, 어떤 레코드들을 처리했는지 등을 기억하는 객체
-        /// Serialization은 직렬화하여 CoreData나 로컬에 저장할 수 있게 만듦
-        switch event {
-            // 상태 업데이트, 저장 공간에 최신 상태가 무엇인지 저장하게 만들 필요가 있다.
-        case .stateUpdate(let event):
-            await self.syncedDatabase.setStateSerialization(event)
-        case .accountChange(let event): // 계정이 바뀜
-            self.handleAccountChange(event)
-        case .fetchedDatabaseChanges(let event): // 처리할 데이터베이스 변경 사항을 가져왔음. -> 레코드 존의 변경 사항을 알 것이다.
-            self.handleFetchedDatabaseChanges(event)
-        case .fetchedRecordZoneChanges(let event): // 레코드 존 내부의 테이블 변화를 가져온다. -> 튜플(레코드)의 추가나 삭제를 알 것이다.
-            await self.handleFetchedRecordZoneChanges(event)
-        case .sentRecordZoneChanges(let event):
-            await self.handleSentRecordZoneChanges(event)
-        case .sentDatabaseChanges: break
-            
-        case .willFetchChanges, .willFetchRecordZoneChanges, .didFetchRecordZoneChanges, .didFetchChanges, .willSendChanges, .didSendChanges:
-            // We don't do anything here in the sample app, but these events might be helpful if you need to do any setup/cleanup when sync starts/ends.
-            break
-            
-        @unknown default:
-            Logger.database.info("Received unknown event: \(event)")
-        }
-    }
-    /// 델리게이트에게 서버로 보낼 다음 레코드 변경 집합을 제공하도록 요청합니다.
-    /// 배치 => 한번에 보낼 그릇, 버퍼와 비슷하다.
-    func nextRecordZoneChangeBatch(
-        _ context: CKSyncEngine.SendChangesContext,
-        syncEngine: CKSyncEngine
-    ) async -> CKSyncEngine.RecordZoneChangeBatch? {
-        
-        Logger.database.info("Returning next record change batch for context: \(context)")
-        /// 변화를 일으키는 작업들에 대한 Scope들
-        let scope: CKSyncEngine.SendChangesOptions.Scope = context.options.scope
-        /// 대기중인 작업들 중 변화가 필요한 것들만 가져온다. => 생성이랑 삭제 작업이 될 것이다...
-        let changes: [CKSyncEngine.PendingRecordZoneChange] = syncEngine.state.pendingRecordZoneChanges.filter { scope.contains($0) }
-        
-        /// 래코드 존(DB 테이블)을 변화시킬 배치를 만든다. 현재 변화를 기다리는 것들을 받는다.
-        let batch = await CKSyncEngine.RecordZoneChangeBatch(pendingChanges: changes) { recordID in
-            print("[nextRecordZoneChagneBatch] \(recordID.recordName)")
-            let id = UUID(uuidString: recordID.recordName)!
-            if let timerItem = await coreDataClient.findItemByID(id) { // 로컬에 저장했지만 아직 클라우드에 보내진 않은 것들이다.
-                let record = CKRecord(recordType: TimerRecordItem.recordType, recordID: recordID)
-                
-                timerItem.populateRecord(record) /// 이 아이템의 정보를 레코드에 쓴다.
-                return record
-            } else { // 로컬에 저장되어있지 않은 엔티티라면, 이 변화 작업을 syncEngine이 가질 필요가 없다.
-                // We might have pending changes that no longer exist in our database. We can remove those from the state.
-                syncEngine.state.remove(pendingRecordZoneChanges: [ .saveRecord(recordID) ])
-                return nil
-            }
-        }
-        return batch
+    func batchJob() async -> CKWritable? {
+        return nil
     }
     
     // MARK: - CKSyncEngine Events
@@ -85,9 +38,8 @@ extension AnalyzeCoreDataClient : CKSyncEngineDelegate {
             let record:CKRecord = modification.record
             let id = record.recordID.recordName
             
-            Logger.database.log("Received contact modification: \(record.recordID)")
             let uuid = UUID(uuidString: id)!
-            let findItem = await coreDataClient.findItemByID(uuid)
+            let findItem = await findItemByID(uuid)
             if findItem == nil && record.convertIDToRecordType == .timerItem{
                 var item = TimerRecordItem(record: record)
                 modificationItems.append(item)
@@ -97,31 +49,27 @@ extension AnalyzeCoreDataClient : CKSyncEngineDelegate {
         let deletionIDs: [UUID] = event.deletions.map { UUID(uuidString: $0.recordID.recordName)! }
         var deletionItems: [TimerRecordItem] = []
         for deletionId in deletionIDs {
-            if let findItem = await coreDataClient.findItemByID(deletionId) {
+            if let findItem = await findItemByID(deletionId) {
                 deletionItems.append(findItem)
             }
         }
         
         for modificationItem in modificationItems {
-            await self.coreDataClient.coredataAppend(item: modificationItem)
+            await coredataAppend(item: modificationItem)
         }
-        try? await self.coreDataClient.coredataDelete(items: deletionItems)
+        try? await coredataDelete(items: deletionItems)
         print("[\(#function)]변화를 감지했다..!")
-        await coreDataClient.analyzeEventContinuation?.yield(.fetch)
+        analyzeEventContinuation?.yield(.fetch)
     }
     
     /// 데이터 베이스 자체가 변화함 => 존 (테이블이 영향받음)
-    func handleFetchedDatabaseChanges(_ event: CKSyncEngine.Event.FetchedDatabaseChanges) {
+    func handleFetchedDatabaseChanges(_ event: CKSyncEngine.Event.FetchedDatabaseChanges) async {
         for deletion in event.deletions {
             switch deletion.zoneID.zoneName {
             case TimerRecordItem.zoneName:
                 /// 모든 데이터를 지운다.
-                Task {
-                    try await self.coreDataClient.coredataDelete(items: [])
-                }
-
-            default:
-                Logger.database.info("Received deletion for unknown zone: \(deletion.zoneID)")
+                try? await self.coredataDelete(items: [])
+            default: continue
             }
         }
         
@@ -147,19 +95,14 @@ extension AnalyzeCoreDataClient : CKSyncEngineDelegate {
                 // 서버의 레코드를 우리 자신의 로컬 복사본에 병합하겠습니다.
                 // `mergeFromServerRecord` 함수가 충돌 해결을 처리합니다.
                 guard let serverRecord = failedRecordSave.error.serverRecord else {
-                    Logger.database.error("No server record for conflict \(failedRecordSave.error)")
                     continue
                 }
                 let id = UUID(uuidString: recordID)!
-                guard var timerRecordItem = await coreDataClient.findItemByID(id) else {
-                    Logger.database.error("No local object for conflict \(failedRecordSave.error)")
+                guard var timerRecordItem = await findItemByID(id) else {
                     continue
                 }
                 timerRecordItem.mergeFromServerRecord(serverRecord)
-//                contact.mergeFromServerRecord(serverRecord)
-//                contact.setLastKnownRecordIfNewer(serverRecord)
-                try? await coreDataClient.coredataDelete(items: [timerRecordItem])
-//                self.appData.contacts[contactID] = contact
+                try? await coredataDelete(items: [timerRecordItem])
                 newPendingRecordZoneChanges.append(.saveRecord(failedRecord.recordID))
                 
             case .zoneNotFound:
@@ -179,14 +122,11 @@ extension AnalyzeCoreDataClient : CKSyncEngineDelegate {
                 newPendingRecordZoneChanges.append(.saveRecord(failedRecord.recordID))
                 shouldClearServerRecord = true
                 
-            case .networkFailure, .networkUnavailable, .zoneBusy, .serviceUnavailable, .notAuthenticated, .operationCancelled:
-                // There are several errors that the sync engine will automatically retry, let's just log and move on.
-                Logger.database.debug("Retryable error saving \(failedRecord.recordID): \(failedRecordSave.error)")
-                
+            case .networkFailure, .networkUnavailable, .zoneBusy, .serviceUnavailable, .notAuthenticated, .operationCancelled: break
             default:
                 // We got an error, but we don't know what it is or how to handle it.
                 // If you have any sort of telemetry system, you should consider tracking this scenario so you can understand which errors you see in the wild.
-                Logger.database.fault("Unknown error saving record \(failedRecord.recordID): \(failedRecordSave.error)")
+                break
             }
             
             if shouldClearServerRecord {
@@ -197,9 +137,9 @@ extension AnalyzeCoreDataClient : CKSyncEngineDelegate {
 //                }
             }
         }
-        
-        self.syncEngine.state.add(pendingDatabaseChanges: newPendingDatabaseChanges)
-        self.syncEngine.state.add(pendingRecordZoneChanges: newPendingRecordZoneChanges)
+        /// coredata에 위임한다.
+//        self.syncEngine.state.add(pendingDatabaseChanges: newPendingDatabaseChanges)
+//        self.syncEngine.state.add(pendingRecordZoneChanges: newPendingRecordZoneChanges)
         
     }
     
@@ -208,8 +148,7 @@ extension AnalyzeCoreDataClient : CKSyncEngineDelegate {
     /// 다른 계정으로 로그인 시: 완전히 새로운 계정의 데이터로 바꾼다.
     ///     추후에 사용자가 기존 작업을 버릴지 말지 선택하게 한다.
     /// 추가 대응방법: 기간 및 작업 별 백업을 만들어 동기화 할 수 있게 만든다.
-    
-    func handleAccountChange(_ event: CKSyncEngine.Event.AccountChange) {
+    func handleAccountChange(_ event: CKSyncEngine.Event.AccountChange) async {
         
         // 계정 변경을 처리하는 것은 까다로울 수 있습니다.
         //
@@ -247,7 +186,6 @@ extension AnalyzeCoreDataClient : CKSyncEngineDelegate {
             shouldReUploadLocalData = false
             
         @unknown default:
-            Logger.database.log("Unknown account change type: \(event)")
             shouldDeleteLocalData = false
             shouldReUploadLocalData = false
         }
@@ -265,7 +203,7 @@ extension AnalyzeCoreDataClient : CKSyncEngineDelegate {
 }
 
 // MARK: - Data
-extension SyncedDatabase {
+extension AnalyzeCoreDataClient {
     
     /// 코어 데이터에는 이미 저장했는데 다시 하는 경우를 대응해야한다.
     func saveTimerRecordItem(client: AnalyzeCoreDataClient, _ timerItem: TimerRecordItem) async {
@@ -274,9 +212,9 @@ extension SyncedDatabase {
             await client.coredataAppend(item: timerItem)
         }
         
-        // 클라우드 킷에 추가한다.
-        let pendingSaves: [CKSyncEngine.PendingRecordZoneChange] = [ .saveRecord(timerItem.ckRecordID)]
-        self.syncEngine.state.add(pendingRecordZoneChanges: pendingSaves)
+        // 클라우드 킷에 추가한다. -> 이건 요청할 것이다.
+//        let pendingSaves: [CKSyncEngine.PendingRecordZoneChange] = [ .saveRecord(timerItem.ckRecordID)]
+//        self.syncEngine.state.add(pendingRecordZoneChanges: pendingSaves)
     }
     
     func deleteTimerRecordItem(client: AnalyzeCoreDataClient, _ ids: [TimerRecordItem.ID]) async throws {
@@ -304,12 +242,7 @@ extension SyncedDatabase {
     
     /// 모든 로컬 데이터를 지운다...
     func deleteLocalData() throws {
-        Logger.database.info("Deleting local data")
-//        self.appData = AppData()
         try self.persistLocalData()
-        
-        // If we're deleting everything, we need to clear out all our sync engine state too.
-        // In order to do that, let's re-initialize our sync engine.
         self.initializeSyncEngine()
     }
     

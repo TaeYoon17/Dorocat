@@ -40,6 +40,9 @@ final actor SyncedDatabase : Sendable {
     /// iCloud 컨테이너를 설정한다.
     private static let container: CKContainer = CKContainer(identifier: ckContainerIdentifier)
     
+    private var jobs: [CKRecord.RecordEntityType : SyncJobs?] = [:]
+    fileprivate var pendingItems: [CKRecord.ID : CKRecord.RecordEntityType] = [ : ]
+    
     var stateSerialization: CKSyncEngine.State.Serialization? {
         get {
             guard let data = UserDefaults.standard.data(forKey: self.userDefaultsSerialization),
@@ -118,12 +121,24 @@ extension SyncedDatabase : CKSyncEngineDelegate {
             self.stateSerialization = event.stateSerialization
         case .accountChange(let event): // 계정이 바뀜
             self.handleAccountChange(event)
+            for job in self.jobs.values {
+                await job?.handleAccountChange(event)
+            }
         case .fetchedDatabaseChanges(let event): // 처리할 데이터베이스 변경 사항을 가져왔음. -> 레코드 존의 변경 사항을 알 것이다.
             self.handleFetchedDatabaseChanges(event)
+            for job in self.jobs.values {
+                await job?.handleFetchedDatabaseChanges(event)
+            }
         case .fetchedRecordZoneChanges(let event): // 레코드 존 내부의 테이블 변화를 가져온다. -> 튜플(레코드)의 추가나 삭제를 알 것이다.
             await self.handleFetchedRecordZoneChanges(event)
+            for job in self.jobs.values {
+                await job?.handleFetchedRecordZoneChanges(event)
+            }
         case .sentRecordZoneChanges(let event):
             await self.handleSentRecordZoneChanges(event)
+            for job in self.jobs.values {
+                await job?.handleSentRecordZoneChanges(event)
+            }
         case .sentDatabaseChanges: break
             
         case .willFetchChanges, .willFetchRecordZoneChanges, .didFetchRecordZoneChanges, .didFetchChanges, .willSendChanges, .didSendChanges:
@@ -134,6 +149,7 @@ extension SyncedDatabase : CKSyncEngineDelegate {
             Logger.database.info("Received unknown event: \(event)")
         }
     }
+    
     /// 델리게이트에게 서버로 보낼 다음 레코드 변경 집합을 제공하도록 요청합니다.
     /// 배치 => 한번에 보낼 그릇, 버퍼와 비슷하다.
     func nextRecordZoneChangeBatch(
@@ -144,27 +160,45 @@ extension SyncedDatabase : CKSyncEngineDelegate {
         Logger.database.info("Returning next record change batch for context: \(context)")
         /// 변화를 일으키는 작업들에 대한 Scope들
         let scope: CKSyncEngine.SendChangesOptions.Scope = context.options.scope
+        
         /// 대기중인 작업들 중 변화가 필요한 것들만 가져온다. => 생성이랑 삭제 작업이 될 것이다...
         let changes: [CKSyncEngine.PendingRecordZoneChange] = syncEngine.state.pendingRecordZoneChanges.filter { scope.contains($0) }
         
         /// 래코드 존(DB 테이블)을 변화시킬 배치를 만든다. 현재 변화를 기다리는 것들을 받는다.
         let batch = await CKSyncEngine.RecordZoneChangeBatch(pendingChanges: changes) { recordID in
-            print("[nextRecordZoneChagneBatch] \(recordID.recordName)")
-            let id = UUID(uuidString: recordID.recordName)!
-            if let timerItem = await coreDataClient.findItemByID(id) { // 로컬에 저장했지만 아직 클라우드에 보내진 않은 것들이다.
-                let record = CKRecord(recordType: TimerRecordItem.recordType, recordID: recordID)
-                
-                timerItem.populateRecord(record) /// 이 아이템의 정보를 레코드에 쓴다.
-                return record
-            } else { // 로컬에 저장되어있지 않은 엔티티라면, 이 변화 작업을 syncEngine이 가질 필요가 없다.
-                // We might have pending changes that no longer exist in our database. We can remove those from the state.
-                syncEngine.state.remove(pendingRecordZoneChanges: [ .saveRecord(recordID) ])
-                return nil
+            guard let type = await self.pendingItems[recordID] else { return nil }
+            await self.removeTarget(id: recordID)
+            switch type {
+            case .session: return nil
+            case .timerItem:
+                if let writable = await jobs[.timerItem]??.batchJob() {
+                    let record = CKRecord(recordType: writable.recordType, recordID: recordID)
+                    writable.populateRecord(record)
+                    return record
+                } else {
+                    syncEngine.state.remove(pendingRecordZoneChanges: [ .saveRecord(recordID) ])
+                    return nil
+                }
             }
+            
+//            let id = UUID(uuidString: recordID.recordName)!
+//            if let timerItem = await coreDataClient.findItemByID(id) { // 로컬에 저장했지만 아직 클라우드에 보내진 않은 것들이다.
+//                let record = CKRecord(recordType: TimerRecordItem.recordType, recordID: recordID)
+//                
+//                timerItem.populateRecord(record) /// 이 아이템의 정보를 레코드에 쓴다.
+//                return record
+//            } else { // 로컬에 저장되어있지 않은 엔티티라면, 이 변화 작업을 syncEngine이 가질 필요가 없다.
+//                // We might have pending changes that no longer exist in our database. We can remove those from the state.
+//                syncEngine.state.remove(pendingRecordZoneChanges: [ .saveRecord(recordID) ])
+//                return nil
+//            }
         }
+        
         return batch
     }
-    
+    func removeTarget(id: CKRecord.ID) async {
+        self.pendingItems.removeValue(forKey: id)
+    }
     // MARK: - CKSyncEngine Events
     
     /// 레코드존(테이블)이 변화함 => 레코드(튜플)들의 값을 수정함
@@ -175,8 +209,9 @@ extension SyncedDatabase : CKSyncEngineDelegate {
             // 동기화 엔진이 레코드를 가져왔고, 이를 로컬 저장소에 병합하려고 합니다.
             // 이미 이 객체가 로컬에 존재한다면, 서버에서 가져온 데이터와 병합합니다.
             // 그렇지 않다면, 새로운 로컬 객체를 생성합니다.
-            let record:CKRecord = modification.record
+            let record: CKRecord = modification.record
             let id = record.recordID.recordName
+            
             
             Logger.database.log("Received contact modification: \(record.recordID)")
             let uuid = UUID(uuidString: id)!
@@ -359,16 +394,28 @@ extension SyncedDatabase : CKSyncEngineDelegate {
 
 // MARK: - Data
 extension SyncedDatabase {
+    func appendPendingSave(items: [CKRecord.ID]) {
+        let pendingSaves: [CKSyncEngine.PendingRecordZoneChange] = items.map { .saveRecord($0) }
+        self.syncEngine.state.add(pendingRecordZoneChanges: pendingSaves)
+    }
+    
+    func appendPendingDelete(items: [CKRecord.ID]) {
+        let pendingDeletions: [CKSyncEngine.PendingRecordZoneChange] = items.map { .deleteRecord($0) }
+        self.syncEngine.state.add(pendingRecordZoneChanges: pendingDeletions)
+    }
     
     /// 코어 데이터에는 이미 저장했는데 다시 하는 경우를 대응해야한다.
     func saveTimerRecordItem(client: AnalyzeCoreDataClient, _ timerItem: TimerRecordItem) async {
         /// CoreData에 이 timerItem의 값을 찾는다.
         if await client.findItemByID(timerItem.id) == nil { // nil이면 이 아이디를 기반한 레코드 아이템이 없는 것이다.
             await client.coredataAppend(item: timerItem)
+        } else {
+            /// 코어데이터에서 값을 수정한다.
         }
         
         // 클라우드 킷에 추가한다.
         let pendingSaves: [CKSyncEngine.PendingRecordZoneChange] = [ .saveRecord(timerItem.ckRecordID)]
+        
         self.syncEngine.state.add(pendingRecordZoneChanges: pendingSaves)
     }
     
