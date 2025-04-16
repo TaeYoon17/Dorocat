@@ -7,6 +7,7 @@
 
 import Foundation
 import CloudKit
+import CoreData
 
 protocol SyncJobs {
     func handleFetchedRecordZoneChanges(_ event: CKSyncEngine.Event.FetchedRecordZoneChanges) async
@@ -14,15 +15,20 @@ protocol SyncJobs {
     func handleSentRecordZoneChanges(_ event: CKSyncEngine.Event.SentRecordZoneChanges) async
     func handleAccountChange(_ event: CKSyncEngine.Event.AccountChange) async
     
-    func batchJob() async -> CKWritable?
+    /// Pending 상태이던 레코드의 실제 값을 쓰기 위해 CKWritable 값을 요청한다.
+    func requestCKWritableForPendingRecord(id: String) async -> CKWritable?
 }
 
 // MARK: - CKSyncEngineDelegate
 
 extension AnalyzeCoreDataClient : SyncJobs {
     
-    func batchJob() async -> CKWritable? {
-        return nil
+    func requestCKWritableForPendingRecord(id: String) async -> CKWritable? {
+        guard let uuid = UUID(uuidString: id) else {
+            assertionFailure("이게 이상해요...")
+            return nil
+        }
+        return await self.findItemByID(uuid)
     }
     
     // MARK: - CKSyncEngine Events
@@ -191,7 +197,7 @@ extension AnalyzeCoreDataClient : SyncJobs {
         }
         
         if shouldDeleteLocalData {
-            try? self.deleteLocalData() // This error should be handled, but we'll skip that for brevity in this sample app.
+//            try? self.deleteLocalData() // This error should be handled, but we'll skip that for brevity in this sample app.
         }
         
         if shouldReUploadLocalData {
@@ -221,12 +227,12 @@ extension AnalyzeCoreDataClient {
         let items = try await client.findItemsByID(ids)
         try await client.coredataDelete(items: items)
         let pendingDeletions: [CKSyncEngine.PendingRecordZoneChange] = items.map { .deleteRecord($0.ckRecordID) }
-        self.syncEngine.state.add(pendingRecordZoneChanges: pendingDeletions)
+//        self.syncEngine.state.add(pendingRecordZoneChanges: pendingDeletions)
     }
     
-    func fetchCloudData() async throws {
-        try await self.syncEngine.fetchChanges()
-    }
+//    func fetchCloudData() async throws {
+//        try await self.syncEngine.fetchChanges()
+//    }
     
 //    func deleteContacts(_ ids: [Contact.ID]) throws {
 //        let contacts = ids.compactMap { self.appData.contacts[$0] }
@@ -238,40 +244,5 @@ extension AnalyzeCoreDataClient {
 //        let pendingDeletions: [CKSyncEngine.PendingRecordZoneChange] = contacts.map { .deleteRecord($0.ckRecordID) }
 //        self.syncEngine.state.add(pendingRecordZoneChanges: pendingDeletions)
 //    }
-    
-    
-    /// 모든 로컬 데이터를 지운다...
-    func deleteLocalData() throws {
-        try self.persistLocalData()
-        self.initializeSyncEngine()
-    }
-    
-    /// 로컬 데이터를 저장한다...
-    func persistLocalData() throws {
-        Logger.database.debug("Saving to disk")
-//        do {
-//            let data = try JSONEncoder().encode(self.appData)
-//            try data.write(to: self.dataURL)
-//        } catch {
-//            Logger.database.error("Failed to save to disk: \(error)")
-//            throw error
-//        }
-    }
-    /// 존에 존재하는 모든 데이터를 지운다.
-    func deleteServerData() async throws {
-        Logger.database.info("Deleting server data")
-        
-        // Our data is all in a single zone. Let's delete that zone now.
-        let zoneID = CKRecordZone.ID(zoneName: Contact.zoneName)
-        self.syncEngine.state.add(pendingDatabaseChanges: [ .deleteZone(zoneID) ])
-        try await self.syncEngine.sendChanges()
-    }
-    /// 명시적으로 값들을 가져온다.
-    func fetchChanges() async throws {
-        var fetchChangeOptions = CKSyncEngine.FetchChangesOptions()
-        let zoneID = CKRecordZone.ID(zoneName: Contact.zoneName)
-        fetchChangeOptions.prioritizedZoneIDs = [zoneID]
-        try await self.syncEngine.fetchChanges(fetchChangeOptions)
-    }
     
 }

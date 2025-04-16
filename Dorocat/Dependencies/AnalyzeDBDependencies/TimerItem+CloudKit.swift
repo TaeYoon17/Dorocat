@@ -12,7 +12,13 @@ protocol CKWritable {
     var recordType: CKRecord.RecordType { get }
     func populateRecord(_ record: CKRecord)
 }
-extension TimerRecordItem: CKWritable {
+
+protocol CKReadable {
+    var ckRecordZoneID: CKRecordZone.ID { get }
+    var ckRecordID: CKRecord.ID { get }
+}
+
+extension TimerRecordItem: CKWritable, CKReadable {
     var recordType: CKRecord.RecordType {
         CKRecord.RecordEntityType.timerItem.rawValue
     }

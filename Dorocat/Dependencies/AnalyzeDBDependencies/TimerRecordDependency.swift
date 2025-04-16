@@ -15,12 +15,19 @@ enum AnalyzeEvent {
 }
 
 protocol AnalyzeAPIs{
+    /// 총 시간을 알아온다.
     var totalFocusTime: Double { get async }
+    /// 초기화 한다.
     func initAction() async throws
+    
     func get(day:Date) async throws -> [TimerRecordItem]
     func get(weekDate: Date) async throws ->[TimerRecordItem]
     func get(monthDate: Date) async throws -> [TimerRecordItem]
+    
     func append(_ item: TimerRecordItem) async
+    
+    func refresh() async
+    
     func eventAsyncStream() async -> AsyncStream<AnalyzeEvent>
 }
 

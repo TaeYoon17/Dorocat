@@ -171,12 +171,14 @@ extension SyncedDatabase : CKSyncEngineDelegate {
             switch type {
             case .session: return nil
             case .timerItem:
-                if let writable = await jobs[.timerItem]??.batchJob() {
+                if let writable = await jobs[.timerItem]??.requestCKWritableForPendingRecord(id: recordID.recordName) {
                     let record = CKRecord(recordType: writable.recordType, recordID: recordID)
                     writable.populateRecord(record)
                     return record
                 } else {
-                    syncEngine.state.remove(pendingRecordZoneChanges: [ .saveRecord(recordID) ])
+                    syncEngine.state.remove(
+                        pendingRecordZoneChanges: [ .saveRecord(recordID) ]
+                    )
                     return nil
                 }
             }
@@ -394,16 +396,15 @@ extension SyncedDatabase : CKSyncEngineDelegate {
 
 // MARK: - Data
 extension SyncedDatabase {
-    func appendPendingSave(items: [CKRecord.ID]) {
-        let pendingSaves: [CKSyncEngine.PendingRecordZoneChange] = items.map { .saveRecord($0) }
+    func appendPendingSave(items: [CKReadable]) {
+        let pendingSaves: [CKSyncEngine.PendingRecordZoneChange] = items.map { .saveRecord($0.ckRecordID) }
         self.syncEngine.state.add(pendingRecordZoneChanges: pendingSaves)
     }
     
-    func appendPendingDelete(items: [CKRecord.ID]) {
-        let pendingDeletions: [CKSyncEngine.PendingRecordZoneChange] = items.map { .deleteRecord($0) }
+    func appendPendingDelete(items: [CKReadable]) {
+        let pendingDeletions: [CKSyncEngine.PendingRecordZoneChange] = items.map { .deleteRecord($0.ckRecordID) }
         self.syncEngine.state.add(pendingRecordZoneChanges: pendingDeletions)
     }
-    
     /// 코어 데이터에는 이미 저장했는데 다시 하는 경우를 대응해야한다.
     func saveTimerRecordItem(client: AnalyzeCoreDataClient, _ timerItem: TimerRecordItem) async {
         /// CoreData에 이 timerItem의 값을 찾는다.
