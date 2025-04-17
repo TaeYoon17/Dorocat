@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
 
 extension SettingViewComponents{
@@ -18,20 +19,13 @@ extension SettingViewComponents{
                 }
                 HStack(spacing:8){
                     Link(destination: URL(string: "https://chip-goose-fa5.notion.site/Dorocat-Terms-7e6e5404ae984bde8963f25d12eb5144?pvs=74")!){
-                        Text("Terms").font(.paragraph03(.bold)).foregroundStyle(.grey02)
+                        Text("Terms").font(.paragraph03(.bold)).foregroundStyle(Color.grey02)
                     }
-                    Text("·").font(.paragraph02(.bold)).foregroundStyle(.doroWhite)
+                    Text("·").font(.paragraph02(.bold)).foregroundStyle(Color.doroWhite)
                     Link(destination: URL(string: "https://chip-goose-fa5.notion.site/Dorocat-Privacy-Policy-ad164a6289994922a39c4ba1e69a7621")!) {
-                        Text("Privacy Policy").font(.paragraph03(.bold)).foregroundStyle(.grey02)
+                        Text("Privacy Policy").font(.paragraph03(.bold)).foregroundStyle(Color.grey02)
                     }
                 }
-//                if store.isProUser{
-//                    Button{
-//                        store.send(.setRefundPresent(true))
-//                    }label: {
-//                        Text("Refund Pro-Version").font(.paragraph03(.bold)).foregroundStyle(.grey02)
-//                    }
-//                }
             }
         }
     }

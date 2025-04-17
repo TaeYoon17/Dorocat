@@ -8,9 +8,35 @@
 import Foundation
 import ComposableArchitecture
 
+/// 하나의 단일 네비게이션으로 관리하게 된다...
+extension DorocatFeature {
+    @Reducer
+    struct Path {
+        @ObservableState
+        enum State: Equatable {
+            // 존재하지 않으면 생성한다.
+            case registerIcloudSyncScene(ICloudSyncFeature.State = .init())
+        }
+        
+        enum Action {
+            
+            case registerIcloudSync(ICloudSyncFeature.Action)
+        }
+        
+        
+        var body: some ReducerOf<Self> {
+            Scope(state: \.registerIcloudSyncScene, action: \.registerIcloudSync) {
+                ICloudSyncFeature()
+            }
+        }
+    }
+    
+}
+
+
 @Reducer
-struct DorocatFeature{
-    enum Action:Equatable{
+struct DorocatFeature {
+    enum Action {
         case pageMove(PageType)
         case setAppState(AppStateType)
         case setProUser(Bool)
@@ -19,19 +45,20 @@ struct DorocatFeature{
         case onBoardingTapped
         case onBoardingWillTap
         
-        case timer(TimerFeature.Action)
+        case timer(MainFeature.Action)
         case analyze(AnalyzeFeature.Action)
         case setting(SettingFeature.Action)
         case setGuideStates(Guides)
         case setActivityAction(prev:TimerActivityType,next:TimerActivityType)
     }
+    
     @Dependency(\.guideDefaults) var guideDefaults
     @Dependency(\.haptic) var haptic
     @Dependency(\.initial) var initial
     @Dependency(\.pomoNotification) var notification
     @Dependency(\.pomoSession) var session
     @Dependency(\.pomoLiveActivity) var liveActivity
-    @Dependency(\.pomoDefaults) var pomoDefaults
+    @Dependency(\.doroStateDefaults) var doroStateDefaults
     @Dependency(\.timer.background) var timerBackground
     @Dependency(\.store) var store
     var body: some ReducerOf<Self>{
@@ -83,7 +110,7 @@ struct DorocatFeature{
             AnalyzeFeature()
         }
         Scope(state: \.timerState, action: /DorocatFeature.Action.timer) {
-            TimerFeature()
+            MainFeature()
         }
         Scope(state: \.settingState,action: /DorocatFeature.Action.setting){
             SettingFeature()

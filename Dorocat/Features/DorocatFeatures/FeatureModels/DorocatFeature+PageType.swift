@@ -7,8 +7,11 @@
 
 import Foundation
 extension DorocatFeature{
-    enum PageType:String,Hashable,Equatable,CaseIterable,Identifiable{
-        var id:String{ self.rawValue }
+    enum PageType: String, Hashable, Equatable, CaseIterable, Identifiable {
+        var id: String {
+            self.rawValue
+        }
+        
         case analyze
         case timer
         case setting

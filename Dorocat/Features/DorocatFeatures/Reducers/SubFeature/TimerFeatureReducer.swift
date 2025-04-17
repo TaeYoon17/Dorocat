@@ -8,7 +8,7 @@
 import Foundation
 import ComposableArchitecture
 extension DorocatFeature{
-    func timerFeatureReducer(state: inout State,subAction action: TimerFeature.Action)->Effect<Action>{
+    func timerFeatureReducer(state: inout State,subAction action: MainFeature.Action)->Effect<Action>{
         switch action{
         case .setGuideState(let guide):
             guard guide != state.guideState else {return .none}

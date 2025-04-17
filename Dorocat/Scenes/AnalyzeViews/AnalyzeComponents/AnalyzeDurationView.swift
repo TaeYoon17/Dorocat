@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
+
 extension DurationType{
     var averageTitle: String{
         return switch self{
@@ -81,7 +83,7 @@ fileprivate extension AnalyzeDurationView{
                     Image(systemName: "chevron.left")
                 }
                 Spacer()
-                Text(title).font(.paragraph03()).foregroundStyle(.grey00).fontCoordinator()
+                Text(title).font(.paragraph03()).foregroundStyle(Color.grey00).fontCoordinator()
                 Spacer()
                 Button{ rightTapped() }label: {
                     Image(systemName: "chevron.right")
@@ -95,10 +97,10 @@ fileprivate extension AnalyzeDurationView{
         var body: some View{
             HStack(content: {
                 VStack(alignment:.leading,spacing:-4) {
-                    Text("Total Time").font(.paragraph04).foregroundStyle(.grey02)
+                    Text("Total Time").font(.paragraph04).foregroundStyle(Color.grey02)
                     Text(totalTime)
                         .font(.header03)
-                        .foregroundStyle(.doroWhite)
+                        .foregroundStyle(Color.doroWhite)
                 }
                 Spacer()
             }).padding(.bottom,4)
@@ -111,10 +113,10 @@ fileprivate extension AnalyzeDurationView{
         var body: some View{
             HStack(content: {
                 VStack(alignment:.leading,spacing:-4) {
-                    Text(title).font(.paragraph04).foregroundStyle(.grey02)
+                    Text(title).font(.paragraph04).foregroundStyle(Color.grey02)
                     Text(dailyAverage)
                         .font(.header03).fontCoordinator()
-                        .foregroundStyle(.doroWhite)
+                        .foregroundStyle(Color.doroWhite)
                 }
                 Spacer()
             }).padding(.bottom,4)
@@ -124,7 +126,7 @@ fileprivate extension AnalyzeDurationView{
         func body(content: Content) -> some View {
             content.padding(.vertical,30)
                 .padding(.horizontal,24)
-                .background(.grey03)
+                .background(Color.grey03)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
         }
     }

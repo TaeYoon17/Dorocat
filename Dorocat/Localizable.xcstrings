@@ -44,6 +44,12 @@
     "BreakSleepToStandbyIntent" : {
 
     },
+    "Can not support iCloud sync" : {
+
+    },
+    "Can't now iCloud sync" : {
+
+    },
     "Can't open the Mail app." : {
 
     },
@@ -62,6 +68,9 @@
     "Continue" : {
 
     },
+    "Do it later" : {
+
+    },
     "Done" : {
 
     },
@@ -69,6 +78,9 @@
 
     },
     "Dorocat " : {
+
+    },
+    "Download Mail app from the App Store." : {
 
     },
     "Focus" : {
@@ -84,6 +96,12 @@
 
     },
     "I'll help you focus and stay on track" : {
+
+    },
+    "iCloud Sync" : {
+
+    },
+    "IcloudSyncView" : {
 
     },
     "Learn More" : {
@@ -108,6 +126,9 @@
 
     },
     "OK" : {
+
+    },
+    "Open iCloud settings" : {
 
     },
     "PauseToFocusSleepIntent" : {
@@ -162,6 +183,9 @@
 
     },
     "Work" : {
+
+    },
+    "You should sign in your iCloud account." : {
 
     },
     "You've completed successfully\nLet's stretch together." : {

@@ -23,6 +23,16 @@ extension Date{
         return range.count
     }
 }
+
+extension Date{
+    func convertToRecordCode()->String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: self)
+        return dateString
+    }
+}
+
 //MARK: -- variable methods...
 extension Date{
     // 이전 날짜와 비교해서 2일을 넘겼는지 확인하는 메서드
