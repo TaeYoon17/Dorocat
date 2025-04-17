@@ -11,8 +11,34 @@ import UIKit
 import StoreKit
 import FirebaseAnalytics
 //import CloudKit
-@Reducer struct SettingFeature{
+
+extension SettingFeature {
+    @Reducer
+    struct Path {
+        @ObservableState
+        enum State: Equatable {
+            // 존재하지 않으면 생성한다.
+            case registerIcloudSyncScene(ICloudSyncFeature.State = .init())
+        }
+        
+        enum Action {
+            
+            case registerIcloudSync(ICloudSyncFeature.Action)
+        }
+        
+        
+        var body: some ReducerOf<Self> {
+            Scope(state: \.registerIcloudSyncScene, action: \.registerIcloudSync) {
+                ICloudSyncFeature()
+            }
+        }
+    }
+}
+
+@Reducer
+struct SettingFeature {
     @ObservableState struct State: Equatable{
+        var path = StackState<Path.State>()
         var isLaunch = false
         var isNotiAuthorized = false
         var isProUser = false
@@ -31,7 +57,9 @@ import FirebaseAnalytics
         
         var appState = DorocatFeature.AppStateType.active
     }
-    enum Action:Equatable{
+    enum Action {
+        case path(StackAction<Path.State, Path.Action>)
+        
         case viewAction(ViewActionType)
         
         case setProUser(Bool)
@@ -166,6 +194,13 @@ import FirebaseAnalytics
                     state.isIcloudSync = false
                 }
                 return .none
+            case let .path(stackAction):
+                switch (stackAction) {
+                case .element(id: _, action: .registerIcloudSync(.updateSyncStatus)):
+                    state.path.append(.registerIcloudSyncScene())
+                    return .none
+                default: return .none
+                }
             }
         }
         .ifLet(\.$purchaseSheet, action: \.purchaseSheet) {
@@ -175,6 +210,9 @@ import FirebaseAnalytics
             FeedbackFeature()
         }
         .ifLet(\.$alert, action: \.alert) { }
+        .forEach(\.path, action: \.path) {
+            
+        }
     }
 }
 

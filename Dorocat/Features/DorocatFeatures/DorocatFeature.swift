@@ -8,9 +8,35 @@
 import Foundation
 import ComposableArchitecture
 
+/// 하나의 단일 네비게이션으로 관리하게 된다...
+extension DorocatFeature {
+    @Reducer
+    struct Path {
+        @ObservableState
+        enum State: Equatable {
+            // 존재하지 않으면 생성한다.
+            case registerIcloudSyncScene(ICloudSyncFeature.State = .init())
+        }
+        
+        enum Action {
+            
+            case registerIcloudSync(ICloudSyncFeature.Action)
+        }
+        
+        
+        var body: some ReducerOf<Self> {
+            Scope(state: \.registerIcloudSyncScene, action: \.registerIcloudSync) {
+                ICloudSyncFeature()
+            }
+        }
+    }
+    
+}
+
+
 @Reducer
-struct DorocatFeature{
-    enum Action:Equatable{
+struct DorocatFeature {
+    enum Action {
         case pageMove(PageType)
         case setAppState(AppStateType)
         case setProUser(Bool)
@@ -25,6 +51,7 @@ struct DorocatFeature{
         case setGuideStates(Guides)
         case setActivityAction(prev:TimerActivityType,next:TimerActivityType)
     }
+    
     @Dependency(\.guideDefaults) var guideDefaults
     @Dependency(\.haptic) var haptic
     @Dependency(\.initial) var initial
