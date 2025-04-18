@@ -7,12 +7,11 @@
 
 import Foundation
 
-extension DorocatFeature{
+extension DorocatFeature {
     
     enum AppStateType: Hashable, Equatable {
         case inActive
         case active
         case background
     }
-    
 }

@@ -39,6 +39,11 @@ extension SettingFeature.Controller {
                 await haptic.impact(style: .light)
             }
         }
+        func openIcloudSetting(state: inout SettingFeature.State) -> Effect<SettingFeature.Action> {
+            .run { _ in
+                await haptic.impact(style: .light)
+            }
+        }
         
         func openPurchaseTapped(state: inout SettingFeature.State) -> Effect<SettingFeature.Action> {
             .run { _ in

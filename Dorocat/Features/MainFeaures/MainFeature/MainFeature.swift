@@ -109,8 +109,12 @@ typealias MainState = MainFeature.State
                         })
                 }else{ return .none }
             case .diskInfoToMemory:
-                return .run{ send in
-                    try await analyzeAPI.initAction()
+                return .run { send in
+                    do {
+                        try await analyzeAPI.initAction()
+                    } catch {
+                        assertionFailure("analyzeAPI 에러!!")
+                    }
                     await awakeTimer(send)
                 }
             // 외부에서 받은 setDoroStateEntity entity를 적용시킨다.

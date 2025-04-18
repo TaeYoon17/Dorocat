@@ -44,18 +44,30 @@ struct DorocatApp: App {
     let store = Store(initialState: DorocatFeature.State(), reducer: { DorocatFeature()})
     var body: some Scene {
         WindowGroup {
-            ZStack {
-                DefaultBG()
-                DoroMainView(store: store)
-            }.preferredColorScheme(.dark)
-                .onAppear(){ store.send(.launchAction) }
-                .onReceive(ActivityIntentManager.eventPublisher.receive(on: RunLoop.main), perform: { (prevValue,nextValue) in
-                    print("TimerStatus: \(prevValue) \(nextValue)")
-                    store.send(.setActivityAction(prev: prevValue, next: nextValue))
-                })
-                .onAppear(){
-                    UIView.appearance().tintColor = .doroWhite
-                }.loadDoroFontSystem()
+            let scope = Bindable(store).scope<DorocatFeature.State, DorocatFeature.DoroPath.State, DorocatFeature.DoroPath.Action>(state: \.path, action: \.actionPath)
+            NavigationStack(path: scope) {
+                ZStack {
+                    DefaultBG().ignoresSafeArea(.all)
+                    DoroMainView(store: store)
+                }
+                .preferredColorScheme(.dark)
+                .toolbar(.hidden, for: .navigationBar)
+            } destination: { store in
+                switch store.state {
+                case .registerICloudSettingScene:
+                    if let store = store.scope(state: \.registerICloudSettingScene, action: \.iCloudSetting) {
+                        IcloudSyncView(store: store)
+                    }
+                }
+            }
+            .onAppear(){ store.send(.launchAction) }
+            .onReceive(ActivityIntentManager.eventPublisher.receive(on: RunLoop.main), perform: { (prevValue,nextValue) in
+                print("TimerStatus: \(prevValue) \(nextValue)")
+                store.send(.setActivityAction(prev: prevValue, next: nextValue))
+            })
+            .onAppear(){
+                UIView.appearance().tintColor = .doroWhite
+            }.loadDoroFontSystem()
         }
         .onChange(of: phase) { oldValue, newValue in
             switch newValue{

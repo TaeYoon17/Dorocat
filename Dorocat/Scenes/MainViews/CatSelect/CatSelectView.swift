@@ -13,7 +13,7 @@ enum CatSelectViewComponents{}
 struct CatSelectView: View {
     @Bindable var store: StoreOf<CatSelectFeature>
     var body: some View {
-        VStack(spacing:0,content: {
+        VStack(spacing:0, content: {
             CatSelectViewComponents.Info(store: store)
                 .padding(.bottom,42)
             CatSelectViewComponents.CatList(store: store)
@@ -21,12 +21,16 @@ struct CatSelectView: View {
             CatSelectViewComponents.ConfirmBtn(store: store)
         })
         .onAppear{ store.send(.launchAction) }
-        .clipShape(.rect(topLeadingRadius: 24,
-                         bottomLeadingRadius: 0,
-                         bottomTrailingRadius: 0,
-                         topTrailingRadius: 24,
-                         style: .circular))
-        .padding(.top,40).padding(.bottom,26)
+        .clipShape(
+            .rect(
+                topLeadingRadius: 24,
+                bottomLeadingRadius: 0,
+                bottomTrailingRadius: 0,
+                topTrailingRadius: 24,
+                style: .circular)
+        )
+        .padding(.top, 40)
+        .padding(.bottom, 26)
         .presentationDragIndicator(.visible)
         .presentationCornerRadius(24)
     }

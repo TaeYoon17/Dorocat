@@ -98,10 +98,7 @@
     "I'll help you focus and stay on track" : {
 
     },
-    "iCloud Sync" : {
-
-    },
-    "IcloudSyncView" : {
+    "Last Sync: 8 seconds ago" : {
 
     },
     "Learn More" : {
@@ -192,6 +189,9 @@
 
     },
     "You've completed this session" : {
+
+    },
+    "세부 설정" : {
 
     }
   },

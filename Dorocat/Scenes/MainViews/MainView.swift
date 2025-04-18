@@ -24,7 +24,7 @@ struct MainView: View {
                         Rectangle().fill(.clear).frame(width: 375,height: 375)
                         TimerViewComponents.Timer.NumberField(store: store)
                             .frame(height: 102).offset(y: -8)
-                    }.offset(y:-78 + 50)
+                    }.offset(y: -28)
                     TimerViewComponents.DoroCat(store:store).offset(y:-78)
                 }
             case .completed:
@@ -83,8 +83,9 @@ struct MainView: View {
                 CatSelectView(store: catSelectStore)
             }
             .sheet(item: $store.scope(state: \.purchaseSheet, action: \.purchaseSheet)) { settingPurchaseStore in
-                    PurchaseSheet(store: settingPurchaseStore).presentationDetents([.large])
-                        .presentationDragIndicator(.visible)
+                    PurchaseSheet(store: settingPurchaseStore)
+                    .presentationDetents([.large])
+                    .presentationDragIndicator(.visible)
             }
             .environment(\.colorScheme, .dark)
     }
