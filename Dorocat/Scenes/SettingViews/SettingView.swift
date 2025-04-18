@@ -30,20 +30,12 @@ struct SettingView: View {
                                     .padding(.bottom,16)
                                 }
                                 
-                                
-                                NavigationLink(state: DorocatFeature.DoroPath.State.registerICloudSettingScene()) {
-                                    Text("iCloud Sync")
+                                SettingListItem.Linker(
+                                    title: "iCloud Sync",
+                                    description: "It's no Synced"
+                                ) {
+                                    store.send(.viewAction(.openIcloudSetting))
                                 }
-                                
-//                                    SettingListItem.Toggler(
-//                                        title: "iCloud Sync",
-//                                        description: "Backup your records across devices",
-//                                        isOn: Binding(
-//                                            get: { store.isIcloudSync },
-//                                            set: { store.send(.viewAction(.setIcloudSync($0))) }
-//                                        )
-//                                    )
-//                                    .padding(.bottom, 16)
                                 
                                 SettingViewComponents.NotiListItem(store: store)
                                 SettingListItem.Toggler(
@@ -70,8 +62,9 @@ struct SettingView: View {
                             .background(DefaultBG())
                     }
                 })
-            }.scrollIndicators(.hidden)
-                .refundRequestSheet(
+            }
+            .scrollIndicators(.hidden)
+            .refundRequestSheet(
                     for: store.refundTransactionID,
                     isPresented:
                         Binding(
@@ -88,7 +81,8 @@ struct SettingView: View {
                     }
                 )
                 .sheet(item: $store.scope(state: \.purchaseSheet, action: \.purchaseSheet)) { settingPurchaseStore in
-                    PurchaseSheet(store: settingPurchaseStore).presentationDetents([.large])
+                    PurchaseSheet(store: settingPurchaseStore)
+                        .presentationDetents([.large])
                         .presentationDragIndicator(.visible)
                 }
                 .sheet(item: $store.scope(state: \.feedbackSheet, action: \.feedbackSheet)) { sheetStore in

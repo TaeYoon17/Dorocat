@@ -18,6 +18,8 @@ extension SettingFeature {
         
         case setIcloudSync(Bool)
         
+        case openIcloudSetting
+        
         case openPurchase
         
         case feedbackItemTapped

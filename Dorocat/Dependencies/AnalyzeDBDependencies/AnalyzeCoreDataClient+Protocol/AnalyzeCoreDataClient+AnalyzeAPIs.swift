@@ -29,7 +29,8 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
     
     func initAction() async throws {
         await syncedDatabase.setAutomaticallySync(isOn: false)
-        try await syncedDatabase.fetchChanges()
+        /// iCloud를 연결하지 않으면 에러를 방출한다.
+        try? await syncedDatabase.fetchChanges()
     }
     
     func eventAsyncStream() async -> AsyncStream<AnalyzeEvent> { self.analyzeEvent }

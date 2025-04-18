@@ -7,6 +7,3 @@
 
 import Foundation
 import ComposableArchitecture
-extension DorocatFeature {
-    
-}

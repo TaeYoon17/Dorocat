@@ -72,6 +72,8 @@ struct SettingFeature {
         case iCloudToggleRouter(iCloudStatusType)
         
         case setAppState(DorocatFeature.AppStateType)
+        
+        case openIcloudSettingsDestination
         case feedbackSheet(PresentationAction<FeedbackFeature.Action>)
         case purchaseSheet(PresentationAction<SettingPurchaseFeature.Action>)
         case alert(PresentationAction<Alert>)
@@ -136,7 +138,6 @@ struct SettingFeature {
                     guard let url = URL(string:"App-Prefs:root=CASTLE") else {
                         return
                     }
-                    print("[show setting url] - \(url)")
                     if await UIApplication.shared.canOpenURL(url) {
                         Task { @MainActor in
                             await UIApplication.shared.open(url)
@@ -193,13 +194,8 @@ struct SettingFeature {
                     state.isIcloudSync = false
                 }
                 return .none
-//            case let .path(stackAction):
-//                switch (stackAction) {
-//                case .element(id: _, action: .registerIcloudSync(.updateSyncStatus)):
-//                    state.path.append(.registerIcloudSyncScene())
-//                    return .none
-//                default: return .none
-//                }
+            /// 상위 네비게이션 링크가 처리할 것이다...
+            case .openIcloudSettingsDestination: return .none
             }
         }
         .ifLet(\.$purchaseSheet, action: \.purchaseSheet) {
