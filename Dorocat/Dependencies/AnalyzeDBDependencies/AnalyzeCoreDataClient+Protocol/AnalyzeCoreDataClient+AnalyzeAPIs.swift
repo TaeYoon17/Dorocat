@@ -11,18 +11,49 @@ import CoreData
 //MARK: -- CoreData - CRUD
 extension AnalyzeCoreDataClient: AnalyzeAPIs {
     
+    func setAutomaticSync(_ state: Bool) async {
+        await syncedDatabase.setAutomaticallySync(isOn: state)
+    }
     
-    func getICloudAccountState(_ state: Bool) async -> iCloudStatusTypeDTO {
+    
+    func setICloudAccountState(_ state: Bool) async -> iCloudStatusTypeDTO {
         if state {
             guard let status = await syncedDatabase.getAccountStatus() else {
                 return .errorOccured(type: .tryThisLater)
             }
+            
+            /// 계정이 가능하지 않으면 자동 동기화를 끈다.
+            defer {
+                Task {
+                    if(status != .available) { await setAutomaticSync(false) }
+                }
+            }
+            
             switch status {
-            case .available: return .startICloudSync
-            case .noAccount: return .shouldICloudSignIn
-            case .couldNotDetermine, .temporarilyUnavailable: return .errorOccured(type: .tryThisLater)
-            case .restricted: return .errorOccured(type: .restricted)
-            @unknown default: return .errorOccured(type: .unknown)
+            case .available:
+                guard let timerItems = try? await findAllItems() else {
+                    assertionFailure("타이머 값이 이상하다!!")
+                    return .errorOccured(type: .unknown)
+                }
+                
+                // 1. 동기화가 가능하면 현재까지 로컬 DB에 있는 데이터를 넣는다.
+                // 2. refresh를 통해 CloudKit에 저장되어 있는 데이터를 불러온다.
+                defer {
+                    Task {
+                        await syncedDatabase.appendPendingSave(items: timerItems)
+                        await refresh()
+                    }
+                }
+                
+                return .startICloudSync
+            case .noAccount:
+                return .shouldICloudSignIn
+            case .couldNotDetermine, .temporarilyUnavailable:
+                return .errorOccured(type: .tryThisLater)
+            case .restricted:
+                return .errorOccured(type: .restricted)
+            @unknown default:
+                return .errorOccured(type: .unknown)
             }
         } else {
             return .stopICloudSync
@@ -97,9 +128,7 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
     }
     
     func refresh() async {
-        // 싱크 자체를 할 것인지 확인한다. if isSyncEnabled {
-        //            try? await syncedDatabase.fetchChanges()
-        //        }
+        
     }
     
     func setSyncEnable(_ isOn: Bool) async {

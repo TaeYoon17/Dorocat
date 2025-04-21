@@ -44,8 +44,6 @@ struct SettingFeature {
         case launchAction
         case initAction
         
-        case iCloudToggleRouter(iCloudStatusTypeDTO)
-        
         case setAppState(DorocatFeature.AppStateType)
         
         case openIcloudSettingsDestination
@@ -143,20 +141,6 @@ struct SettingFeature {
                 }
             case .setRefundTransaction(let id):
                 state.refundTransactionID = id
-                return .none
-            case .iCloudToggleRouter(let cloudToggleType):
-                switch cloudToggleType {
-                case .openICloudSignIn:
-                    state.isIcloudSync = false
-//                    state.alert = .openSignIn
-                case .openErrorAlert(message: let message):
-                    state.isIcloudSync = false
-//                    state.alert = .openErrorAlert(message: message.rawValue)
-                case .startICloudSync:
-                    state.isIcloudSync = true
-                case .stopICloudSync:
-                    state.isIcloudSync = false
-                }
                 return .none
             /// 상위 네비게이션 링크가 처리할 것이다...
             case .openIcloudSettingsDestination:

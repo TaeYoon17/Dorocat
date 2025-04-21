@@ -15,7 +15,8 @@ enum AnalyzeEvent {
 }
 
 protocol CloudSyncAble {
-    func getICloudAccountState(_ state: Bool) async -> iCloudStatusTypeDTO
+    func setICloudAccountState(_ state: Bool) async -> iCloudStatusTypeDTO
+    func setAutomaticSync(_ state: Bool) async -> Void
     func refresh() async
 }
 

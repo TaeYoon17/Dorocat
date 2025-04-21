@@ -51,6 +51,16 @@ extension AnalyzeCoreDataClient {
         return timerRecordItems?.first
     }
     
+    func findAllItems() async throws -> [TimerRecordItem] {
+        try await coreDataService.managedObjectContext.perform { [weak self] in
+            guard let self else { return [] }
+            let request = TimerRecordItemEntity.fetchRequest()
+            request.entity = entityDescription
+            let results = try coreDataService.managedObjectContext.fetch(request)
+            return results.map { $0.convertToItem }
+        }
+    }
+    
     func findItemsByID(_ ids: [TimerRecordItem.ID]) async throws -> [TimerRecordItem] {
         try await coreDataService.managedObjectContext.perform { [weak self] in
             guard let self else { return [] }

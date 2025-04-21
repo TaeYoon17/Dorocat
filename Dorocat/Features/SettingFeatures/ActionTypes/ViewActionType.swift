@@ -16,8 +16,6 @@ extension SettingFeature {
         
         case setRefundPresent(Bool)
         
-        case setIcloudSync(Bool)
-        
         case openIcloudSetting
         
         case openPurchase
