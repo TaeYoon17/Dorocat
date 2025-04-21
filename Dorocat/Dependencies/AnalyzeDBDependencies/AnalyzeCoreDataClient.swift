@@ -8,8 +8,9 @@
 import Foundation
 import CoreData
 
+
+
 @DBActor final class AnalyzeCoreDataClient {
-    
     let coreDataService = CoreDataService()
     lazy var syncedDatabase: SyncedDatabase = {
         let syncedDatabase = SyncedDatabase(coreDataService: self)

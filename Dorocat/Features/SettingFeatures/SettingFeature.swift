@@ -10,34 +10,10 @@ import ComposableArchitecture
 import UIKit
 import StoreKit
 import FirebaseAnalytics
-//import CloudKit
-
-extension SettingFeature {
-    @Reducer
-    struct Path {
-        @ObservableState
-        enum State: Equatable {
-            // 존재하지 않으면 생성한다.
-            case registerIcloudSyncScene(ICloudSyncFeature.State = .init())
-        }
-        
-        enum Action {
-            case registerIcloudSync(ICloudSyncFeature.Action)
-        }
-        
-        
-        var body: some ReducerOf<Self> {
-            Scope(state: \.registerIcloudSyncScene, action: \.registerIcloudSync) {
-                ICloudSyncFeature()
-            }
-        }
-    }
-}
 
 @Reducer
 struct SettingFeature {
     @ObservableState struct State: Equatable{
-//        var path = StackState<Path.State>()
         var isLaunch = false
         var isNotiAuthorized = false
         var isProUser = false
@@ -57,7 +33,6 @@ struct SettingFeature {
         var appState = DorocatFeature.AppStateType.active
     }
     enum Action {
-//        case path(StackAction<Path.State, Path.Action>)
         
         case viewAction(ViewActionType)
         
@@ -69,7 +44,7 @@ struct SettingFeature {
         case launchAction
         case initAction
         
-        case iCloudToggleRouter(iCloudStatusType)
+        case iCloudToggleRouter(iCloudStatusTypeDTO)
         
         case setAppState(DorocatFeature.AppStateType)
         
@@ -80,7 +55,6 @@ struct SettingFeature {
         
         enum Alert: Equatable {
             case noneExistMailApp
-            case showICloudSettings
         }
     }
     
@@ -133,17 +107,7 @@ struct SettingFeature {
                     return Effect.merge(notificationEffect,initialEffect,catEffect)
                 }
                 return .none
-            case .alert(.presented(.showICloudSettings)):
-                return .run { send in
-                    guard let url = URL(string:"App-Prefs:root=CASTLE") else {
-                        return
-                    }
-                    if await UIApplication.shared.canOpenURL(url) {
-                        Task { @MainActor in
-                            await UIApplication.shared.open(url)
-                        }
-                    }
-                }
+            
             case .purchaseSheet: return .none
             case .feedbackSheet: return .none
             case .alert: return .none
@@ -184,10 +148,10 @@ struct SettingFeature {
                 switch cloudToggleType {
                 case .openICloudSignIn:
                     state.isIcloudSync = false
-                    state.alert = .openSignIn
+//                    state.alert = .openSignIn
                 case .openErrorAlert(message: let message):
                     state.isIcloudSync = false
-                    state.alert = .openErrorAlert(message: message.rawValue)
+//                    state.alert = .openErrorAlert(message: message.rawValue)
                 case .startICloudSync:
                     state.isIcloudSync = true
                 case .stopICloudSync:

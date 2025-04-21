@@ -10,6 +10,25 @@ import CoreData
 
 //MARK: -- CoreData - CRUD
 extension AnalyzeCoreDataClient: AnalyzeAPIs {
+    
+    
+    func getICloudAccountState(_ state: Bool) async -> iCloudStatusTypeDTO {
+        if state {
+            guard let status = await syncedDatabase.getAccountStatus() else {
+                return .errorOccured(type: .tryThisLater)
+            }
+            switch status {
+            case .available: return .startICloudSync
+            case .noAccount: return .shouldICloudSignIn
+            case .couldNotDetermine, .temporarilyUnavailable: return .errorOccured(type: .tryThisLater)
+            case .restricted: return .errorOccured(type: .restricted)
+            @unknown default: return .errorOccured(type: .unknown)
+            }
+        } else {
+            return .stopICloudSync
+        }
+    }
+    
     var totalFocusTime: Double {
         get async {
             await coreDataService.managedObjectContext.perform { [weak self] in
@@ -79,8 +98,8 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
     
     func refresh() async {
         // 싱크 자체를 할 것인지 확인한다. if isSyncEnabled {
-//            try? await syncedDatabase.fetchChanges()
-//        }
+        //            try? await syncedDatabase.fetchChanges()
+        //        }
     }
     
     func setSyncEnable(_ isOn: Bool) async {

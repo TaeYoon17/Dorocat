@@ -92,6 +92,10 @@ final actor SyncedDatabase : Sendable {
         self.stateSerialization = event.stateSerialization
     }
     
+    func getAccountStatus() async -> CKAccountStatus? {
+        try? await CKContainer.default().accountStatus()
+    }
+    
     private func initializeSyncEngine() {
         var configuration = CKSyncEngine.Configuration(
             database: Self.container.privateCloudDatabase,

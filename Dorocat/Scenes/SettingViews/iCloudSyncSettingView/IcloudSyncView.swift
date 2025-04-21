@@ -13,7 +13,6 @@ enum IcloudSyncComponents { }
 struct IcloudSyncView: View {
     
     @Environment(\.dismiss) var dismiss
-    
     @Bindable var store: StoreOf<ICloudSyncFeature>
     
     var body: some View {
@@ -33,7 +32,7 @@ struct IcloudSyncView: View {
                             title: "Use iCloud",
                             isOn: Binding (
                                 get: { store.isSyncEnabled },
-                                set: { store.send(.setIsSyncEnabled($0)) }
+                                set: { store.send(.viewAction(.setIsSyncEnabled($0))) }
                             )
                         )
                         if store.isSyncEnabled {
@@ -50,14 +49,16 @@ struct IcloudSyncView: View {
                                     IcloudSyncComponents.UseAutomaticallySyncListToggler(
                                         title: "Sync Automatically",
                                         description: "Auto-sync your data across devices using iCloud.",
-                                        isOn: $store.isAutomaticSyncEnabled.sending(\.setIsAutomaticSyncEnabled)
+                                        isOn: Binding(
+                                            get: { store.isAutomaticSyncEnabled },
+                                            set: { store.send(.viewAction(.setIsAutomaticSyncEnabled($0))) })
                                     )
                                     IcloudSyncComponents.RefreshSyncListButton(
                                         title: "Latest sync",
                                         description: "1 minues ago...",
                                         isLoading: store.isLoading
                                     ) {
-                                        store.send(.refreshTapped)
+                                        store.send(.viewAction(.refreshTapped))
                                     }
                                 }
                             }
@@ -70,6 +71,7 @@ struct IcloudSyncView: View {
         .toolbar(.hidden, for: .navigationBar)
         .navigationTitle("iCloud Setting")
         .toolbarTitleDisplayMode(.inline)
+        .alert($store.scope(state: \.alert, action: \.alert))
     }
 }
 

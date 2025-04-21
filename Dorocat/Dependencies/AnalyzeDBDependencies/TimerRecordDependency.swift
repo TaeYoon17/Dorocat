@@ -14,7 +14,12 @@ enum AnalyzeEvent {
     case fetch
 }
 
-protocol AnalyzeAPIs{
+protocol CloudSyncAble {
+    func getICloudAccountState(_ state: Bool) async -> iCloudStatusTypeDTO
+    func refresh() async
+}
+
+protocol AnalyzeAPIs: CloudSyncAble {
     /// 총 시간을 알아온다.
     var totalFocusTime: Double { get async }
     /// 초기화 한다.
@@ -26,17 +31,16 @@ protocol AnalyzeAPIs{
     
     func append(_ item: TimerRecordItem) async
     
-    func refresh() async
     
     func eventAsyncStream() async -> AsyncStream<AnalyzeEvent>
 }
 
-fileprivate enum AnalyzeAPIsClientKey: DependencyKey{
+fileprivate enum AnalyzeAPIsClientKey: DependencyKey {
     @DBActor static let liveValue: AnalyzeAPIs = AnalyzeCoreDataClient()
 }
 
 extension DependencyValues{
-    var analyzeAPIClients: AnalyzeAPIs{
+    var analyzeAPIClients: AnalyzeAPIs {
         get{ self[AnalyzeAPIsClientKey.self]}
         set{ self[AnalyzeAPIsClientKey.self] = newValue}
     }

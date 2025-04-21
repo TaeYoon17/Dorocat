@@ -85,7 +85,7 @@ extension SettingFeature.Controller {
                     )
                     return
                 }
-                let iCloudStatusType: SettingFeature.iCloudStatusType = switch status {
+                let iCloudStatusType: iCloudStatusTypeDTO = switch status {
                 case .available: .startICloudSync
                 case .couldNotDetermine, .temporarilyUnavailable: .openErrorAlert(message: .tryThisLater)
                 case .restricted: .openErrorAlert(message: .restricted)
