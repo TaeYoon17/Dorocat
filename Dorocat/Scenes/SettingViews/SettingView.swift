@@ -30,12 +30,12 @@ struct SettingView: View {
                                     .padding(.bottom,16)
                                 }
                                 /// NavigationLink의 장점 - 루트 reducer에서 하위 뷰와의 연결이 되어서 관리가 가능함
-                                    SettingListItem.Linker(
-                                        title: "iCloud Sync",
-                                        description: "It's no Synced"
-                                    ) {
-                                        store.send(.viewAction(.openIcloudSetting))
-                                    }
+                                SettingListItem.Linker(
+                                    title: "iCloud Sync",
+                                    description: "Your data isn’t synced with iCloud."
+                                ) {
+                                    store.send(.viewAction(.openIcloudSetting))
+                                }
                                 SettingViewComponents.NotiListItem(store: store)
                                 SettingListItem.Toggler(
                                     title: "Haptics",

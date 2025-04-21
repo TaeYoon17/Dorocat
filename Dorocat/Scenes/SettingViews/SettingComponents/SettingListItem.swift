@@ -49,7 +49,7 @@ enum SettingListItem{
                 action()
             }, label: {
                 HStack(content: {
-                    VStack {
+                    VStack(alignment: .leading) {
                         Text(title).font(.paragraph02()).foregroundStyle(Color.doroWhite).fontCoordinator()
                         if let description{
                             Text(description)

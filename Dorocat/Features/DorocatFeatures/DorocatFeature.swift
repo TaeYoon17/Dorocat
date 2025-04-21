@@ -124,8 +124,7 @@ struct DorocatFeature {
                 }
             case .setActivityAction(let prev, let next):
                 return timerActivityReducer(state: &state, prev: prev, next: next)
-            case .actionPath(let pathAction):
-                return .none
+            case .actionPath(_): return .none
             }
         }
         .forEach(\.path, action: \.actionPath) {

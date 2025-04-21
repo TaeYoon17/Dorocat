@@ -54,9 +54,10 @@ struct IcloudSyncView: View {
                                     )
                                     IcloudSyncComponents.RefreshSyncListButton(
                                         title: "Latest sync",
-                                        description: "1 minues ago..."
+                                        description: "1 minues ago...",
+                                        isLoading: store.isLoading
                                     ) {
-                                       print("Hello world")
+                                        store.send(.refreshTapped)
                                     }
                                 }
                             }

@@ -13,8 +13,10 @@ struct ICloudSyncFeature {
     
     @ObservableState
     struct State: Equatable {
+        
         var isSyncEnabled: Bool = true
         var isAutomaticSyncEnabled: Bool = false
+        var isLoading: Bool = false
     }
     enum Action {
         case setIsSyncEnabled(_ isEnabled: Bool)
@@ -26,14 +28,13 @@ struct ICloudSyncFeature {
         Reduce { state, action in
             switch action {
             case .setIsSyncEnabled(let isEnabled):
-                print("값을 받는다!")
                 state.isSyncEnabled = isEnabled
                 return .none
             case .setIsAutomaticSyncEnabled(let isEnabled):
                 state.isAutomaticSyncEnabled = isEnabled
                 return .none
             case .refreshTapped:
-                print("[ICloudSyncFeature] refreshTapped")
+                state.isLoading.toggle()
                 return .none
             }
         }
