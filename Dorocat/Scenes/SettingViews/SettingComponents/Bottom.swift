@@ -14,9 +14,11 @@ extension SettingViewComponents{
         let store: StoreOf<SettingFeature>
         var body: some View {
             VStack(spacing:0) {
-                Image(store.catType.imageAssetName(type: .settingInfoLogo)).resizable().scaledToFit().frame(width: 100, height: 100).onTapGesture {
-                    
-                }
+                Image(store.catType.imageAssetName(type: .settingInfoLogo))
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100, height: 100)
+                    .onTapGesture { }
                 HStack(spacing:8){
                     Link(destination: URL(string: "https://chip-goose-fa5.notion.site/Dorocat-Terms-7e6e5404ae984bde8963f25d12eb5144?pvs=74")!){
                         Text("Terms").font(.paragraph03(.bold)).foregroundStyle(Color.grey02)

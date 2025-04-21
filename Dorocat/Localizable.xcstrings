@@ -29,10 +29,16 @@
     "00" : {
 
     },
+    "1 minutes ago..." : {
+
+    },
     "analyze" : {
 
     },
     "AppAwakeIntent" : {
+
+    },
+    "Back" : {
 
     },
     "Break Time" : {
@@ -68,6 +74,9 @@
     "Continue" : {
 
     },
+    "Detail Settings" : {
+
+    },
     "Do it later" : {
 
     },
@@ -98,7 +107,10 @@
     "I'll help you focus and stay on track" : {
 
     },
-    "Last Sync: 8 seconds ago" : {
+    "iCloud Setting" : {
+
+    },
+    "Last Synced Date" : {
 
     },
     "Learn More" : {
@@ -189,9 +201,6 @@
 
     },
     "You've completed this session" : {
-
-    },
-    "세부 설정" : {
 
     }
   },

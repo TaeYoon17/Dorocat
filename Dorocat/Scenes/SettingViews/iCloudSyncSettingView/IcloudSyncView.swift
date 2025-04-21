@@ -8,32 +8,80 @@
 import SwiftUI
 import ComposableArchitecture
 
+
+enum IcloudSyncComponents { }
 struct IcloudSyncView: View {
+    
+    @Environment(\.dismiss) var dismiss
     
     @Bindable var store: StoreOf<ICloudSyncFeature>
     
     var body: some View {
         ZStack {
             DefaultBG().ignoresSafeArea(.all)
-            ScrollView {
-                LazyVStack {
-                    SettingListItem.Toggler(
-                        title: "Use iCloud Sync",
-                        isOn: .constant(false)
-                    )
-                    Text("Last Sync: 8 seconds ago")
-                    Section {
-                        
-                        SettingListItem.Toggler(
-                            title: "Use Automatically Sync",
-                            isOn: .constant(false)
+            VStack {
+                IcloudSyncComponents.NavigationBar(
+                    leftAction: {
+                        dismiss()
+                    },
+                    centerTitle: "iCloud Settings"
+                )
+                ScrollView {
+                    VStack {
+                        Rectangle().foregroundStyle(Color.clear).frame(height: 16)
+                        IcloudSyncComponents.UseIcloudSyncListToggler(
+                            title: "Use iCloud",
+                            isOn: Binding (
+                                get: { store.isSyncEnabled },
+                                set: { store.send(.setIsSyncEnabled($0)) }
+                            )
                         )
-                    } header: {
-                        Text("세부 설정")
+                        if store.isSyncEnabled {
+                            Rectangle().foregroundStyle(Color.clear).frame(height: 16)
+                            VStack(spacing: 6) {
+                                HStack {
+                                    Text("Detail Settings")
+                                    Spacer()
+                                }
+                                .font(.paragraph04)
+                                .foregroundStyle(Color.doroWhite)
+                                .padding(.horizontal, 16)
+                                VStack(spacing: 8) {
+                                    IcloudSyncComponents.UseAutomaticallySyncListToggler(
+                                        title: "Sync Automatically",
+                                        description: "Auto-sync your data across devices using iCloud.",
+                                        isOn: $store.isAutomaticSyncEnabled.sending(\.setIsAutomaticSyncEnabled)
+                                    )
+                                    IcloudSyncComponents.RefreshSyncListButton(
+                                        title: "Latest sync",
+                                        description: "1 minues ago..."
+                                    ) {
+                                       print("Hello world")
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
             .padding(.horizontal,16)
-        }.toolbarTitleDisplayMode(.inline)
+        }
+        .toolbar(.hidden, for: .navigationBar)
+        .navigationTitle("iCloud Setting")
+        .toolbarTitleDisplayMode(.inline)
     }
 }
+
+#Preview {
+    let _store = Store(
+        initialState: ICloudSyncFeature.State(),
+        reducer: { ICloudSyncFeature() }
+    )
+    @Bindable var store = _store
+    NavigationStack {
+        IcloudSyncView(store: store)
+    }
+}
+
+
+

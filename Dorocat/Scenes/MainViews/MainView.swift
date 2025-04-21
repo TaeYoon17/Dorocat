@@ -17,7 +17,7 @@ struct MainView: View {
         ZStack{
             DefaultBG()
             switch store.timerProgressEntity.status{
-            case .standBy,.focus,.pause,.breakTime,.focusSleep,.breakSleep:
+            case .standBy, .focus, .pause, .breakTime, .focusSleep, .breakSleep:
                 ZStack {
                     // Focus 모드시 고양이가 Session 버튼을 가림!!
                     VStack(spacing:0) { // 타이머 숫자 조금 더 올림

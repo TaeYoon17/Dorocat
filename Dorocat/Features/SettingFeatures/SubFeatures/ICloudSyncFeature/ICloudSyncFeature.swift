@@ -12,20 +12,29 @@ import ComposableArchitecture
 struct ICloudSyncFeature {
     
     @ObservableState
-    struct State: Equatable{
-        var isSyncEnabled: Bool = false
+    struct State: Equatable {
+        var isSyncEnabled: Bool = true
+        var isAutomaticSyncEnabled: Bool = false
     }
-    
     enum Action {
-        case updateSyncStatus
         case setIsSyncEnabled(_ isEnabled: Bool)
+        case setIsAutomaticSyncEnabled(_ isEnabled: Bool)
+        case refreshTapped
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .updateSyncStatus: return .none
-            case .setIsSyncEnabled(let isEnabled): return .none
+            case .setIsSyncEnabled(let isEnabled):
+                print("값을 받는다!")
+                state.isSyncEnabled = isEnabled
+                return .none
+            case .setIsAutomaticSyncEnabled(let isEnabled):
+                state.isAutomaticSyncEnabled = isEnabled
+                return .none
+            case .refreshTapped:
+                print("[ICloudSyncFeature] refreshTapped")
+                return .none
             }
         }
     }

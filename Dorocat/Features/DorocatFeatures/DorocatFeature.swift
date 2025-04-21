@@ -118,31 +118,26 @@ struct DorocatFeature {
                     await haptic.impact(style: .soft)
                 }
             case .initialAction:
-                return .run{ send in
+                return .run { send in
                     await haptic.setEnable(true)
                     await notification.setEnable(true)
-                    
                 }
             case .setActivityAction(let prev, let next):
                 return timerActivityReducer(state: &state, prev: prev, next: next)
             case .actionPath(let pathAction):
-                switch pathAction {
-                case .element(id: _, action: .iCloudSetting(.updateSyncStatus)):
-                    state.path.append(.registerICloudSettingScene())
-                    return .none
-                default:
-                    return .none
-                }
+                return .none
             }
         }
-        .forEach(\.path, action: \.actionPath) { }
-        Scope(state: \.anylzeState,action: /DorocatFeature.Action.analyze){
+        .forEach(\.path, action: \.actionPath) {
+            DoroPath()
+        }
+        Scope(state: \.anylzeState,action: /DorocatFeature.Action.analyze) {
             AnalyzeFeature()
         }
         Scope(state: \.timerState, action: /DorocatFeature.Action.timer) {
             MainFeature()
         }
-        Scope(state: \.settingState,action: /DorocatFeature.Action.setting){
+        Scope(state: \.settingState,action: /DorocatFeature.Action.setting) {
             SettingFeature()
         }
     }

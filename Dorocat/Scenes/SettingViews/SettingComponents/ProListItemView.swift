@@ -12,7 +12,7 @@ import ComposableArchitecture
 struct ProListItemView: View {
     var action: ()->()
     var body: some View {
-        VStack(spacing:10){
+        VStack(spacing:10) {
             HStack{
                 HStack(spacing:6,content: {
                     Text("Dorocat")

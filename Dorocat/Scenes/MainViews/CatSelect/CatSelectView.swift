@@ -20,7 +20,7 @@ struct CatSelectView: View {
             Spacer()
             CatSelectViewComponents.ConfirmBtn(store: store)
         })
-        .onAppear{ store.send(.launchAction) }
+        .onAppear { store.send(.launchAction) }
         .clipShape(
             .rect(
                 topLeadingRadius: 24,

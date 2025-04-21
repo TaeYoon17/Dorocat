@@ -195,7 +195,8 @@ struct SettingFeature {
                 }
                 return .none
             /// 상위 네비게이션 링크가 처리할 것이다...
-            case .openIcloudSettingsDestination: return .none
+            case .openIcloudSettingsDestination:
+                return .none
             }
         }
         .ifLet(\.$purchaseSheet, action: \.purchaseSheet) {
@@ -205,7 +206,6 @@ struct SettingFeature {
             FeedbackFeature()
         }
         .ifLet(\.$alert, action: \.alert) { }
-//        .forEach(\.path, action: \.path) { }
     }
 }
 
