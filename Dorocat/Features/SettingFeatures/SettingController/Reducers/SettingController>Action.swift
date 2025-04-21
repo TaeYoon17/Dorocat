@@ -13,6 +13,7 @@ import FirebaseAnalytics
 
 extension SettingFeature.Controller {
     struct ActionReducer: SettingControllerProtocol {
+        
         @Dependency(\.pomoNotification) var notification
         @Dependency(\.haptic) var haptic
         @Dependency(\.feedback) var feedback
@@ -63,6 +64,13 @@ extension SettingFeature.Controller {
             state.isRefundPresent = isOn
             return .none
         }
+        
+        func openIcloudSetting(state: inout SettingFeature.State) -> Effect<SettingFeature.Action> {
+            .run { send in
+                await send(.openIcloudSettingsDestination)
+            }
+        }
+        
         
         func iCloudSyncToggle(state: inout SettingFeature.State, isOn: Bool) -> Effect<SettingFeature.Action> {
             .run { send in

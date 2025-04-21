@@ -35,6 +35,9 @@
     "AppAwakeIntent" : {
 
     },
+    "Back" : {
+
+    },
     "Break Time" : {
 
     },
@@ -68,6 +71,9 @@
     "Continue" : {
 
     },
+    "Detail Settings" : {
+
+    },
     "Do it later" : {
 
     },
@@ -98,10 +104,7 @@
     "I'll help you focus and stay on track" : {
 
     },
-    "iCloud Sync" : {
-
-    },
-    "IcloudSyncView" : {
+    "iCloud Setting" : {
 
     },
     "Learn More" : {

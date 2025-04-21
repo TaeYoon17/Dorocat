@@ -12,7 +12,7 @@ import ComposableArchitecture
 import MessageUI
 
 struct FeedbackSheet: UIViewControllerRepresentable {
-    @Bindable var store:StoreOf<FeedbackFeature>
+    @Bindable var store: StoreOf<FeedbackFeature>
     func makeCoordinator() -> Coordinator {
         Coordinator(store: store)
     }

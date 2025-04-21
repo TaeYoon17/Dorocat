@@ -47,6 +47,10 @@ protocol SettingControllerProtocol {
         isOn: Bool
     ) -> Effect<SettingFeature.Action>
     
+    func openIcloudSetting(
+        state: inout SettingFeature.State
+    ) -> Effect<SettingFeature.Action>
+    
     /// 구매 버튼 탭
     func openPurchaseTapped(state: inout SettingFeature.State) -> Effect<SettingFeature.Action>
     
@@ -75,6 +79,8 @@ extension SettingControllerProtocol {
             self.openPurchaseTapped(state: &state)
         case .feedbackItemTapped:
             self.feedbackItemTapped(state: &state)
+        case .openIcloudSetting:
+            self.openIcloudSetting(state: &state)
         }
     }
 }
