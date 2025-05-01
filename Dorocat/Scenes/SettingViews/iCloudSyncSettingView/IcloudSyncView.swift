@@ -55,7 +55,7 @@ struct IcloudSyncView: View {
                                     )
                                     IcloudSyncComponents.RefreshSyncListButton(
                                         title: "Latest sync",
-                                        description: "1 minues ago...",
+                                        description: store.elapsedTime,
                                         isLoading: store.isLoading
                                     ) {
                                         store.send(.viewAction(.refreshTapped))

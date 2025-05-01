@@ -12,6 +12,7 @@ import CloudKit
 
 extension ICloudSyncFeature {
     struct ActionReducer: ICloudSyncControllerProtocol {
+        
         @Dependency(\.analyzeAPIClients) var analyzeAPIClient
         
         /// 로딩 애니메이션을 돌아가게 하면서 analyzeAPIClient에 refresh 요청을 하는 것!!

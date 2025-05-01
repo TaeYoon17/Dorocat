@@ -15,11 +15,15 @@ enum AnalyzeEvent {
 }
 
 protocol CloudSyncAble {
+    var lastSyncedDate: Date { get async }
     var isICloudSyncEnabled: Bool { get async }
     var isAutomaticallySyncEnabled: Bool { get async }
     func setICloudAccountState(_ state: Bool) async -> iCloudStatusTypeDTO
     func setAutomaticSync(_ state: Bool) async -> Void
     func refresh() async
+    
+    func synchronizeEventAsyncStream() async -> AsyncStream<SynchronizeEvent>
+    
 }
 
 protocol AnalyzeAPIs: CloudSyncAble {

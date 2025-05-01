@@ -11,6 +11,21 @@ import CoreData
 //MARK: -- CoreData - CRUD
 extension AnalyzeCoreDataClient: AnalyzeAPIs {
     
+    
+    var lastSyncedDate: Date {
+        get {
+            guard let data = UserDefaults.standard.data(forKey: "lastSyncedDate"),
+                  let date = try? JSONDecoder().decode(Date.self, from: data) else {
+                return Date()
+            }
+            return date
+        }
+        set {
+            let data = try? JSONEncoder().encode(newValue)
+            UserDefaults.standard.set(data, forKey: "lastSyncedDate")
+        }
+    }
+    
     private(set) var isICloudSyncEnabled: Bool {
         get { UserDefaults.standard.bool(forKey: "isIcloudSyncEnabled") }
         set { UserDefaults.standard.setValue(newValue, forKey: "isIcloudSyncEnabled") }
@@ -19,6 +34,10 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
     private(set) var isAutomaticallySyncEnabled: Bool {
         get { UserDefaults.standard.bool(forKey: "isAutomaticallySyncEnabled") }
         set { UserDefaults.standard.set(newValue, forKey: "isAutomaticallySyncEnabled") }
+    }
+    
+    func synchronizeEventAsyncStream() async -> AsyncStream<SynchronizeEvent> {
+        self.synchronizeEvent
     }
     
     func setAutomaticSync(_ state: Bool) async {

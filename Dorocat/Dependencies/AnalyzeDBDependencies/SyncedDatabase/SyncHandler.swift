@@ -24,6 +24,13 @@ protocol SyncHandler {
     /// Pending 상태이던 레코드의 실제 값을 쓰기 위해 CKWritable 값을 요청한다.
     func requestCKWritableForPendingRecord(id: String) async -> CKWritable?
     
+    
+    /// 동기화 시작
+    func synchronizeStart() async
+    
+    /// 동기화 끝
+    func synchronizeEnd() async
+    
 }
 
 

@@ -29,10 +29,16 @@ extension SyncedDatabase : CKSyncEngineDelegate {
         case .sentRecordZoneChanges(let event):
             await self.handleSentRecordZoneChanges(event)
         case .sentDatabaseChanges: break
-        case .didFetchChanges(let event): break
-        case .didSendChanges(let event): break
+        case .willSendChanges, .willFetchChanges: // 여기에 동기화 시작 토글링
+            for syncHandler in self.syncHandlers.values {
+                await syncHandler?.synchronizeStart()
+            }
+        case .didFetchChanges, .didSendChanges: // 여기에 동기화 끝남 토글링
         // We don't do anything here in the sample app, but these events might be helpful if you need to do any setup/cleanup when sync starts/ends.
-        case .willFetchChanges, .willFetchRecordZoneChanges, .didFetchRecordZoneChanges, .willSendChanges: break
+            for syncHandler in self.syncHandlers.values {
+                await syncHandler?.synchronizeEnd()
+            }
+        case .willFetchRecordZoneChanges, .didFetchRecordZoneChanges: break
         @unknown default:
             Logger.database.info("Received unknown event: \(event)")
         }

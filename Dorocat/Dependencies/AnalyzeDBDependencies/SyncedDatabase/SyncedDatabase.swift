@@ -39,7 +39,6 @@ final actor SyncedDatabase : Sendable {
 //    private weak var coreDataClient: AnalyzeCoreDataClient!
     /// iCloud 컨테이너를 설정한다.
     private static let container: CKContainer = CKContainer(identifier: ckContainerIdentifier)
-    
     private var _syncEngine: CKSyncEngine?
     
     private var automaticallySync: Bool = false { // 일단 자동 싱크를 막는다. 추후에 수정해야할 필요 있음

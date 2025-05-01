@@ -11,6 +11,16 @@ import CloudKit
 // MARK: - CKSyncEngineDelegate
 
 extension AnalyzeCoreDataClient : SyncHandler {
+    
+    func synchronizeStart() async {
+        self.syncrhozieEventContiuation?.yield(.start)
+    }
+    
+    func synchronizeEnd() async {
+        self.lastSyncedDate = Date()
+        self.syncrhozieEventContiuation?.yield(.end)
+    }
+    
 
     func overWriteEntities(type: CKRecord.RecordEntityType, records: [CKRecord]) async {
         for record in records {

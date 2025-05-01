@@ -161,10 +161,10 @@ struct DorocatFeature {
                 return .none
             }
         }
-        .ifLet(\.$alert, action: \.alert) { }
         .forEach(\.path, action: \.actionPath) {
             DoroPath()
         }
+        .ifLet(\.$alert, action: \.alert) { }
         Scope(state: \.anylzeState,action: /DorocatFeature.Action.analyze) {
             AnalyzeFeature()
         }
