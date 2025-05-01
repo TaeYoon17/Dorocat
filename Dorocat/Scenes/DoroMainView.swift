@@ -15,6 +15,7 @@ struct DoroMainView: View {
         ZStack(alignment: .top) {
             if store.showPageIndicator {
                 self.tabView
+                    .alert($store.scope(state: \.alert, action: \.alert))
             } else {
                 MainView(store: store.scope(state: \.timerState, action: \.timer))
                     .tag(DorocatFeature.PageType.timer)

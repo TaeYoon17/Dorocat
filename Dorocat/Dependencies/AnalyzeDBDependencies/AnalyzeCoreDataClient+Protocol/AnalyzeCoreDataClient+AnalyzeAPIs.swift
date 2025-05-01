@@ -94,9 +94,11 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
     }
     
     func initAction() async throws {
+        if isInit { return }
         await syncedDatabase.setAutomaticallySync(isOn: isAutomaticallySyncEnabled)
         /// iCloud를 연결하지 않으면 에러를 방출한다.
         await syncedDatabase.appendSyncHandler(key: .timerItem, value: self)
+        isInit = true
     }
     
     func eventAsyncStream() async -> AsyncStream<AnalyzeEvent> { self.analyzeEvent }

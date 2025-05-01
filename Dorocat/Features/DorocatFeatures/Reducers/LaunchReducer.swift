@@ -8,8 +8,8 @@
 import Foundation
 import ComposableArchitecture
 extension DorocatFeature{
-    func launchReducer(state:inout State) -> Effect<Action>{
-        if !state.isAppLaunched{
+    func launchReducer(state:inout State) -> Effect<Action> {
+        if !state.isAppLaunched {
             state.isAppLaunched = true
             state.guideState.onBoarding = true
             return Effect.merge(.run{ send in
@@ -24,15 +24,17 @@ extension DorocatFeature{
                         await send(.setProUser(isPro))
                     }
                 }
-            },.run(operation: { send in
+            },
+            .run(operation: { send in
                 if await !initial.isUsed{
                     await initial.offInitial()
                     await send(.initialAction)
                 }
-            }),.run{ send in
+            }),
+            .run{ send in
                 try! await session.initAction()
             })
-        }else{
+        } else {
             return .none
         }
     }

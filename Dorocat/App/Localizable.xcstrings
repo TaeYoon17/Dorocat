@@ -65,6 +65,12 @@
     "Change TimerStatus" : {
 
     },
+    "Close" : {
+
+    },
+    "Configure it in Settings" : {
+
+    },
     "Confirm" : {
 
     },
@@ -96,6 +102,12 @@
 
     },
     "Enable Automatic Sync?" : {
+
+    },
+    "Enable iCloud Sync?" : {
+
+    },
+    "Failed to sync iCloud" : {
 
     },
     "Focus" : {
@@ -207,6 +219,9 @@
 
     },
     "You've completed this session" : {
+
+    },
+    "Your timer records are automatically synchronized with iCloud.\nThis setting can be adjusted in the Settings" : {
 
     }
   },

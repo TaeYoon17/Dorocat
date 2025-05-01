@@ -18,6 +18,7 @@ protocol AnalyzeInformationAble {
     @discardableResult
     mutating func next() -> Date
 }
+
 extension AnalyzeInformationAble {
     var totalTime: String {
         let totalNum = timerRecordList.reduce(0) { partialResult, item in
@@ -60,7 +61,7 @@ extension AnalyzeFeature {
         var date = Date()
         var timerRecordList: IdentifiedArrayOf<TimerRecordItem> = []
         
-        var title: String{
+        var title: String {
             let current = Calendar.current
             guard let weekDay = current.dateComponents([.weekday], from: date).weekday,
                   let sundayDate:Date = current.date(byAdding: .day, value: -weekDay + 1, to: date),

@@ -47,6 +47,9 @@ struct DorocatFeature {
         var showPageIndicator = true
         var catType:CatType = .doro
         var isProUser: Bool = false
+        
+        @Presents var alert: AlertState<Action.Alert>?
+        
         //MARK: -- 하위 뷰의 State 들...
         var anylzeState = AnalyzeFeature.State()
         var timerState = MainFeature.State()
@@ -64,12 +67,20 @@ struct DorocatFeature {
         case initialAction
         case onBoardingTapped
         case onBoardingWillTap
+        case requestIcloudSync
+        case failedIcloudSync
         
         case timer(MainFeature.Action)
         case analyze(AnalyzeFeature.Action)
         case setting(SettingFeature.Action)
         case setGuideStates(Guides)
         case setActivityAction(prev:TimerActivityType,next:TimerActivityType)
+        
+        case alert(PresentationAction<Alert>)
+        
+        enum Alert: Equatable {
+            case enableIcloudSync
+        }
     }
     
     @Dependency(\.guideDefaults) var guideDefaults
@@ -81,6 +92,7 @@ struct DorocatFeature {
     @Dependency(\.doroStateDefaults) var doroStateDefaults
     @Dependency(\.timer.background) var timerBackground
     @Dependency(\.store) var store
+    @Dependency(\.analyzeAPIClients) var analyzeAPIClients
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -88,7 +100,7 @@ struct DorocatFeature {
             case .pageMove(let type): return pageMoveReducer(state: &state, type: type)
             case .setAppState(let appState):
                 state.appState = appState
-                return .run{ send in
+                return .run { send in
                     await send(.timer(.setAppState(appState)))
                     await send(.setting(.setAppState(appState)))
                 }
@@ -110,8 +122,12 @@ struct DorocatFeature {
             case .onBoardingTapped:
                 var guide = state.guideState
                 guide.onBoarding = true
-                return .run{[guide] send in
+                return .run { [guide] send in
                     await send(.setGuideStates(guide))
+                    // 노티피케이션 권한 요청
+                    _ = try await notification.requestPermission()
+                    // 아이클라우드 동기화 요청
+                    await send(.requestIcloudSync)
                 }
             case .onBoardingWillTap:
                 return .run { send in
@@ -125,8 +141,27 @@ struct DorocatFeature {
             case .setActivityAction(let prev, let next):
                 return timerActivityReducer(state: &state, prev: prev, next: next)
             case .actionPath(_): return .none
+            case .alert(.presented(.enableIcloudSync)):
+                return .run { send in
+                    try await analyzeAPIClients.initAction()
+                    let iCloudStatusTypeDTO = await analyzeAPIClients.setICloudAccountState(true)
+                    switch iCloudStatusTypeDTO {
+                    case .startICloudSync:
+                        await analyzeAPIClients.setAutomaticSync(true)
+                    default:
+                        await send(.failedIcloudSync)
+                    }
+                }
+            case .alert: return .none
+            case .requestIcloudSync:
+                state.alert = .requestIcloudSyncAlert
+                return .none
+            case .failedIcloudSync:
+                state.alert = .failedIcloudSyncAlert
+                return .none
             }
         }
+        .ifLet(\.$alert, action: \.alert) { }
         .forEach(\.path, action: \.actionPath) {
             DoroPath()
         }
@@ -140,4 +175,40 @@ struct DorocatFeature {
             SettingFeature()
         }
     }
+}
+
+fileprivate extension AlertState where Action == DorocatFeature.Action.Alert {
+    static let requestIcloudSyncAlert = AlertState(
+        title: {
+            TextState("Enable iCloud Sync?")
+        },
+        actions: {
+            ButtonState(role: .none, action: .send(.enableIcloudSync)) {
+                TextState("Enable")
+            }
+            ButtonState(role: .cancel) {
+                TextState("Disable")
+            }
+        },
+        message: {
+            TextState(
+                "Your timer records are automatically synchronized with iCloud.\nThis setting can be adjusted in the Settings"
+            )
+        }
+    )
+    static let failedIcloudSyncAlert = AlertState(
+        title: {
+            TextState("Failed to sync iCloud")
+        },
+        actions: {
+            ButtonState(role: .cancel) {
+                TextState("Close")
+            }
+        },
+        message: {
+            TextState(
+                "Configure it in Settings"
+            )
+        }
+    )
 }

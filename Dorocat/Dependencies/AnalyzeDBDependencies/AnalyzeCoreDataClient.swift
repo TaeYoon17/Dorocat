@@ -13,7 +13,7 @@ import CoreData
 @DBActor final class AnalyzeCoreDataClient {
     let coreDataService = CoreDataService()
     lazy var syncedDatabase: SyncedDatabase = SyncedDatabase()
-    
+    var isInit:Bool = false
     var analyzeEventContinuation: AsyncStream<AnalyzeEvent>.Continuation?
     lazy var analyzeEvent: AsyncStream<AnalyzeEvent> = .init { continuation in
         self.analyzeEventContinuation = continuation
