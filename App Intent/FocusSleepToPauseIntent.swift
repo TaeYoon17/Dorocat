@@ -9,7 +9,7 @@ import Foundation
 import AppIntents
 import ActivityKit
 
-struct FocusSleepToPauseIntent: LiveActivityIntent{
+struct FocusSleepToPauseIntent: LiveActivityIntent {
     static var title: LocalizedStringResource = "FocusSleepToPauseIntent"
     static var description = IntentDescription("Change TimerStatus")
     

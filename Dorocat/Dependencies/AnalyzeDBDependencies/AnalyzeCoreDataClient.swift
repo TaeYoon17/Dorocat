@@ -12,15 +12,13 @@ import CoreData
 
 @DBActor final class AnalyzeCoreDataClient {
     let coreDataService = CoreDataService()
-    lazy var syncedDatabase: SyncedDatabase = {
-        let syncedDatabase = SyncedDatabase(coreDataService: self)
-        return syncedDatabase
-    }()
+    lazy var syncedDatabase: SyncedDatabase = SyncedDatabase()
     
     var analyzeEventContinuation: AsyncStream<AnalyzeEvent>.Continuation?
     lazy var analyzeEvent: AsyncStream<AnalyzeEvent> = .init { continuation in
         self.analyzeEventContinuation = continuation
     }
+    
     enum Label {
         static let timerRecordItemEntity = "TimerRecordItemEntity"
     }
@@ -36,7 +34,11 @@ import CoreData
     @objc func storeRemoteChange(_ notification: Notification) {
         print("과연 가져올까??")
     }
+    
+    
 }
+
+
 
 extension AnalyzeCoreDataClient {
     func findItemByID(_ id: TimerRecordItem.ID) async -> TimerRecordItem? {
@@ -72,7 +74,7 @@ extension AnalyzeCoreDataClient {
         }
     }
     
-    func coredataDelete(items: [TimerRecordItem]) async throws {
+    func timerItemDeletes(items: [TimerRecordItem]) async throws {
         guard !items.isEmpty else { return }
         let ids: [TimerRecordItem.ID] = items.map((\.id))
         try await coreDataService.managedObjectContext.perform { [weak self] in
@@ -91,7 +93,7 @@ extension AnalyzeCoreDataClient {
     }
     
     /// 모든 타이머 기록 관련 로컬 DB 데이터를 지운다.
-    func coredatedeleteAll() async throws {
+    func timerRecordDeleteAll() async throws {
         try await coreDataService.managedObjectContext.perform { [weak self] in
             guard let self else { return }
             let request: NSFetchRequest<TimerRecordItemEntity> = TimerRecordItemEntity.fetchRequest()
@@ -106,7 +108,8 @@ extension AnalyzeCoreDataClient {
         }
     }
     
-    func coredataAppend(item: TimerRecordItem) async {
+    func timerItemAppend(item: TimerRecordItem) async {
+        coreDataService.managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         await coreDataService.managedObjectContext.perform { [weak self] in
             guard let self else {
                 assertionFailure("추가되지 못하는 이슈")
@@ -120,14 +123,15 @@ extension AnalyzeCoreDataClient {
             do {
                 try coreDataService.managedObjectContext.save()
             } catch {
-                fatalError("여기 문제가 있다")
+                assertionFailure("앱 변경사항을 제대로 저장하지 못함")
+                return
             }
         }
     }
 }
 
 
-extension TimerRecordItemEntity{
+extension TimerRecordItemEntity {
     static var dateSortDescriptor: NSSortDescriptor {
         NSSortDescriptor(key: "createdAt", ascending: false)
     }

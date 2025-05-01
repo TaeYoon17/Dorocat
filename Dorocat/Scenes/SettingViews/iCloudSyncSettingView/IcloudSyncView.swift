@@ -68,6 +68,9 @@ struct IcloudSyncView: View {
             }
             .padding(.horizontal,16)
         }
+        .onAppear() {
+            store.send(.onAppear)
+        }
         .toolbar(.hidden, for: .navigationBar)
         .navigationTitle("iCloud Setting")
         .toolbarTitleDisplayMode(.inline)

@@ -11,7 +11,7 @@
         <attribute name="recordCode" optional="YES" attributeType="String"/>
         <attribute name="sessionKey" optional="YES" attributeType="String"/>
     </entity>
-    <configuration name="Cloud" usedWithCloudKit="YES">
+    <configuration name="Cloud">
         <memberEntity name="SessionMenuEntity"/>
         <memberEntity name="TimerRecordItemEntity"/>
     </configuration>

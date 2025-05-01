@@ -34,14 +34,7 @@ import CloudKit
         return context
     }()
     
-    var isICloudSyncEnabled: Bool {
-        get {
-            UserDefaults.standard.bool(forKey: "isIcloudSyncEnabled")
-        }
-        set {
-            UserDefaults.standard.setValue(newValue, forKey: "isIcloudSyncEnabled")
-        }
-    }
+
     init() { }
     
     

@@ -32,18 +32,25 @@ struct ICloudSyncFeature {
         
     }
     enum Action {
+        case onAppear
         case viewAction(ViewActionType)
         
         case iCloudStatusRouter(iCloudStatusTypeDTO)
         
+        case setToggleEnabled(isSynced: Bool, isAutomaticallySynced: Bool)
+        
         case alert(PresentationAction<Alert>)
-        enum Alert {
+        enum Alert: Equatable {
             case showICloudSettings
+            case enableAutomaticSync(Bool)
         }
     }
     
+    @Dependency(\.analyzeAPIClients) var analyzeAPIClient
+    
     var body: some ReducerOf<Self> {
         Reduce { state, action in
+            print(action)
             switch action {
             case .viewAction(let viewAction):
                 return self.viewAction(state: &state, act: viewAction)
@@ -58,6 +65,11 @@ struct ICloudSyncFeature {
                         }
                     }
                 }
+            case .alert(.presented(.enableAutomaticSync(let isEnabled))):
+                /// 일단은 뷰 액션을 넘긴다.
+                return .run { send in
+                    await send(.viewAction(.setIsAutomaticSyncEnabled(isEnabled)),animation: .default)
+                }
             case .alert: return .none
             case .iCloudStatusRouter(let statusType):
                 switch statusType {
@@ -69,11 +81,25 @@ struct ICloudSyncFeature {
                     return .none
                 case .startICloudSync:
                     state.isSyncEnabled = true
+                    state.alert = .openAutoSyncEnable
                     return .none
                 case .stopICloudSync:
                     state.isSyncEnabled = false
                     return .none
                 }
+            case .onAppear:
+                return .run { send in
+                    let isAutomaticallySyncEnabled = await analyzeAPIClient.isAutomaticallySyncEnabled
+                    let isSyncEnabled = await analyzeAPIClient.isICloudSyncEnabled
+                    await send(
+                        .setToggleEnabled(isSynced: isSyncEnabled, isAutomaticallySynced: isAutomaticallySyncEnabled),
+                        animation: .default
+                    )
+                }
+            case .setToggleEnabled(isSynced: let isSynced, isAutomaticallySynced: let isAutomatically):
+                state.isSyncEnabled = isSynced
+                state.isAutomaticSyncEnabled = isAutomatically
+                return .none
             }
         }
         .ifLet(\.$alert, action: \.alert) { }

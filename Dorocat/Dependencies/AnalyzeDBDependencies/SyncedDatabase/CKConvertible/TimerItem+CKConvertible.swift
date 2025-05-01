@@ -8,17 +8,8 @@
 import Foundation
 import CloudKit
 import os.log
-protocol CKWritable {
-    var recordType: CKRecord.RecordType { get }
-    func populateRecord(_ record: CKRecord)
-}
 
-protocol CKReadable {
-    var ckRecordZoneID: CKRecordZone.ID { get }
-    var ckRecordID: CKRecord.ID { get }
-}
-
-extension TimerRecordItem: CKWritable, CKReadable {
+extension TimerRecordItem: CKConvertible {
     var recordType: CKRecord.RecordType {
         CKRecord.RecordEntityType.timerItem.rawValue
     }
@@ -29,12 +20,13 @@ extension TimerRecordItem: CKWritable, CKReadable {
     static let recordType: CKRecord.RecordType = CKRecord.RecordEntityType.timerItem.rawValue
     
     var ckRecordZoneID: CKRecordZone.ID { CKRecordZone.ID(zoneName: Self.zoneName) }
+    
     var ckRecordID: CKRecord.ID {
         CKRecord.ID(recordName: self.id.uuidString, zoneID: self.ckRecordZoneID)
     }
+    
     init(record: CKRecord) {
         let values: any CKRecordKeyValueSetting = record.encryptedValues
-//        self.id = values[.id] ?? UUID()
         self.id = UUID(uuidString: record.recordID.recordName) ?? UUID()
         self.recordCode = values[.timerRecordItem_recordCode] ?? ""
         self.createdAt = values[.timerRecordItem_createdAt] ?? Date()
@@ -42,6 +34,7 @@ extension TimerRecordItem: CKWritable, CKReadable {
         self.session = .init(name:values[.timerRecordItem_sessionName] ?? "Study")
         self.userModificationDate = values[.timerRecordItem_userModificationDate] ?? Date.distantPast
     }
+    
     // 서버에서 가져온 데이터와 동기화시킨다.
     mutating func mergeFromServerRecord(_ record: CKRecord) {
         let values: any CKRecordKeyValueSetting = record.encryptedValues

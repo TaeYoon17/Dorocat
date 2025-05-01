@@ -11,8 +11,21 @@ import CoreData
 //MARK: -- CoreData - CRUD
 extension AnalyzeCoreDataClient: AnalyzeAPIs {
     
+    private(set) var isICloudSyncEnabled: Bool {
+        get { UserDefaults.standard.bool(forKey: "isIcloudSyncEnabled") }
+        set { UserDefaults.standard.setValue(newValue, forKey: "isIcloudSyncEnabled") }
+    }
+    
+    private(set) var isAutomaticallySyncEnabled: Bool {
+        get { UserDefaults.standard.bool(forKey: "isAutomaticallySyncEnabled") }
+        set { UserDefaults.standard.set(newValue, forKey: "isAutomaticallySyncEnabled") }
+    }
+    
     func setAutomaticSync(_ state: Bool) async {
-        await syncedDatabase.setAutomaticallySync(isOn: state)
+        if isAutomaticallySyncEnabled != state {
+            self.isAutomaticallySyncEnabled = state
+            await syncedDatabase.setAutomaticallySync(isOn: state)
+        }
     }
     
     
@@ -25,7 +38,10 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
             /// 계정이 가능하지 않으면 자동 동기화를 끈다.
             defer {
                 Task {
-                    if(status != .available) { await setAutomaticSync(false) }
+                    if(status != .available) {
+                        self.isICloudSyncEnabled = false
+                        await setAutomaticSync(false)
+                    }
                 }
             }
             
@@ -44,7 +60,7 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
                         await refresh()
                     }
                 }
-                
+                self.isICloudSyncEnabled = true
                 return .startICloudSync
             case .noAccount:
                 return .shouldICloudSignIn
@@ -78,9 +94,9 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
     }
     
     func initAction() async throws {
-        await syncedDatabase.setAutomaticallySync(isOn: false)
+        await syncedDatabase.setAutomaticallySync(isOn: isAutomaticallySyncEnabled)
         /// iCloud를 연결하지 않으면 에러를 방출한다.
-        try? await syncedDatabase.fetchChanges()
+        await syncedDatabase.appendSyncHandler(key: .timerItem, value: self)
     }
     
     func eventAsyncStream() async -> AsyncStream<AnalyzeEvent> { self.analyzeEvent }
@@ -121,29 +137,20 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
     /// 아이템 추가 -> 이전에 없던 데이터를 새로 추가하는 것이 확정직이다.
     func append(_ item: TimerRecordItem) async {
         /// 1. 여기 코어데이터에 직접 추가한다.
-        await coredataAppend(item: item)
+        await timerItemAppend(item: item)
         /// 2. 코어 데이터에 추가한 값 ID를 아이 클라우드에 넣는다.
         await syncedDatabase.appendPendingSave(items: [item])
         self.analyzeEventContinuation?.yield(.append)
     }
     
-    func refresh() async {
-        
-    }
-    
-    func setSyncEnable(_ isOn: Bool) async {
-        if isOn { /// 이제 싱크를 할 것이다.
-            
-        } else { /// 이제 싱크를 안 할 것이다.
-            /// 자동 싱크를 끈다.
-            await syncedDatabase.setAutomaticallySync(isOn: false)
-            /// 마지막으로 직접 fetch한다. -> 끝!!
-            // syncedDatabase.fetchCloudData(isSyncEnable: Bool)
-            // 이 클라이언트에서 refresh 작업은 작동할 수 없다
+    func refresh() async  {
+        guard let items = try? await findAllItems() else {
+            assertionFailure("아이템들 찾기 실패")
+            return
         }
-        
+        await syncedDatabase.appendPendingSave(items: items)
+        let date = await syncedDatabase.refresh()
     }
-    
     
 }
 

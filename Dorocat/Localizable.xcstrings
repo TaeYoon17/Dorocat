@@ -74,6 +74,9 @@
     "Detail Settings" : {
 
     },
+    "Disable" : {
+
+    },
     "Do it later" : {
 
     },
@@ -87,6 +90,12 @@
 
     },
     "Download Mail app from the App Store." : {
+
+    },
+    "Enable" : {
+
+    },
+    "Enable Automatic Sync?" : {
 
     },
     "Focus" : {
@@ -174,6 +183,9 @@
 
     },
     "Total Time" : {
+
+    },
+    "Turning on automatic sync ensures changes are saved and updated seamlessly." : {
 
     },
     "Unlock all the adorable cats!\nAnd Stay tuned for the new cats." : {

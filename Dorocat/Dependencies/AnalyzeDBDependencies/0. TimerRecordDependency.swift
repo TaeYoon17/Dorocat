@@ -15,6 +15,8 @@ enum AnalyzeEvent {
 }
 
 protocol CloudSyncAble {
+    var isICloudSyncEnabled: Bool { get async }
+    var isAutomaticallySyncEnabled: Bool { get async }
     func setICloudAccountState(_ state: Bool) async -> iCloudStatusTypeDTO
     func setAutomaticSync(_ state: Bool) async -> Void
     func refresh() async
@@ -32,7 +34,6 @@ protocol AnalyzeAPIs: CloudSyncAble {
     
     func append(_ item: TimerRecordItem) async
     
-    
     func eventAsyncStream() async -> AsyncStream<AnalyzeEvent>
 }
 
@@ -41,9 +42,11 @@ fileprivate enum AnalyzeAPIsClientKey: DependencyKey {
 }
 
 extension DependencyValues{
+    
     var analyzeAPIClients: AnalyzeAPIs {
-        get{ self[AnalyzeAPIsClientKey.self]}
-        set{ self[AnalyzeAPIsClientKey.self] = newValue}
+        get{ self[AnalyzeAPIsClientKey.self] }
+        set{ self[AnalyzeAPIsClientKey.self] = newValue }
     }
+    
 }
 

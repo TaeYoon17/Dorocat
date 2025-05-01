@@ -42,4 +42,23 @@ extension AlertState where Action == ICloudSyncFeature.Action.Alert {
             }
         )
     }
+    
+    static var openAutoSyncEnable: Self {
+        AlertState(
+            title: {
+                TextState("Enable Automatic Sync?")
+            },
+            actions: {
+                ButtonState(role: .none, action: .send(.enableAutomaticSync(true))) {
+                    TextState("Enable")
+                }
+                ButtonState(role: .cancel, action: .send(.enableAutomaticSync(false))) {
+                    TextState("Disable")
+                }
+            },
+            message: {
+                TextState("Turning on automatic sync ensures changes are saved and updated seamlessly.")
+            }
+        )
+    }
 }
