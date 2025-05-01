@@ -14,6 +14,10 @@ extension AnalyzeCoreDataClient : SyncHandler {
     
     func synchronizeStart() async {
         self.syncrhozieEventContiuation?.yield(.start)
+        Task.detached {
+            try await Task.sleep(for: .seconds(180))
+            await self.syncrhozieEventContiuation?.yield(.end)
+        }
     }
     
     func synchronizeEnd() async {
