@@ -71,8 +71,8 @@ enum AnalyzeDurationView{
     }
 }
 
-fileprivate extension AnalyzeDurationView{
-    struct DurationSignView: View{
+fileprivate extension AnalyzeDurationView {
+    struct DurationSignView: View {
         let title:String
         let isLastSign:Bool
         var leftTapped:()->()
@@ -91,7 +91,7 @@ fileprivate extension AnalyzeDurationView{
             }.padding(.horizontal,4).tint(.grey00)
         }
     }
-    struct TotalFocusTimeView: View{
+    struct TotalFocusTimeView: View {
         
         let totalTime:String
         var body: some View{
@@ -106,11 +106,12 @@ fileprivate extension AnalyzeDurationView{
             }).padding(.bottom,4)
         }
     }
-    struct DailyAverageView: View{
+    
+    struct DailyAverageView: View {
         let title:String
         let dailyAverage: String
         
-        var body: some View{
+        var body: some View {
             HStack(content: {
                 VStack(alignment:.leading,spacing:-4) {
                     Text(title).font(.paragraph04).foregroundStyle(Color.grey02)
@@ -122,6 +123,7 @@ fileprivate extension AnalyzeDurationView{
             }).padding(.bottom,4)
         }
     }
+    
     struct DurationModifier: ViewModifier{
         func body(content: Content) -> some View {
             content.padding(.vertical,30)

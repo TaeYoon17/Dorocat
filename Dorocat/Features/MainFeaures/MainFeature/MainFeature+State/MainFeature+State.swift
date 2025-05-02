@@ -7,8 +7,10 @@
 
 import Foundation
 import ComposableArchitecture
-extension MainFeature{
-    @ObservableState struct State: Equatable{
+extension MainFeature {
+    
+    @ObservableState
+    struct State: Equatable {
         var guideInformation = Guides()
         var appState = DorocatFeature.AppStateType.active
         var isAppLaunched:Bool = false
@@ -30,6 +32,7 @@ extension MainFeature{
         @Presents var resetDialog: ConfirmationDialogState<Action>?
         
     }
+    
 }
 
 

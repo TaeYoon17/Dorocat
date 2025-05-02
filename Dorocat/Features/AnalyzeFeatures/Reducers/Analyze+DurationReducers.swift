@@ -9,7 +9,7 @@ import Foundation
 import ComposableArchitecture
 
 extension AnalyzeFeature{
-    func selectDuration(_ state: inout State,_ type: DurationType) -> Effect<Action>{
+    func selectDuration(_ state: inout State, _ type: DurationType) -> Effect<Action>{
         return .run { send in
             await send(.getAllRecordsThenUpdate(type))
             await send(.setDurationType(type))
@@ -35,7 +35,7 @@ extension AnalyzeFeature{
     func getAllRecordsThenUpdate(_ state:inout State, type givenType: DurationType?) -> Effect<Action>{
         let type = givenType ?? state.durationType
         let date = type.dateInfo(state: &state)
-        return .run{ send in
+        return .run { send in
             let lists = try await apiClient.getAnalyzeValue(date: date, durationType: type)
             await send(.updateRecords(lists,type: type))
         }

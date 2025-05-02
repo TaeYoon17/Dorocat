@@ -27,7 +27,17 @@ struct AnalyzeView: View {
                                 }
                                 LazyVStack(spacing:8) {
                                     ForEach(store.timerRecordList){ item in
-                                        AnalyzeListItemView(durationDateType: store.durationType, timerListItem: item)
+                                        AnalyzeListItemView(
+                                            durationDateType: store.durationType,
+                                            timerListItem: item,
+                                            moreAction: { timerListItem in
+                                                store.send(.viewAction(.editTapped(timerListItem)))
+                                        })
+                                        .confirmationDialog($store.scope(state:\.editDialog,action:\.confirmationDialog))
+                                        .sheet(item: $store.scope(state: \.updateTimerSession, action: \.updateTimerSession)) { updateTimerSettingStore in
+                                            TimerSessionView(store: updateTimerSettingStore)
+                                                .presentationCornerRadius(24)
+                                        }
                                     }
                                 }.frame(maxHeight: .infinity)
                             }.padding(.horizontal, 16)

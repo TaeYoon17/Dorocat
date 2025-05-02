@@ -7,11 +7,11 @@
 
 import Foundation
 import CoreData
-
+enum Constants {
+    static let lastSyncedDate = "lastSyncedDate"
+}
 //MARK: -- CoreData - CRUD
 extension AnalyzeCoreDataClient: AnalyzeAPIs {
-    
-    
     var lastSyncedDate: Date {
         get {
             guard let data = UserDefaults.standard.data(forKey: "lastSyncedDate"),
@@ -158,9 +158,9 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
     /// 아이템 추가 -> 이전에 없던 데이터를 새로 추가하는 것이 확정직이다.
     func append(_ item: TimerRecordItem) async {
         /// 1. 여기 코어데이터에 직접 추가한다.
-        await timerItemAppend(item: item)
+        await timerItemUpsert(item: item)
         /// 2. 코어 데이터에 추가한 값 ID를 아이 클라우드에 넣는다.
-        await syncedDatabase.appendPendingSave(items: [item])
+        await syncedDatabase.appendPendingSave(items: [item], directlySend: true)
         self.analyzeEventContinuation?.yield(.append)
     }
     
@@ -171,6 +171,24 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
         }
         await syncedDatabase.appendPendingSave(items: items)
         let date = await syncedDatabase.refresh()
+    }
+    
+    func delete(_ item: TimerRecordItem) async {
+        try? await self.timerItemDeletes(items: [item])
+        await syncedDatabase.appendPendingDelete(items: [item])
+        self.analyzeEventContinuation?.yield(.fetch)
+    }
+    
+    func update(_ item: TimerRecordItem) async {
+        var item = item
+        /// 날짜를 최신 날짜로 변경!
+        item.userModificationDate = Date()
+        await self.timerItemUpsert(item: item)
+        
+        if self.isICloudSyncEnabled {
+            await self.syncedDatabase.appendPendingSave(items: [item], directlySend: true)
+        }
+        self.analyzeEventContinuation?.yield(.fetch)
     }
     
 }

@@ -28,6 +28,7 @@ extension TimerRecordItem: CKConvertible {
     init(record: CKRecord) {
         let values: any CKRecordKeyValueSetting = record.encryptedValues
         self.id = UUID(uuidString: record.recordID.recordName) ?? UUID()
+        
         self.recordCode = values[.timerRecordItem_recordCode] ?? ""
         self.createdAt = values[.timerRecordItem_createdAt] ?? Date()
         self.duration = values[.timerRecordItem_duration] ?? 0
@@ -36,13 +37,16 @@ extension TimerRecordItem: CKConvertible {
     }
     
     // 서버에서 가져온 데이터와 동기화시킨다.
-    mutating func mergeFromServerRecord(_ record: CKRecord) {
+    mutating func mergeFromServerRecord(_ record: CKRecord) -> Bool {
         let values: any CKRecordKeyValueSetting = record.encryptedValues
-        let userModificationDate: Date = values[.timerRecordItem_userModificationDate] ?? Date.distantPast
-
-        guard userModificationDate > self.userModificationDate else { return }
+        let cloudModificationDate: Date = values[.timerRecordItem_userModificationDate] ?? Date.distantPast
+        
+        ///
+        if let localModificationDate = self.userModificationDate {
+            guard cloudModificationDate > localModificationDate else { return false }
+        }
         /// 클라우드에 있는 시간이 더 최신이다. 변경!
-        self.userModificationDate = userModificationDate
+        self.userModificationDate = cloudModificationDate
         if let recordCode = values[.timerRecordItem_recordCode] as? String {
             self.recordCode = recordCode
         }
@@ -55,6 +59,7 @@ extension TimerRecordItem: CKConvertible {
         if let sessionName = record.encryptedValues[.timerRecordItem_sessionName] as? String {
             self.session = .init(name: sessionName)
         }
+        return true
     }
     
     /// 레코드에 이 값을 쓴다.
@@ -93,6 +98,7 @@ extension CKRecord.FieldKey {
     static let timerRecordItem_duration: String = "Duration"
     static let timerRecordItem_createdAt: String = "CreatedAt"
     static let timerRecordItem_userModificationDate: String = "UserModificationDate"
+    
 }
 
 

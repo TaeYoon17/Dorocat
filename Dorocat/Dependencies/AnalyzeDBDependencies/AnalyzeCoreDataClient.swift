@@ -19,7 +19,6 @@ enum SynchronizeEvent {
     
     var isInit:Bool = false
     
-    
     private(set) var analyzeEventContinuation: AsyncStream<AnalyzeEvent>.Continuation?
     private(set) var syncrhozieEventContiuation: AsyncStream<SynchronizeEvent>.Continuation?
     
@@ -88,12 +87,12 @@ extension AnalyzeCoreDataClient {
     
     func timerItemDeletes(items: [TimerRecordItem]) async throws {
         guard !items.isEmpty else { return }
-        let ids: [TimerRecordItem.ID] = items.map((\.id))
+        let ids: [String] = items.map((\.id.uuidString))
         try await coreDataService.managedObjectContext.perform { [weak self] in
             guard let self else { return }
             let request: NSFetchRequest<TimerRecordItemEntity> = TimerRecordItemEntity.fetchRequest()
             request.entity = entityDescription
-            request.predicate = NSPredicate(format: "id IN %@", ids as [CVarArg])
+            request.predicate = NSPredicate(format: "id IN %@", ids)
             guard let resultRequest = request as? NSFetchRequest<NSFetchRequestResult> else {
                 assertionFailure("변환 실패")
                 return
@@ -120,14 +119,19 @@ extension AnalyzeCoreDataClient {
         }
     }
     
-    func timerItemAppend(item: TimerRecordItem) async {
+    func timerItemUpsert(item: TimerRecordItem) async {
         coreDataService.managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         await coreDataService.managedObjectContext.perform { [weak self] in
             guard let self else {
                 assertionFailure("추가되지 못하는 이슈")
                 return
             }
-            let recordEntity = TimerRecordItemEntity(
+            let fetchRequest: NSFetchRequest<TimerRecordItemEntity> = TimerRecordItemEntity.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id == %@", item.id as CVarArg)
+            // 로컬에 이미 엔티티가 존재하는지 확인함
+            let fetchResultEntities = try? self.coreDataService.managedObjectContext.fetch(fetchRequest)
+            // 로컬에 존재하는 엔티티가 없으면 엔티티를 만든다.
+            let recordEntity: TimerRecordItemEntity = fetchResultEntities?.first ?? TimerRecordItemEntity(
                 entity: entityDescription,
                 insertInto: coreDataService.managedObjectContext
             )
@@ -154,6 +158,7 @@ extension TimerRecordItemEntity {
         self.createdAt = item.createdAt
         self.recordCode = item.recordCode
         self.sessionKey = item.session.name
+        self.userModificationDate = item.userModificationDate
     }
     
     var convertToItem: TimerRecordItem {
@@ -162,7 +167,8 @@ extension TimerRecordItemEntity {
             recordCode: self.recordCode!,
             createdAt: self.createdAt!,
             duration: Int(self.duration),
-            session: .init(name: self.sessionKey!)
+            session: .init(name: self.sessionKey!),
+            modificationDate: self.userModificationDate
         )
     }
 }

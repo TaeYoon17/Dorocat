@@ -16,6 +16,7 @@ extension AnalyzeFeature{
         
         case signLeftTapped
         
+        case editTapped(TimerRecordItem)
     }
     
 }

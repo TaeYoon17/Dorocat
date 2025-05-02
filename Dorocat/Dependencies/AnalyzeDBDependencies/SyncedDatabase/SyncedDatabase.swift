@@ -125,7 +125,6 @@ extension SyncedDatabase {
         _ context: CKSyncEngine.SendChangesContext,
         syncEngine: CKSyncEngine
     ) async -> CKSyncEngine.RecordZoneChangeBatch? {
-        Logger.database.info("Returning next record change batch for context: \(context)")
         /// 변화를 일으키는 작업들에 대한 Scope들
         let scope: CKSyncEngine.SendChangesOptions.Scope = context.options.scope
         
@@ -133,8 +132,7 @@ extension SyncedDatabase {
         let changes: [CKSyncEngine.PendingRecordZoneChange] = syncEngine.state.pendingRecordZoneChanges.filter {
             scope.contains($0)
         }
-        
-        /// 래코드 존(DB 테이블)을 변화시킬 배치를 만든다. 현재 변화를 기다리는 것들을 받는다.
+
         let batch = await CKSyncEngine.RecordZoneChangeBatch(pendingChanges: changes) { recordID in
             
             guard let type: CKRecord.RecordEntityType = await self.pendingItems[recordID] else { return nil }
@@ -152,6 +150,7 @@ extension SyncedDatabase {
             return record
         }
         
+        
         return batch
     }
 }
@@ -163,7 +162,7 @@ extension SyncedDatabase {
 extension SyncedDatabase {
     
     /// CloudKit에 업로드할 값들을 추가한다.
-    func appendPendingSave(items: [CKReadable]) {
+    func appendPendingSave(items: [CKReadable], directlySend: Bool = false) async {
         var pendingSaves: [CKSyncEngine.PendingRecordZoneChange] = []
         for item in items {
             let recordEntityType = CKRecord.RecordEntityType(rawValue: item.recordType)!
@@ -172,6 +171,9 @@ extension SyncedDatabase {
         }
         
         self.syncEngine.state.add(pendingRecordZoneChanges: pendingSaves)
+        if directlySend {
+            try? await self.syncEngine.sendChanges()
+        }
     }
     
     /// CloudKit에 삭제할 값들을 추가한다.
@@ -180,5 +182,10 @@ extension SyncedDatabase {
         self.syncEngine.state.add(pendingRecordZoneChanges: pendingDeletions)
     }
     
-    
+    func updateSyncItem(_ item: CKConvertible) async throws {
+        var record = CKRecord(recordType: item.recordType, recordID: item.ckRecordID)
+        /// 레코드에 이 로컬 값을 쓴다.
+        item.populateRecord(record)
+        let result = try await syncEngine.database.modifyRecords(saving: [record], deleting: [], savePolicy: .allKeys)
+    }
 }

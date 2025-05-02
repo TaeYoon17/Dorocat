@@ -10,6 +10,7 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="recordCode" optional="YES" attributeType="String"/>
         <attribute name="sessionKey" optional="YES" attributeType="String"/>
+        <attribute name="userModificationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <configuration name="Cloud">
         <memberEntity name="SessionMenuEntity"/>

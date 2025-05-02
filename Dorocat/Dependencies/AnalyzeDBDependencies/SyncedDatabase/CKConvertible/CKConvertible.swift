@@ -24,7 +24,7 @@ protocol CKReadable {
 protocol CKConvertible: CKReadable, CKWritable {
     init(record: CKRecord)
     
-    mutating func mergeFromServerRecord(_ record: CKRecord)
+    mutating func mergeFromServerRecord(_ record: CKRecord) -> Bool
     
-    func populateRecord(_ record: CKRecord)
+//    func populateRecord(_ record: inout CKRecord)
 }

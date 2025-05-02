@@ -23,6 +23,9 @@
     "%lldm" : {
 
     },
+    "•••" : {
+
+    },
     "0" : {
 
     },
@@ -62,6 +65,9 @@
     "Cat's asleep!" : {
 
     },
+    "Change session type" : {
+
+    },
     "Change TimerStatus" : {
 
     },
@@ -75,6 +81,9 @@
 
     },
     "Continue" : {
+
+    },
+    "Delete this record" : {
 
     },
     "Detail Settings" : {
@@ -96,6 +105,12 @@
 
     },
     "Download Mail app from the App Store." : {
+
+    },
+    "Edit button tapped" : {
+
+    },
+    "Edit Record" : {
 
     },
     "Enable" : {

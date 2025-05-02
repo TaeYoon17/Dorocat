@@ -37,6 +37,8 @@ protocol AnalyzeAPIs: CloudSyncAble {
     func get(monthDate: Date) async throws -> [TimerRecordItem]
     
     func append(_ item: TimerRecordItem) async
+    func delete(_ item: TimerRecordItem) async
+    func update(_ item: TimerRecordItem) async
     
     func eventAsyncStream() async -> AsyncStream<AnalyzeEvent>
 }
@@ -48,8 +50,8 @@ fileprivate enum AnalyzeAPIsClientKey: DependencyKey {
 extension DependencyValues{
     
     var analyzeAPIClients: AnalyzeAPIs {
-        get{ self[AnalyzeAPIsClientKey.self] }
-        set{ self[AnalyzeAPIsClientKey.self] = newValue }
+        get { self[AnalyzeAPIsClientKey.self] }
+        set { self[AnalyzeAPIsClientKey.self] = newValue }
     }
     
 }

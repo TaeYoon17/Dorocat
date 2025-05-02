@@ -15,7 +15,7 @@ extension AnalyzeCoreDataClient : SyncHandler {
     func synchronizeStart() async {
         self.syncrhozieEventContiuation?.yield(.start)
         Task.detached {
-            try await Task.sleep(for: .seconds(180))
+            try await Task.sleep(for: .seconds(10))
             await self.syncrhozieEventContiuation?.yield(.end)
         }
     }
@@ -26,15 +26,22 @@ extension AnalyzeCoreDataClient : SyncHandler {
     }
     
 
-    func overWriteEntities(type: CKRecord.RecordEntityType, records: [CKRecord]) async {
+    func overWriteEntities(type: CKRecord.RecordEntityType, records: [CKRecord]) async -> [CKRecord] {
+        var failedRecords: [CKRecord] = []
         for record in records {
             let id = UUID(uuidString: record.recordID.recordName)!
             guard var timerRecordItem = await findItemByID(id) else {
                 continue
             }
-            timerRecordItem.mergeFromServerRecord(record)
-            await timerItemAppend(item: timerRecordItem)
+            let serverIsNewer = timerRecordItem.mergeFromServerRecord(record)
+            if serverIsNewer {
+                await timerItemUpsert(item: timerRecordItem)
+            } else {
+                timerRecordItem.populateRecord(record)
+                failedRecords.append(record)
+            }
         }
+        return failedRecords
     }
     
     
@@ -44,17 +51,16 @@ extension AnalyzeCoreDataClient : SyncHandler {
             return nil
         }
         let writable = await self.findItemByID(uuid)
+        
         return writable
     }
     
-    // MARK: - CKSyncEngine Events
-    func handleFetchedRecordZoneChanges(
-        type: CKRecord.RecordEntityType,
-        modifications: [CKRecord],
-        deletions: [CKRecord.ID]) async {
-            
+    // 실제로 서버에서 받은 값들... 여기에 맞게 변경해줘야한다.
+    func handleFetchedRecordZoneChanges(type: CKRecord.RecordEntityType, modifications: [CKRecord], deletions: [CKRecord.ID]) async {
+        
         var modificationItems:[TimerRecordItem] = []
         var deletionItems: [TimerRecordItem] = []
+            
         for modification in modifications {
             let record:CKRecord = modification
             let id = record.recordID.recordName
@@ -72,7 +78,7 @@ extension AnalyzeCoreDataClient : SyncHandler {
             }
         }
         for modificationItem in modificationItems {
-            await timerItemAppend(item: modificationItem)
+            await timerItemUpsert(item: modificationItem)
         }
         try? await timerItemDeletes(items: deletionItems)
         analyzeEventContinuation?.yield(.fetch)

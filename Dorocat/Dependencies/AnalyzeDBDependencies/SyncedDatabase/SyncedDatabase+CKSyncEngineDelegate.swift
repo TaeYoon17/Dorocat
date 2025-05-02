@@ -30,10 +30,12 @@ extension SyncedDatabase : CKSyncEngineDelegate {
             await self.handleSentRecordZoneChanges(event)
         case .sentDatabaseChanges: break
         case .willSendChanges, .willFetchChanges: // 여기에 동기화 시작 토글링
+            Logger.database.debug("값이 바뀐 것을 감지하기 시작!!")
             for syncHandler in self.syncHandlers.values {
                 await syncHandler?.synchronizeStart()
             }
         case .didFetchChanges, .didSendChanges: // 여기에 동기화 끝남 토글링
+            Logger.database.debug("값이 바뀐 것 끝남!!")
         // We don't do anything here in the sample app, but these events might be helpful if you need to do any setup/cleanup when sync starts/ends.
             for syncHandler in self.syncHandlers.values {
                 await syncHandler?.synchronizeEnd()
@@ -49,32 +51,31 @@ extension SyncedDatabase : CKSyncEngineDelegate {
     
     /// 보낸 레코드(튜플)의 변화를 조작한다.
     func handleSentRecordZoneChanges(_ event: CKSyncEngine.Event.SentRecordZoneChanges) async {
-        
         // 만약 레코드의 저장을 실패했다면, 에라 코드를 추적해 새로 요청하게 만들어야한다.
         var newPendingRecordZoneChanges: [CKSyncEngine.PendingRecordZoneChange] = []
         var newPendingDatabaseChanges: [CKSyncEngine.PendingDatabaseChange] = []
         
         /// 서버의 값이 최신이라 로컬 값을 업데이트 해야 하는 대상들
-        var overWriteTargets:[CKRecord.RecordEntityType: [CKRecord]] = [:]
+        var overWriteTargets:[CKRecord.RecordEntityType: Set<CKRecord>] = [:]
         var removeTargets: [CKRecord.RecordEntityType: [CKRecord]] = [:]
-        
         /// 실패한 레코드들을 다룬다.
         for failedRecordSave in event.failedRecordSaves {
             let failedRecord = failedRecordSave.record
-            
             switch failedRecordSave.error.code {
-            
             // 이 오류는 클라이언트가 저장하려는 로컬 레코드 버전보다 서버의 레코드 버전이 최신임을 나타냄
             case .serverRecordChanged:
                 // 서버의 레코드를 우리 자신의 로컬 복사본에 병합하겠습니다.
                 // `mergeFromServerRecord` 함수가 충돌 해결을 처리합니다.
                 guard let serverRecord:CKRecord = failedRecordSave.error.serverRecord else {
-                    Logger.database.error("No server record for conflict \(failedRecordSave.error)")
+                    print("서버 데이터를 찾을 수 없음!!")
                     continue
                 }
-                
                 let type = serverRecord.convertIDToRecordType
-                overWriteTargets[type]?.append(serverRecord)
+                if overWriteTargets[type] == nil {
+                    overWriteTargets[type] = [serverRecord]
+                } else {
+                    overWriteTargets[type]?.insert(serverRecord)
+                }
                 newPendingRecordZoneChanges.append(.saveRecord(serverRecord.recordID))
                 
             case .zoneNotFound:
@@ -108,21 +109,35 @@ extension SyncedDatabase : CKSyncEngineDelegate {
                 
                 let type = serverRecord.convertIDToRecordType
                 removeTargets[type]?.append(serverRecord)
-                
                 newPendingRecordZoneChanges.append(.saveRecord(serverRecord.recordID))
                 
             case .networkFailure, .networkUnavailable, .zoneBusy, .serviceUnavailable, .notAuthenticated, .operationCancelled:
                 // There are several errors that the sync engine will automatically retry, let's just log and move on.
                 Logger.database.debug("Retryable error saving \(failedRecord.recordID): \(failedRecordSave.error)")
-            default:
-                Logger.database.fault("Unknown error saving record \(failedRecord.recordID): \(failedRecordSave.error)")
+                print("알 수 없는 오류")
+            default: break
             }
         }
-        for (entityType, records) in overWriteTargets {
-            await syncHandlers[entityType]??.overWriteEntities(type: entityType, records: records)
-        }
+        
+        // 일단 동기화 대상으로 추가함
         self.syncEngine.state.add(pendingDatabaseChanges: newPendingDatabaseChanges)
         self.syncEngine.state.add(pendingRecordZoneChanges: newPendingRecordZoneChanges)
+        
+        // 각각의 정보 타입에 맞게 순회한다.
+        for (entityType, records) in overWriteTargets {
+            // 로컬 데이터가 더 최신인 경우를 가져온다.
+            guard let localNewerItems = await syncHandlers[entityType]??.overWriteEntities(type: entityType, records: Array(records)) else {
+                continue
+            }
+            // 엔진에서 직접 변경을 요청한다
+            guard let values = try? await self.syncEngine.database.modifyRecords(saving: localNewerItems, deleting: [], savePolicy: .allKeys) else {
+                continue
+            }
+            // 즉시 서버 데이터 업데이트에 성공하면 다시 동기화할 레코드에 등록하지 않는다.
+            let successedModifyCloudRecords = values.saveResults.filter { $0.value.is(\.success) }
+            let removePendingRecordZoneChanges: [CKSyncEngine.PendingRecordZoneChange] = successedModifyCloudRecords.map { .saveRecord($0.key) }
+            self.syncEngine.state.remove(pendingRecordZoneChanges: removePendingRecordZoneChanges)
+        }
     }
     
     /// 로그인 시, 가장 최신에 로그인 한 아이클라우드 계정에 대한 정보를 담아놓는다.
