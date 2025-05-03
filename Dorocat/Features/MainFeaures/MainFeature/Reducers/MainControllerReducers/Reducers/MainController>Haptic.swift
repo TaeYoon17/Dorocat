@@ -23,7 +23,7 @@ extension MainFeature.Controller{
             }
         }
         func timerFieldTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {
-            if !state.guideInformation.onBoarding{
+            if !state.guideInformation.onBoardingFinished{
                 return .run { send in await haptic.impact(style: .soft) }
             }
             switch state.timerProgressEntity.status{

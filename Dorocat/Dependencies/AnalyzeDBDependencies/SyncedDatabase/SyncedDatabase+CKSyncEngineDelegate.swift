@@ -30,12 +30,11 @@ extension SyncedDatabase : CKSyncEngineDelegate {
             await self.handleSentRecordZoneChanges(event)
         case .sentDatabaseChanges: break
         case .willSendChanges, .willFetchChanges: // 여기에 동기화 시작 토글링
-            Logger.database.debug("값이 바뀐 것을 감지하기 시작!!")
+
             for syncHandler in self.syncHandlers.values {
                 await syncHandler?.synchronizeStart()
             }
         case .didFetchChanges, .didSendChanges: // 여기에 동기화 끝남 토글링
-            Logger.database.debug("값이 바뀐 것 끝남!!")
         // We don't do anything here in the sample app, but these events might be helpful if you need to do any setup/cleanup when sync starts/ends.
             for syncHandler in self.syncHandlers.values {
                 await syncHandler?.synchronizeEnd()
@@ -150,12 +149,16 @@ extension SyncedDatabase : CKSyncEngineDelegate {
         
         // 로그아웃 시 해당 기존 데이터들은 내비려 둔다.
         // 계정을 바꾸거나 새로 로그인 시, 기존 로컬 데이터에 값이 있다면 이들을 덮어 씌울 것인지 모두 삭제하고 연동작업을 진행할 것인지 물어본다.
-        switch event.changeType {
-        case .signIn, .switchAccounts:
-            /// 여기 연동 작업을 요청하는 delegate 넘기기
-            break
-        case .signOut: break
-        @unknown default: break
+        /// 여기 연동 작업을 요청하는 delegate 넘기기
+        Task {
+            await self.syncHandlers.values.asyncForEach {
+                let userDTO:UserAccountStatusDTO = switch event.changeType {
+                case .signIn, .switchAccounts: .signIn
+                case .signOut: .signOut
+                @unknown default: .signOut
+                }
+                await $0?.handleAccountStatusChange(userDTO)
+            }
         }
     }
 }
@@ -168,7 +171,6 @@ extension SyncedDatabase {
         var modifications: [CKRecord.RecordEntityType: [CKRecord] ] = [:]
         var deletions: [CKRecord.RecordEntityType : [CKRecord.ID]] = [:]
         
-//        var modificationItems:[TimerRecordItem] = []
         for modification in event.modifications {
             // 동기화 엔진이 레코드를 가져왔고, 이를 로컬 저장소에 병합하려고 합니다.
             // 이미 이 객체가 로컬에 존재한다면, 서버에서 가져온 데이터와 병합합니다.

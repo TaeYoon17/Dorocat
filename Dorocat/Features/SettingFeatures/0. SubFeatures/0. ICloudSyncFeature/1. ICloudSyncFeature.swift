@@ -45,11 +45,19 @@ struct ICloudSyncFeature {
         case setToggleEnabled(isSynced: Bool, isAutomaticallySynced: Bool)
         case updateElapsedTime
         case setIsLoadingSynchronize(isOn: Bool)
+
         
         case alert(PresentationAction<Alert>)
         enum Alert: Equatable {
+            /// 동기화 옵션을 선택한다.
+            enum SyncOptionType: Equatable {
+                case overWrite
+                case deleteAllLocal
+            }
+            
             case showICloudSettings
             case enableAutomaticSync(Bool)
+            case syncOptionSettings(SyncOptionType)
         }
     }
     
@@ -75,11 +83,13 @@ struct ICloudSyncFeature {
                         }
                     }
                 }
+            /// 유저가 자동 동기화 설정을 선택한 이후
             case .alert(.presented(.enableAutomaticSync(let isEnabled))):
                 /// 일단은 뷰 액션을 넘긴다.
                 return .run { send in
                     await send(.viewAction(.setIsAutomaticSyncEnabled(isEnabled)),animation: .default)
                 }
+                
             case .alert: return .none
             case .iCloudStatusRouter(let statusType):
                 switch statusType {

@@ -9,25 +9,26 @@ import Foundation
 import ComposableArchitecture
 
 @Reducer
-struct TimerSettingFeature{
-    enum SettingType{
+struct TimerSettingFeature {
+    enum SettingType {
         case cycle
         case breakDuration
         // Feature에서 정한 계산 Property
-        var range: Range<Int>{
-            switch self{
+        var range: Range<Int> {
+            switch self {
             case .cycle: Range<Int>(2...4)
             case .breakDuration: Range<Int>(1...20)
             }
         }
-        var title:String{
-            switch self{
+        
+        var title: String {
+            switch self {
             case .cycle: "Cycle"
             case .breakDuration: "Break Duration"
             }
         }
     }
-    @ObservableState struct State: Equatable{
+    @ObservableState struct State: Equatable {
         var time:String = ""
         var isPomodoroMode: Bool = false
         var cycleTime:Int = 2
@@ -35,7 +36,7 @@ struct TimerSettingFeature{
         var timerInfo = TimerSettingEntity()
     }
     
-    enum Action:Equatable{ // 키패드 접근을 어떻게 할 것인지...
+    enum Action:Equatable { // 키패드 접근을 어떻게 할 것인지...
         // View Action...
         case doneTapped
         case setDefaultValues(TimerSettingEntity)
@@ -45,37 +46,43 @@ struct TimerSettingFeature{
         case setBreakTime(Int)
         
         case delegate(Delegate)
-        enum Delegate: Equatable{
+        enum Delegate: Equatable {
             case cancel
             case setTimerInfo(TimerSettingEntity)
         }
     }
+    
     @Dependency(\.dismiss) var dismiss
     @Dependency(\.haptic) var haptic
-    var body: some ReducerOf<Self>{
-        Reduce{ state, action in
-            switch action{
+    
+    var body: some ReducerOf<Self> {
+        Reduce { state, action in
+            switch action {
             case .doneTapped:
                 let hapticEffect:Effect<Action> = .run { send in
                     await haptic.impact(style: .soft)
                 }
-                if let time = Int(state.time){
-                    let timerInfo = TimerSettingEntity(timeSeconds: time * 60,
-                                                       cycle: state.cycleTime,
-                                                       breakTime: state.breakTime * 60,
-                                                       isPomoMode: state.isPomodoroMode)
-                    return .run {send in
+                if let time = Int(state.time) {
+                    let timerInfo = TimerSettingEntity(
+                        timeSeconds: time * 60,
+                        cycle: state.cycleTime,
+                        breakTime: state.breakTime * 60,
+                        isPomoMode: state.isPomodoroMode
+                    )
+                    return .run { send in
                         await send(.delegate(.setTimerInfo(timerInfo)))
                         await self.dismiss()
-                    }.merge(with: hapticEffect)
-                }else{
-                    return .run {[timerInfo = state.timerInfo] send in
+                    }
+                    .merge(with: hapticEffect)
+                } else {
+                    return .run { [timerInfo = state.timerInfo] send in
                         await send(.delegate(.setTimerInfo(timerInfo)))
                         await self.dismiss()
-                    }.merge(with: hapticEffect)
+                    }
+                    .merge(with: hapticEffect)
                 }
             case .setTime(let time):
-                if time.count > 2{ return .none }
+                if time.count > 2 { return .none }
                 state.time = time
                 return .run { send in
                     await haptic.impact(style: .soft)

@@ -61,4 +61,21 @@ extension AlertState where Action == ICloudSyncFeature.Action.Alert {
             }
         )
     }
+    
+    static let openSyncOptionAlert = AlertState(
+        title: {
+            TextState("Do you want to delete your existing local records?")
+        },
+        actions: {
+            ButtonState(role: .destructive, action: .send(.syncOptionSettings(.deleteAllLocal))) {
+                TextState("Delete All local Data then fetch from iCloud")
+            }
+            ButtonState(role: .cancel, action: .send(.syncOptionSettings(.overWrite))) {
+                TextState("Overwrite All local Data to iCloud")
+            }
+        },
+        message: {
+            TextState("기존 타이머 기록을 덮어쓰시겠습니까?")
+        }
+    )
 }

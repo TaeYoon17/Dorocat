@@ -54,7 +54,6 @@ struct DorocatApp: App {
                 }
                 .preferredColorScheme(.dark)
                 .toolbar(.hidden, for: .navigationBar)
-                
             } destination: { store in
                 switch store.state {
                 case .registerICloudSettingScene:

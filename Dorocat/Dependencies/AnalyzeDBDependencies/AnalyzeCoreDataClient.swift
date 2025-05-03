@@ -106,9 +106,14 @@ extension AnalyzeCoreDataClient {
     /// 모든 타이머 기록 관련 로컬 DB 데이터를 지운다.
     func timerRecordDeleteAll() async throws {
         try await coreDataService.managedObjectContext.perform { [weak self] in
-            guard let self else { return }
+            guard let self else {
+                assertionFailure("메모리 해제됨!!")
+                return
+            }
             let request: NSFetchRequest<TimerRecordItemEntity> = TimerRecordItemEntity.fetchRequest()
             request.entity = entityDescription
+            let ids = try coreDataService.managedObjectContext.fetch(request).map{ $0.id?.uuidString ?? "" }
+            request.predicate = NSPredicate(format: "id IN %@", ids)
             guard let resultRequest = request as? NSFetchRequest<NSFetchRequestResult> else {
                 assertionFailure("변환 실패")
                 return

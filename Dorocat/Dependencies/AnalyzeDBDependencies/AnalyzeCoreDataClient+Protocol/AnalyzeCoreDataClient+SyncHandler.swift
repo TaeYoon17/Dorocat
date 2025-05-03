@@ -10,7 +10,9 @@ import CloudKit
 
 // MARK: - CKSyncEngineDelegate
 
-extension AnalyzeCoreDataClient : SyncHandler {
+extension AnalyzeCoreDataClient: SyncHandler {
+    
+    
     
     func synchronizeStart() async {
         self.syncrhozieEventContiuation?.yield(.start)
@@ -57,19 +59,22 @@ extension AnalyzeCoreDataClient : SyncHandler {
     
     // 실제로 서버에서 받은 값들... 여기에 맞게 변경해줘야한다.
     func handleFetchedRecordZoneChanges(type: CKRecord.RecordEntityType, modifications: [CKRecord], deletions: [CKRecord.ID]) async {
-        
         var modificationItems:[TimerRecordItem] = []
         var deletionItems: [TimerRecordItem] = []
             
         for modification in modifications {
             let record:CKRecord = modification
+            guard record.convertIDToRecordType == .timerItem else { continue }
             let id = record.recordID.recordName
             let uuid = UUID(uuidString: id)!
-            let findItem = await findItemByID(uuid)
-            if findItem == nil && record.convertIDToRecordType == .timerItem {
+            if var findItem = await findItemByID(uuid) {
+                let isMerged = findItem.mergeFromServerRecord(record)
+                if isMerged { modificationItems.append(findItem) }
+            } else {
                 let item = TimerRecordItem(record: record)
                 modificationItems.append(item)
             }
+            
         }
         let deletionIDs: [UUID] = deletions.map { UUID(uuidString: $0.recordName)! }
         for deletionId in deletionIDs {
@@ -91,4 +96,12 @@ extension AnalyzeCoreDataClient : SyncHandler {
         }
     }
     
+    func handleAccountStatusChange(_ status: UserAccountStatusDTO) async {
+        switch status {
+        case .signIn: break
+        case .signOut: /// 자동 동기화 및 일반 동기화 모두 가능하지 않게 한다.
+            self.isAutomaticallySyncEnabled = false
+            self.isICloudSyncEnabled = false
+        }
+    }
 }

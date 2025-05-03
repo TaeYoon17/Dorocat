@@ -14,7 +14,7 @@ struct MainView: View {
     @Bindable var store: StoreOf<MainFeature>
     @Environment(\.scenePhase) var phase
     var body: some View {
-        ZStack{
+        ZStack {
             DefaultBG()
             switch store.timerProgressEntity.status{
             case .standBy, .focus, .pause, .breakTime, .focusSleep, .breakSleep:
@@ -28,34 +28,35 @@ struct MainView: View {
                     TimerViewComponents.DoroCat(store:store).offset(y:-78)
                 }
             case .completed:
-                ZStack{
+                ZStack {
                     VStack(alignment:.center,spacing:0) {
                         Text("Well done!").font(.header03).foregroundStyle(Color.doroWhite)
                         Text("You've completed successfully\nLet's stretch together.").font(.paragraph02()).foregroundStyle(Color.doroWhite)
                             .multilineTextAlignment(.center).lineSpacing(4)
                         Rectangle().fill(.clear).frame(width: 375,height: 375)
-                    }.offset(y:-78)
+                    }
+                    .offset(y:-78)
                     TimerViewComponents.DoroCat(store:store).offset(y:-11)
                     VStack(spacing:0) {
                         Rectangle().fill(.clear).frame(width: 375,height: 375)
                         TimerViewComponents.TotalFocusTimeView(store: store)
                     }.offset(y:11)
                 }
-                
-            case .breakStandBy,.focusStandBy:
-                ZStack{
-                    if store.timerProgressEntity.status == .breakStandBy{
+            case .breakStandBy, .focusStandBy:
+                ZStack {
+                    if store.timerProgressEntity.status == .breakStandBy {
                         VStack(spacing:0,content: {
                             Text("Great!").font(.header03)
                             Text("You've completed this session").font(.paragraph02())
                             Rectangle().fill(.clear).frame(width: 375,height: 375)
                         }).foregroundStyle(.doroWhite).offset(y:-78)
-                    }else{
-                        VStack(spacing:0,content: {
+                    } else {
+                        VStack(spacing:0, content: {
                             Text("Great!").font(.header03)
                             Text("Let's start session \(store.timerProgressEntity.cycle + 1)").font(.paragraph02())
                             Rectangle().fill(.clear).frame(width: 375,height: 375)
-                        }).foregroundStyle(.doroWhite).offset(y:-78)
+                        })
+                        .foregroundStyle(.doroWhite).offset(y:-78)
                     }
                     VStack(spacing:0) { // 타이머 숫자 조금 더 올림
                         Rectangle().fill(.clear).frame(width: 375,height: 375)

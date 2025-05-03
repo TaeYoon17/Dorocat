@@ -51,9 +51,8 @@ final actor SyncedDatabase : Sendable {
         }
     }
     
-    
     private(set) var syncHandlers: [CKRecord.RecordEntityType : SyncHandler?] = [:]
-    private(set) var pendingItems: [CKRecord.ID : CKRecord.RecordEntityType] = [ : ]
+    private(set) var pendingItems: [CKRecord.ID : CKRecord.RecordEntityType] = [:]
     
     var stateSerialization: CKSyncEngine.State.Serialization? {
         get {
@@ -107,6 +106,7 @@ final actor SyncedDatabase : Sendable {
     func removeTarget(id: CKRecord.ID) async {
         self.pendingItems.removeValue(forKey: id)
     }
+    
     func appendTarget(id: CKRecord.ID, entityType: CKRecord.RecordEntityType) {
         self.pendingItems[id] = entityType
     }
@@ -183,7 +183,7 @@ extension SyncedDatabase {
     }
     
     func updateSyncItem(_ item: CKConvertible) async throws {
-        var record = CKRecord(recordType: item.recordType, recordID: item.ckRecordID)
+        let record = CKRecord(recordType: item.recordType, recordID: item.ckRecordID)
         /// 레코드에 이 로컬 값을 쓴다.
         item.populateRecord(record)
         let result = try await syncEngine.database.modifyRecords(saving: [record], deleting: [], savePolicy: .allKeys)

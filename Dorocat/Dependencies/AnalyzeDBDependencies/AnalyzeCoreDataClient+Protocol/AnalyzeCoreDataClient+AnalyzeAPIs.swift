@@ -12,6 +12,17 @@ enum Constants {
 }
 //MARK: -- CoreData - CRUD
 extension AnalyzeCoreDataClient: AnalyzeAPIs {
+    
+    func deleteAllItems() async {
+        do {
+            try await self.timerRecordDeleteAll()
+            print("모든 삭제 성공")
+            self.analyzeEventContinuation?.yield(.fetch)
+        } catch {
+            print("삭제 에러", error)
+        }
+    }
+    
     var lastSyncedDate: Date {
         get {
             guard let data = UserDefaults.standard.data(forKey: "lastSyncedDate"),
@@ -26,12 +37,12 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
         }
     }
     
-    private(set) var isICloudSyncEnabled: Bool {
+    var isICloudSyncEnabled: Bool {
         get { UserDefaults.standard.bool(forKey: "isIcloudSyncEnabled") }
         set { UserDefaults.standard.setValue(newValue, forKey: "isIcloudSyncEnabled") }
     }
     
-    private(set) var isAutomaticallySyncEnabled: Bool {
+    var isAutomaticallySyncEnabled: Bool {
         get { UserDefaults.standard.bool(forKey: "isAutomaticallySyncEnabled") }
         set { UserDefaults.standard.set(newValue, forKey: "isAutomaticallySyncEnabled") }
     }
@@ -40,6 +51,7 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
         self.synchronizeEvent
     }
     
+    /// 유저가 자동 동기화를 설정한다.
     func setAutomaticSync(_ state: Bool) async {
         if isAutomaticallySyncEnabled != state {
             self.isAutomaticallySyncEnabled = state
@@ -47,13 +59,12 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
         }
     }
     
-    
+    /// 유저가 아이클라우드 동기화를 설정한다.
     func setICloudAccountState(_ state: Bool) async -> iCloudStatusTypeDTO {
         if state {
             guard let status = await syncedDatabase.getAccountStatus() else {
                 return .errorOccured(type: .tryThisLater)
             }
-            
             /// 계정이 가능하지 않으면 자동 동기화를 끈다.
             defer {
                 Task {
@@ -91,6 +102,8 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
                 return .errorOccured(type: .unknown)
             }
         } else {
+            self.isAutomaticallySyncEnabled = false
+            self.isICloudSyncEnabled = false
             return .stopICloudSync
         }
     }
@@ -118,6 +131,18 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
         /// iCloud를 연결하지 않으면 에러를 방출한다.
         await syncedDatabase.appendSyncHandler(key: .timerItem, value: self)
         isInit = true
+    }
+    
+    var isEmptyTimerItem: Bool {
+        get async {
+            do {
+                let request = TimerRecordItemEntity.fetchRequest()
+                let count = try coreDataService.managedObjectContext.count(for: request)
+                return count == 0
+            } catch {
+                return true
+            }
+        }
     }
     
     func eventAsyncStream() async -> AsyncStream<AnalyzeEvent> { self.analyzeEvent }
@@ -154,7 +179,6 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
     }
     
     
-    
     /// 아이템 추가 -> 이전에 없던 데이터를 새로 추가하는 것이 확정직이다.
     func append(_ item: TimerRecordItem) async {
         /// 1. 여기 코어데이터에 직접 추가한다.
@@ -170,7 +194,7 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
             return
         }
         await syncedDatabase.appendPendingSave(items: items)
-        let date = await syncedDatabase.refresh()
+        let _ = await syncedDatabase.refresh()
     }
     
     func delete(_ item: TimerRecordItem) async {

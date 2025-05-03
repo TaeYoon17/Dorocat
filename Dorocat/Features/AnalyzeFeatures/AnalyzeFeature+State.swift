@@ -8,15 +8,18 @@
 import Foundation
 import ComposableArchitecture
 protocol AnalyzeInformationAble {
-    var title:String { get }
-    var totalTime:String { get }
-    var date:Date { get }
+    
+    var title: String { get }
+    var totalTime: String { get }
+    var date: Date { get }
     var timerRecordList: IdentifiedArrayOf<TimerRecordItem> { get set }
-    var isLastDuration:Bool { get }
+    var isLastDuration: Bool { get }
+    
     @discardableResult
     mutating func prev() -> Date
     @discardableResult
     mutating func next() -> Date
+    
 }
 
 extension AnalyzeInformationAble {

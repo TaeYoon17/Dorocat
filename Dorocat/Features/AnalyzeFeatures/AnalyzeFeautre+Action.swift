@@ -8,7 +8,7 @@
 import Foundation
 import ComposableArchitecture
 
-extension AnalyzeFeature{
+extension AnalyzeFeature {
     
     enum ViewAction: Equatable {
         

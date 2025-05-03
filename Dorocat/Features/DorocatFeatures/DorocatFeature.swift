@@ -67,8 +67,9 @@ struct DorocatFeature {
         case initialAction
         case onBoardingTapped
         case onBoardingWillTap
-        case requestIcloudSync
-        case failedIcloudSync
+        
+        case openRequestIcloudSyncSheet
+        case openFailedIcloudSyncSheet
         
         case timer(MainFeature.Action)
         case analyze(AnalyzeFeature.Action)
@@ -115,19 +116,19 @@ struct DorocatFeature {
             case .analyze(let action):return analyzeFeatureReducer(state: &state, subAction: action)
             case .setting(let action): return settingFeatureReducer(state: &state, subAction: action)
             case .setGuideStates(let guides):
-                return .run{[guides] send in
+                return .run{ [guides] send in
                     await self.guideDefaults.set(guide: guides)
                     await send(.timer(.setGuideState(guides)))
                 }
             case .onBoardingTapped:
                 var guide = state.guideState
-                guide.onBoarding = true
+                guide.onBoardingFinished = true
                 return .run { [guide] send in
                     await send(.setGuideStates(guide))
                     // 노티피케이션 권한 요청
                     _ = try await notification.requestPermission()
                     // 아이클라우드 동기화 요청
-                    await send(.requestIcloudSync)
+                    await send(.openRequestIcloudSyncSheet)
                 }
             case .onBoardingWillTap:
                 return .run { send in
@@ -141,22 +142,24 @@ struct DorocatFeature {
             case .setActivityAction(let prev, let next):
                 return timerActivityReducer(state: &state, prev: prev, next: next)
             case .actionPath(_): return .none
+                
             case .alert(.presented(.enableIcloudSync)):
                 return .run { send in
                     try await analyzeAPIClients.initAction()
+                    /// 현재 아이클라우드를 켜려고 시도한다.
                     let iCloudStatusTypeDTO = await analyzeAPIClients.setICloudAccountState(true)
                     switch iCloudStatusTypeDTO {
                     case .startICloudSync:
                         await analyzeAPIClients.setAutomaticSync(true)
                     default:
-                        await send(.failedIcloudSync)
+                        await send(.openFailedIcloudSyncSheet)
                     }
                 }
             case .alert: return .none
-            case .requestIcloudSync:
+            case .openRequestIcloudSyncSheet:
                 state.alert = .requestIcloudSyncAlert
                 return .none
-            case .failedIcloudSync:
+            case .openFailedIcloudSyncSheet:
                 state.alert = .failedIcloudSyncAlert
                 return .none
             }
@@ -196,6 +199,7 @@ fileprivate extension AlertState where Action == DorocatFeature.Action.Alert {
             )
         }
     )
+    
     static let failedIcloudSyncAlert = AlertState(
         title: {
             TextState("Failed to sync iCloud")
@@ -209,6 +213,23 @@ fileprivate extension AlertState where Action == DorocatFeature.Action.Alert {
             TextState(
                 "Configure it in Settings"
             )
+        }
+    )
+    
+    static let chooseSyncOptionAlert = AlertState(
+        title: {
+            TextState("Do you want to delete your existing records?")
+        },
+        actions: {
+            ButtonState(role: .none) {
+                TextState("Overwrite All Existing Data in iCloud")
+            }
+            ButtonState(role: .cancel) {
+                TextState("Delete All Existing Data")
+            }
+        },
+        message: {
+            TextState("기존 타이머 기록을 덮어쓰시겠습니까?")
         }
     )
 }

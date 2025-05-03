@@ -36,7 +36,7 @@ extension TimerRecordItem: CKConvertible {
         self.userModificationDate = values[.timerRecordItem_userModificationDate] ?? Date.distantPast
     }
     
-    // 서버에서 가져온 데이터와 동기화시킨다.
+    /// 서버에서 가져온 데이터와 동기화시킨다.
     mutating func mergeFromServerRecord(_ record: CKRecord) -> Bool {
         let values: any CKRecordKeyValueSetting = record.encryptedValues
         let cloudModificationDate: Date = values[.timerRecordItem_userModificationDate] ?? Date.distantPast

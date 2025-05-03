@@ -26,6 +26,7 @@ struct AnalyzeFeature {
             case .month: monthInfo.timerRecordList
             }
         }
+        
         var isLaunched = false
         
         var updateTimerRecord: TimerRecordItem?
@@ -68,7 +69,6 @@ struct AnalyzeFeature {
                 return .run { send in
                     await haptic.impact(style: .light)
                 }
-            
             case .initAnalyzeFeature:
                 if !state.isLaunched {
                     state.isLaunched = true
@@ -108,8 +108,7 @@ struct AnalyzeFeature {
                         await apiClient.delete(item)
                     }
                 }
-            case .confirmationDialog(_):
-                return .none
+            case .confirmationDialog(_): return .none
             /// 하위 뷰에서 바꾼 아이템 반환
             case .updateTimerSession(.presented(.delegate(.setSelectSession(let sessionItem)))):
                 guard var updateTimerRecord = state.updateTimerRecord else {

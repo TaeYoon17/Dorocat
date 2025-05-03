@@ -22,9 +22,11 @@ struct SettingFeature {
         var isHapticEnabled = false
         var isRefundPresent = false
         var isIcloudSync = false
+        
         var refundTransactionID: Transaction.ID = 0
         var notiAuthType: NotificationStateType = .denied
         var catType: CatType = .doro
+        
         @Presents var purchaseSheet: SettingPurchaseFeature.State?
         @Presents var feedbackSheet: FeedbackFeature.State?
         
@@ -36,11 +38,14 @@ struct SettingFeature {
         
         case viewAction(ViewActionType)
         
+        case setIcloudSync(Bool)
         case setProUser(Bool)
         case setCatType(CatType)
         case setRefundTransaction(Transaction.ID)
         
         case setNotiType(NotificationStateType)
+        
+        case onAppearAction
         case launchAction
         case initAction
         
@@ -73,13 +78,15 @@ struct SettingFeature {
             case .viewAction(let viewActionType):
                 return viewAction(&state, viewActionType)
             case .launchAction:
-                if !state.isLaunch{
+                if !state.isLaunch {
                     state.isLaunch = true
+                    
                     let notificationEffect:Effect<Action> = .run { send in
                         if await !notification.isDetermined{
                             await send(.setNotiType(.denied))
                         }
                     }
+                    
                     let initialEffect:Effect<Action> = .run { send in
                         // 이미 초기 설정이 끝났다... 기존에 있는 값을 가져오면 됨
                         let isAvailable = await initial.isUsed
@@ -93,6 +100,7 @@ struct SettingFeature {
                             }
                         }
                     }.cancellable(id: CancelID.initial)
+                    
                     let catEffect:Effect<Action> = .run { send in
                         let cat = await doroStateDefaults.getCatType()
                         await send(.setCatType(cat))
@@ -102,6 +110,7 @@ struct SettingFeature {
                             }
                         }
                     }.cancellable(id: CancelID.cat)
+                    
                     return Effect.merge(notificationEffect,initialEffect,catEffect)
                 }
                 return .none
@@ -139,12 +148,20 @@ struct SettingFeature {
                     }
                     await send(.setRefundTransaction(store.refundTransactionID))
                 }
+            case .setIcloudSync(let isOn):
+                state.isIcloudSync = isOn
+                return .none
             case .setRefundTransaction(let id):
                 state.refundTransactionID = id
                 return .none
             /// 상위 네비게이션 링크가 처리할 것이다...
             case .openIcloudSettingsDestination:
                 return .none
+            case .onAppearAction:
+                return .run { send in
+                    let iCloudSyncEnabled = await analyzeAPIClients.isICloudSyncEnabled
+                    await send(.setIcloudSync(iCloudSyncEnabled))
+                }
             }
         }
         .ifLet(\.$purchaseSheet, action: \.purchaseSheet) {

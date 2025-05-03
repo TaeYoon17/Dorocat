@@ -32,7 +32,7 @@ struct SettingView: View {
                                 /// NavigationLink의 장점 - 루트 reducer에서 하위 뷰와의 연결이 되어서 관리가 가능함
                                 SettingListItem.Linker(
                                     title: "iCloud Sync",
-                                    description: "Your data isn’t synced with iCloud."
+                                    description: store.isIcloudSync ? nil : "Your data isn’t synced with iCloud."
                                 ) {
                                     store.send(.viewAction(.openIcloudSetting))
                                 }
@@ -93,7 +93,10 @@ struct SettingView: View {
                 }
                 .alert($store.scope(state: \.alert, action: \.alert))
         }
-        .onAppear() { store.send(.launchAction) }
+        .onAppear() {
+            store.send(.launchAction)
+            store.send(.onAppearAction)
+        }
         .tint(.doroBlack)
         .foregroundStyle(Color.doroBlack)
         .toolbar(.hidden, for: .navigationBar)
