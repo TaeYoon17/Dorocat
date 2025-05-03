@@ -10,34 +10,10 @@ import ComposableArchitecture
 import UIKit
 import StoreKit
 import FirebaseAnalytics
-//import CloudKit
-
-extension SettingFeature {
-    @Reducer
-    struct Path {
-        @ObservableState
-        enum State: Equatable {
-            // 존재하지 않으면 생성한다.
-            case registerIcloudSyncScene(ICloudSyncFeature.State = .init())
-        }
-        
-        enum Action {
-            case registerIcloudSync(ICloudSyncFeature.Action)
-        }
-        
-        
-        var body: some ReducerOf<Self> {
-            Scope(state: \.registerIcloudSyncScene, action: \.registerIcloudSync) {
-                ICloudSyncFeature()
-            }
-        }
-    }
-}
 
 @Reducer
 struct SettingFeature {
     @ObservableState struct State: Equatable{
-//        var path = StackState<Path.State>()
         var isLaunch = false
         var isNotiAuthorized = false
         var isProUser = false
@@ -46,9 +22,11 @@ struct SettingFeature {
         var isHapticEnabled = false
         var isRefundPresent = false
         var isIcloudSync = false
+        
         var refundTransactionID: Transaction.ID = 0
         var notiAuthType: NotificationStateType = .denied
         var catType: CatType = .doro
+        
         @Presents var purchaseSheet: SettingPurchaseFeature.State?
         @Presents var feedbackSheet: FeedbackFeature.State?
         
@@ -57,19 +35,19 @@ struct SettingFeature {
         var appState = DorocatFeature.AppStateType.active
     }
     enum Action {
-//        case path(StackAction<Path.State, Path.Action>)
         
         case viewAction(ViewActionType)
         
+        case setIcloudSync(Bool)
         case setProUser(Bool)
         case setCatType(CatType)
         case setRefundTransaction(Transaction.ID)
         
         case setNotiType(NotificationStateType)
+        
+        case onAppearAction
         case launchAction
         case initAction
-        
-        case iCloudToggleRouter(iCloudStatusType)
         
         case setAppState(DorocatFeature.AppStateType)
         
@@ -80,7 +58,6 @@ struct SettingFeature {
         
         enum Alert: Equatable {
             case noneExistMailApp
-            case showICloudSettings
         }
     }
     
@@ -101,13 +78,15 @@ struct SettingFeature {
             case .viewAction(let viewActionType):
                 return viewAction(&state, viewActionType)
             case .launchAction:
-                if !state.isLaunch{
+                if !state.isLaunch {
                     state.isLaunch = true
+                    
                     let notificationEffect:Effect<Action> = .run { send in
                         if await !notification.isDetermined{
                             await send(.setNotiType(.denied))
                         }
                     }
+                    
                     let initialEffect:Effect<Action> = .run { send in
                         // 이미 초기 설정이 끝났다... 기존에 있는 값을 가져오면 됨
                         let isAvailable = await initial.isUsed
@@ -121,6 +100,7 @@ struct SettingFeature {
                             }
                         }
                     }.cancellable(id: CancelID.initial)
+                    
                     let catEffect:Effect<Action> = .run { send in
                         let cat = await doroStateDefaults.getCatType()
                         await send(.setCatType(cat))
@@ -130,20 +110,11 @@ struct SettingFeature {
                             }
                         }
                     }.cancellable(id: CancelID.cat)
+                    
                     return Effect.merge(notificationEffect,initialEffect,catEffect)
                 }
                 return .none
-            case .alert(.presented(.showICloudSettings)):
-                return .run { send in
-                    guard let url = URL(string:"App-Prefs:root=CASTLE") else {
-                        return
-                    }
-                    if await UIApplication.shared.canOpenURL(url) {
-                        Task { @MainActor in
-                            await UIApplication.shared.open(url)
-                        }
-                    }
-                }
+            
             case .purchaseSheet: return .none
             case .feedbackSheet: return .none
             case .alert: return .none
@@ -177,26 +148,20 @@ struct SettingFeature {
                     }
                     await send(.setRefundTransaction(store.refundTransactionID))
                 }
+            case .setIcloudSync(let isOn):
+                state.isIcloudSync = isOn
+                return .none
             case .setRefundTransaction(let id):
                 state.refundTransactionID = id
-                return .none
-            case .iCloudToggleRouter(let cloudToggleType):
-                switch cloudToggleType {
-                case .openICloudSignIn:
-                    state.isIcloudSync = false
-                    state.alert = .openSignIn
-                case .openErrorAlert(message: let message):
-                    state.isIcloudSync = false
-                    state.alert = .openErrorAlert(message: message.rawValue)
-                case .startICloudSync:
-                    state.isIcloudSync = true
-                case .stopICloudSync:
-                    state.isIcloudSync = false
-                }
                 return .none
             /// 상위 네비게이션 링크가 처리할 것이다...
             case .openIcloudSettingsDestination:
                 return .none
+            case .onAppearAction:
+                return .run { send in
+                    let iCloudSyncEnabled = await analyzeAPIClients.isICloudSyncEnabled
+                    await send(.setIcloudSync(iCloudSyncEnabled))
+                }
             }
         }
         .ifLet(\.$purchaseSheet, action: \.purchaseSheet) {

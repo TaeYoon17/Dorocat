@@ -41,11 +41,6 @@ protocol SettingControllerProtocol {
         isOn: Bool
     ) -> Effect<SettingFeature.Action>
     
-    /// 아이클라우드 동기화 토글
-    func iCloudSyncToggle(
-        state: inout SettingFeature.State,
-        isOn: Bool
-    ) -> Effect<SettingFeature.Action>
     
     func openIcloudSetting(
         state: inout SettingFeature.State
@@ -73,8 +68,7 @@ extension SettingControllerProtocol {
             self.hapticsToggle(state: &state, isOn: isOn)
         case .setRefundPresent(let isOn):
             self.refundPresentToggle(state: &state, isOn: isOn)
-        case .setIcloudSync(let isOn):
-            self.iCloudSyncToggle(state: &state, isOn: isOn)
+        
         case .openPurchase:
             self.openPurchaseTapped(state: &state)
         case .feedbackItemTapped:

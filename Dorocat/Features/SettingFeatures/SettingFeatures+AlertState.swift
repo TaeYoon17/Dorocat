@@ -24,24 +24,7 @@ extension AlertState where Action == SettingFeature.Action.Alert {
         )
     }
     
-    static var openSignIn: Self {
-        AlertState(
-            title: {
-                TextState("Can not support iCloud sync")
-            },
-            actions: {
-                ButtonState(role: .none, action: .send(.showICloudSettings)) {
-                    TextState("Open iCloud settings")
-                }
-                ButtonState(role: .cancel) {
-                    TextState("Do it later")
-                }
-            },
-            message: {
-                TextState("You should sign in your iCloud account.")
-            }
-        )
-    }
+    
     
     static var mailFeedbackNotAvailable: Self {
         AlertState(

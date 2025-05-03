@@ -72,29 +72,6 @@ extension SettingFeature.Controller {
         }
         
         
-        func iCloudSyncToggle(state: inout SettingFeature.State, isOn: Bool) -> Effect<SettingFeature.Action> {
-            .run { send in
-                guard isOn else {
-                    await send(.iCloudToggleRouter(.stopICloudSync), animation: .default)
-                    return
-                }
-                guard let status = try? await CKContainer.default().accountStatus() else {
-                    await send(
-                        .iCloudToggleRouter(.openErrorAlert(message: .unknown)),
-                        animation: .default
-                    )
-                    return
-                }
-                let iCloudStatusType: SettingFeature.iCloudStatusType = switch status {
-                case .available: .startICloudSync
-                case .couldNotDetermine, .temporarilyUnavailable: .openErrorAlert(message: .tryThisLater)
-                case .restricted: .openErrorAlert(message: .restricted)
-                case .noAccount: .openICloudSignIn
-                @unknown default: .openErrorAlert(message: .unknown)
-                }
-                await send(.iCloudToggleRouter(iCloudStatusType), animation: .default)
-            }
-        }
         
         func openPurchaseTapped(state: inout SettingFeature.State) -> Effect<SettingFeature.Action> {
             Analytics.logEvent("Setting Purchase", parameters: nil)

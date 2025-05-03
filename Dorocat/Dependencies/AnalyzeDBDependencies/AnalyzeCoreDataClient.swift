@@ -8,18 +8,28 @@
 import Foundation
 import CoreData
 
+enum SynchronizeEvent {
+    case start
+    case end
+}
+
 @DBActor final class AnalyzeCoreDataClient {
-    
     let coreDataService = CoreDataService()
-    lazy var syncedDatabase: SyncedDatabase = {
-        let syncedDatabase = SyncedDatabase(coreDataService: self)
-        return syncedDatabase
-    }()
+    lazy var syncedDatabase: SyncedDatabase = SyncedDatabase()
     
-    var analyzeEventContinuation: AsyncStream<AnalyzeEvent>.Continuation?
+    var isInit:Bool = false
+    
+    private(set) var analyzeEventContinuation: AsyncStream<AnalyzeEvent>.Continuation?
+    private(set) var syncrhozieEventContiuation: AsyncStream<SynchronizeEvent>.Continuation?
+    
     lazy var analyzeEvent: AsyncStream<AnalyzeEvent> = .init { continuation in
         self.analyzeEventContinuation = continuation
     }
+    
+    lazy var synchronizeEvent: AsyncStream<SynchronizeEvent> = .init { continuation in
+        syncrhozieEventContiuation = continuation
+    }
+    
     enum Label {
         static let timerRecordItemEntity = "TimerRecordItemEntity"
     }
@@ -35,7 +45,11 @@ import CoreData
     @objc func storeRemoteChange(_ notification: Notification) {
         print("과연 가져올까??")
     }
+    
+    
 }
+
+
 
 extension AnalyzeCoreDataClient {
     func findItemByID(_ id: TimerRecordItem.ID) async -> TimerRecordItem? {
@@ -50,6 +64,16 @@ extension AnalyzeCoreDataClient {
         return timerRecordItems?.first
     }
     
+    func findAllItems() async throws -> [TimerRecordItem] {
+        try await coreDataService.managedObjectContext.perform { [weak self] in
+            guard let self else { return [] }
+            let request = TimerRecordItemEntity.fetchRequest()
+            request.entity = entityDescription
+            let results = try coreDataService.managedObjectContext.fetch(request)
+            return results.map { $0.convertToItem }
+        }
+    }
+    
     func findItemsByID(_ ids: [TimerRecordItem.ID]) async throws -> [TimerRecordItem] {
         try await coreDataService.managedObjectContext.perform { [weak self] in
             guard let self else { return [] }
@@ -61,14 +85,14 @@ extension AnalyzeCoreDataClient {
         }
     }
     
-    func coredataDelete(items: [TimerRecordItem]) async throws {
+    func timerItemDeletes(items: [TimerRecordItem]) async throws {
         guard !items.isEmpty else { return }
-        let ids: [TimerRecordItem.ID] = items.map((\.id))
+        let ids: [String] = items.map((\.id.uuidString))
         try await coreDataService.managedObjectContext.perform { [weak self] in
             guard let self else { return }
             let request: NSFetchRequest<TimerRecordItemEntity> = TimerRecordItemEntity.fetchRequest()
             request.entity = entityDescription
-            request.predicate = NSPredicate(format: "id IN %@", ids as [CVarArg])
+            request.predicate = NSPredicate(format: "id IN %@", ids)
             guard let resultRequest = request as? NSFetchRequest<NSFetchRequestResult> else {
                 assertionFailure("변환 실패")
                 return
@@ -80,11 +104,16 @@ extension AnalyzeCoreDataClient {
     }
     
     /// 모든 타이머 기록 관련 로컬 DB 데이터를 지운다.
-    func coredatedeleteAll() async throws {
+    func timerRecordDeleteAll() async throws {
         try await coreDataService.managedObjectContext.perform { [weak self] in
-            guard let self else { return }
+            guard let self else {
+                assertionFailure("메모리 해제됨!!")
+                return
+            }
             let request: NSFetchRequest<TimerRecordItemEntity> = TimerRecordItemEntity.fetchRequest()
             request.entity = entityDescription
+            let ids = try coreDataService.managedObjectContext.fetch(request).map{ $0.id?.uuidString ?? "" }
+            request.predicate = NSPredicate(format: "id IN %@", ids)
             guard let resultRequest = request as? NSFetchRequest<NSFetchRequestResult> else {
                 assertionFailure("변환 실패")
                 return
@@ -95,13 +124,19 @@ extension AnalyzeCoreDataClient {
         }
     }
     
-    func coredataAppend(item: TimerRecordItem) async {
+    func timerItemUpsert(item: TimerRecordItem) async {
+        coreDataService.managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         await coreDataService.managedObjectContext.perform { [weak self] in
             guard let self else {
                 assertionFailure("추가되지 못하는 이슈")
                 return
             }
-            let recordEntity = TimerRecordItemEntity(
+            let fetchRequest: NSFetchRequest<TimerRecordItemEntity> = TimerRecordItemEntity.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id == %@", item.id as CVarArg)
+            // 로컬에 이미 엔티티가 존재하는지 확인함
+            let fetchResultEntities = try? self.coreDataService.managedObjectContext.fetch(fetchRequest)
+            // 로컬에 존재하는 엔티티가 없으면 엔티티를 만든다.
+            let recordEntity: TimerRecordItemEntity = fetchResultEntities?.first ?? TimerRecordItemEntity(
                 entity: entityDescription,
                 insertInto: coreDataService.managedObjectContext
             )
@@ -109,14 +144,15 @@ extension AnalyzeCoreDataClient {
             do {
                 try coreDataService.managedObjectContext.save()
             } catch {
-                fatalError("여기 문제가 있다")
+                assertionFailure("앱 변경사항을 제대로 저장하지 못함")
+                return
             }
         }
     }
 }
 
 
-extension TimerRecordItemEntity{
+extension TimerRecordItemEntity {
     static var dateSortDescriptor: NSSortDescriptor {
         NSSortDescriptor(key: "createdAt", ascending: false)
     }
@@ -127,6 +163,7 @@ extension TimerRecordItemEntity{
         self.createdAt = item.createdAt
         self.recordCode = item.recordCode
         self.sessionKey = item.session.name
+        self.userModificationDate = item.userModificationDate
     }
     
     var convertToItem: TimerRecordItem {
@@ -135,7 +172,8 @@ extension TimerRecordItemEntity{
             recordCode: self.recordCode!,
             createdAt: self.createdAt!,
             duration: Int(self.duration),
-            session: .init(name: self.sessionKey!)
+            session: .init(name: self.sessionKey!),
+            modificationDate: self.userModificationDate
         )
     }
 }

@@ -13,15 +13,15 @@ extension MainFeature.Controller{
         func resetDialogTapped(state: inout MainFeature.State, type: MainFeature.ConfirmationDialog) -> Effect<MainFeature.Action> {
             switch type{
             case .sessionReset:
-                switch state.timerProgressEntity.status{
+                switch state.timerProgressEntity.status {
                 case .pause:
                     state.timerProgressEntity.count = state.timerSettingEntity.timeSeconds
                     return .cancel(id: MainFeature.CancelID.timer)
                 default: return .none
                 }
             case .timerReset:
-                switch state.timerProgressEntity.status{
-                case .breakTime,.pause: return .run { send in
+                switch state.timerProgressEntity.status {
+                case .breakTime, .pause: return .run { send in
                     await send(.setStatus(.standBy, count: nil))
                 }
                 default: return .none
@@ -71,7 +71,7 @@ extension MainFeature.Controller{
         
         func resetTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {
             let isPomoMode = state.timerSettingEntity.isPomoMode
-            if isPomoMode{
+            if isPomoMode {
                 state.resetDialog = .init(title: {
                     TextState("reset button tapped")
                 }, actions: {

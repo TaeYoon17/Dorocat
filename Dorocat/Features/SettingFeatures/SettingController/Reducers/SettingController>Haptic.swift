@@ -34,11 +34,7 @@ extension SettingFeature.Controller {
             .none
         }
         
-        func iCloudSyncToggle(state: inout SettingFeature.State, isOn: Bool) -> Effect<SettingFeature.Action> {
-            .run { _ in
-                await haptic.impact(style: .light)
-            }
-        }
+        
         func openIcloudSetting(state: inout SettingFeature.State) -> Effect<SettingFeature.Action> {
             .run { _ in
                 await haptic.impact(style: .light)

@@ -10,4 +10,6 @@ import Foundation
 import CoreData
 
 
-public class TimerRecordItemEntity: NSManagedObject { }
+public class TimerRecordItemEntity: NSManagedObject {
+    
+}

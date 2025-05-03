@@ -8,16 +8,20 @@
 import Foundation
 import ComposableArchitecture
 protocol AnalyzeInformationAble {
-    var title:String { get }
-    var totalTime:String { get }
-    var date:Date { get }
+    
+    var title: String { get }
+    var totalTime: String { get }
+    var date: Date { get }
     var timerRecordList: IdentifiedArrayOf<TimerRecordItem> { get set }
-    var isLastDuration:Bool { get }
+    var isLastDuration: Bool { get }
+    
     @discardableResult
     mutating func prev() -> Date
     @discardableResult
     mutating func next() -> Date
+    
 }
+
 extension AnalyzeInformationAble {
     var totalTime: String {
         let totalNum = timerRecordList.reduce(0) { partialResult, item in
@@ -60,7 +64,7 @@ extension AnalyzeFeature {
         var date = Date()
         var timerRecordList: IdentifiedArrayOf<TimerRecordItem> = []
         
-        var title: String{
+        var title: String {
             let current = Calendar.current
             guard let weekDay = current.dateComponents([.weekday], from: date).weekday,
                   let sundayDate:Date = current.date(byAdding: .day, value: -weekDay + 1, to: date),

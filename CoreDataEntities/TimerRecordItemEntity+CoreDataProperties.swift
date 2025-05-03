@@ -20,6 +20,7 @@ extension TimerRecordItemEntity {
     @NSManaged public var createdAt: Date?
     @NSManaged public var recordCode: String?
     @NSManaged public var sessionKey: String?
+    @NSManaged public var userModificationDate: Date?
     @NSManaged public var duration: Int32
 
 }

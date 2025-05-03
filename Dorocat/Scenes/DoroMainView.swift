@@ -15,6 +15,9 @@ struct DoroMainView: View {
         ZStack(alignment: .top) {
             if store.showPageIndicator {
                 self.tabView
+                    .ignoresSafeArea(.container, edges: .bottom)
+                    .alert($store.scope(state: \.alert, action: \.alert))
+                PageIndicatorView(itemCount: DorocatFeature.PageType.allCases, selectedIndex: store.pageSelection)
             } else {
                 MainView(store: store.scope(state: \.timerState, action: \.timer))
                     .tag(DorocatFeature.PageType.timer)
@@ -23,7 +26,7 @@ struct DoroMainView: View {
                     }
             }
             /// 온보딩 상태이다.
-            if !store.guideState.onBoarding {
+            if !store.guideState.onBoardingFinished {
                 OnboardingView(store: store)
             }
         }
@@ -37,13 +40,15 @@ struct DoroMainView: View {
                 .tabItem({
                     Label("analyze", systemImage: "pencil.circle").tint(.doroBlack)
                 })
+                
             // 슬라이딩마다 부모 Store에서 저장한 값을 가져온다!!
             MainView(store: store.scope(state: \.timerState, action: \.timer))
                 .tag(DorocatFeature.PageType.timer)
                 .tabItem({
                     Label("Timer",systemImage: "folder.circle").tint(.doroBlack)
                 })
-            
+                
+
             SettingView(store: self.store.scope(state: \.settingState, action: \.setting))
                 .tag(DorocatFeature.PageType.setting)
                 .tabItem({
@@ -51,7 +56,7 @@ struct DoroMainView: View {
                 })
         })
         .tabViewStyle(.page(indexDisplayMode: .never))
-        PageIndicatorView(itemCount: DorocatFeature.PageType.allCases, selectedIndex: store.pageSelection)
+        
     }
 }
 

@@ -8,7 +8,7 @@
 import Foundation
 import ComposableArchitecture
 
-extension AnalyzeFeature{
+extension AnalyzeFeature {
     
     enum ViewAction: Equatable {
         
@@ -16,6 +16,7 @@ extension AnalyzeFeature{
         
         case signLeftTapped
         
+        case editTapped(TimerRecordItem)
     }
     
 }

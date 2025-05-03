@@ -15,7 +15,7 @@ enum TimerViewModifiers{
             let store: StoreOf<MainFeature>
             func body(content: Content) -> some View {
                 content.overlay(alignment: .leading) {
-                    if store.timerProgressEntity.status == .standBy && !store.guideInformation.goLeft{
+                    if store.timerProgressEntity.status == .standBy && !store.guideInformation.goLeftFinished{
                         TimerViewComponents.Guide.GoLeft()
                     }
                 }
@@ -25,7 +25,7 @@ enum TimerViewModifiers{
             let store: StoreOf<MainFeature>
             func body(content: Content) -> some View {
                 content.overlay(alignment: .trailing) {
-                    if store.timerProgressEntity.status == .standBy && !store.guideInformation.goRight{
+                    if store.timerProgressEntity.status == .standBy && !store.guideInformation.goRightFinished{
                         TimerViewComponents.Guide.GoRight()
                     }
                 }

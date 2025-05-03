@@ -32,13 +32,13 @@ actor GuideClient:GuideProtocol{
         set{UserDefaults.standard.setValue(newValue, forKey: "startGuide")}
     }
     func set(guide: Guides) async {
-        self.goLeft = guide.goLeft
-        self.goRight = guide.goRight
-        self.onBoarding = guide.onBoarding
+        self.goLeft = guide.goLeftFinished
+        self.goRight = guide.goRightFinished
+        self.onBoarding = guide.onBoardingFinished
         self.standByGuide = guide.standByGuide
         self.startGuide = guide.startGuide
     }
     func get() async -> Guides{
-        return Guides(onBoarding: onBoarding, goLeft: goLeft, goRight: goRight, standByGuide: standByGuide, startGuide: startGuide)
+        return Guides(onBoardingFinished: onBoarding, goLeftFinished: goLeft, goRightFinished: goRight, standByGuide: standByGuide, startGuide: startGuide)
     }
 }
