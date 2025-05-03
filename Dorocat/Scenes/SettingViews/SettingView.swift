@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import StoreKit
 import ComposableArchitecture
-enum SettingViewComponents{}
+
+enum SettingViewComponents { }
 struct SettingView: View {
     @Bindable var store: StoreOf<SettingFeature>
     @State private var isOn: Bool = false
@@ -20,17 +22,32 @@ struct SettingView: View {
                 LazyVStack(alignment: .center, pinnedViews: [.sectionHeaders], content: {
                     Section {
                         VStack(spacing:0) {
-                            VStack(spacing:8){
-                                if !store.isProUser{
-                                    ProListItemView{ store.send(.openPurchase) }.padding(.bottom,16)
+                            VStack(spacing:8) {
+                                if !store.isProUser {
+                                    ProListItemView {
+                                        store.send(.viewAction(.openPurchase))
+                                    }
+                                    .padding(.bottom,16)
+                                }
+                                /// NavigationLink의 장점 - 루트 reducer에서 하위 뷰와의 연결이 되어서 관리가 가능함
+                                SettingListItem.Linker(
+                                    title: "iCloud Sync",
+                                    description: "Your data isn’t synced with iCloud."
+                                ) {
+                                    store.send(.viewAction(.openIcloudSetting))
                                 }
                                 SettingViewComponents.NotiListItem(store: store)
-                                SettingListItem.Toggler(title: "Haptics", isOn: $store.isHapticEnabled.sending(\.setHapticEnabled))
+                                SettingListItem.Toggler(
+                                    title: "Haptics",
+                                    isOn: Binding(
+                                        get: { store.isHapticEnabled },
+                                        set: { store.send(.viewAction(.setHapticEnabled($0))) }
+                                    )
+                                )
                                 SettingViewComponents.WriteReviewLink(title: "Your Rating Matters")
                                 SettingListItem.Linker(title: "Send Feedback") {
-                                    store.send(.feedbackItemTapped)
+                                    store.send(.viewAction(.feedbackItemTapped))
                                 }
-                                
                             }
                             SettingViewComponents.Bottom(store: store)
                         }
@@ -44,33 +61,44 @@ struct SettingView: View {
                             .background(DefaultBG())
                     }
                 })
-            }.scrollIndicators(.hidden)
-            .refundRequestSheet(for: store.refundTransactionID, isPresented: Binding(get: {
-                    store.isRefundPresent
-            }, set: { store.send(.setRefundPresent($0)) }), onDismiss: { res in
-                switch res{
-                case .success(let status):
-                    print(status)
-//                    print("res success:",res)
-//                    store.send(.setCatType(.doro))
-                case .failure(let error): print("res error",error)
+            }
+            .scrollIndicators(.hidden)
+            .refundRequestSheet(
+                    for: store.refundTransactionID,
+                    isPresented:
+                        Binding(
+                            get: { store.isRefundPresent },
+                            set: { store.send(.viewAction(.setRefundPresent($0))) }
+                        ),
+                    onDismiss: { res in
+                        switch res {
+                        case .success(let status):
+                            print(status)
+                        case .failure(let error):
+                            print("res error",error)
+                        }
+                    }
+                )
+                .sheet(item: $store.scope(state: \.purchaseSheet, action: \.purchaseSheet)) { settingPurchaseStore in
+                    PurchaseSheet(store: settingPurchaseStore)
+                        .presentationDetents([.large])
+                        .presentationDragIndicator(.visible)
                 }
-            })
-            .sheet(item: $store.scope(state: \.purchaseSheet, action: \.purchaseSheet)) { settingPurchaseStore in
-                    PurchaseSheet(store: settingPurchaseStore).presentationDetents([.large])
+                .sheet(item: $store.scope(state: \.feedbackSheet, action: \.feedbackSheet)) { sheetStore in
+                    FeedbackSheet(store: sheetStore)
+                        .ignoresSafeArea(.container,edges:.bottom)
+                        .presentationDetents([.large])
+                        .tint(.doroWhite)
                         .presentationDragIndicator(.visible)
-            }
-            .sheet(item: $store.scope(state: \.feedbackSheet, action: \.feedbackSheet)) { sheetStore in
-                FeedbackSheet(store: sheetStore).ignoresSafeArea(.container,edges:.bottom).presentationDetents([.large]).tint(.doroWhite)
-                        .presentationDragIndicator(.visible)
-            }
-            .alert($store.scope(state: \.alert, action: \.alert))
+                }
+                .alert($store.scope(state: \.alert, action: \.alert))
         }
-        .onAppear(){ store.send(.launchAction) }
-        .tint(.black)
-        .foregroundStyle(.black)
+        .onAppear() { store.send(.launchAction) }
+        .tint(.doroBlack)
+        .foregroundStyle(Color.doroBlack)
         .toolbar(.hidden, for: .navigationBar)
-        .background(.grey04)
+        .background(Color.grey04)
+        
     }
 }
 

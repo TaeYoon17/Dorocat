@@ -8,8 +8,11 @@
 import Foundation
 import ComposableArchitecture
 extension DorocatFeature{
-    func settingFeatureReducer(state: inout State,subAction action: SettingFeature.Action)-> Effect<Action>{
+    func settingFeatureReducer(state: inout State,subAction action: SettingFeature.Action)-> Effect<Action> {
         switch action {
+        case .openIcloudSettingsDestination:
+            state.path.append(.registerICloudSettingScene(.init()))
+            return .none
         default: return .none
         }
         return .none

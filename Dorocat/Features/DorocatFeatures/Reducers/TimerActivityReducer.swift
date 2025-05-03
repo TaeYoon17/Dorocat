@@ -28,61 +28,73 @@ fileprivate extension DorocatFeature{
                 return
             }
             let difference = Int(Date().timeIntervalSince(prevDate))
-            let pomoDefaultsValue:PomoValues = await pomoDefaults.getAll()
-            let sessionItem = pomoDefaultsValue.sessionItem
-            let restTime = pomoDefaultsValue.count
-            let timerTotalTime = pomoDefaultsValue.information?.timeSeconds ?? 0
+            let pomoDefaultsValue:DoroStateEntity = await doroStateDefaults.getDoroStateEntity()
+            
+            let sessionItem = pomoDefaultsValue.progressEntity.session
+            let restTime = pomoDefaultsValue.progressEntity.count
+            
+            let timerTotalTime = pomoDefaultsValue.settingEntity.timeSeconds ?? 0
             
             let differenceTime = restTime - difference
             if next == .pause && differenceTime <= 0 {
                 ActivityIntentManager.setTimerActivityType(prev)
                 return
             }
-            
             await timerBackground.set(date: Date())
+            
             switch next{
             case .breakSleep: break
             case .focusSleep:
-                await pomoDefaults.setStatus(.focus)
-                await timerBackground.set(timerStatus: .sleep(.focusSleep))
-                await liveActivity.updateActivity(type:.focusSleep,item:pomoDefaultsValue.sessionItem, cat: pomoDefaultsValue.catType,restCount: restTime)
-                try? await setFocusSleepNotification(pomoDefaultValue: pomoDefaultsValue)
+                var doroStateEntity = await doroStateDefaults.getDoroStateEntity()
+                doroStateEntity.progressEntity.status = .focus
+                await doroStateDefaults.setTimerProgressEntity(doroStateEntity.progressEntity)
+                await timerBackground.set(timerStatus: .focusSleep)
+                await liveActivity.updateActivity(type:.focusSleep,
+                                                  item:doroStateEntity.progressEntity.session,
+                                                  cat: doroStateEntity.catType,
+                                                  restCount: restTime)
+                try? await setFocusSleepNotification(entity: doroStateEntity)
             case .pause:
-                let differenceTime = await pomoDefaults.getAll().count - difference
-                print("불리긴한다 \(differenceTime)")
+                var doroStateEntity = await doroStateDefaults.getDoroStateEntity()
+                let differenceTime = doroStateEntity.progressEntity.count - difference
                 if differenceTime <= 0{
-                    print("여긴데... \(differenceTime)")
                     ActivityIntentManager.setTimerActivityType(prev)
                     return
                 }else{
-                    await pomoDefaults.setCount(differenceTime)
-                    await pomoDefaults.setStatus(.pause)
-                    await liveActivity.updateActivity(type: .pause,item: sessionItem, cat: pomoDefaultsValue.catType, restCount: differenceTime)
+                    doroStateEntity.progressEntity.count = differenceTime
+                    doroStateEntity.progressEntity.status = .pause
+                    await liveActivity.updateActivity(type: .pause,
+                                                      item: sessionItem,
+                                                      cat: doroStateEntity.catType,
+                                                      restCount: differenceTime)
+                    await doroStateDefaults.setDoroStateEntity(doroStateEntity)
                     try await notification.removeAllNotifications()
                 }
             case .standBy:
-                let differenceTime = await pomoDefaults.getAll().count - difference
+                var doroStateEntity = await doroStateDefaults.getDoroStateEntity()
+                let differenceTime = doroStateEntity.progressEntity.count - difference
                 guard differenceTime > 0 else { return } // 0보다 작으면 이미
-                await pomoDefaults.setCount(timerTotalTime)
-                await pomoDefaults.setStatus(.standBy)
+                doroStateEntity.progressEntity.count = timerTotalTime
+                doroStateEntity.progressEntity.status = .standBy
                 await liveActivity.updateActivity(type: .standBy,
                                                   item: sessionItem,
-                                                  cat: pomoDefaultsValue.catType,
+                                                  cat: doroStateEntity.catType,
                                                   restCount: 0)
+                await doroStateDefaults.setDoroStateEntity(doroStateEntity)
             }
         }
     }
-    private func setFocusSleepNotification(pomoDefaultValue value: PomoValues) async throws{
-        guard let information = value.information else {fatalError("정보가 없음!!")}
-        if information.isPomoMode{
-            let restCycle = information.cycle - value.cycle
+    
+    private func setFocusSleepNotification(entity: DoroStateEntity) async throws{
+        if entity.settingEntity.isPomoMode{
+            let restCycle = entity.settingEntity.cycle - entity.progressEntity.cycle
             if restCycle == 1{
-                try await notification.sendNotification(message: .complete, restSeconds: value.count)
+                try await notification.sendNotification(message: .complete, restSeconds: entity.progressEntity.count)
             }else{
-                try await notification.sendNotification(message: .sessionComplete(breakMinutes: information.breakTime / 60), restSeconds: value.count)
+                try await notification.sendNotification(message: .sessionComplete(breakMinutes: entity.settingEntity.breakTime / 60), restSeconds: entity.progressEntity.count)
             }
         }else{
-            try? await notification.sendNotification(message: .complete, restSeconds: value.count)
+            try? await notification.sendNotification(message: .complete, restSeconds: entity.progressEntity.count)
         }
     }
 }

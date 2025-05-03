@@ -15,7 +15,6 @@ struct PomoAttributes:ActivityAttributes {
         var count:Int = 0
         var endTime:Int = 0
     }
-    
 }
 enum Status: String, CaseIterable, Codable, Equatable {
     case received = "eraser"

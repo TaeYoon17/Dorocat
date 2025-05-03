@@ -3,263 +3,30 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6301F79B2BC3BE6200E04214 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6301F79A2BC3BE6200E04214 /* RealmRepository.swift */; };
-		6301F79D2BC3BF1300E04214 /* RealmError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6301F79C2BC3BF1300E04214 /* RealmError.swift */; };
-		6301F7A02BC3C1E400E04214 /* AnalyzeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6301F79F2BC3C1E400E04214 /* AnalyzeRepository.swift */; };
-		6301F7A32BC3D09500E04214 /* AsyncMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6301F7A22BC3D09500E04214 /* AsyncMap.swift */; };
-		6301F7A52BC3D0AF00E04214 /* Legacy-AnalyzeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6301F7A42BC3D0AF00E04214 /* Legacy-AnalyzeFeature.swift */; };
-		630285402BBD1360009C32AE /* PageIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6302853F2BBD1360009C32AE /* PageIndicatorView.swift */; };
-		630285432BBD1A2C009C32AE /* ProListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630285422BBD1A2C009C32AE /* ProListItemView.swift */; };
-		630285452BBD1D39009C32AE /* SettingTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630285442BBD1D39009C32AE /* SettingTitleView.swift */; };
-		630285472BBD1E1D009C32AE /* SettingListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630285462BBD1E1D009C32AE /* SettingListItem.swift */; };
-		63088F202BBEC24600BF654D /* TriggerBtnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088F1F2BBEC24600BF654D /* TriggerBtnStyle.swift */; };
-		631058892BC17A5A008611AD /* TimerViewComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631058882BC17A5A008611AD /* TimerViewComponents.swift */; };
-		6310588B2BC17D26008611AD /* TimerViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310588A2BC17D26008611AD /* TimerViewModifiers.swift */; };
-		6310FCB92C0DBA280068FE29 /* CatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637104102C09C8B20099075C /* CatType.swift */; };
-		6310FCBA2C0DBA2C0068FE29 /* CatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637104102C09C8B20099075C /* CatType.swift */; };
-		6310FCBF2C0DBBE40068FE29 /* CatTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310FCBD2C0DBBD90068FE29 /* CatTypeExtension.swift */; };
-		6310FCC12C0DD3EB0068FE29 /* NotiListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310FCC02C0DD3EB0068FE29 /* NotiListItem.swift */; };
-		6310FCC42C0DF2000068FE29 /* ControllType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310FCC32C0DF2000068FE29 /* ControllType.swift */; };
-		6310FCC62C0DF2BC0068FE29 /* CatSelectControllerReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310FCC52C0DF2BC0068FE29 /* CatSelectControllerReducers.swift */; };
-		6310FCC82C0DF5E80068FE29 /* ControllerReducer>Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310FCC72C0DF5E80068FE29 /* ControllerReducer>Action.swift */; };
-		6310FCCB2C0DFBA30068FE29 /* CatSelectStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310FCCA2C0DFBA30068FE29 /* CatSelectStyle.swift */; };
-		6310FCCD2C0E06510068FE29 /* FeedbackSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310FCCC2C0E06510068FE29 /* FeedbackSheet.swift */; };
-		6310FCD22C0E0EB80068FE29 /* FeedbackDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310FCD12C0E0EB80068FE29 /* FeedbackDependency.swift */; };
-		631217772C1588BA00144189 /* AnalyzeCoreDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631217762C1588BA00144189 /* AnalyzeCoreDataClient.swift */; };
-		6312177A2C15897B00144189 /* DoroModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 631217782C15897B00144189 /* DoroModel.xcdatamodeld */; };
-		6312177C2C158E4B00144189 /* CoreDataSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6312177B2C158E4B00144189 /* CoreDataSessionStore.swift */; };
-		631217812C1595BA00144189 /* CoreDataCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631217802C1595BA00144189 /* CoreDataCore.swift */; };
-		631217842C1597D800144189 /* TimerRecordItemEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631217822C1597D800144189 /* TimerRecordItemEntity+CoreDataClass.swift */; };
-		631217852C1597D800144189 /* TimerRecordItemEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631217832C1597D800144189 /* TimerRecordItemEntity+CoreDataProperties.swift */; };
-		631238E32C15A0E90097EE6B /* FontCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631238E22C15A0E90097EE6B /* FontCoordinator.swift */; };
-		631238E42C15A5530097EE6B /* FontCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631238E22C15A0E90097EE6B /* FontCoordinator.swift */; };
-		631238E52C15A5530097EE6B /* FontCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631238E22C15A0E90097EE6B /* FontCoordinator.swift */; };
-		63170A592BF84ACB00F35D6A /* FocusSleepToPauseIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63170A582BF84ACB00F35D6A /* FocusSleepToPauseIntent.swift */; };
-		63170A5A2BF84ACF00F35D6A /* FocusSleepToPauseIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63170A582BF84ACB00F35D6A /* FocusSleepToPauseIntent.swift */; };
-		63170A5B2BF84AD000F35D6A /* FocusSleepToPauseIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63170A582BF84ACB00F35D6A /* FocusSleepToPauseIntent.swift */; };
-		63170A5E2BF854FF00F35D6A /* DorocatFeature+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63170A5D2BF854FF00F35D6A /* DorocatFeature+State.swift */; };
-		63170A612BF8677A00F35D6A /* TimerActivityReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63170A602BF8677A00F35D6A /* TimerActivityReducer.swift */; };
-		63170A632BF9175000F35D6A /* PauseToFocusSleepIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63170A622BF9175000F35D6A /* PauseToFocusSleepIntent.swift */; };
-		63170A642BF9175000F35D6A /* PauseToFocusSleepIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63170A622BF9175000F35D6A /* PauseToFocusSleepIntent.swift */; };
-		63170A652BF9175000F35D6A /* PauseToFocusSleepIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63170A622BF9175000F35D6A /* PauseToFocusSleepIntent.swift */; };
-		63170A6B2BF91C0F00F35D6A /* DoroWidgetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63170A672BF9199700F35D6A /* DoroWidgetComponent.swift */; };
-		631E71542BDA377000DDD72B /* AppState>LiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E71532BDA377000DDD72B /* AppState>LiveActivity.swift */; };
-		631E71562BDA380E00DDD72B /* AppState>Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E71552BDA380E00DDD72B /* AppState>Notification.swift */; };
-		631E71582BDA386900DDD72B /* AppState>TimerSaveFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E71572BDA386900DDD72B /* AppState>TimerSaveFetch.swift */; };
-		631FA2102BE780DC00E603A2 /* TimerControllerReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631FA20F2BE780DC00E603A2 /* TimerControllerReducers.swift */; };
-		631FA2122BE7810300E603A2 /* TimerController>Haptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631FA2112BE7810200E603A2 /* TimerController>Haptic.swift */; };
-		631FA2142BE788E800E603A2 /* TimerController>Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631FA2132BE788E800E603A2 /* TimerController>Guide.swift */; };
-		631FA2162BE790CE00E603A2 /* TimerController>Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631FA2152BE790CE00E603A2 /* TimerController>Action.swift */; };
-		6322F5A62C0F077300682C2C /* Bottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6322F5A52C0F077300682C2C /* Bottom.swift */; };
-		632721862B9F2E5C007E3206 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 632721852B9F2E5C007E3206 /* .gitignore */; };
+		63085EBE2CB54C9E00F87662 /* DoroDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 63085EBD2CB54C9E00F87662 /* DoroDesignSystem */; };
+		63085EC02CB54CF600F87662 /* DoroDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 63085EBF2CB54CF600F87662 /* DoroDesignSystem */; };
 		632F53882BD7490800357C68 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632F53872BD7490800357C68 /* WidgetKit.framework */; };
 		632F538A2BD7490800357C68 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632F53892BD7490800357C68 /* SwiftUI.framework */; };
-		632F538D2BD7490800357C68 /* DoroWidgetExtensionBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F538C2BD7490800357C68 /* DoroWidgetExtensionBundle.swift */; };
-		632F538F2BD7490800357C68 /* DoroWidgetExtensionLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F538E2BD7490800357C68 /* DoroWidgetExtensionLiveActivity.swift */; };
-		632F53912BD7490800357C68 /* DoroWidgetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F53902BD7490800357C68 /* DoroWidgetExtension.swift */; };
-		632F53932BD7490900357C68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 632F53922BD7490900357C68 /* Assets.xcassets */; };
 		632F53972BD7490900357C68 /* DoroWidgetExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 632F53852BD7490800357C68 /* DoroWidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		632F539F2BD749FF00357C68 /* PomoLiveDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F539E2BD749FF00357C68 /* PomoLiveDependency.swift */; };
-		632F89392BB5716400F2DC0B /* TimerFeature+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89382BB5716400F2DC0B /* TimerFeature+State.swift */; };
-		632F893B2BB5717D00F2DC0B /* TimerFeature+ControllType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F893A2BB5717D00F2DC0B /* TimerFeature+ControllType.swift */; };
-		632F89412BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89402BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift */; };
-		632F89462BB5C52300F2DC0B /* TimerLogicReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632F89452BB5C52300F2DC0B /* TimerLogicReducers.swift */; };
-		633266122C1177EF001A71C2 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633266112C1177EF001A71C2 /* NotificationType.swift */; };
-		633266162C117ABF001A71C2 /* AnalyzeRealmClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633266152C117ABF001A71C2 /* AnalyzeRealmClient.swift */; };
-		633266182C117BE1001A71C2 /* GuideClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633266172C117BE1001A71C2 /* GuideClient.swift */; };
-		6332661A2C117C2C001A71C2 /* HapticClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633266192C117C2C001A71C2 /* HapticClient.swift */; };
-		6332661C2C117CB4001A71C2 /* LiveActivityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6332661B2C117CB4001A71C2 /* LiveActivityClient.swift */; };
-		6332661E2C1181A2001A71C2 /* TimerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6332661D2C1181A2001A71C2 /* TimerClient.swift */; };
-		633266212C118831001A71C2 /* TimerFeatureReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633266202C118831001A71C2 /* TimerFeatureReducer.swift */; };
-		633266242C1189A1001A71C2 /* AnalyzeFeatureReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633266232C1189A1001A71C2 /* AnalyzeFeatureReducer.swift */; };
-		633266262C119126001A71C2 /* SettingFeatureReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633266252C119126001A71C2 /* SettingFeatureReducer.swift */; };
-		633266282C119187001A71C2 /* PageMoveReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633266272C119187001A71C2 /* PageMoveReducer.swift */; };
-		6332662B2C1191E7001A71C2 /* DorocatFeature+PageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6332662A2C1191E7001A71C2 /* DorocatFeature+PageType.swift */; };
-		6332662D2C11920A001A71C2 /* DorocatFeature+AppStateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6332662C2C11920A001A71C2 /* DorocatFeature+AppStateType.swift */; };
-		6332662F2C11932F001A71C2 /* LaunchReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6332662E2C11932F001A71C2 /* LaunchReducer.swift */; };
-		633266312C119847001A71C2 /* ControllerReducer>Haptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633266302C119847001A71C2 /* ControllerReducer>Haptic.swift */; };
-		633266342C119B3B001A71C2 /* PomoUserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633266332C119B3B001A71C2 /* PomoUserDefaultsClient.swift */; };
-		6332FC352C0B465B00FBEBB1 /* OfferList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6332FC342C0B465B00FBEBB1 /* OfferList.swift */; };
-		633558992C08D08000059332 /* BreakSleepToStandbyIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633558982C08D08000059332 /* BreakSleepToStandbyIntent.swift */; };
-		6335589A2C08D08000059332 /* BreakSleepToStandbyIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633558982C08D08000059332 /* BreakSleepToStandbyIntent.swift */; };
-		6335589B2C08D08000059332 /* BreakSleepToStandbyIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633558982C08D08000059332 /* BreakSleepToStandbyIntent.swift */; };
-		6335589D2C08D27800059332 /* AppAwakeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6335589C2C08D27800059332 /* AppAwakeIntent.swift */; };
-		6335589E2C08D27800059332 /* AppAwakeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6335589C2C08D27800059332 /* AppAwakeIntent.swift */; };
-		6335589F2C08D27800059332 /* AppAwakeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6335589C2C08D27800059332 /* AppAwakeIntent.swift */; };
-		633558A22C08E15900059332 /* CatDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633558A12C08E15900059332 /* CatDependency.swift */; };
-		633E97F02BD7ADE900215563 /* PomoValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633E97EF2BD7ADE900215563 /* PomoValues.swift */; };
-		633E97F22BD7AE0700215563 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633E97F12BD7AE0700215563 /* TimerStatus.swift */; };
-		633E97F42BD7AE3C00215563 /* PomoAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633E97F32BD7AE3C00215563 /* PomoAttributes.swift */; };
+		633D06422CA0659E00FD9070 /* DorocatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D06412CA0659E00FD9070 /* DorocatTests.swift */; };
 		633FF07D2BDAB14B00D0F85F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633FF07C2BDAB14B00D0F85F /* StoreKit.framework */; };
-		633FF0812BDABAD300D0F85F /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633FF0802BDABAD300D0F85F /* PurchaseManager.swift */; };
-		6342D3E02C345E0D00AB335A /* pomo_done.json in Resources */ = {isa = PBXBuildFile; fileRef = 6342D3DD2C345E0D00AB335A /* pomo_done.json */; };
-		6342D3E12C345E0D00AB335A /* pomo_basic.json in Resources */ = {isa = PBXBuildFile; fileRef = 6342D3DE2C345E0D00AB335A /* pomo_basic.json */; };
-		6342D3E22C345E0D00AB335A /* pomo_sleeping.json in Resources */ = {isa = PBXBuildFile; fileRef = 6342D3DF2C345E0D00AB335A /* pomo_sleeping.json */; };
-		6342D3E42C345FDD00AB335A /* TimerCPT+SkipBreakInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6342D3E32C345FDD00AB335A /* TimerCPT+SkipBreakInfo.swift */; };
-		6345AB602BDCDCFA00FF5D33 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB5F2BDCDCFA00FF5D33 /* FontManager.swift */; };
-		6345AB622BDCDD0100FF5D33 /* FontSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB612BDCDD0100FF5D33 /* FontSystem.swift */; };
-		6345AB642BDCDD9400FF5D33 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB632BDCDD9400FF5D33 /* UIFontExtension.swift */; };
-		6345AB662BDD28B800FF5D33 /* ContinueBtnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB652BDD28B800FF5D33 /* ContinueBtnStyle.swift */; };
-		634C17BB2BC9207A007AC15F /* AnalyzeFeature+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C17BA2BC9207A007AC15F /* AnalyzeFeature+State.swift */; };
-		634C48B72BDB8F1D002E35DC /* DarumadropOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 634C48B62BDB8F1D002E35DC /* DarumadropOne-Regular.ttf */; };
-		6351FA162C0C1D9E00FD0C67 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6351FA152C0C1D9E00FD0C67 /* RealmSwift */; };
-		6351FA172C0C1EE400FD0C67 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 6351FA152C0C1D9E00FD0C67 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		6352AF752BF6190100929F47 /* SessionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EA3222BEF815400203538 /* SessionItem.swift */; };
 		6352AFC42BF626A900929F47 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6352AF7B2BF625D200929F47 /* Intents.framework */; };
 		6352AFC72BF626A900929F47 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352AFC62BF626A900929F47 /* IntentHandler.swift */; };
 		6352AFCB2BF626A900929F47 /* DorocatIntents.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6352AFC32BF626A900929F47 /* DorocatIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		6352AFFC2BF6422E00929F47 /* ActivityIntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352AFFB2BF6422E00929F47 /* ActivityIntentManager.swift */; };
-		6352AFFD2BF6422E00929F47 /* ActivityIntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352AFFB2BF6422E00929F47 /* ActivityIntentManager.swift */; };
-		6352AFFE2BF6422E00929F47 /* ActivityIntentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352AFFB2BF6422E00929F47 /* ActivityIntentManager.swift */; };
-		635490F52C19C8C600BC5A2A /* StoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635490F42C19C8C600BC5A2A /* StoreClient.swift */; };
-		635490F62C19D13100BC5A2A /* DoroTest.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 633FF07E2BDAB5A000D0F85F /* DoroTest.storekit */; };
-		63560A392C20ABD1009762A2 /* WriteReviewLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63560A382C20ABD1009762A2 /* WriteReviewLink.swift */; };
-		635618AC2C1DD098002816BD /* FeedbackFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635618AB2C1DD098002816BD /* FeedbackFeature.swift */; };
-		635923A62BECFAF4002CC44C /* TimerSessionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635923A52BECFAF4002CC44C /* TimerSessionFeature.swift */; };
-		635923A92BECFE53002CC44C /* TimerSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635923A82BECFE53002CC44C /* TimerSessionView.swift */; };
-		63597A762C84299D0003E880 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63597A752C84299D0003E880 /* GoogleService-Info.plist */; };
 		63597A8A2C843A2C0003E880 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 63597A892C843A2C0003E880 /* FirebaseAnalytics */; };
 		63597A8C2C843A2C0003E880 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 63597A8B2C843A2C0003E880 /* FirebaseAnalyticsOnDeviceConversion */; };
 		63597A8E2C843A2C0003E880 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 63597A8D2C843A2C0003E880 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		63597A902C843A2C0003E880 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 63597A8F2C843A2C0003E880 /* FirebaseCrashlytics */; };
-		6359D9882BC576C40045DEC7 /* AppStateReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6359D9872BC576C40045DEC7 /* AppStateReducers.swift */; };
-		635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 635BD5582B9F56CA004480D1 /* Localizable.xcstrings */; };
 		635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 635BD55B2B9F5708004480D1 /* ComposableArchitecture */; };
-		635C9D3D2BB082E400BFD46D /* PomoDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635C9D3C2BB082E400BFD46D /* PomoDependency.swift */; };
-		63616FC12BC666B8003A7211 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63616FC02BC666B8003A7211 /* OnboardingView.swift */; };
-		636453C22C19E176000D0BD9 /* TimerCPT+DoroCat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636453C12C19E176000D0BD9 /* TimerCPT+DoroCat.swift */; };
-		636453C42C19E1B6000D0BD9 /* TimerCPT+Guides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636453C32C19E1B6000D0BD9 /* TimerCPT+Guides.swift */; };
-		636453C62C19E1EB000D0BD9 /* TimerCPT+Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636453C52C19E1EB000D0BD9 /* TimerCPT+Session.swift */; };
-		636D59EF2C182A17000A9CC2 /* SessionMenuEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636D59ED2C182A17000A9CC2 /* SessionMenuEntity+CoreDataClass.swift */; };
-		636D59F02C182A17000A9CC2 /* SessionMenuEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636D59EE2C182A17000A9CC2 /* SessionMenuEntity+CoreDataProperties.swift */; };
-		636E9F662BA818000006FE56 /* DBActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636E9F652BA818000006FE56 /* DBActor.swift */; };
-		636E9F6A2BAD0A880006FE56 /* Legacy-AddShoppingListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636E9F692BAD0A880006FE56 /* Legacy-AddShoppingListFeature.swift */; };
-		636EA3232BEF815400203538 /* SessionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EA3222BEF815400203538 /* SessionItem.swift */; };
-		636EA3252BEF83CF00203538 /* PomoSessionDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EA3242BEF83CF00203538 /* PomoSessionDependency.swift */; };
-		636EA3282BEF845700203538 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EA3272BEF845700203538 /* SessionError.swift */; };
-		636EA32B2BEF856B00203538 /* PomoSession+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EA32A2BEF856B00203538 /* PomoSession+Snapshot.swift */; };
-		636EA32D2BEF858D00203538 /* UserDefaultsSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EA32C2BEF858D00203538 /* UserDefaultsSessionStore.swift */; };
-		637104112C09C8B20099075C /* CatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637104102C09C8B20099075C /* CatType.swift */; };
-		637104142C09CD270099075C /* CatSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637104132C09CD270099075C /* CatSelectView.swift */; };
-		637104182C09CD9F0099075C /* CatSelectFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637104172C09CD9F0099075C /* CatSelectFeature.swift */; };
-		6371041A2C0B2A670099075C /* CatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637104192C0B2A670099075C /* CatList.swift */; };
-		6371041C2C0B32FB0099075C /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6371041B2C0B32FB0099075C /* Info.swift */; };
-		6371041F2C0B33A80099075C /* ConfirmBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6371041E2C0B33A80099075C /* ConfirmBtn.swift */; };
-		637104232C0B3D300099075C /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637104222C0B3D300099075C /* Information.swift */; };
-		637340812BA7440900B2A10F /* TimerRecordItemTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637340802BA7440900B2A10F /* TimerRecordItemTable.swift */; };
-		637340852BA745CB00B2A10F /* Legacy-ShoppingListItemsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637340842BA745CB00B2A10F /* Legacy-ShoppingListItemsScreen.swift */; };
-		637340872BA7460900B2A10F /* Legacy-AddShoppingListItemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637340862BA7460900B2A10F /* Legacy-AddShoppingListItemScreen.swift */; };
-		6373408D2BA7478A00B2A10F /* Legacy-ShoppingListItemFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6373408C2BA7478A00B2A10F /* Legacy-ShoppingListItemFeature.swift */; };
-		6373504C2BB7E3AE00221F20 /* TimeFeature+TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6373504B2BB7E3AE00221F20 /* TimeFeature+TimerStatus.swift */; };
-		6373504E2BB7E3E500221F20 /* TimerFeature+TimerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6373504D2BB7E3E500221F20 /* TimerFeature+TimerInformation.swift */; };
-		637350512BB7EEE300221F20 /* BackgroundTimerLogicReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637350502BB7EEE300221F20 /* BackgroundTimerLogicReducers.swift */; };
-		637350532BB8161D00221F20 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637350522BB8161D00221F20 /* DateExtensions.swift */; };
+		63860A4A2CB415E80058D4EE /* NotificationDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 63860A492CB415E80058D4EE /* NotificationDependency */; };
+		63860A502CB416B50058D4EE /* NotificationDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 63860A4F2CB416B50058D4EE /* NotificationDependency */; };
 		638C92872C52AB5F00F62CA4 /* Dorocat.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 638C92862C52AB5F00F62CA4 /* Dorocat.storekit */; };
-		638EAB032BBF7F50007F8CAC /* DoroTogglerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638EAB022BBF7F50007F8CAC /* DoroTogglerView.swift */; };
-		638EAB062BBF7FDE007F8CAC /* DragGesture+Swipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638EAB052BBF7FDE007F8CAC /* DragGesture+Swipe.swift */; };
-		638EAB082BBFD1C7007F8CAC /* DoroNumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638EAB072BBFD1C7007F8CAC /* DoroNumberPad.swift */; };
-		639F8D132BC97BF300D66551 /* Anaylze+ViewReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639F8D122BC97BF300D66551 /* Anaylze+ViewReducers.swift */; };
-		639F8D152BC97C8700D66551 /* AnalyzeFeautre+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639F8D142BC97C8700D66551 /* AnalyzeFeautre+Action.swift */; };
-		639F8D172BC9954400D66551 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639F8D162BC9954400D66551 /* IntExtensions.swift */; };
-		639F8D1E2BCA55DD00D66551 /* Analyze+DurationReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639F8D1D2BCA55DD00D66551 /* Analyze+DurationReducers.swift */; };
-		639F8D202BCA5F2700D66551 /* AsyncForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639F8D1F2BCA5F2700D66551 /* AsyncForEach.swift */; };
-		63A288582BD64ECA00C817E7 /* PurchaseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A288572BD64ECA00C817E7 /* PurchaseSheet.swift */; };
-		63A2885B2BD6507100C817E7 /* SettingPurchaseFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A2885A2BD6507100C817E7 /* SettingPurchaseFeature.swift */; };
-		63A5175F2BD2D54200FEAEF6 /* HapticDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A5175E2BD2D54200FEAEF6 /* HapticDependency.swift */; };
-		63A9C3F62BA574830076D42C /* TimerRecordDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3F52BA574830076D42C /* TimerRecordDependency.swift */; };
-		63A9C3F92BA5A3F10076D42C /* NumberPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3F82BA5A3F10076D42C /* NumberPickerView.swift */; };
-		63A9C3FD2BA5E21A0076D42C /* AnalyzeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3FC2BA5E21A0076D42C /* AnalyzeFeature.swift */; };
-		63A9C4002BA5E2D60076D42C /* AnalyzeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A9C3FF2BA5E2D60076D42C /* AnalyzeView.swift */; };
-		63AD70522BA4297300DBD6B9 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70512BA4297300DBD6B9 /* TimerView.swift */; };
-		63AD70542BA429E300DBD6B9 /* DorocatFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70532BA429E300DBD6B9 /* DorocatFeature.swift */; };
-		63AD70562BA42A6E00DBD6B9 /* DoroMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70552BA42A6E00DBD6B9 /* DoroMainView.swift */; };
-		63AD70582BA437EB00DBD6B9 /* TimerFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70572BA437EB00DBD6B9 /* TimerFeature.swift */; };
-		63AD705A2BA439D600DBD6B9 /* TimerSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70592BA439D600DBD6B9 /* TimerSettingView.swift */; };
-		63AD705E2BA43A5900DBD6B9 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD705D2BA43A5900DBD6B9 /* SettingView.swift */; };
-		63AD70622BA43EB800DBD6B9 /* SettingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70612BA43EB800DBD6B9 /* SettingFeature.swift */; };
-		63AD70642BA43F6D00DBD6B9 /* TimerSettingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD70632BA43F6D00DBD6B9 /* TimerSettingFeature.swift */; };
-		63B2BAE12BEBB0F3000090C5 /* TimerStatusReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B2BAE02BEBB0F3000090C5 /* TimerStatusReducers.swift */; };
-		63B2BAE32BEBB473000090C5 /* TimerStatus>LiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B2BAE22BEBB473000090C5 /* TimerStatus>LiveActivity.swift */; };
-		63B2BAE72BEBB9E3000090C5 /* TimerStatus>Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B2BAE62BEBB9E3000090C5 /* TimerStatus>Status.swift */; };
-		63B2BAE92BEBBD96000090C5 /* TimerStatus>Analyze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B2BAE82BEBBD96000090C5 /* TimerStatus>Analyze.swift */; };
-		63B2BAEB2BEBD384000090C5 /* TimerController>Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B2BAEA2BEBD384000090C5 /* TimerController>Notification.swift */; };
-		63B3FC322BB04A6600277576 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC242BB04A6600277576 /* Rubik-Medium.ttf */; };
-		63B3FC332BB04A6600277576 /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC252BB04A6600277576 /* Rubik-BlackItalic.ttf */; };
-		63B3FC342BB04A6600277576 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC262BB04A6600277576 /* Rubik-MediumItalic.ttf */; };
-		63B3FC352BB04A6600277576 /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC272BB04A6600277576 /* Rubik-SemiBold.ttf */; };
-		63B3FC362BB04A6600277576 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC282BB04A6600277576 /* Rubik-Light.ttf */; };
-		63B3FC372BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC292BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf */; };
-		63B3FC382BB04A6600277576 /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2A2BB04A6600277576 /* Rubik-LightItalic.ttf */; };
-		63B3FC392BB04A6600277576 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2B2BB04A6600277576 /* Rubik-Bold.ttf */; };
-		63B3FC3A2BB04A6600277576 /* Rubik-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2C2BB04A6600277576 /* Rubik-ExtraBold.ttf */; };
-		63B3FC3B2BB04A6600277576 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2D2BB04A6600277576 /* Rubik-Black.ttf */; };
-		63B3FC3C2BB04A6600277576 /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2E2BB04A6600277576 /* Rubik-BoldItalic.ttf */; };
-		63B3FC3D2BB04A6600277576 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2F2BB04A6600277576 /* Rubik-Italic.ttf */; };
-		63B3FC3E2BB04A6600277576 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC302BB04A6600277576 /* Rubik-Regular.ttf */; };
-		63B3FC3F2BB04A6600277576 /* Rubik-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC312BB04A6600277576 /* Rubik-SemiBoldItalic.ttf */; };
-		63B3FC422BB04B2500277576 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3FC412BB04B2500277576 /* FontExtension.swift */; };
-		63B521C42BD3C3B600400ADB /* TimerSettingModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B521C32BD3C3B600400ADB /* TimerSettingModifiers.swift */; };
-		63B521C72BD3C43800400ADB /* DoneBtnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B521C62BD3C43800400ADB /* DoneBtnStyle.swift */; };
-		63B521C92BD3C62A00400ADB /* ResetBtnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B521C82BD3C62900400ADB /* ResetBtnStyle.swift */; };
-		63B5DFD52C3400AC00513E90 /* monet_done.json in Resources */ = {isa = PBXBuildFile; fileRef = 63B5DFD22C3400AB00513E90 /* monet_done.json */; };
-		63B5DFD62C3400AC00513E90 /* monet_basic.json in Resources */ = {isa = PBXBuildFile; fileRef = 63B5DFD32C3400AB00513E90 /* monet_basic.json */; };
-		63B5DFD72C3400AC00513E90 /* monet_sleeping.json in Resources */ = {isa = PBXBuildFile; fileRef = 63B5DFD42C3400AC00513E90 /* monet_sleeping.json */; };
-		63BBF51A2BBD3F160094872B /* DurationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BBF5192BBD3F160094872B /* DurationPickerView.swift */; };
-		63BBF51C2BBD453C0094872B /* AnalyzeDurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BBF51B2BBD453C0094872B /* AnalyzeDurationView.swift */; };
-		63BBF51E2BBD47F20094872B /* AnalyzeListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BBF51D2BBD47F20094872B /* AnalyzeListItemView.swift */; };
-		63BBF5212BBD6BFD0094872B /* TimerSettingFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BBF5202BBD6BFD0094872B /* TimerSettingFieldView.swift */; };
-		63BD3C882BD2519900C80542 /* PomoNotiType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD3C872BD2519900C80542 /* PomoNotiType.swift */; };
-		63BD3C8A2BD261CA00C80542 /* TimerDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD3C892BD261CA00C80542 /* TimerDependency.swift */; };
-		63C124D42B9EF93D000A6D35 /* DorocatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C124D32B9EF93D000A6D35 /* DorocatApp.swift */; };
-		63C124D82B9EF93D000A6D35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C124D72B9EF93D000A6D35 /* Assets.xcassets */; };
-		63C124DB2B9EF93D000A6D35 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C124DA2B9EF93D000A6D35 /* Preview Assets.xcassets */; };
-		63C5BF562BCAB8BE00E5A89C /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C5BF552BCAB8BE00E5A89C /* CircularProgressView.swift */; };
-		63C9F9152C35B70D00451694 /* muya_basic.json in Resources */ = {isa = PBXBuildFile; fileRef = 63C9F9122C35B70D00451694 /* muya_basic.json */; };
-		63C9F9162C35B70D00451694 /* muya_sleeping.json in Resources */ = {isa = PBXBuildFile; fileRef = 63C9F9132C35B70D00451694 /* muya_sleeping.json */; };
-		63C9F9172C35B70D00451694 /* muya_done.json in Resources */ = {isa = PBXBuildFile; fileRef = 63C9F9142C35B70D00451694 /* muya_done.json */; };
-		63CBAD8C2BCD2247004EE320 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBAD8B2BCD2247004EE320 /* LottieView.swift */; };
 		63CCAFA32BCD1E280045B2A0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 63CCAFA22BCD1E280045B2A0 /* Lottie */; };
-		63CCAFA62BCD1EB20045B2A0 /* doro_sleeping.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA52BCD1EB20045B2A0 /* doro_sleeping.json */; };
-		63CCAFA82BCD1EBB0045B2A0 /* doro_basic.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA72BCD1EBB0045B2A0 /* doro_basic.json */; };
-		63CCAFAB2BCD1EC60045B2A0 /* doro_done.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFA92BCD1EC60045B2A0 /* doro_done.json */; };
-		63CCAFAC2BCD1EC60045B2A0 /* 04_confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFAA2BCD1EC60045B2A0 /* 04_confetti.json */; };
-		63CCAFAE2BCD1ED70045B2A0 /* doro_great.json in Resources */ = {isa = PBXBuildFile; fileRef = 63CCAFAD2BCD1ED70045B2A0 /* doro_great.json */; };
-		63DE9A922BECDBF900FF6204 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB632BDCDD9400FF5D33 /* UIFontExtension.swift */; };
-		63DE9A932BECDBFC00FF6204 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3FC412BB04B2500277576 /* FontExtension.swift */; };
-		63DE9A942BECDC0400FF6204 /* FontSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB612BDCDD0100FF5D33 /* FontSystem.swift */; };
-		63DE9A952BECDC0B00FF6204 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345AB5F2BDCDCFA00FF5D33 /* FontManager.swift */; };
-		63DE9A962BECDC2100FF6204 /* DarumadropOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 634C48B62BDB8F1D002E35DC /* DarumadropOne-Regular.ttf */; };
-		63DE9A972BECDC2600FF6204 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC242BB04A6600277576 /* Rubik-Medium.ttf */; };
-		63DE9A982BECDC2600FF6204 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2B2BB04A6600277576 /* Rubik-Bold.ttf */; };
-		63DE9A992BECDC2600FF6204 /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2E2BB04A6600277576 /* Rubik-BoldItalic.ttf */; };
-		63DE9A9A2BECDC2600FF6204 /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2A2BB04A6600277576 /* Rubik-LightItalic.ttf */; };
-		63DE9A9B2BECDC2600FF6204 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2F2BB04A6600277576 /* Rubik-Italic.ttf */; };
-		63DE9A9C2BECDC2600FF6204 /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC272BB04A6600277576 /* Rubik-SemiBold.ttf */; };
-		63DE9A9D2BECDC2600FF6204 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC302BB04A6600277576 /* Rubik-Regular.ttf */; };
-		63DE9A9E2BECDC2600FF6204 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC282BB04A6600277576 /* Rubik-Light.ttf */; };
-		63DE9A9F2BECDC2600FF6204 /* Rubik-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC312BB04A6600277576 /* Rubik-SemiBoldItalic.ttf */; };
-		63DE9AA02BECDC2600FF6204 /* Rubik-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC292BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf */; };
-		63DE9AA12BECDC2600FF6204 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC262BB04A6600277576 /* Rubik-MediumItalic.ttf */; };
-		63DE9AA22BECDC2600FF6204 /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC252BB04A6600277576 /* Rubik-BlackItalic.ttf */; };
-		63DE9AA32BECDC2600FF6204 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2D2BB04A6600277576 /* Rubik-Black.ttf */; };
-		63DE9AA42BECDC2600FF6204 /* Rubik-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B3FC2C2BB04A6600277576 /* Rubik-ExtraBold.ttf */; };
-		63DF61B32BDAACC200D5C458 /* StoreDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF61B22BDAACC200D5C458 /* StoreDependency.swift */; };
-		63DF61B52BDAACF100D5C458 /* Guides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF61B42BDAACF100D5C458 /* Guides.swift */; };
-		63E2BC612BD7D496006FED92 /* PomoAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633E97F32BD7AE3C00215563 /* PomoAttributes.swift */; };
-		63E2BC622BD7EE47006FED92 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633E97F12BD7AE0700215563 /* TimerStatus.swift */; };
-		63E63AB42BB709EA00A601E3 /* TimeBackgroundClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E63AB32BB709EA00A601E3 /* TimeBackgroundClient.swift */; };
-		63F3D6642BD1805B00F1204B /* PomoNotiDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3D6632BD1805B00F1204B /* PomoNotiDependency.swift */; };
-		63F804A22BF4805B007333AF /* RealmSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F804A12BF4805B007333AF /* RealmSessionStore.swift */; };
-		63F804A42BF4812E007333AF /* TimerSessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F804A32BF4812E007333AF /* TimerSessionRepository.swift */; };
-		63F88D342C1B5B2900A712AA /* DorocatMain.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 63F88D332C1B5B2900A712AA /* DorocatMain.storekit */; };
-		63FD1AA22BE0E9F000E8D6EA /* InitialDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FD1AA12BE0E9F000E8D6EA /* InitialDependency.swift */; };
-		63FD44792BBC48D500FA528F /* GuideDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FD44782BBC48D500FA528F /* GuideDependencies.swift */; };
-		63FF53752BF2F4FF006C009B /* TimerSessionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF53742BF2F4FF006C009B /* TimerSessionTable.swift */; };
-		63FF53772BF2F573006C009B /* TimerRecordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF53762BF2F573006C009B /* TimerRecordItem.swift */; };
+		63D0C3592CA037E300C4D315 /* GreemSwiftPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 63D0C3582CA037E300C4D315 /* GreemSwiftPackage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -269,6 +36,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 632F53842BD7490800357C68;
 			remoteInfo = DoroWidgetExtensionExtension;
+		};
+		633D06432CA0659E00FD9070 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63C124C82B9EF93D000A6D35 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63C124CF2B9EF93D000A6D35;
+			remoteInfo = Dorocat;
 		};
 		6352AFC92BF626A900929F47 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -298,7 +72,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6351FA172C0C1EE400FD0C67 /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,222 +79,68 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6301F79A2BC3BE6200E04214 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
-		6301F79C2BC3BF1300E04214 /* RealmError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmError.swift; sourceTree = "<group>"; };
-		6301F79F2BC3C1E400E04214 /* AnalyzeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeRepository.swift; sourceTree = "<group>"; };
-		6301F7A22BC3D09500E04214 /* AsyncMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMap.swift; sourceTree = "<group>"; };
-		6301F7A42BC3D0AF00E04214 /* Legacy-AnalyzeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Legacy-AnalyzeFeature.swift"; sourceTree = "<group>"; };
-		6302853F2BBD1360009C32AE /* PageIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorView.swift; sourceTree = "<group>"; };
-		630285422BBD1A2C009C32AE /* ProListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProListItemView.swift; sourceTree = "<group>"; };
-		630285442BBD1D39009C32AE /* SettingTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTitleView.swift; sourceTree = "<group>"; };
-		630285462BBD1E1D009C32AE /* SettingListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingListItem.swift; sourceTree = "<group>"; };
-		63088F1F2BBEC24600BF654D /* TriggerBtnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerBtnStyle.swift; sourceTree = "<group>"; };
-		631058882BC17A5A008611AD /* TimerViewComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewComponents.swift; sourceTree = "<group>"; };
-		6310588A2BC17D26008611AD /* TimerViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModifiers.swift; sourceTree = "<group>"; };
-		6310FCBD2C0DBBD90068FE29 /* CatTypeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatTypeExtension.swift; sourceTree = "<group>"; };
-		6310FCC02C0DD3EB0068FE29 /* NotiListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiListItem.swift; sourceTree = "<group>"; };
-		6310FCC32C0DF2000068FE29 /* ControllType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllType.swift; sourceTree = "<group>"; };
-		6310FCC52C0DF2BC0068FE29 /* CatSelectControllerReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatSelectControllerReducers.swift; sourceTree = "<group>"; };
-		6310FCC72C0DF5E80068FE29 /* ControllerReducer>Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ControllerReducer>Action.swift"; sourceTree = "<group>"; };
-		6310FCCA2C0DFBA30068FE29 /* CatSelectStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatSelectStyle.swift; sourceTree = "<group>"; };
-		6310FCCC2C0E06510068FE29 /* FeedbackSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSheet.swift; sourceTree = "<group>"; };
-		6310FCD12C0E0EB80068FE29 /* FeedbackDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackDependency.swift; sourceTree = "<group>"; };
-		631217762C1588BA00144189 /* AnalyzeCoreDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeCoreDataClient.swift; sourceTree = "<group>"; };
-		631217792C15897B00144189 /* DoroModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DoroModel.xcdatamodel; sourceTree = "<group>"; };
-		6312177B2C158E4B00144189 /* CoreDataSessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSessionStore.swift; sourceTree = "<group>"; };
-		631217802C1595BA00144189 /* CoreDataCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCore.swift; sourceTree = "<group>"; };
-		631217822C1597D800144189 /* TimerRecordItemEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerRecordItemEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		631217832C1597D800144189 /* TimerRecordItemEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerRecordItemEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		631238E22C15A0E90097EE6B /* FontCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontCoordinator.swift; sourceTree = "<group>"; };
-		63170A582BF84ACB00F35D6A /* FocusSleepToPauseIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSleepToPauseIntent.swift; sourceTree = "<group>"; };
-		63170A5D2BF854FF00F35D6A /* DorocatFeature+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DorocatFeature+State.swift"; sourceTree = "<group>"; };
-		63170A602BF8677A00F35D6A /* TimerActivityReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerActivityReducer.swift; sourceTree = "<group>"; };
-		63170A622BF9175000F35D6A /* PauseToFocusSleepIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseToFocusSleepIntent.swift; sourceTree = "<group>"; };
-		63170A672BF9199700F35D6A /* DoroWidgetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroWidgetComponent.swift; sourceTree = "<group>"; };
-		631E71532BDA377000DDD72B /* AppState>LiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState>LiveActivity.swift"; sourceTree = "<group>"; };
-		631E71552BDA380E00DDD72B /* AppState>Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState>Notification.swift"; sourceTree = "<group>"; };
-		631E71572BDA386900DDD72B /* AppState>TimerSaveFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState>TimerSaveFetch.swift"; sourceTree = "<group>"; };
-		631FA20F2BE780DC00E603A2 /* TimerControllerReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControllerReducers.swift; sourceTree = "<group>"; };
-		631FA2112BE7810200E603A2 /* TimerController>Haptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerController>Haptic.swift"; sourceTree = "<group>"; };
-		631FA2132BE788E800E603A2 /* TimerController>Guide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerController>Guide.swift"; sourceTree = "<group>"; };
-		631FA2152BE790CE00E603A2 /* TimerController>Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerController>Action.swift"; sourceTree = "<group>"; };
-		6322F5A52C0F077300682C2C /* Bottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bottom.swift; sourceTree = "<group>"; };
-		632721852B9F2E5C007E3206 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		632F53852BD7490800357C68 /* DoroWidgetExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DoroWidgetExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		632F53872BD7490800357C68 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		632F53892BD7490800357C68 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		632F538C2BD7490800357C68 /* DoroWidgetExtensionBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroWidgetExtensionBundle.swift; sourceTree = "<group>"; };
-		632F538E2BD7490800357C68 /* DoroWidgetExtensionLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroWidgetExtensionLiveActivity.swift; sourceTree = "<group>"; };
-		632F53902BD7490800357C68 /* DoroWidgetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroWidgetExtension.swift; sourceTree = "<group>"; };
-		632F53922BD7490900357C68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		632F53942BD7490900357C68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		632F539E2BD749FF00357C68 /* PomoLiveDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoLiveDependency.swift; sourceTree = "<group>"; };
-		632F89382BB5716400F2DC0B /* TimerFeature+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerFeature+State.swift"; sourceTree = "<group>"; };
-		632F893A2BB5717D00F2DC0B /* TimerFeature+ControllType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerFeature+ControllType.swift"; sourceTree = "<group>"; };
-		632F89402BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerSettingFeatures+Reducers.swift"; sourceTree = "<group>"; };
-		632F89452BB5C52300F2DC0B /* TimerLogicReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLogicReducers.swift; sourceTree = "<group>"; };
-		633266112C1177EF001A71C2 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
-		633266152C117ABF001A71C2 /* AnalyzeRealmClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeRealmClient.swift; sourceTree = "<group>"; };
-		633266172C117BE1001A71C2 /* GuideClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideClient.swift; sourceTree = "<group>"; };
-		633266192C117C2C001A71C2 /* HapticClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticClient.swift; sourceTree = "<group>"; };
-		6332661B2C117CB4001A71C2 /* LiveActivityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityClient.swift; sourceTree = "<group>"; };
-		6332661D2C1181A2001A71C2 /* TimerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerClient.swift; sourceTree = "<group>"; };
-		633266202C118831001A71C2 /* TimerFeatureReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFeatureReducer.swift; sourceTree = "<group>"; };
-		633266232C1189A1001A71C2 /* AnalyzeFeatureReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeFeatureReducer.swift; sourceTree = "<group>"; };
-		633266252C119126001A71C2 /* SettingFeatureReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFeatureReducer.swift; sourceTree = "<group>"; };
-		633266272C119187001A71C2 /* PageMoveReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageMoveReducer.swift; sourceTree = "<group>"; };
-		6332662A2C1191E7001A71C2 /* DorocatFeature+PageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DorocatFeature+PageType.swift"; sourceTree = "<group>"; };
-		6332662C2C11920A001A71C2 /* DorocatFeature+AppStateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DorocatFeature+AppStateType.swift"; sourceTree = "<group>"; };
-		6332662E2C11932F001A71C2 /* LaunchReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchReducer.swift; sourceTree = "<group>"; };
-		633266302C119847001A71C2 /* ControllerReducer>Haptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ControllerReducer>Haptic.swift"; sourceTree = "<group>"; };
-		633266332C119B3B001A71C2 /* PomoUserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoUserDefaultsClient.swift; sourceTree = "<group>"; };
-		6332FC342C0B465B00FBEBB1 /* OfferList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferList.swift; sourceTree = "<group>"; };
-		633558982C08D08000059332 /* BreakSleepToStandbyIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakSleepToStandbyIntent.swift; sourceTree = "<group>"; };
-		6335589C2C08D27800059332 /* AppAwakeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAwakeIntent.swift; sourceTree = "<group>"; };
-		633558A12C08E15900059332 /* CatDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDependency.swift; sourceTree = "<group>"; };
-		633E97EF2BD7ADE900215563 /* PomoValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoValues.swift; sourceTree = "<group>"; };
-		633E97F12BD7AE0700215563 /* TimerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStatus.swift; sourceTree = "<group>"; };
-		633E97F32BD7AE3C00215563 /* PomoAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoAttributes.swift; sourceTree = "<group>"; };
+		633D063F2CA0659E00FD9070 /* DorocatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DorocatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		633D06412CA0659E00FD9070 /* DorocatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DorocatTests.swift; sourceTree = "<group>"; };
 		633FF07C2BDAB14B00D0F85F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		633FF07E2BDAB5A000D0F85F /* DoroTest.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = DoroTest.storekit; sourceTree = "<group>"; };
-		633FF0802BDABAD300D0F85F /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
-		6342D3DD2C345E0D00AB335A /* pomo_done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pomo_done.json; sourceTree = "<group>"; };
-		6342D3DE2C345E0D00AB335A /* pomo_basic.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pomo_basic.json; sourceTree = "<group>"; };
-		6342D3DF2C345E0D00AB335A /* pomo_sleeping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pomo_sleeping.json; sourceTree = "<group>"; };
-		6342D3E32C345FDD00AB335A /* TimerCPT+SkipBreakInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerCPT+SkipBreakInfo.swift"; sourceTree = "<group>"; };
-		6345AB5F2BDCDCFA00FF5D33 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
-		6345AB612BDCDD0100FF5D33 /* FontSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSystem.swift; sourceTree = "<group>"; };
-		6345AB632BDCDD9400FF5D33 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
-		6345AB652BDD28B800FF5D33 /* ContinueBtnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueBtnStyle.swift; sourceTree = "<group>"; };
-		634C17BA2BC9207A007AC15F /* AnalyzeFeature+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnalyzeFeature+State.swift"; sourceTree = "<group>"; };
-		634C48B62BDB8F1D002E35DC /* DarumadropOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DarumadropOne-Regular.ttf"; path = "Darumadrop_One/DarumadropOne-Regular.ttf"; sourceTree = SOURCE_ROOT; };
 		6352AF7B2BF625D200929F47 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		6352AF862BF625D200929F47 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		6352AFC32BF626A900929F47 /* DorocatIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DorocatIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6352AFC62BF626A900929F47 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		6352AFC82BF626A900929F47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6352AFFB2BF6422E00929F47 /* ActivityIntentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIntentManager.swift; sourceTree = "<group>"; };
-		635490F42C19C8C600BC5A2A /* StoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreClient.swift; sourceTree = "<group>"; };
-		63560A382C20ABD1009762A2 /* WriteReviewLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewLink.swift; sourceTree = "<group>"; };
-		635618AB2C1DD098002816BD /* FeedbackFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackFeature.swift; sourceTree = "<group>"; };
-		635923A52BECFAF4002CC44C /* TimerSessionFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionFeature.swift; sourceTree = "<group>"; };
-		635923A82BECFE53002CC44C /* TimerSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionView.swift; sourceTree = "<group>"; };
-		63597A752C84299D0003E880 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		6359D9872BC576C40045DEC7 /* AppStateReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateReducers.swift; sourceTree = "<group>"; };
-		635BD5582B9F56CA004480D1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		635C9D3C2BB082E400BFD46D /* PomoDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoDependency.swift; sourceTree = "<group>"; };
-		63616FC02BC666B8003A7211 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		636453C12C19E176000D0BD9 /* TimerCPT+DoroCat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerCPT+DoroCat.swift"; sourceTree = "<group>"; };
-		636453C32C19E1B6000D0BD9 /* TimerCPT+Guides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerCPT+Guides.swift"; sourceTree = "<group>"; };
-		636453C52C19E1EB000D0BD9 /* TimerCPT+Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerCPT+Session.swift"; sourceTree = "<group>"; };
-		636D59ED2C182A17000A9CC2 /* SessionMenuEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionMenuEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		636D59EE2C182A17000A9CC2 /* SessionMenuEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionMenuEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		636E9F652BA818000006FE56 /* DBActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBActor.swift; sourceTree = "<group>"; };
-		636E9F692BAD0A880006FE56 /* Legacy-AddShoppingListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Legacy-AddShoppingListFeature.swift"; sourceTree = "<group>"; };
-		636EA3222BEF815400203538 /* SessionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionItem.swift; sourceTree = "<group>"; };
-		636EA3242BEF83CF00203538 /* PomoSessionDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoSessionDependency.swift; sourceTree = "<group>"; };
-		636EA3272BEF845700203538 /* SessionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
-		636EA32A2BEF856B00203538 /* PomoSession+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomoSession+Snapshot.swift"; sourceTree = "<group>"; };
-		636EA32C2BEF858D00203538 /* UserDefaultsSessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsSessionStore.swift; sourceTree = "<group>"; };
-		637104102C09C8B20099075C /* CatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatType.swift; sourceTree = "<group>"; };
-		637104132C09CD270099075C /* CatSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatSelectView.swift; sourceTree = "<group>"; };
-		637104172C09CD9F0099075C /* CatSelectFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatSelectFeature.swift; sourceTree = "<group>"; };
-		637104192C0B2A670099075C /* CatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatList.swift; sourceTree = "<group>"; };
-		6371041B2C0B32FB0099075C /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
-		6371041E2C0B33A80099075C /* ConfirmBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmBtn.swift; sourceTree = "<group>"; };
-		637104222C0B3D300099075C /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
-		637340802BA7440900B2A10F /* TimerRecordItemTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordItemTable.swift; sourceTree = "<group>"; };
-		637340842BA745CB00B2A10F /* Legacy-ShoppingListItemsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Legacy-ShoppingListItemsScreen.swift"; sourceTree = "<group>"; };
-		637340862BA7460900B2A10F /* Legacy-AddShoppingListItemScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Legacy-AddShoppingListItemScreen.swift"; sourceTree = "<group>"; };
-		6373408C2BA7478A00B2A10F /* Legacy-ShoppingListItemFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Legacy-ShoppingListItemFeature.swift"; sourceTree = "<group>"; };
-		6373504A2BB7D5B600221F20 /* TimeFeature 기능 명세.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "TimeFeature 기능 명세.md"; sourceTree = "<group>"; };
-		6373504B2BB7E3AE00221F20 /* TimeFeature+TimerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeFeature+TimerStatus.swift"; sourceTree = "<group>"; };
-		6373504D2BB7E3E500221F20 /* TimerFeature+TimerInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerFeature+TimerInformation.swift"; sourceTree = "<group>"; };
-		637350502BB7EEE300221F20 /* BackgroundTimerLogicReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTimerLogicReducers.swift; sourceTree = "<group>"; };
-		637350522BB8161D00221F20 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		638C92862C52AB5F00F62CA4 /* Dorocat.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Dorocat.storekit; sourceTree = "<group>"; };
-		638EAB022BBF7F50007F8CAC /* DoroTogglerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroTogglerView.swift; sourceTree = "<group>"; };
-		638EAB052BBF7FDE007F8CAC /* DragGesture+Swipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DragGesture+Swipe.swift"; sourceTree = "<group>"; };
-		638EAB072BBFD1C7007F8CAC /* DoroNumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroNumberPad.swift; sourceTree = "<group>"; };
-		639F8D122BC97BF300D66551 /* Anaylze+ViewReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Anaylze+ViewReducers.swift"; sourceTree = "<group>"; };
-		639F8D142BC97C8700D66551 /* AnalyzeFeautre+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnalyzeFeautre+Action.swift"; sourceTree = "<group>"; };
-		639F8D162BC9954400D66551 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
-		639F8D1D2BCA55DD00D66551 /* Analyze+DurationReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analyze+DurationReducers.swift"; sourceTree = "<group>"; };
-		639F8D1F2BCA5F2700D66551 /* AsyncForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncForEach.swift; sourceTree = "<group>"; };
-		63A288572BD64ECA00C817E7 /* PurchaseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSheet.swift; sourceTree = "<group>"; };
-		63A2885A2BD6507100C817E7 /* SettingPurchaseFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPurchaseFeature.swift; sourceTree = "<group>"; };
-		63A5175E2BD2D54200FEAEF6 /* HapticDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticDependency.swift; sourceTree = "<group>"; };
-		63A9C3F52BA574830076D42C /* TimerRecordDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordDependency.swift; sourceTree = "<group>"; };
-		63A9C3F82BA5A3F10076D42C /* NumberPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPickerView.swift; sourceTree = "<group>"; };
-		63A9C3FC2BA5E21A0076D42C /* AnalyzeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeFeature.swift; sourceTree = "<group>"; };
-		63A9C3FF2BA5E2D60076D42C /* AnalyzeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeView.swift; sourceTree = "<group>"; };
-		63AD70512BA4297300DBD6B9 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		63AD70532BA429E300DBD6B9 /* DorocatFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DorocatFeature.swift; sourceTree = "<group>"; };
-		63AD70552BA42A6E00DBD6B9 /* DoroMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoroMainView.swift; sourceTree = "<group>"; };
-		63AD70572BA437EB00DBD6B9 /* TimerFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFeature.swift; sourceTree = "<group>"; };
-		63AD70592BA439D600DBD6B9 /* TimerSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSettingView.swift; sourceTree = "<group>"; };
-		63AD705D2BA43A5900DBD6B9 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		63AD70612BA43EB800DBD6B9 /* SettingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFeature.swift; sourceTree = "<group>"; };
-		63AD70632BA43F6D00DBD6B9 /* TimerSettingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSettingFeature.swift; sourceTree = "<group>"; };
-		63B2BAE02BEBB0F3000090C5 /* TimerStatusReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStatusReducers.swift; sourceTree = "<group>"; };
-		63B2BAE22BEBB473000090C5 /* TimerStatus>LiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerStatus>LiveActivity.swift"; sourceTree = "<group>"; };
-		63B2BAE62BEBB9E3000090C5 /* TimerStatus>Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerStatus>Status.swift"; sourceTree = "<group>"; };
-		63B2BAE82BEBBD96000090C5 /* TimerStatus>Analyze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerStatus>Analyze.swift"; sourceTree = "<group>"; };
-		63B2BAEA2BEBD384000090C5 /* TimerController>Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerController>Notification.swift"; sourceTree = "<group>"; };
-		63B3FC242BB04A6600277576 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Medium.ttf"; path = "Rubik/static/Rubik-Medium.ttf"; sourceTree = SOURCE_ROOT; };
-		63B3FC252BB04A6600277576 /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-BlackItalic.ttf"; path = "Rubik/static/Rubik-BlackItalic.ttf"; sourceTree = SOURCE_ROOT; };
-		63B3FC262BB04A6600277576 /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-MediumItalic.ttf"; path = "Rubik/static/Rubik-MediumItalic.ttf"; sourceTree = SOURCE_ROOT; };
-		63B3FC272BB04A6600277576 /* Rubik-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-SemiBold.ttf"; path = "Rubik/static/Rubik-SemiBold.ttf"; sourceTree = SOURCE_ROOT; };
-		63B3FC282BB04A6600277576 /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Light.ttf"; path = "Rubik/static/Rubik-Light.ttf"; sourceTree = SOURCE_ROOT; };
-		63B3FC292BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-ExtraBoldItalic.ttf"; path = "Rubik/static/Rubik-ExtraBoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
-		63B3FC2A2BB04A6600277576 /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-LightItalic.ttf"; path = "Rubik/static/Rubik-LightItalic.ttf"; sourceTree = SOURCE_ROOT; };
-		63B3FC2B2BB04A6600277576 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Bold.ttf"; path = "Rubik/static/Rubik-Bold.ttf"; sourceTree = SOURCE_ROOT; };
-		63B3FC2C2BB04A6600277576 /* Rubik-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-ExtraBold.ttf"; path = "Rubik/static/Rubik-ExtraBold.ttf"; sourceTree = SOURCE_ROOT; };
-		63B3FC2D2BB04A6600277576 /* Rubik-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Black.ttf"; path = "Rubik/static/Rubik-Black.ttf"; sourceTree = SOURCE_ROOT; };
-		63B3FC2E2BB04A6600277576 /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-BoldItalic.ttf"; path = "Rubik/static/Rubik-BoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
-		63B3FC2F2BB04A6600277576 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Italic.ttf"; path = "Rubik/static/Rubik-Italic.ttf"; sourceTree = SOURCE_ROOT; };
-		63B3FC302BB04A6600277576 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Regular.ttf"; path = "Rubik/static/Rubik-Regular.ttf"; sourceTree = SOURCE_ROOT; };
-		63B3FC312BB04A6600277576 /* Rubik-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-SemiBoldItalic.ttf"; path = "Rubik/static/Rubik-SemiBoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
-		63B3FC412BB04B2500277576 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
-		63B3FC432BB04CED00277576 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		63B521C32BD3C3B600400ADB /* TimerSettingModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSettingModifiers.swift; sourceTree = "<group>"; };
-		63B521C62BD3C43800400ADB /* DoneBtnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneBtnStyle.swift; sourceTree = "<group>"; };
-		63B521C82BD3C62900400ADB /* ResetBtnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetBtnStyle.swift; sourceTree = "<group>"; };
-		63B5DFD22C3400AB00513E90 /* monet_done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = monet_done.json; sourceTree = "<group>"; };
-		63B5DFD32C3400AB00513E90 /* monet_basic.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = monet_basic.json; sourceTree = "<group>"; };
-		63B5DFD42C3400AC00513E90 /* monet_sleeping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = monet_sleeping.json; sourceTree = "<group>"; };
-		63BBF5192BBD3F160094872B /* DurationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPickerView.swift; sourceTree = "<group>"; };
-		63BBF51B2BBD453C0094872B /* AnalyzeDurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeDurationView.swift; sourceTree = "<group>"; };
-		63BBF51D2BBD47F20094872B /* AnalyzeListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeListItemView.swift; sourceTree = "<group>"; };
-		63BBF5202BBD6BFD0094872B /* TimerSettingFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSettingFieldView.swift; sourceTree = "<group>"; };
-		63BD3C872BD2519900C80542 /* PomoNotiType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoNotiType.swift; sourceTree = "<group>"; };
-		63BD3C892BD261CA00C80542 /* TimerDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDependency.swift; sourceTree = "<group>"; };
 		63C124D02B9EF93D000A6D35 /* Dorocat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dorocat.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		63C124D32B9EF93D000A6D35 /* DorocatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DorocatApp.swift; sourceTree = "<group>"; };
-		63C124D72B9EF93D000A6D35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		63C124DA2B9EF93D000A6D35 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		63C5BF552BCAB8BE00E5A89C /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
-		63C9F9122C35B70D00451694 /* muya_basic.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = muya_basic.json; sourceTree = "<group>"; };
-		63C9F9132C35B70D00451694 /* muya_sleeping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = muya_sleeping.json; sourceTree = "<group>"; };
-		63C9F9142C35B70D00451694 /* muya_done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = muya_done.json; sourceTree = "<group>"; };
-		63CBAD8B2BCD2247004EE320 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		63CCAFA52BCD1EB20045B2A0 /* doro_sleeping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = doro_sleeping.json; path = Dorocat/Resources/LottieAssets/Doro/doro_sleeping.json; sourceTree = SOURCE_ROOT; };
-		63CCAFA72BCD1EBB0045B2A0 /* doro_basic.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = doro_basic.json; path = Dorocat/Resources/LottieAssets/Doro/doro_basic.json; sourceTree = SOURCE_ROOT; };
-		63CCAFA92BCD1EC60045B2A0 /* doro_done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = doro_done.json; path = Dorocat/Resources/LottieAssets/Doro/doro_done.json; sourceTree = SOURCE_ROOT; };
-		63CCAFAA2BCD1EC60045B2A0 /* 04_confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 04_confetti.json; path = Dorocat/Resources/LottieAssets/Doro/04_confetti.json; sourceTree = SOURCE_ROOT; };
-		63CCAFAD2BCD1ED70045B2A0 /* doro_great.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = doro_great.json; path = Dorocat/Resources/LottieAssets/Doro/doro_great.json; sourceTree = SOURCE_ROOT; };
-		63DF61B22BDAACC200D5C458 /* StoreDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDependency.swift; sourceTree = "<group>"; };
-		63DF61B42BDAACF100D5C458 /* Guides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guides.swift; sourceTree = "<group>"; };
-		63E63AB32BB709EA00A601E3 /* TimeBackgroundClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBackgroundClient.swift; sourceTree = "<group>"; };
-		63F3D6632BD1805B00F1204B /* PomoNotiDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomoNotiDependency.swift; sourceTree = "<group>"; };
-		63F804A12BF4805B007333AF /* RealmSessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSessionStore.swift; sourceTree = "<group>"; };
-		63F804A32BF4812E007333AF /* TimerSessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionRepository.swift; sourceTree = "<group>"; };
 		63F88D332C1B5B2900A712AA /* DorocatMain.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = DorocatMain.storekit; sourceTree = "<group>"; };
-		63FD1AA12BE0E9F000E8D6EA /* InitialDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialDependency.swift; sourceTree = "<group>"; };
-		63FD44782BBC48D500FA528F /* GuideDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDependencies.swift; sourceTree = "<group>"; };
-		63FF53742BF2F4FF006C009B /* TimerSessionTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSessionTable.swift; sourceTree = "<group>"; };
-		63FF53762BF2F573006C009B /* TimerRecordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		630D3E932CDF8C4500561855 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Features/MainFeaures/MainFeature/TimeFeature 기능 명세.md",
+				Info.plist,
+			);
+			target = 63C124CF2B9EF93D000A6D35 /* Dorocat */;
+		};
+		630D3E942CDF8C4500561855 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Cores/ActivityIntentManager.swift,
+				"Helpers/CustomUIs/Font+/FontCoordinator.swift",
+				Models/Menu/SessionItem.swift,
+				Models/PomoAttributes.swift,
+				Models/Types/CatType.swift,
+				Models/Types/TimerActivityType.swift,
+			);
+			target = 632F53842BD7490800357C68 /* DoroWidgetExtensionExtension */;
+		};
+		630D3E952CDF8C4500561855 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Cores/ActivityIntentManager.swift,
+				"Helpers/CustomUIs/Font+/FontCoordinator.swift",
+				Models/Types/CatType.swift,
+				Models/Types/TimerActivityType.swift,
+			);
+			target = 6352AFC22BF626A900929F47 /* DorocatIntents */;
+		};
+		6333D4C62CDF94640005EA27 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 632F53842BD7490800357C68 /* DoroWidgetExtensionExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		630D3DEF2CDF8C4500561855 /* Dorocat */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (630D3E932CDF8C4500561855 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 630D3E942CDF8C4500561855 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 630D3E952CDF8C4500561855 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Dorocat; sourceTree = "<group>"; };
+		630D3E9A2CDF8C4900561855 /* App Intent */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "App Intent"; sourceTree = "<group>"; };
+		6333D4A62CDF8D190005EA27 /* CoreDataEntities */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoreDataEntities; sourceTree = "<group>"; };
+		6333D4BE2CDF94640005EA27 /* DoroWidgetExtension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (6333D4C62CDF94640005EA27 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = DoroWidgetExtension; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		632F53822BD7490800357C68 /* Frameworks */ = {
@@ -530,6 +149,14 @@
 			files = (
 				632F538A2BD7490800357C68 /* SwiftUI.framework in Frameworks */,
 				632F53882BD7490800357C68 /* WidgetKit.framework in Frameworks */,
+				63085EC02CB54CF600F87662 /* DoroDesignSystem in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		633D063C2CA0659E00FD9070 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,180 +173,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				633FF07D2BDAB14B00D0F85F /* StoreKit.framework in Frameworks */,
+				63860A502CB416B50058D4EE /* NotificationDependency in Frameworks */,
 				63597A8C2C843A2C0003E880 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				63860A4A2CB415E80058D4EE /* NotificationDependency in Frameworks */,
 				635BD55C2B9F5708004480D1 /* ComposableArchitecture in Frameworks */,
-				6351FA162C0C1D9E00FD0C67 /* RealmSwift in Frameworks */,
 				63597A8E2C843A2C0003E880 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				63597A902C843A2C0003E880 /* FirebaseCrashlytics in Frameworks */,
 				63597A8A2C843A2C0003E880 /* FirebaseAnalytics in Frameworks */,
 				63CCAFA32BCD1E280045B2A0 /* Lottie in Frameworks */,
+				63D0C3592CA037E300C4D315 /* GreemSwiftPackage in Frameworks */,
+				63085EBE2CB54C9E00F87662 /* DoroDesignSystem in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6301F7992BC3BCEB00E04214 /* RealmCore */ = {
-			isa = PBXGroup;
-			children = (
-				63F804A02BF47C3A007333AF /* Tables */,
-				6301F79E2BC3C1D200E04214 /* Repositories */,
-				6301F79A2BC3BE6200E04214 /* RealmRepository.swift */,
-				6301F79C2BC3BF1300E04214 /* RealmError.swift */,
-			);
-			path = RealmCore;
-			sourceTree = "<group>";
-		};
-		6301F79E2BC3C1D200E04214 /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				636E9F652BA818000006FE56 /* DBActor.swift */,
-				6301F79F2BC3C1E400E04214 /* AnalyzeRepository.swift */,
-				63F804A32BF4812E007333AF /* TimerSessionRepository.swift */,
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
-		6301F7A12BC3D07700E04214 /* AsyncHighOrder */ = {
-			isa = PBXGroup;
-			children = (
-				6301F7A22BC3D09500E04214 /* AsyncMap.swift */,
-				639F8D1F2BCA5F2700D66551 /* AsyncForEach.swift */,
-			);
-			path = AsyncHighOrder;
-			sourceTree = "<group>";
-		};
-		630285412BBD1A07009C32AE /* SettingComponents */ = {
-			isa = PBXGroup;
-			children = (
-				630285422BBD1A2C009C32AE /* ProListItemView.swift */,
-				630285442BBD1D39009C32AE /* SettingTitleView.swift */,
-				630285462BBD1E1D009C32AE /* SettingListItem.swift */,
-				6310FCC02C0DD3EB0068FE29 /* NotiListItem.swift */,
-				6322F5A52C0F077300682C2C /* Bottom.swift */,
-				63560A382C20ABD1009762A2 /* WriteReviewLink.swift */,
-			);
-			path = SettingComponents;
-			sourceTree = "<group>";
-		};
-		631058852BC17A1A008611AD /* TimerComponents */ = {
-			isa = PBXGroup;
-			children = (
-				631058882BC17A5A008611AD /* TimerViewComponents.swift */,
-				6310588A2BC17D26008611AD /* TimerViewModifiers.swift */,
-				636453C12C19E176000D0BD9 /* TimerCPT+DoroCat.swift */,
-				636453C32C19E1B6000D0BD9 /* TimerCPT+Guides.swift */,
-				636453C52C19E1EB000D0BD9 /* TimerCPT+Session.swift */,
-				6342D3E32C345FDD00AB335A /* TimerCPT+SkipBreakInfo.swift */,
-			);
-			path = TimerComponents;
-			sourceTree = "<group>";
-		};
-		6310FCBC2C0DBBCB0068FE29 /* DoroWidgetHelpers */ = {
-			isa = PBXGroup;
-			children = (
-				6310FCBD2C0DBBD90068FE29 /* CatTypeExtension.swift */,
-			);
-			path = DoroWidgetHelpers;
-			sourceTree = "<group>";
-		};
-		6310FCC22C0DF1F20068FE29 /* CatSelectControllerReducers */ = {
-			isa = PBXGroup;
-			children = (
-				6310FCC32C0DF2000068FE29 /* ControllType.swift */,
-				6310FCC52C0DF2BC0068FE29 /* CatSelectControllerReducers.swift */,
-				633266302C119847001A71C2 /* ControllerReducer>Haptic.swift */,
-				6310FCC72C0DF5E80068FE29 /* ControllerReducer>Action.swift */,
-			);
-			path = CatSelectControllerReducers;
-			sourceTree = "<group>";
-		};
-		6310FCC92C0DFB930068FE29 /* DoroCatStyles */ = {
-			isa = PBXGroup;
-			children = (
-				638EAB022BBF7F50007F8CAC /* DoroTogglerView.swift */,
-				6310FCCA2C0DFBA30068FE29 /* CatSelectStyle.swift */,
-			);
-			path = DoroCatStyles;
-			sourceTree = "<group>";
-		};
-		6310FCCF2C0E065A0068FE29 /* FeedbackSheet */ = {
-			isa = PBXGroup;
-			children = (
-				6310FCCC2C0E06510068FE29 /* FeedbackSheet.swift */,
-			);
-			path = FeedbackSheet;
-			sourceTree = "<group>";
-		};
-		6310FCD02C0E0E750068FE29 /* FeedbackDependencies */ = {
-			isa = PBXGroup;
-			children = (
-				6310FCD12C0E0EB80068FE29 /* FeedbackDependency.swift */,
-			);
-			path = FeedbackDependencies;
-			sourceTree = "<group>";
-		};
-		6312177F2C1595B000144189 /* CoreDataCore */ = {
-			isa = PBXGroup;
-			children = (
-				631217802C1595BA00144189 /* CoreDataCore.swift */,
-			);
-			path = CoreDataCore;
-			sourceTree = "<group>";
-		};
-		63170A5C2BF854BB00F35D6A /* DorocatFeatures */ = {
-			isa = PBXGroup;
-			children = (
-				633266292C1191C9001A71C2 /* FeatureModels */,
-				63170A5F2BF8556B00F35D6A /* Reducers */,
-				63AD70532BA429E300DBD6B9 /* DorocatFeature.swift */,
-			);
-			path = DorocatFeatures;
-			sourceTree = "<group>";
-		};
-		63170A5F2BF8556B00F35D6A /* Reducers */ = {
-			isa = PBXGroup;
-			children = (
-				633266222C11897E001A71C2 /* SubFeature */,
-				63170A602BF8677A00F35D6A /* TimerActivityReducer.swift */,
-				633266272C119187001A71C2 /* PageMoveReducer.swift */,
-				6332662E2C11932F001A71C2 /* LaunchReducer.swift */,
-			);
-			path = Reducers;
-			sourceTree = "<group>";
-		};
-		63170A662BF9198900F35D6A /* DoroWidgetComponents */ = {
-			isa = PBXGroup;
-			children = (
-				63170A672BF9199700F35D6A /* DoroWidgetComponent.swift */,
-			);
-			path = DoroWidgetComponents;
-			sourceTree = "<group>";
-		};
-		631E71522BDA375200DDD72B /* AppStateReducers */ = {
-			isa = PBXGroup;
-			children = (
-				6359D9872BC576C40045DEC7 /* AppStateReducers.swift */,
-				631E71532BDA377000DDD72B /* AppState>LiveActivity.swift */,
-				631E71552BDA380E00DDD72B /* AppState>Notification.swift */,
-				631E71572BDA386900DDD72B /* AppState>TimerSaveFetch.swift */,
-			);
-			path = AppStateReducers;
-			sourceTree = "<group>";
-		};
-		631FA20E2BE776E600E603A2 /* TimerControllerReducers */ = {
-			isa = PBXGroup;
-			children = (
-				632F893A2BB5717D00F2DC0B /* TimerFeature+ControllType.swift */,
-				631FA20F2BE780DC00E603A2 /* TimerControllerReducers.swift */,
-				631FA2152BE790CE00E603A2 /* TimerController>Action.swift */,
-				631FA2112BE7810200E603A2 /* TimerController>Haptic.swift */,
-				631FA2132BE788E800E603A2 /* TimerController>Guide.swift */,
-				63B2BAEA2BEBD384000090C5 /* TimerController>Notification.swift */,
-			);
-			path = TimerControllerReducers;
-			sourceTree = "<group>";
-		};
 		632F53862BD7490800357C68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -732,139 +201,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		632F538B2BD7490800357C68 /* DoroWidgetExtension */ = {
+		633D06402CA0659E00FD9070 /* DorocatTests */ = {
 			isa = PBXGroup;
 			children = (
-				6310FCBC2C0DBBCB0068FE29 /* DoroWidgetHelpers */,
-				63170A662BF9198900F35D6A /* DoroWidgetComponents */,
-				632F538C2BD7490800357C68 /* DoroWidgetExtensionBundle.swift */,
-				632F538E2BD7490800357C68 /* DoroWidgetExtensionLiveActivity.swift */,
-				632F53902BD7490800357C68 /* DoroWidgetExtension.swift */,
-				632F53922BD7490900357C68 /* Assets.xcassets */,
-				632F53942BD7490900357C68 /* Info.plist */,
+				633D06412CA0659E00FD9070 /* DorocatTests.swift */,
 			);
-			path = DoroWidgetExtension;
-			sourceTree = "<group>";
-		};
-		632F89372BB56E0900F2DC0B /* TimerFeature */ = {
-			isa = PBXGroup;
-			children = (
-				6373504F2BB7E3EF00221F20 /* Models */,
-				632F89422BB5C49600F2DC0B /* Reducers */,
-				63AD70572BA437EB00DBD6B9 /* TimerFeature.swift */,
-				632F89382BB5716400F2DC0B /* TimerFeature+State.swift */,
-				6373504A2BB7D5B600221F20 /* TimeFeature 기능 명세.md */,
-			);
-			path = TimerFeature;
-			sourceTree = "<group>";
-		};
-		632F893F2BB584E800F2DC0B /* TimerSettingFeature */ = {
-			isa = PBXGroup;
-			children = (
-				63AD70632BA43F6D00DBD6B9 /* TimerSettingFeature.swift */,
-				632F89402BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift */,
-			);
-			path = TimerSettingFeature;
-			sourceTree = "<group>";
-		};
-		632F89422BB5C49600F2DC0B /* Reducers */ = {
-			isa = PBXGroup;
-			children = (
-				63B2BADF2BEBB0CE000090C5 /* TimerStatusReducers */,
-				631FA20E2BE776E600E603A2 /* TimerControllerReducers */,
-				631E71522BDA375200DDD72B /* AppStateReducers */,
-				632F89452BB5C52300F2DC0B /* TimerLogicReducers.swift */,
-				637350502BB7EEE300221F20 /* BackgroundTimerLogicReducers.swift */,
-			);
-			path = Reducers;
-			sourceTree = "<group>";
-		};
-		633266102C117743001A71C2 /* Types */ = {
-			isa = PBXGroup;
-			children = (
-				637104102C09C8B20099075C /* CatType.swift */,
-				633266112C1177EF001A71C2 /* NotificationType.swift */,
-			);
-			path = Types;
-			sourceTree = "<group>";
-		};
-		633266222C11897E001A71C2 /* SubFeature */ = {
-			isa = PBXGroup;
-			children = (
-				633266202C118831001A71C2 /* TimerFeatureReducer.swift */,
-				633266232C1189A1001A71C2 /* AnalyzeFeatureReducer.swift */,
-				633266252C119126001A71C2 /* SettingFeatureReducer.swift */,
-			);
-			path = SubFeature;
-			sourceTree = "<group>";
-		};
-		633266292C1191C9001A71C2 /* FeatureModels */ = {
-			isa = PBXGroup;
-			children = (
-				63170A5D2BF854FF00F35D6A /* DorocatFeature+State.swift */,
-				6332662A2C1191E7001A71C2 /* DorocatFeature+PageType.swift */,
-				6332662C2C11920A001A71C2 /* DorocatFeature+AppStateType.swift */,
-			);
-			path = FeatureModels;
-			sourceTree = "<group>";
-		};
-		633266322C119B24001A71C2 /* NotificationDependencies */ = {
-			isa = PBXGroup;
-			children = (
-				63BD3C872BD2519900C80542 /* PomoNotiType.swift */,
-				63F3D6632BD1805B00F1204B /* PomoNotiDependency.swift */,
-			);
-			path = NotificationDependencies;
-			sourceTree = "<group>";
-		};
-		6332FC362C0B506000FBEBB1 /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-				636EA3222BEF815400203538 /* SessionItem.swift */,
-			);
-			path = Menu;
-			sourceTree = "<group>";
-		};
-		633558A02C08E14B00059332 /* CatDependencies */ = {
-			isa = PBXGroup;
-			children = (
-				633558A12C08E15900059332 /* CatDependency.swift */,
-			);
-			path = CatDependencies;
-			sourceTree = "<group>";
-		};
-		633E97EE2BD79E0D00215563 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				633266102C117743001A71C2 /* Types */,
-				6332FC362C0B506000FBEBB1 /* Menu */,
-				636EA3262BEF844C00203538 /* Errors */,
-				633E97EF2BD7ADE900215563 /* PomoValues.swift */,
-				633E97F12BD7AE0700215563 /* TimerStatus.swift */,
-				633E97F32BD7AE3C00215563 /* PomoAttributes.swift */,
-				63DF61B42BDAACF100D5C458 /* Guides.swift */,
-				63FF53762BF2F573006C009B /* TimerRecordItem.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		6342D3DC2C345E0200AB335A /* Pomo */ = {
-			isa = PBXGroup;
-			children = (
-				6342D3DE2C345E0D00AB335A /* pomo_basic.json */,
-				6342D3DD2C345E0D00AB335A /* pomo_done.json */,
-				6342D3DF2C345E0D00AB335A /* pomo_sleeping.json */,
-			);
-			path = Pomo;
-			sourceTree = "<group>";
-		};
-		634C17B92BC92047007AC15F /* Reducers */ = {
-			isa = PBXGroup;
-			children = (
-				639F8D122BC97BF300D66551 /* Anaylze+ViewReducers.swift */,
-				639F8D1D2BCA55DD00D66551 /* Analyze+DurationReducers.swift */,
-			);
-			path = Reducers;
+			path = DorocatTests;
 			sourceTree = "<group>";
 		};
 		6352AFC52BF626A900929F47 /* DorocatIntents */ = {
@@ -876,439 +218,17 @@
 			path = DorocatIntents;
 			sourceTree = "<group>";
 		};
-		6352AFD02BF626CA00929F47 /* App Intent */ = {
-			isa = PBXGroup;
-			children = (
-				63170A582BF84ACB00F35D6A /* FocusSleepToPauseIntent.swift */,
-				63170A622BF9175000F35D6A /* PauseToFocusSleepIntent.swift */,
-				633558982C08D08000059332 /* BreakSleepToStandbyIntent.swift */,
-				6335589C2C08D27800059332 /* AppAwakeIntent.swift */,
-			);
-			path = "App Intent";
-			sourceTree = "<group>";
-		};
-		6352AFFA2BF6420500929F47 /* PomoLiveDependencies */ = {
-			isa = PBXGroup;
-			children = (
-				632F539E2BD749FF00357C68 /* PomoLiveDependency.swift */,
-				6332661B2C117CB4001A71C2 /* LiveActivityClient.swift */,
-			);
-			path = PomoLiveDependencies;
-			sourceTree = "<group>";
-		};
-		635618AA2C1DD08B002816BD /* FeedbackFeature */ = {
-			isa = PBXGroup;
-			children = (
-				635618AB2C1DD098002816BD /* FeedbackFeature.swift */,
-			);
-			path = FeedbackFeature;
-			sourceTree = "<group>";
-		};
-		635923A42BECFAE9002CC44C /* TimerSessionFeature */ = {
-			isa = PBXGroup;
-			children = (
-				635923A52BECFAF4002CC44C /* TimerSessionFeature.swift */,
-			);
-			path = TimerSessionFeature;
-			sourceTree = "<group>";
-		};
-		635923A72BECFE47002CC44C /* TimerSession */ = {
-			isa = PBXGroup;
-			children = (
-				635923A82BECFE53002CC44C /* TimerSessionView.swift */,
-			);
-			path = TimerSession;
-			sourceTree = "<group>";
-		};
-		635BD55D2B9F573D004480D1 /* Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				63C124D32B9EF93D000A6D35 /* DorocatApp.swift */,
-				63AD70552BA42A6E00DBD6B9 /* DoroMainView.swift */,
-				63616FBF2BC666A2003A7211 /* OnboardingViews */,
-				63A9C3FE2BA5E2CA0076D42C /* AnalyzeViews */,
-				63AD705C2BA43A4F00DBD6B9 /* SettingViews */,
-				63AD705B2BA43A3C00DBD6B9 /* TimerViews */,
-			);
-			path = Scenes;
-			sourceTree = "<group>";
-		};
-		635BD55F2B9F5764004480D1 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				639F8D1A2BCA3A7E00D66551 /* Extensions */,
-				6301F7A12BC3D07700E04214 /* AsyncHighOrder */,
-				63A9C3F72BA5A3E30076D42C /* CustomUIs */,
-				639F8D162BC9954400D66551 /* IntExtensions.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
-		635C9D3B2BB082A600BFD46D /* PomoDependencies */ = {
-			isa = PBXGroup;
-			children = (
-				635C9D3C2BB082E400BFD46D /* PomoDependency.swift */,
-				633266332C119B3B001A71C2 /* PomoUserDefaultsClient.swift */,
-				636EA3292BEF854C00203538 /* PomoSession */,
-			);
-			path = PomoDependencies;
-			sourceTree = "<group>";
-		};
-		63616FBF2BC666A2003A7211 /* OnboardingViews */ = {
-			isa = PBXGroup;
-			children = (
-				63616FC02BC666B8003A7211 /* OnboardingView.swift */,
-			);
-			path = OnboardingViews;
-			sourceTree = "<group>";
-		};
-		636EA3262BEF844C00203538 /* Errors */ = {
-			isa = PBXGroup;
-			children = (
-				636EA3272BEF845700203538 /* SessionError.swift */,
-			);
-			path = Errors;
-			sourceTree = "<group>";
-		};
-		636EA3292BEF854C00203538 /* PomoSession */ = {
-			isa = PBXGroup;
-			children = (
-				636EA3242BEF83CF00203538 /* PomoSessionDependency.swift */,
-				636EA32A2BEF856B00203538 /* PomoSession+Snapshot.swift */,
-				636EA32C2BEF858D00203538 /* UserDefaultsSessionStore.swift */,
-				63F804A12BF4805B007333AF /* RealmSessionStore.swift */,
-				6312177B2C158E4B00144189 /* CoreDataSessionStore.swift */,
-			);
-			path = PomoSession;
-			sourceTree = "<group>";
-		};
-		6371040E2C095BFF0099075C /* Doro */ = {
-			isa = PBXGroup;
-			children = (
-				63CCAFA72BCD1EBB0045B2A0 /* doro_basic.json */,
-				63CCAFA52BCD1EB20045B2A0 /* doro_sleeping.json */,
-				63CCAFA92BCD1EC60045B2A0 /* doro_done.json */,
-				63CCAFAD2BCD1ED70045B2A0 /* doro_great.json */,
-				63CCAFAA2BCD1EC60045B2A0 /* 04_confetti.json */,
-			);
-			path = Doro;
-			sourceTree = "<group>";
-		};
-		6371040F2C095C080099075C /* Monet */ = {
-			isa = PBXGroup;
-			children = (
-				63B5DFD32C3400AB00513E90 /* monet_basic.json */,
-				63B5DFD22C3400AB00513E90 /* monet_done.json */,
-				63B5DFD42C3400AC00513E90 /* monet_sleeping.json */,
-			);
-			path = Monet;
-			sourceTree = "<group>";
-		};
-		637104122C09CCF50099075C /* CatSelect */ = {
-			isa = PBXGroup;
-			children = (
-				637104152C09CD2D0099075C /* CatSelectElements */,
-				637104132C09CD270099075C /* CatSelectView.swift */,
-			);
-			path = CatSelect;
-			sourceTree = "<group>";
-		};
-		637104152C09CD2D0099075C /* CatSelectElements */ = {
-			isa = PBXGroup;
-			children = (
-				6371041D2C0B33660099075C /* ViewComponents */,
-			);
-			path = CatSelectElements;
-			sourceTree = "<group>";
-		};
-		637104162C09CD520099075C /* CatSelectFeature */ = {
-			isa = PBXGroup;
-			children = (
-				6310FCC22C0DF1F20068FE29 /* CatSelectControllerReducers */,
-				637104172C09CD9F0099075C /* CatSelectFeature.swift */,
-			);
-			path = CatSelectFeature;
-			sourceTree = "<group>";
-		};
-		6371041D2C0B33660099075C /* ViewComponents */ = {
-			isa = PBXGroup;
-			children = (
-				637104192C0B2A670099075C /* CatList.swift */,
-				6371041B2C0B32FB0099075C /* Info.swift */,
-				6371041E2C0B33A80099075C /* ConfirmBtn.swift */,
-			);
-			path = ViewComponents;
-			sourceTree = "<group>";
-		};
-		637104202C0B3D0E0099075C /* PurchaseSheet */ = {
-			isa = PBXGroup;
-			children = (
-				637104212C0B3D1E0099075C /* PurchaseComponents */,
-				63A288572BD64ECA00C817E7 /* PurchaseSheet.swift */,
-			);
-			path = PurchaseSheet;
-			sourceTree = "<group>";
-		};
-		637104212C0B3D1E0099075C /* PurchaseComponents */ = {
-			isa = PBXGroup;
-			children = (
-				637104222C0B3D300099075C /* Information.swift */,
-				6332FC342C0B465B00FBEBB1 /* OfferList.swift */,
-			);
-			path = PurchaseComponents;
-			sourceTree = "<group>";
-		};
-		6373407E2BA743CD00B2A10F /* AnalyzeDBDependencies */ = {
-			isa = PBXGroup;
-			children = (
-				63A9C3F52BA574830076D42C /* TimerRecordDependency.swift */,
-				633266152C117ABF001A71C2 /* AnalyzeRealmClient.swift */,
-				631217762C1588BA00144189 /* AnalyzeCoreDataClient.swift */,
-			);
-			path = AnalyzeDBDependencies;
-			sourceTree = "<group>";
-		};
-		6373504F2BB7E3EF00221F20 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				6373504B2BB7E3AE00221F20 /* TimeFeature+TimerStatus.swift */,
-				6373504D2BB7E3E500221F20 /* TimerFeature+TimerInformation.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		638EAB042BBF7FB9007F8CAC /* ViewComponents */ = {
-			isa = PBXGroup;
-			children = (
-				63B521C52BD3C42B00400ADB /* Styles */,
-				63A9C3F82BA5A3F10076D42C /* NumberPickerView.swift */,
-				6302853F2BBD1360009C32AE /* PageIndicatorView.swift */,
-				63BBF5192BBD3F160094872B /* DurationPickerView.swift */,
-				638EAB072BBFD1C7007F8CAC /* DoroNumberPad.swift */,
-				63C5BF552BCAB8BE00E5A89C /* CircularProgressView.swift */,
-				63CBAD8B2BCD2247004EE320 /* LottieView.swift */,
-			);
-			path = ViewComponents;
-			sourceTree = "<group>";
-		};
-		639F8D182BCA1BB200D66551 /* Legacies */ = {
-			isa = PBXGroup;
-			children = (
-				637340842BA745CB00B2A10F /* Legacy-ShoppingListItemsScreen.swift */,
-				637340862BA7460900B2A10F /* Legacy-AddShoppingListItemScreen.swift */,
-				6373408C2BA7478A00B2A10F /* Legacy-ShoppingListItemFeature.swift */,
-				636E9F692BAD0A880006FE56 /* Legacy-AddShoppingListFeature.swift */,
-				6301F7A42BC3D0AF00E04214 /* Legacy-AnalyzeFeature.swift */,
-			);
-			path = Legacies;
-			sourceTree = "<group>";
-		};
-		639F8D1A2BCA3A7E00D66551 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				637350522BB8161D00221F20 /* DateExtensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		63A288592BD6505800C817E7 /* SettingPurchaseFeature */ = {
-			isa = PBXGroup;
-			children = (
-				63A2885A2BD6507100C817E7 /* SettingPurchaseFeature.swift */,
-			);
-			path = SettingPurchaseFeature;
-			sourceTree = "<group>";
-		};
-		63A5175D2BD2D52D00FEAEF6 /* HapticDependencies */ = {
-			isa = PBXGroup;
-			children = (
-				63A5175E2BD2D54200FEAEF6 /* HapticDependency.swift */,
-				633266192C117C2C001A71C2 /* HapticClient.swift */,
-			);
-			path = HapticDependencies;
-			sourceTree = "<group>";
-		};
-		63A9C3F72BA5A3E30076D42C /* CustomUIs */ = {
-			isa = PBXGroup;
-			children = (
-				638EAB042BBF7FB9007F8CAC /* ViewComponents */,
-				63B3FC402BB04B1700277576 /* Font+ */,
-				638EAB052BBF7FDE007F8CAC /* DragGesture+Swipe.swift */,
-			);
-			path = CustomUIs;
-			sourceTree = "<group>";
-		};
-		63A9C3FA2BA5AAC20076D42C /* TimerSetting */ = {
-			isa = PBXGroup;
-			children = (
-				63BBF51F2BBD6BB80094872B /* TimerSettingComponents */,
-				63AD70592BA439D600DBD6B9 /* TimerSettingView.swift */,
-			);
-			path = TimerSetting;
-			sourceTree = "<group>";
-		};
-		63A9C3FB2BA5E1CD0076D42C /* AnalyzeFeatures */ = {
-			isa = PBXGroup;
-			children = (
-				634C17B92BC92047007AC15F /* Reducers */,
-				63A9C3FC2BA5E21A0076D42C /* AnalyzeFeature.swift */,
-				634C17BA2BC9207A007AC15F /* AnalyzeFeature+State.swift */,
-				639F8D142BC97C8700D66551 /* AnalyzeFeautre+Action.swift */,
-			);
-			path = AnalyzeFeatures;
-			sourceTree = "<group>";
-		};
-		63A9C3FE2BA5E2CA0076D42C /* AnalyzeViews */ = {
-			isa = PBXGroup;
-			children = (
-				63BBF5182BBD3EE50094872B /* AnalyzeComponents */,
-				63A9C3FF2BA5E2D60076D42C /* AnalyzeView.swift */,
-			);
-			path = AnalyzeViews;
-			sourceTree = "<group>";
-		};
-		63AD70502BA4292D00DBD6B9 /* Features */ = {
-			isa = PBXGroup;
-			children = (
-				63170A5C2BF854BB00F35D6A /* DorocatFeatures */,
-				63A9C3FB2BA5E1CD0076D42C /* AnalyzeFeatures */,
-				63AD705F2BA43AE200DBD6B9 /* TimerFeatures */,
-				63AD70602BA43E9900DBD6B9 /* SettingFeatures */,
-			);
-			path = Features;
-			sourceTree = "<group>";
-		};
-		63AD705B2BA43A3C00DBD6B9 /* TimerViews */ = {
-			isa = PBXGroup;
-			children = (
-				637104122C09CCF50099075C /* CatSelect */,
-				635923A72BECFE47002CC44C /* TimerSession */,
-				63A9C3FA2BA5AAC20076D42C /* TimerSetting */,
-				631058852BC17A1A008611AD /* TimerComponents */,
-				63AD70512BA4297300DBD6B9 /* TimerView.swift */,
-			);
-			path = TimerViews;
-			sourceTree = "<group>";
-		};
-		63AD705C2BA43A4F00DBD6B9 /* SettingViews */ = {
-			isa = PBXGroup;
-			children = (
-				6310FCCF2C0E065A0068FE29 /* FeedbackSheet */,
-				637104202C0B3D0E0099075C /* PurchaseSheet */,
-				630285412BBD1A07009C32AE /* SettingComponents */,
-				63AD705D2BA43A5900DBD6B9 /* SettingView.swift */,
-			);
-			path = SettingViews;
-			sourceTree = "<group>";
-		};
-		63AD705F2BA43AE200DBD6B9 /* TimerFeatures */ = {
-			isa = PBXGroup;
-			children = (
-				637104162C09CD520099075C /* CatSelectFeature */,
-				635923A42BECFAE9002CC44C /* TimerSessionFeature */,
-				632F893F2BB584E800F2DC0B /* TimerSettingFeature */,
-				632F89372BB56E0900F2DC0B /* TimerFeature */,
-			);
-			path = TimerFeatures;
-			sourceTree = "<group>";
-		};
-		63AD70602BA43E9900DBD6B9 /* SettingFeatures */ = {
-			isa = PBXGroup;
-			children = (
-				635618AA2C1DD08B002816BD /* FeedbackFeature */,
-				63A288592BD6505800C817E7 /* SettingPurchaseFeature */,
-				63AD70612BA43EB800DBD6B9 /* SettingFeature.swift */,
-			);
-			path = SettingFeatures;
-			sourceTree = "<group>";
-		};
-		63B2BADF2BEBB0CE000090C5 /* TimerStatusReducers */ = {
-			isa = PBXGroup;
-			children = (
-				63B2BAE02BEBB0F3000090C5 /* TimerStatusReducers.swift */,
-				63B2BAE62BEBB9E3000090C5 /* TimerStatus>Status.swift */,
-				63B2BAE22BEBB473000090C5 /* TimerStatus>LiveActivity.swift */,
-				63B2BAE82BEBBD96000090C5 /* TimerStatus>Analyze.swift */,
-			);
-			path = TimerStatusReducers;
-			sourceTree = "<group>";
-		};
-		63B3FC232BB04A4B00277576 /* FontAssets */ = {
-			isa = PBXGroup;
-			children = (
-				634C48B62BDB8F1D002E35DC /* DarumadropOne-Regular.ttf */,
-				63B3FC2D2BB04A6600277576 /* Rubik-Black.ttf */,
-				63B3FC252BB04A6600277576 /* Rubik-BlackItalic.ttf */,
-				63B3FC2B2BB04A6600277576 /* Rubik-Bold.ttf */,
-				63B3FC2E2BB04A6600277576 /* Rubik-BoldItalic.ttf */,
-				63B3FC2C2BB04A6600277576 /* Rubik-ExtraBold.ttf */,
-				63B3FC292BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf */,
-				63B3FC2F2BB04A6600277576 /* Rubik-Italic.ttf */,
-				63B3FC282BB04A6600277576 /* Rubik-Light.ttf */,
-				63B3FC2A2BB04A6600277576 /* Rubik-LightItalic.ttf */,
-				63B3FC242BB04A6600277576 /* Rubik-Medium.ttf */,
-				63B3FC262BB04A6600277576 /* Rubik-MediumItalic.ttf */,
-				63B3FC302BB04A6600277576 /* Rubik-Regular.ttf */,
-				63B3FC272BB04A6600277576 /* Rubik-SemiBold.ttf */,
-				63B3FC312BB04A6600277576 /* Rubik-SemiBoldItalic.ttf */,
-			);
-			path = FontAssets;
-			sourceTree = "<group>";
-		};
-		63B3FC402BB04B1700277576 /* Font+ */ = {
-			isa = PBXGroup;
-			children = (
-				6345AB632BDCDD9400FF5D33 /* UIFontExtension.swift */,
-				63B3FC412BB04B2500277576 /* FontExtension.swift */,
-				6345AB5F2BDCDCFA00FF5D33 /* FontManager.swift */,
-				6345AB612BDCDD0100FF5D33 /* FontSystem.swift */,
-				631238E22C15A0E90097EE6B /* FontCoordinator.swift */,
-			);
-			path = "Font+";
-			sourceTree = "<group>";
-		};
-		63B521C52BD3C42B00400ADB /* Styles */ = {
-			isa = PBXGroup;
-			children = (
-				63088F1F2BBEC24600BF654D /* TriggerBtnStyle.swift */,
-				63B521C62BD3C43800400ADB /* DoneBtnStyle.swift */,
-				63B521C82BD3C62900400ADB /* ResetBtnStyle.swift */,
-				6345AB652BDD28B800FF5D33 /* ContinueBtnStyle.swift */,
-			);
-			path = Styles;
-			sourceTree = "<group>";
-		};
-		63BBF5182BBD3EE50094872B /* AnalyzeComponents */ = {
-			isa = PBXGroup;
-			children = (
-				63BBF51B2BBD453C0094872B /* AnalyzeDurationView.swift */,
-				63BBF51D2BBD47F20094872B /* AnalyzeListItemView.swift */,
-			);
-			path = AnalyzeComponents;
-			sourceTree = "<group>";
-		};
-		63BBF51F2BBD6BB80094872B /* TimerSettingComponents */ = {
-			isa = PBXGroup;
-			children = (
-				63BBF5202BBD6BFD0094872B /* TimerSettingFieldView.swift */,
-				63B521C32BD3C3B600400ADB /* TimerSettingModifiers.swift */,
-			);
-			path = TimerSettingComponents;
-			sourceTree = "<group>";
-		};
 		63C124C72B9EF93D000A6D35 = {
 			isa = PBXGroup;
 			children = (
+				6333D4A62CDF8D190005EA27 /* CoreDataEntities */,
 				638C92862C52AB5F00F62CA4 /* Dorocat.storekit */,
 				63F88D332C1B5B2900A712AA /* DorocatMain.storekit */,
-				636D59ED2C182A17000A9CC2 /* SessionMenuEntity+CoreDataClass.swift */,
-				636D59EE2C182A17000A9CC2 /* SessionMenuEntity+CoreDataProperties.swift */,
-				631217822C1597D800144189 /* TimerRecordItemEntity+CoreDataClass.swift */,
-				631217832C1597D800144189 /* TimerRecordItemEntity+CoreDataProperties.swift */,
-				6352AFD02BF626CA00929F47 /* App Intent */,
-				63C124D22B9EF93D000A6D35 /* Dorocat */,
-				632F538B2BD7490800357C68 /* DoroWidgetExtension */,
+				630D3E9A2CDF8C4900561855 /* App Intent */,
+				630D3DEF2CDF8C4500561855 /* Dorocat */,
+				6333D4BE2CDF94640005EA27 /* DoroWidgetExtension */,
 				6352AFC52BF626A900929F47 /* DorocatIntents */,
+				633D06402CA0659E00FD9070 /* DorocatTests */,
 				632F53862BD7490800357C68 /* Frameworks */,
 				63C124D12B9EF93D000A6D35 /* Products */,
 			);
@@ -1320,144 +240,9 @@
 				63C124D02B9EF93D000A6D35 /* Dorocat.app */,
 				632F53852BD7490800357C68 /* DoroWidgetExtensionExtension.appex */,
 				6352AFC32BF626A900929F47 /* DorocatIntents.appex */,
+				633D063F2CA0659E00FD9070 /* DorocatTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		63C124D22B9EF93D000A6D35 /* Dorocat */ = {
-			isa = PBXGroup;
-			children = (
-				63597A752C84299D0003E880 /* GoogleService-Info.plist */,
-				63B3FC432BB04CED00277576 /* Info.plist */,
-				633E97EE2BD79E0D00215563 /* Models */,
-				63AD70502BA4292D00DBD6B9 /* Features */,
-				635BD55D2B9F573D004480D1 /* Scenes */,
-				63C124E12B9EFAD5000A6D35 /* Dependencies */,
-				63C124E32B9EFAF1000A6D35 /* Cores */,
-				63C124E22B9EFAE6000A6D35 /* Resources */,
-				635BD55F2B9F5764004480D1 /* Helpers */,
-				63C124D72B9EF93D000A6D35 /* Assets.xcassets */,
-				63C124D92B9EF93D000A6D35 /* Preview Content */,
-				632721852B9F2E5C007E3206 /* .gitignore */,
-				635BD5582B9F56CA004480D1 /* Localizable.xcstrings */,
-				631217782C15897B00144189 /* DoroModel.xcdatamodeld */,
-			);
-			path = Dorocat;
-			sourceTree = "<group>";
-		};
-		63C124D92B9EF93D000A6D35 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				63C124DA2B9EF93D000A6D35 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		63C124E12B9EFAD5000A6D35 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				633266322C119B24001A71C2 /* NotificationDependencies */,
-				6352AFFA2BF6420500929F47 /* PomoLiveDependencies */,
-				6310FCD02C0E0E750068FE29 /* FeedbackDependencies */,
-				633558A02C08E14B00059332 /* CatDependencies */,
-				63FD1AA02BE0E54500E8D6EA /* IntialDependencies */,
-				63DF61B12BDAACB500D5C458 /* StoreDependencies */,
-				63A5175D2BD2D52D00FEAEF6 /* HapticDependencies */,
-				63FD44772BBC48CA00FA528F /* GuideDependencies */,
-				63E63AB22BB709C100A601E3 /* TimerDependencies */,
-				635C9D3B2BB082A600BFD46D /* PomoDependencies */,
-				6373407E2BA743CD00B2A10F /* AnalyzeDBDependencies */,
-			);
-			path = Dependencies;
-			sourceTree = "<group>";
-		};
-		63C124E22B9EFAE6000A6D35 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				633FF07E2BDAB5A000D0F85F /* DoroTest.storekit */,
-				63CCAFA42BCD1E520045B2A0 /* LottieAssets */,
-				639F8D182BCA1BB200D66551 /* Legacies */,
-				63B3FC232BB04A4B00277576 /* FontAssets */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		63C124E32B9EFAF1000A6D35 /* Cores */ = {
-			isa = PBXGroup;
-			children = (
-				6312177F2C1595B000144189 /* CoreDataCore */,
-				6352AFFB2BF6422E00929F47 /* ActivityIntentManager.swift */,
-				6310FCC92C0DFB930068FE29 /* DoroCatStyles */,
-				6301F7992BC3BCEB00E04214 /* RealmCore */,
-			);
-			path = Cores;
-			sourceTree = "<group>";
-		};
-		63C9F9112C35B6FD00451694 /* Muya */ = {
-			isa = PBXGroup;
-			children = (
-				63C9F9122C35B70D00451694 /* muya_basic.json */,
-				63C9F9142C35B70D00451694 /* muya_done.json */,
-				63C9F9132C35B70D00451694 /* muya_sleeping.json */,
-			);
-			path = Muya;
-			sourceTree = "<group>";
-		};
-		63CCAFA42BCD1E520045B2A0 /* LottieAssets */ = {
-			isa = PBXGroup;
-			children = (
-				63C9F9112C35B6FD00451694 /* Muya */,
-				6342D3DC2C345E0200AB335A /* Pomo */,
-				6371040F2C095C080099075C /* Monet */,
-				6371040E2C095BFF0099075C /* Doro */,
-			);
-			path = LottieAssets;
-			sourceTree = "<group>";
-		};
-		63DF61B12BDAACB500D5C458 /* StoreDependencies */ = {
-			isa = PBXGroup;
-			children = (
-				63DF61B22BDAACC200D5C458 /* StoreDependency.swift */,
-				633FF0802BDABAD300D0F85F /* PurchaseManager.swift */,
-				635490F42C19C8C600BC5A2A /* StoreClient.swift */,
-			);
-			path = StoreDependencies;
-			sourceTree = "<group>";
-		};
-		63E63AB22BB709C100A601E3 /* TimerDependencies */ = {
-			isa = PBXGroup;
-			children = (
-				63BD3C892BD261CA00C80542 /* TimerDependency.swift */,
-				6332661D2C1181A2001A71C2 /* TimerClient.swift */,
-				63E63AB32BB709EA00A601E3 /* TimeBackgroundClient.swift */,
-			);
-			path = TimerDependencies;
-			sourceTree = "<group>";
-		};
-		63F804A02BF47C3A007333AF /* Tables */ = {
-			isa = PBXGroup;
-			children = (
-				637340802BA7440900B2A10F /* TimerRecordItemTable.swift */,
-				63FF53742BF2F4FF006C009B /* TimerSessionTable.swift */,
-			);
-			path = Tables;
-			sourceTree = "<group>";
-		};
-		63FD1AA02BE0E54500E8D6EA /* IntialDependencies */ = {
-			isa = PBXGroup;
-			children = (
-				63FD1AA12BE0E9F000E8D6EA /* InitialDependency.swift */,
-			);
-			path = IntialDependencies;
-			sourceTree = "<group>";
-		};
-		63FD44772BBC48CA00FA528F /* GuideDependencies */ = {
-			isa = PBXGroup;
-			children = (
-				63FD44782BBC48D500FA528F /* GuideDependencies.swift */,
-				633266172C117BE1001A71C2 /* GuideClient.swift */,
-			);
-			path = GuideDependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1475,10 +260,32 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				630D3E9A2CDF8C4900561855 /* App Intent */,
+				6333D4BE2CDF94640005EA27 /* DoroWidgetExtension */,
+			);
 			name = DoroWidgetExtensionExtension;
 			productName = DoroWidgetExtensionExtension;
 			productReference = 632F53852BD7490800357C68 /* DoroWidgetExtensionExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
+		};
+		633D063E2CA0659E00FD9070 /* DorocatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 633D06472CA0659E00FD9070 /* Build configuration list for PBXNativeTarget "DorocatTests" */;
+			buildPhases = (
+				633D063B2CA0659E00FD9070 /* Sources */,
+				633D063C2CA0659E00FD9070 /* Frameworks */,
+				633D063D2CA0659E00FD9070 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				633D06442CA0659E00FD9070 /* PBXTargetDependency */,
+			);
+			name = DorocatTests;
+			productName = DorocatTests;
+			productReference = 633D063F2CA0659E00FD9070 /* DorocatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		6352AFC22BF626A900929F47 /* DorocatIntents */ = {
 			isa = PBXNativeTarget;
@@ -1491,6 +298,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				630D3E9A2CDF8C4900561855 /* App Intent */,
 			);
 			name = DorocatIntents;
 			productName = DorocatIntents;
@@ -1514,15 +324,23 @@
 				632F53962BD7490900357C68 /* PBXTargetDependency */,
 				6352AFCA2BF626A900929F47 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				630D3DEF2CDF8C4500561855 /* Dorocat */,
+				630D3E9A2CDF8C4900561855 /* App Intent */,
+				6333D4A62CDF8D190005EA27 /* CoreDataEntities */,
+			);
 			name = Dorocat;
 			packageProductDependencies = (
 				635BD55B2B9F5708004480D1 /* ComposableArchitecture */,
 				63CCAFA22BCD1E280045B2A0 /* Lottie */,
-				6351FA152C0C1D9E00FD0C67 /* RealmSwift */,
 				63597A892C843A2C0003E880 /* FirebaseAnalytics */,
 				63597A8B2C843A2C0003E880 /* FirebaseAnalyticsOnDeviceConversion */,
 				63597A8D2C843A2C0003E880 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				63597A8F2C843A2C0003E880 /* FirebaseCrashlytics */,
+				63D0C3582CA037E300C4D315 /* GreemSwiftPackage */,
+				63860A492CB415E80058D4EE /* NotificationDependency */,
+				63860A4F2CB416B50058D4EE /* NotificationDependency */,
+				63085EBD2CB54C9E00F87662 /* DoroDesignSystem */,
 			);
 			productName = Dorocat;
 			productReference = 63C124D02B9EF93D000A6D35 /* Dorocat.app */;
@@ -1535,11 +353,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					632F53842BD7490800357C68 = {
 						CreatedOnToolsVersion = 15.2;
+					};
+					633D063E2CA0659E00FD9070 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 63C124CF2B9EF93D000A6D35;
 					};
 					6352AFC22BF626A900929F47 = {
 						CreatedOnToolsVersion = 15.2;
@@ -1562,8 +384,10 @@
 			packageReferences = (
 				635BD55A2B9F5708004480D1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				63CCAFA12BCD1E280045B2A0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				6351FA122C0C1D9E00FD0C67 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				63597A882C843A2C0003E880 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				63D0C3572CA037E300C4D315 /* XCRemoteSwiftPackageReference "GreemSwiftPackage" */,
+				63860A4E2CB416B50058D4EE /* XCLocalSwiftPackageReference "../ProjectPackages/DoroDependencies" */,
+				63085EBC2CB54C9E00F87662 /* XCLocalSwiftPackageReference "DoroDesignSystemPackage" */,
 			);
 			productRefGroup = 63C124D12B9EF93D000A6D35 /* Products */;
 			projectDirPath = "";
@@ -1572,6 +396,7 @@
 				63C124CF2B9EF93D000A6D35 /* Dorocat */,
 				632F53842BD7490800357C68 /* DoroWidgetExtensionExtension */,
 				6352AFC22BF626A900929F47 /* DorocatIntents */,
+				633D063E2CA0659E00FD9070 /* DorocatTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1581,22 +406,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63DE9A992BECDC2600FF6204 /* Rubik-BoldItalic.ttf in Resources */,
-				63DE9A972BECDC2600FF6204 /* Rubik-Medium.ttf in Resources */,
-				63DE9A9F2BECDC2600FF6204 /* Rubik-SemiBoldItalic.ttf in Resources */,
-				63DE9AA32BECDC2600FF6204 /* Rubik-Black.ttf in Resources */,
-				63DE9A982BECDC2600FF6204 /* Rubik-Bold.ttf in Resources */,
-				63DE9AA22BECDC2600FF6204 /* Rubik-BlackItalic.ttf in Resources */,
-				63DE9A9A2BECDC2600FF6204 /* Rubik-LightItalic.ttf in Resources */,
-				63DE9A9D2BECDC2600FF6204 /* Rubik-Regular.ttf in Resources */,
-				63DE9AA02BECDC2600FF6204 /* Rubik-ExtraBoldItalic.ttf in Resources */,
-				63DE9A9B2BECDC2600FF6204 /* Rubik-Italic.ttf in Resources */,
-				632F53932BD7490900357C68 /* Assets.xcassets in Resources */,
-				63DE9AA12BECDC2600FF6204 /* Rubik-MediumItalic.ttf in Resources */,
-				63DE9A9E2BECDC2600FF6204 /* Rubik-Light.ttf in Resources */,
-				63DE9A962BECDC2100FF6204 /* DarumadropOne-Regular.ttf in Resources */,
-				63DE9AA42BECDC2600FF6204 /* Rubik-ExtraBold.ttf in Resources */,
-				63DE9A9C2BECDC2600FF6204 /* Rubik-SemiBold.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		633D063D2CA0659E00FD9070 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1611,43 +427,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63C124DB2B9EF93D000A6D35 /* Preview Assets.xcassets in Resources */,
-				63B5DFD72C3400AC00513E90 /* monet_sleeping.json in Resources */,
-				63B3FC3A2BB04A6600277576 /* Rubik-ExtraBold.ttf in Resources */,
-				6342D3E22C345E0D00AB335A /* pomo_sleeping.json in Resources */,
-				63CCAFA62BCD1EB20045B2A0 /* doro_sleeping.json in Resources */,
-				63B3FC392BB04A6600277576 /* Rubik-Bold.ttf in Resources */,
-				63597A762C84299D0003E880 /* GoogleService-Info.plist in Resources */,
-				63CCAFAB2BCD1EC60045B2A0 /* doro_done.json in Resources */,
-				63C9F9152C35B70D00451694 /* muya_basic.json in Resources */,
-				63CCAFAC2BCD1EC60045B2A0 /* 04_confetti.json in Resources */,
-				632721862B9F2E5C007E3206 /* .gitignore in Resources */,
-				63B3FC332BB04A6600277576 /* Rubik-BlackItalic.ttf in Resources */,
-				63B3FC382BB04A6600277576 /* Rubik-LightItalic.ttf in Resources */,
-				63F88D342C1B5B2900A712AA /* DorocatMain.storekit in Resources */,
-				63B5DFD62C3400AC00513E90 /* monet_basic.json in Resources */,
-				63C9F9172C35B70D00451694 /* muya_done.json in Resources */,
-				635BD5592B9F56CA004480D1 /* Localizable.xcstrings in Resources */,
-				63B3FC362BB04A6600277576 /* Rubik-Light.ttf in Resources */,
-				63B3FC342BB04A6600277576 /* Rubik-MediumItalic.ttf in Resources */,
-				63B3FC3F2BB04A6600277576 /* Rubik-SemiBoldItalic.ttf in Resources */,
-				63C124D82B9EF93D000A6D35 /* Assets.xcassets in Resources */,
-				63B3FC3C2BB04A6600277576 /* Rubik-BoldItalic.ttf in Resources */,
-				6342D3E02C345E0D00AB335A /* pomo_done.json in Resources */,
-				635490F62C19D13100BC5A2A /* DoroTest.storekit in Resources */,
-				63B3FC3B2BB04A6600277576 /* Rubik-Black.ttf in Resources */,
-				63CCAFAE2BCD1ED70045B2A0 /* doro_great.json in Resources */,
-				63B3FC3D2BB04A6600277576 /* Rubik-Italic.ttf in Resources */,
 				638C92872C52AB5F00F62CA4 /* Dorocat.storekit in Resources */,
-				6342D3E12C345E0D00AB335A /* pomo_basic.json in Resources */,
-				63B3FC3E2BB04A6600277576 /* Rubik-Regular.ttf in Resources */,
-				63B3FC322BB04A6600277576 /* Rubik-Medium.ttf in Resources */,
-				63B5DFD52C3400AC00513E90 /* monet_done.json in Resources */,
-				63B3FC372BB04A6600277576 /* Rubik-ExtraBoldItalic.ttf in Resources */,
-				634C48B72BDB8F1D002E35DC /* DarumadropOne-Regular.ttf in Resources */,
-				63CCAFA82BCD1EBB0045B2A0 /* doro_basic.json in Resources */,
-				63B3FC352BB04A6600277576 /* Rubik-SemiBold.ttf in Resources */,
-				63C9F9162C35B70D00451694 /* muya_sleeping.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1656,7 +436,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		63597A742C8420FA0003E880 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -1684,25 +464,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				632F538F2BD7490800357C68 /* DoroWidgetExtensionLiveActivity.swift in Sources */,
-				63E2BC612BD7D496006FED92 /* PomoAttributes.swift in Sources */,
-				63DE9A932BECDBFC00FF6204 /* FontExtension.swift in Sources */,
-				632F538D2BD7490800357C68 /* DoroWidgetExtensionBundle.swift in Sources */,
-				631238E42C15A5530097EE6B /* FontCoordinator.swift in Sources */,
-				63170A5A2BF84ACF00F35D6A /* FocusSleepToPauseIntent.swift in Sources */,
-				6335589A2C08D08000059332 /* BreakSleepToStandbyIntent.swift in Sources */,
-				63DE9A952BECDC0B00FF6204 /* FontManager.swift in Sources */,
-				63E2BC622BD7EE47006FED92 /* TimerStatus.swift in Sources */,
-				6352AFFD2BF6422E00929F47 /* ActivityIntentManager.swift in Sources */,
-				63DE9A922BECDBF900FF6204 /* UIFontExtension.swift in Sources */,
-				6352AF752BF6190100929F47 /* SessionItem.swift in Sources */,
-				6310FCBA2C0DBA2C0068FE29 /* CatType.swift in Sources */,
-				6310FCBF2C0DBBE40068FE29 /* CatTypeExtension.swift in Sources */,
-				6335589E2C08D27800059332 /* AppAwakeIntent.swift in Sources */,
-				63170A642BF9175000F35D6A /* PauseToFocusSleepIntent.swift in Sources */,
-				632F53912BD7490800357C68 /* DoroWidgetExtension.swift in Sources */,
-				63DE9A942BECDC0400FF6204 /* FontSystem.swift in Sources */,
-				63170A6B2BF91C0F00F35D6A /* DoroWidgetComponent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		633D063B2CA0659E00FD9070 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				633D06422CA0659E00FD9070 /* DorocatTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1710,14 +479,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6335589B2C08D08000059332 /* BreakSleepToStandbyIntent.swift in Sources */,
-				63170A652BF9175000F35D6A /* PauseToFocusSleepIntent.swift in Sources */,
-				6310FCB92C0DBA280068FE29 /* CatType.swift in Sources */,
-				631238E52C15A5530097EE6B /* FontCoordinator.swift in Sources */,
 				6352AFC72BF626A900929F47 /* IntentHandler.swift in Sources */,
-				6335589F2C08D27800059332 /* AppAwakeIntent.swift in Sources */,
-				63170A5B2BF84AD000F35D6A /* FocusSleepToPauseIntent.swift in Sources */,
-				6352AFFE2BF6422E00929F47 /* ActivityIntentManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1725,165 +487,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				631217842C1597D800144189 /* TimerRecordItemEntity+CoreDataClass.swift in Sources */,
-				631217852C1597D800144189 /* TimerRecordItemEntity+CoreDataProperties.swift in Sources */,
-				63E63AB42BB709EA00A601E3 /* TimeBackgroundClient.swift in Sources */,
-				63616FC12BC666B8003A7211 /* OnboardingView.swift in Sources */,
-				63BD3C8A2BD261CA00C80542 /* TimerDependency.swift in Sources */,
-				6301F7A52BC3D0AF00E04214 /* Legacy-AnalyzeFeature.swift in Sources */,
-				63AD70522BA4297300DBD6B9 /* TimerView.swift in Sources */,
-				637104142C09CD270099075C /* CatSelectView.swift in Sources */,
-				63BD3C882BD2519900C80542 /* PomoNotiType.swift in Sources */,
-				633266262C119126001A71C2 /* SettingFeatureReducer.swift in Sources */,
-				63F3D6642BD1805B00F1204B /* PomoNotiDependency.swift in Sources */,
-				633266242C1189A1001A71C2 /* AnalyzeFeatureReducer.swift in Sources */,
-				636EA32D2BEF858D00203538 /* UserDefaultsSessionStore.swift in Sources */,
-				6310FCD22C0E0EB80068FE29 /* FeedbackDependency.swift in Sources */,
-				633E97F02BD7ADE900215563 /* PomoValues.swift in Sources */,
-				63170A5E2BF854FF00F35D6A /* DorocatFeature+State.swift in Sources */,
-				63B2BAE32BEBB473000090C5 /* TimerStatus>LiveActivity.swift in Sources */,
-				63DF61B52BDAACF100D5C458 /* Guides.swift in Sources */,
-				63AD70622BA43EB800DBD6B9 /* SettingFeature.swift in Sources */,
-				6345AB642BDCDD9400FF5D33 /* UIFontExtension.swift in Sources */,
-				636453C62C19E1EB000D0BD9 /* TimerCPT+Session.swift in Sources */,
-				630285472BBD1E1D009C32AE /* SettingListItem.swift in Sources */,
-				63BBF51E2BBD47F20094872B /* AnalyzeListItemView.swift in Sources */,
-				6373504E2BB7E3E500221F20 /* TimerFeature+TimerInformation.swift in Sources */,
-				631FA2142BE788E800E603A2 /* TimerController>Guide.swift in Sources */,
-				63B2BAE72BEBB9E3000090C5 /* TimerStatus>Status.swift in Sources */,
-				630285452BBD1D39009C32AE /* SettingTitleView.swift in Sources */,
-				6345AB662BDD28B800FF5D33 /* ContinueBtnStyle.swift in Sources */,
-				631217812C1595BA00144189 /* CoreDataCore.swift in Sources */,
-				63FF53772BF2F573006C009B /* TimerRecordItem.swift in Sources */,
-				636EA3252BEF83CF00203538 /* PomoSessionDependency.swift in Sources */,
-				63BBF51C2BBD453C0094872B /* AnalyzeDurationView.swift in Sources */,
-				6332662B2C1191E7001A71C2 /* DorocatFeature+PageType.swift in Sources */,
-				6332FC352C0B465B00FBEBB1 /* OfferList.swift in Sources */,
-				6373504C2BB7E3AE00221F20 /* TimeFeature+TimerStatus.swift in Sources */,
-				633266122C1177EF001A71C2 /* NotificationType.swift in Sources */,
-				63A9C4002BA5E2D60076D42C /* AnalyzeView.swift in Sources */,
-				636E9F662BA818000006FE56 /* DBActor.swift in Sources */,
-				63DF61B32BDAACC200D5C458 /* StoreDependency.swift in Sources */,
-				637340852BA745CB00B2A10F /* Legacy-ShoppingListItemsScreen.swift in Sources */,
-				631E71562BDA380E00DDD72B /* AppState>Notification.swift in Sources */,
-				6345AB622BDCDD0100FF5D33 /* FontSystem.swift in Sources */,
-				637104232C0B3D300099075C /* Information.swift in Sources */,
-				63AD70562BA42A6E00DBD6B9 /* DoroMainView.swift in Sources */,
-				63A2885B2BD6507100C817E7 /* SettingPurchaseFeature.swift in Sources */,
-				631FA2122BE7810300E603A2 /* TimerController>Haptic.swift in Sources */,
-				633FF0812BDABAD300D0F85F /* PurchaseManager.swift in Sources */,
-				63560A392C20ABD1009762A2 /* WriteReviewLink.swift in Sources */,
-				632F89392BB5716400F2DC0B /* TimerFeature+State.swift in Sources */,
-				631217772C1588BA00144189 /* AnalyzeCoreDataClient.swift in Sources */,
-				632F539F2BD749FF00357C68 /* PomoLiveDependency.swift in Sources */,
-				63CBAD8C2BCD2247004EE320 /* LottieView.swift in Sources */,
-				63A9C3FD2BA5E21A0076D42C /* AnalyzeFeature.swift in Sources */,
-				632F893B2BB5717D00F2DC0B /* TimerFeature+ControllType.swift in Sources */,
-				635490F52C19C8C600BC5A2A /* StoreClient.swift in Sources */,
-				6332661A2C117C2C001A71C2 /* HapticClient.swift in Sources */,
-				633266162C117ABF001A71C2 /* AnalyzeRealmClient.swift in Sources */,
-				63F804A42BF4812E007333AF /* TimerSessionRepository.swift in Sources */,
-				6371041A2C0B2A670099075C /* CatList.swift in Sources */,
-				636D59EF2C182A17000A9CC2 /* SessionMenuEntity+CoreDataClass.swift in Sources */,
-				636D59F02C182A17000A9CC2 /* SessionMenuEntity+CoreDataProperties.swift in Sources */,
-				63A9C3F92BA5A3F10076D42C /* NumberPickerView.swift in Sources */,
-				633266312C119847001A71C2 /* ControllerReducer>Haptic.swift in Sources */,
-				638EAB032BBF7F50007F8CAC /* DoroTogglerView.swift in Sources */,
-				6332662F2C11932F001A71C2 /* LaunchReducer.swift in Sources */,
-				637104112C09C8B20099075C /* CatType.swift in Sources */,
-				6332661E2C1181A2001A71C2 /* TimerClient.swift in Sources */,
-				63A5175F2BD2D54200FEAEF6 /* HapticDependency.swift in Sources */,
-				63C124D42B9EF93D000A6D35 /* DorocatApp.swift in Sources */,
-				635923A62BECFAF4002CC44C /* TimerSessionFeature.swift in Sources */,
-				63B521C92BD3C62A00400ADB /* ResetBtnStyle.swift in Sources */,
-				635618AC2C1DD098002816BD /* FeedbackFeature.swift in Sources */,
-				6301F79B2BC3BE6200E04214 /* RealmRepository.swift in Sources */,
-				63A9C3F62BA574830076D42C /* TimerRecordDependency.swift in Sources */,
-				6301F7A02BC3C1E400E04214 /* AnalyzeRepository.swift in Sources */,
-				636EA3232BEF815400203538 /* SessionItem.swift in Sources */,
-				63B521C42BD3C3B600400ADB /* TimerSettingModifiers.swift in Sources */,
-				631E71542BDA377000DDD72B /* AppState>LiveActivity.swift in Sources */,
-				63F804A22BF4805B007333AF /* RealmSessionStore.swift in Sources */,
-				63FD1AA22BE0E9F000E8D6EA /* InitialDependency.swift in Sources */,
-				6301F7A32BC3D09500E04214 /* AsyncMap.swift in Sources */,
-				63170A592BF84ACB00F35D6A /* FocusSleepToPauseIntent.swift in Sources */,
-				636453C42C19E1B6000D0BD9 /* TimerCPT+Guides.swift in Sources */,
-				63AD70642BA43F6D00DBD6B9 /* TimerSettingFeature.swift in Sources */,
-				637104182C09CD9F0099075C /* CatSelectFeature.swift in Sources */,
-				6342D3E42C345FDD00AB335A /* TimerCPT+SkipBreakInfo.swift in Sources */,
-				6312177A2C15897B00144189 /* DoroModel.xcdatamodeld in Sources */,
-				6322F5A62C0F077300682C2C /* Bottom.swift in Sources */,
-				633266342C119B3B001A71C2 /* PomoUserDefaultsClient.swift in Sources */,
-				633266182C117BE1001A71C2 /* GuideClient.swift in Sources */,
-				63C5BF562BCAB8BE00E5A89C /* CircularProgressView.swift in Sources */,
-				6310FCC12C0DD3EB0068FE29 /* NotiListItem.swift in Sources */,
-				6352AFFC2BF6422E00929F47 /* ActivityIntentManager.swift in Sources */,
-				639F8D202BCA5F2700D66551 /* AsyncForEach.swift in Sources */,
-				6310FCCB2C0DFBA30068FE29 /* CatSelectStyle.swift in Sources */,
-				631FA2162BE790CE00E603A2 /* TimerController>Action.swift in Sources */,
-				6310FCC62C0DF2BC0068FE29 /* CatSelectControllerReducers.swift in Sources */,
-				633266282C119187001A71C2 /* PageMoveReducer.swift in Sources */,
-				63170A612BF8677A00F35D6A /* TimerActivityReducer.swift in Sources */,
-				633266212C118831001A71C2 /* TimerFeatureReducer.swift in Sources */,
-				632F89412BB5881A00F2DC0B /* TimerSettingFeatures+Reducers.swift in Sources */,
-				637340812BA7440900B2A10F /* TimerRecordItemTable.swift in Sources */,
-				63FF53752BF2F4FF006C009B /* TimerSessionTable.swift in Sources */,
-				639F8D152BC97C8700D66551 /* AnalyzeFeautre+Action.swift in Sources */,
-				6310FCC42C0DF2000068FE29 /* ControllType.swift in Sources */,
-				637350532BB8161D00221F20 /* DateExtensions.swift in Sources */,
-				6371041C2C0B32FB0099075C /* Info.swift in Sources */,
-				635C9D3D2BB082E400BFD46D /* PomoDependency.swift in Sources */,
-				63B521C72BD3C43800400ADB /* DoneBtnStyle.swift in Sources */,
-				6359D9882BC576C40045DEC7 /* AppStateReducers.swift in Sources */,
-				638EAB082BBFD1C7007F8CAC /* DoroNumberPad.swift in Sources */,
-				634C17BB2BC9207A007AC15F /* AnalyzeFeature+State.swift in Sources */,
-				633558992C08D08000059332 /* BreakSleepToStandbyIntent.swift in Sources */,
-				633E97F42BD7AE3C00215563 /* PomoAttributes.swift in Sources */,
-				63AD705E2BA43A5900DBD6B9 /* SettingView.swift in Sources */,
-				636453C22C19E176000D0BD9 /* TimerCPT+DoroCat.swift in Sources */,
-				636EA32B2BEF856B00203538 /* PomoSession+Snapshot.swift in Sources */,
-				6312177C2C158E4B00144189 /* CoreDataSessionStore.swift in Sources */,
-				6371041F2C0B33A80099075C /* ConfirmBtn.swift in Sources */,
-				631058892BC17A5A008611AD /* TimerViewComponents.swift in Sources */,
-				63170A632BF9175000F35D6A /* PauseToFocusSleepIntent.swift in Sources */,
-				636EA3282BEF845700203538 /* SessionError.swift in Sources */,
-				63AD70582BA437EB00DBD6B9 /* TimerFeature.swift in Sources */,
-				633E97F22BD7AE0700215563 /* TimerStatus.swift in Sources */,
-				63088F202BBEC24600BF654D /* TriggerBtnStyle.swift in Sources */,
-				631E71582BDA386900DDD72B /* AppState>TimerSaveFetch.swift in Sources */,
-				638EAB062BBF7FDE007F8CAC /* DragGesture+Swipe.swift in Sources */,
-				6373408D2BA7478A00B2A10F /* Legacy-ShoppingListItemFeature.swift in Sources */,
-				6310FCCD2C0E06510068FE29 /* FeedbackSheet.swift in Sources */,
-				6332661C2C117CB4001A71C2 /* LiveActivityClient.swift in Sources */,
-				633558A22C08E15900059332 /* CatDependency.swift in Sources */,
-				6332662D2C11920A001A71C2 /* DorocatFeature+AppStateType.swift in Sources */,
-				631238E32C15A0E90097EE6B /* FontCoordinator.swift in Sources */,
-				639F8D172BC9954400D66551 /* IntExtensions.swift in Sources */,
-				631FA2102BE780DC00E603A2 /* TimerControllerReducers.swift in Sources */,
-				6301F79D2BC3BF1300E04214 /* RealmError.swift in Sources */,
-				63B2BAE12BEBB0F3000090C5 /* TimerStatusReducers.swift in Sources */,
-				6335589D2C08D27800059332 /* AppAwakeIntent.swift in Sources */,
-				637350512BB7EEE300221F20 /* BackgroundTimerLogicReducers.swift in Sources */,
-				63B2BAE92BEBBD96000090C5 /* TimerStatus>Analyze.swift in Sources */,
-				639F8D1E2BCA55DD00D66551 /* Analyze+DurationReducers.swift in Sources */,
-				632F89462BB5C52300F2DC0B /* TimerLogicReducers.swift in Sources */,
-				63B3FC422BB04B2500277576 /* FontExtension.swift in Sources */,
-				635923A92BECFE53002CC44C /* TimerSessionView.swift in Sources */,
-				630285402BBD1360009C32AE /* PageIndicatorView.swift in Sources */,
-				639F8D132BC97BF300D66551 /* Anaylze+ViewReducers.swift in Sources */,
-				6345AB602BDCDCFA00FF5D33 /* FontManager.swift in Sources */,
-				630285432BBD1A2C009C32AE /* ProListItemView.swift in Sources */,
-				636E9F6A2BAD0A880006FE56 /* Legacy-AddShoppingListFeature.swift in Sources */,
-				63BBF51A2BBD3F160094872B /* DurationPickerView.swift in Sources */,
-				6310FCC82C0DF5E80068FE29 /* ControllerReducer>Action.swift in Sources */,
-				63A288582BD64ECA00C817E7 /* PurchaseSheet.swift in Sources */,
-				63AD70542BA429E300DBD6B9 /* DorocatFeature.swift in Sources */,
-				63AD705A2BA439D600DBD6B9 /* TimerSettingView.swift in Sources */,
-				6310588B2BC17D26008611AD /* TimerViewModifiers.swift in Sources */,
-				637340872BA7460900B2A10F /* Legacy-AddShoppingListItemScreen.swift in Sources */,
-				63BBF5212BBD6BFD0094872B /* TimerSettingFieldView.swift in Sources */,
-				63FD44792BBC48D500FA528F /* GuideDependencies.swift in Sources */,
-				63B2BAEB2BEBD384000090C5 /* TimerController>Notification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1894,6 +497,11 @@
 			isa = PBXTargetDependency;
 			target = 632F53842BD7490800357C68 /* DoroWidgetExtensionExtension */;
 			targetProxy = 632F53952BD7490900357C68 /* PBXContainerItemProxy */;
+		};
+		633D06442CA0659E00FD9070 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63C124CF2B9EF93D000A6D35 /* Dorocat */;
+			targetProxy = 633D06432CA0659E00FD9070 /* PBXContainerItemProxy */;
 		};
 		6352AFCA2BF626A900929F47 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1957,6 +565,44 @@
 			};
 			name = Release;
 		};
+		633D06452CA0659E00FD9070 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arpple.tistory.DorocatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dorocat.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Dorocat";
+			};
+			name = Debug;
+		};
+		633D06462CA0659E00FD9070 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3W9F68ZTUJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arpple.tistory.DorocatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dorocat.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Dorocat";
+			};
+			name = Release;
+		};
 		6352AFCD2BF626A900929F47 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2012,6 +658,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2075,6 +722,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2129,11 +777,11 @@
 		63C124DF2B9EF93D000A6D35 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "pomo_appIcon muya_appIcon monet_appIcon doro_appIcon";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = Dorocat/Dorocat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2148,6 +796,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -2162,7 +811,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -2173,11 +822,11 @@
 		63C124E02B9EF93D000A6D35 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "pomo_appIcon muya_appIcon monet_appIcon doro_appIcon";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = Dorocat/Dorocat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Dorocat/Preview Content\"";
@@ -2191,6 +840,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -2205,7 +855,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -2221,6 +871,15 @@
 			buildConfigurations = (
 				632F53992BD7490900357C68 /* Debug */,
 				632F539A2BD7490900357C68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		633D06472CA0659E00FD9070 /* Build configuration list for PBXNativeTarget "DorocatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				633D06452CA0659E00FD9070 /* Debug */,
+				633D06462CA0659E00FD9070 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2254,15 +913,18 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		6351FA122C0C1D9E00FD0C67 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		63085EBC2CB54C9E00F87662 /* XCLocalSwiftPackageReference "DoroDesignSystemPackage" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = DoroDesignSystemPackage;
 		};
+		63860A4E2CB416B50058D4EE /* XCLocalSwiftPackageReference "../ProjectPackages/DoroDependencies" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../ProjectPackages/DoroDependencies;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
 		63597A882C843A2C0003E880 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -2287,13 +949,25 @@
 				minimumVersion = 4.4.2;
 			};
 		};
+		63D0C3572CA037E300C4D315 /* XCRemoteSwiftPackageReference "GreemSwiftPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TaeYoon17/GreemSwiftPackage.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6351FA152C0C1D9E00FD0C67 /* RealmSwift */ = {
+		63085EBD2CB54C9E00F87662 /* DoroDesignSystem */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6351FA122C0C1D9E00FD0C67 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
+			productName = DoroDesignSystem;
+		};
+		63085EBF2CB54CF600F87662 /* DoroDesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63085EBC2CB54C9E00F87662 /* XCLocalSwiftPackageReference "DoroDesignSystemPackage" */;
+			productName = DoroDesignSystem;
 		};
 		63597A892C843A2C0003E880 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2320,26 +994,25 @@
 			package = 635BD55A2B9F5708004480D1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
+		63860A492CB415E80058D4EE /* NotificationDependency */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NotificationDependency;
+		};
+		63860A4F2CB416B50058D4EE /* NotificationDependency */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NotificationDependency;
+		};
 		63CCAFA22BCD1E280045B2A0 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 63CCAFA12BCD1E280045B2A0 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
-/* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		631217782C15897B00144189 /* DoroModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				631217792C15897B00144189 /* DoroModel.xcdatamodel */,
-			);
-			currentVersion = 631217792C15897B00144189 /* DoroModel.xcdatamodel */;
-			name = DoroModel.xcdatamodeld;
-			path = /Users/kimtaeyoon/Projects/Dorocat/Dorocat/DoroModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
+		63D0C3582CA037E300C4D315 /* GreemSwiftPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63D0C3572CA037E300C4D315 /* XCRemoteSwiftPackageReference "GreemSwiftPackage" */;
+			productName = GreemSwiftPackage;
 		};
-/* End XCVersionGroup section */
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 63C124C82B9EF93D000A6D35 /* Project object */;
 }

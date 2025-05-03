@@ -72,18 +72,18 @@ struct DoroNumberPad:View{
 }
 
 
-enum KeyboardValue:Equatable{
-    enum BGType{
+enum KeyboardValue: Equatable {
+    enum BGType {
         case clear
         case exist
-        var color: Color{
-            switch self{
+        var color: Color {
+            switch self {
             case .clear: Color.clear
             case .exist: Color.grey03
             }
         }
     }
-    case text(String,BGType = .exist)
+    case text(String, BGType = .exist)
     case image(String, BGType = .clear)
     var color: Color{
         switch self{
@@ -108,11 +108,10 @@ fileprivate struct SetTFKeyboard<Content:View>: UIViewRepresentable{
     }
     func updateUIView(_ uiView: UIView, context: Context) {
         DispatchQueue.main.async{
-            // background.TextFieldHostingController.background
             if let textFieldContainerView = uiView.superview?.superview{
                 if let textField = textFieldContainerView.findTextField{
                     // input이 이미 정리되어 있다면, 콘텐츠 업데이트
-                    if textField.inputView == nil{
+                    if textField.inputView == nil {
                         hostingController = UIHostingController(rootView: keyboardContent)
                         hostingController?.view.frame = .init(origin: .zero, size: hostingController?.view.intrinsicContentSize ?? .zero)
                         // UIHostingController를 통해 스유 뷰를 UIKit으로 바꿔서 띄우기

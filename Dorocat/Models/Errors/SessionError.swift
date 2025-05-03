@@ -7,11 +7,14 @@
 
 import Foundation
 
-enum SessionErrorType: Error{
+enum SessionErrorType: String,Error{
     case addFailed_isExistItem
+    
     case deleteFailed_isEssentialItem
+    
     case isUpdatingSessionType
-    enum Memory:Error{
+    
+    enum Memory:Error {
         case updateEssentialFailed
         case updateCustomFailed
     }

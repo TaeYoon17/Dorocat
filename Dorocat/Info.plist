@@ -2,24 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key></key>
-	<string></string>
 	<key>INIntentsSupported</key>
 	<array>
 		<string>FocusSleepToPauseIntent</string>
 	</array>
-	<key>UIAppFonts</key>
+	<key>UIBackgroundModes</key>
 	<array>
-		<string>Rubik-SemiBold.ttf</string>
-		<string>Rubik-Regular.ttf</string>
-		<string>Rubik-Medium.ttf</string>
-		<string>Rubik-Light.ttf</string>
-		<string>Rubik-Italic.ttf</string>
-		<string>Rubik-BoldItalic.ttf</string>
-		<string>Rubik-Bold.ttf</string>
-		<string>Rubik-Black.ttf</string>
-		<string>Rubik-BlackItalic.ttf</string>
-		<string>DarumadropOne-Regular.ttf</string>
+		<string>remote-notification</string>
 	</array>
 </dict>
 </plist>

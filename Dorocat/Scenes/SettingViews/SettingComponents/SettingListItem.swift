@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import DoroDesignSystem
 import ComposableArchitecture
+
 enum SettingListItem{
     struct Toggler: View{
         let title:String
@@ -18,7 +20,7 @@ enum SettingListItem{
                     HStack(alignment:.center) {
                         Text(title)
                             .font(.paragraph02())
-                            .foregroundStyle(.doroWhite)
+                            .foregroundStyle(Color.doroWhite)
                             .fontCoordinator()
                         Spacer()
                         DoroTogglerView(isOn: $isOn,toggleSize: .medium).frame(width: 50, height: 30)
@@ -26,7 +28,7 @@ enum SettingListItem{
                     if let description{
                         Text(description).lineSpacing(-12)
                             .font(.paragraph04)
-                            .foregroundStyle(.grey02)
+                            .foregroundStyle(Color.grey02)
                             .fontCoordinator().fontCoordinator()
                     }
                 }
@@ -34,7 +36,7 @@ enum SettingListItem{
             .padding(.vertical,18)
             .padding(.leading,23)
             .padding(.trailing,17)
-            .background(.grey03)
+            .background(Color.grey03)
             .clipShape(RoundedRectangle(cornerRadius: 20))
         }
     }
@@ -47,12 +49,12 @@ enum SettingListItem{
                 action()
             }, label: {
                 HStack(content: {
-                    VStack {
-                        Text(title).font(.paragraph02()).foregroundStyle(.doroWhite).fontCoordinator()
+                    VStack(alignment: .leading) {
+                        Text(title).font(.paragraph02()).foregroundStyle(Color.doroWhite).fontCoordinator()
                         if let description{
                             Text(description)
                                 .font(.paragraph04)
-                                .foregroundStyle(.grey02)
+                                .foregroundStyle(Color.grey02)
                                 .fontCoordinator().fontCoordinator()
                         }
                     }
@@ -62,7 +64,7 @@ enum SettingListItem{
                 })
                 .frame(height: 68)
                 .padding(.leading,23)
-                .background(.grey03)
+                .background(Color.grey03)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
             })
         }

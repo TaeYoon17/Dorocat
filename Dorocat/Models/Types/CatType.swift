@@ -9,6 +9,9 @@ import Foundation
 enum CatType:String,CaseIterable,Identifiable,Codable{
     var id:String{self.rawValue}
     case doro,pomo,monet,muya
+}
+
+extension CatType {
     func lottieAssetName(type:LottieAssetType)->String{
         let name = "\(self.rawValue)_\(type.rawValue)"
         return name
@@ -25,26 +28,29 @@ enum CatType:String,CaseIterable,Identifiable,Codable{
         }
     }
 }
+
 extension CatType{
     enum LottieAssetType:String{
         case basic
         case sleeping
         case done = "done"
-//        case great
     }
     enum ImageType:String{
         case icon = "appIcon"
         case mainLogo
         case thumbnailLogo
-//        case thumbnailInActiveLogo
         case settingInfoLogo
         case onboardingIcon
     }
-    // MARK: -- 에셋이 존재하는지 나타내는 가장 중요한 값
-    var isAssetExist:Bool{
-        switch self{
-//        case .pomo,.monet,.muya: false
-        default: true
+
+}
+
+extension CatType{
+    // MARK: -- 에셋이 존재하는지 나타내는 값... 추후 고양이 애셋 추가시 유연하게 대응하기 위해 존재함
+        var isAssetExist:Bool{
+            switch self{
+    //        case .pomo,.monet,.muya: false
+            default: true
+            }
         }
-    }
 }

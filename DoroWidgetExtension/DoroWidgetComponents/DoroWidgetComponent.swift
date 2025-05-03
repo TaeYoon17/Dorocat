@@ -78,13 +78,15 @@ extension DoroWidgetComponent{
             switch context.state.timerStatus {
             case .focusSleep,.breakSleep:
                 Text(timerInterval: Date.now...Date(timeInterval: TimeInterval(context.state.count),since: .now))
-                    .font(.custom("DarumadropOne-Regular", size: 46)).foregroundStyle(.doroWhite)
+                    .font(.custom(name: "DarumadropOne-Regular", size: 46))
+                    .foregroundStyle(.doroWhite)
                     .fontCoordinator()
             case .pause,.standBy:
                 let hour = context.state.count / 60
                 let min = context.state.count % 60
                 Text("\(hour):\(min)")
-                    .font(.custom("DarumadropOne-Regular", size: 46)).foregroundStyle(.doroWhite)
+                    .font(.custom(name: "DarumadropOne-Regular", size: 46))
+                    .foregroundStyle(.doroWhite)
                     .fontCoordinator()
             }
             
