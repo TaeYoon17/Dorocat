@@ -9,7 +9,7 @@ import Foundation
 import ComposableArchitecture
 
 extension AnalyzeFeature{
-    func selectDuration(_ state: inout State, _ type: DurationType) -> Effect<Action>{
+    func selectDuration(_ state: inout State, _ type: DurationType) -> Effect<Action> {
         return .run { send in
             await send(.getAllRecordsThenUpdate(type))
             await send(.setDurationType(type))

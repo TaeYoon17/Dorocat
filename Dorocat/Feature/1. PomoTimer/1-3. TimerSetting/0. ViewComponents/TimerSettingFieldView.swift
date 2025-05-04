@@ -9,19 +9,19 @@ import SwiftUI
 import DoroDesignSystem
 import ComposableArchitecture
 
-enum TimerSettingViewComponent{
-    struct Field:View{
-        var text:String
-        @Binding var isOn:Bool
-        var body: some View{
+enum TimerSettingViewComponent {
+    struct Field: View {
+        var text: String
+        @Binding var isOn: Bool
+        var body: some View {
             VStack(spacing: 21) {
-                HStack{
-                    if text.isEmpty{
+                HStack {
+                    if text.isEmpty {
                         Text("00").foregroundStyle(Color.grey03)
-                    }else{
-                        if text.count == 2{
+                    } else {
+                        if text.count == 2 {
                             Text(text).foregroundStyle(Color.doroWhite)
-                        }else if text.count == 1{
+                        } else if text.count == 1 {
                             (Text("0").foregroundColor(Color.grey03) + Text(text).foregroundColor(Color.doroWhite))
                         }
                     }
@@ -39,11 +39,11 @@ enum TimerSettingViewComponent{
             }
         }
     }
-    struct ListItem:View{
+    struct ListItem: View {
         let title:String
         let type: TimerSettingFeature.SettingType
         @Binding var selectedIdx:Int
-        var body: some View{
+        var body: some View {
             HStack {
                 Text(title).font(.paragraph02()).foregroundStyle(Color.doroWhite).fontCoordinator()
                 Spacer()
@@ -61,6 +61,7 @@ enum TimerSettingViewComponent{
         }
     }
 }
+
 struct ListItemBgModifier:ViewModifier{
     func body(content: Content) -> some View {
         content

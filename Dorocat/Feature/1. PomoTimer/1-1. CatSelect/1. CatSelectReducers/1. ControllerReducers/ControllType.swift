@@ -9,7 +9,7 @@ import Foundation
 import ComposableArchitecture
 
 extension CatSelectFeature{
-    enum ControllType:Equatable{
+    enum ControllType: Equatable {
         case itemTapped(CatType)
         case doneTapped
     }

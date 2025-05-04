@@ -8,8 +8,9 @@
 import Foundation
 import ComposableArchitecture
 
-extension CatSelectFeature.ControllReducers{
-    struct ActionReducer:CatSelectControllerProtocol{
+extension CatSelectFeature.ControllReducers {
+    
+    struct ActionReducer: CatSelectControllerProtocol {
         typealias Action = CatSelectFeature.Action
         typealias CancelID = CatSelectFeature.CancelID
         @Dependency(\.dismiss) var dismiss

@@ -8,7 +8,6 @@
 import Foundation
 import ComposableArchitecture
 
-
 extension SettingFeature {
     enum Controller: CaseIterable {
         case action, haptic
