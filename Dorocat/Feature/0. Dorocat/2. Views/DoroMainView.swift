@@ -17,9 +17,12 @@ struct DoroMainView: View {
                 self.tabView
                     .ignoresSafeArea(.container, edges: .bottom)
                     .alert($store.scope(state: \.alert, action: \.alert))
-                PageIndicatorView(itemCount: DorocatFeature.PageType.allCases, selectedIndex: store.pageSelection)
+                PageIndicatorView(
+                    itemCount: DorocatFeature.PageType.allCases,
+                    selectedIndex: store.pageSelection
+                )
             } else {
-                MainView(store: store.scope(state: \.timerState, action: \.timer))
+                PomoTimerView(store: store.scope(state: \.timerState, action: \.timer))
                     .tag(DorocatFeature.PageType.timer)
                     .tabItem {
                         Label("Timer",systemImage: "folder.circle").tint(.doroBlack)
@@ -38,22 +41,22 @@ struct DoroMainView: View {
             AnalyzeView(store: self.store.scope(state: \.anylzeState, action: \.analyze))
                 .tag(DorocatFeature.PageType.analyze)
                 .tabItem({
-                    Label("analyze", systemImage: "pencil.circle").tint(.doroBlack)
+                    Label(Constant.TapType.analyze, systemImage: Constant.TapLogo.analyze).tint(.doroBlack)
                 })
                 
             // 슬라이딩마다 부모 Store에서 저장한 값을 가져온다!!
-            MainView(store: store.scope(state: \.timerState, action: \.timer))
+            PomoTimerView(store: store.scope(state: \.timerState, action: \.timer))
                 .tag(DorocatFeature.PageType.timer)
-                .tabItem({
-                    Label("Timer",systemImage: "folder.circle").tint(.doroBlack)
-                })
+                .tabItem {
+                    Label(Constant.TapType.pomoTimer, systemImage: Constant.TapLogo.pomoTimer).tint(.doroBlack)
+                }
                 
 
             SettingView(store: self.store.scope(state: \.settingState, action: \.setting))
                 .tag(DorocatFeature.PageType.setting)
-                .tabItem({
-                    Label("Setting",systemImage: "paperplane").tint(.doroBlack)
-                })
+                .tabItem {
+                    Label(Constant.TapType.setting, systemImage: Constant.TapLogo.setting).tint(.doroBlack)
+                }
         })
         .tabViewStyle(.page(indexDisplayMode: .never))
         

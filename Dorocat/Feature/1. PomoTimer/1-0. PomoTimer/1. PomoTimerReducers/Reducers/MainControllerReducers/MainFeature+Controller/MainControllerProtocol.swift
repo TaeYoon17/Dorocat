@@ -9,27 +9,27 @@ import Foundation
 import ComposableArchitecture
 protocol MainControllerProtocol{
     func makeReducer(
-        state: inout MainFeature.State,
-        act:MainFeature.ControllType) -> Effect<MainFeature.Action>
+        state: inout PomoTimerFeature.State,
+        act:PomoTimerFeature.ControllType) -> Effect<PomoTimerFeature.Action>
     
-    func timerFieldTapped(state:inout MainFeature.State) -> Effect<MainFeature.Action>
-    func catTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action>
-    func resetTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action>
-    func triggerTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action>
+    func timerFieldTapped(state:inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action>
+    func catTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action>
+    func resetTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action>
+    func triggerTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action>
     func triggerWillTap(
-        state: inout MainFeature.State,
-        type: MainFeature.HapticType
-    ) -> Effect<MainFeature.Action>
-    func sessionTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action>
+        state: inout PomoTimerFeature.State,
+        type: PomoTimerFeature.HapticType
+    ) -> Effect<PomoTimerFeature.Action>
+    func sessionTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action>
     func resetDialogTapped(
-        state: inout MainFeature.State,
-        type: MainFeature.ConfirmationDialog
-    ) -> Effect<MainFeature.Action>
+        state: inout PomoTimerFeature.State,
+        type: PomoTimerFeature.ConfirmationDialog
+    ) -> Effect<PomoTimerFeature.Action>
 }
 
 
 extension MainControllerProtocol{
-    func makeReducer(state: inout MainFeature.State,act: MainFeature.ControllType) -> Effect<MainFeature.Action> {
+    func makeReducer(state: inout PomoTimerFeature.State,act: PomoTimerFeature.ControllType) -> Effect<PomoTimerFeature.Action> {
         switch act {
             case .catTapped: catTapped(state: &state)
             case .resetTapped: resetTapped(state: &state)

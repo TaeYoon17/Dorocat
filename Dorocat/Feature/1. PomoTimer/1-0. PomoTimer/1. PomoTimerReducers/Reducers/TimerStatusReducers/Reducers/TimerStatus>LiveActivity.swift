@@ -8,20 +8,20 @@
 import Foundation
 import ComposableArchitecture
 
-extension MainFeature.StatusReducers{
+extension PomoTimerFeature.StatusReducers{
     struct LiveActivityReducer: TimerStatusProtocol{
-        func setSleep(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> { .none }
+        func setSleep(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> { .none }
         
         
         @Dependency(\.pomoLiveActivity) var liveActivity
-        var cancelID: MainFeature.CancelID
-        func setStandBy(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> {
+        var cancelID: PomoTimerFeature.CancelID
+        func setStandBy(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> {
             return .run { send in
                 await liveActivity.removeActivity()
             }
         }
         
-        func setFocus(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> {
+        func setFocus(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> {
             let count = count ?? state.timerSettingEntity.timeSeconds
             let focusTotalTime = state.timerSettingEntity.timeSeconds
             let session = state.timerProgressEntity.session
@@ -31,19 +31,19 @@ extension MainFeature.StatusReducers{
             }
         }
         
-        func setPause(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> {
+        func setPause(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> {
             return .run { send in await liveActivity.removeActivity() }
         }
         
         
-        func setBreakStandBy(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> {
+        func setBreakStandBy(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> {
             return .run { send in await liveActivity.removeActivity() }
         }
-        func setFocusStandBy(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> {
+        func setFocusStandBy(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> {
             return .run{ send in await liveActivity.removeActivity() }
         }
         
-        func setBreakTime(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> {
+        func setBreakTime(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> {
             let count = count ?? state.timerSettingEntity.breakTime
             let breakTotalTime = state.timerSettingEntity.breakTime
             return .run {[item = state.timerProgressEntity.session, cat = state.catType]send in
@@ -52,7 +52,7 @@ extension MainFeature.StatusReducers{
             }
         }
         
-        func setCompleted(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> {
+        func setCompleted(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> {
             return .run { send in await liveActivity.removeActivity() }
         }
     }

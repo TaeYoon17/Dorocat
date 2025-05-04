@@ -11,7 +11,7 @@ import ComposableArchitecture
 
 extension TimerViewComponents{
     struct FocusSessionButton:View {
-        let store: StoreOf<MainFeature>
+        let store: StoreOf<PomoTimerFeature>
         var body: some View {
             switch store.timerProgressEntity.status{
             case .breakStandBy,.focusStandBy,.completed:

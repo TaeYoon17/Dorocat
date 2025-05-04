@@ -8,20 +8,20 @@
 import Foundation
 import ComposableArchitecture
 
-extension MainFeature.StatusReducers{
+extension PomoTimerFeature.StatusReducers{
     struct StatusReducer: TimerStatusProtocol{
         
         @Dependency(\.haptic) var haptic
         @Dependency(\.doroStateDefaults) var doroStateDefaults
-        var cancelID: MainFeature.CancelID
-        func setStandBy(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> {
+        var cancelID: PomoTimerFeature.CancelID
+        func setStandBy(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> {
             if count != nil{ fatalError("여기에 존재하면 안된다!!")}
             state.timerProgressEntity.cycle = 0
             state.timerProgressEntity.count = state.timerSettingEntity.timeSeconds
             return .cancel(id: cancelID)
         }
         
-        func setFocus(state: inout MainFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<MainFeature.Action> {
+        func setFocus(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<PomoTimerFeature.Action> {
             if let startDate{ state.timerProgressEntity.startDate = startDate }
             let count = count ?? state.timerSettingEntity.timeSeconds
             state.timerProgressEntity.count = count
@@ -37,16 +37,16 @@ extension MainFeature.StatusReducers{
                                 }).animation(.easeInOut))
         }
         
-        func setPause(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> {
+        func setPause(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> {
             return .cancel(id: cancelID)
         }
         
-        func setSleep(state: inout MainFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<MainFeature.Action> {
+        func setSleep(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<PomoTimerFeature.Action> {
             if let count { fatalError("여기에 존재하면 안된다!!")}
             print("Sleep 모드로 타이머 전환")
             return .cancel(id: cancelID)
         }
-        func setBreakTime(state: inout MainFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<MainFeature.Action> {
+        func setBreakTime(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<PomoTimerFeature.Action> {
             if let startDate{state.timerProgressEntity.startDate = startDate}
             let count = count ?? state.timerSettingEntity.breakTime
             state.timerProgressEntity.count = count
@@ -54,18 +54,18 @@ extension MainFeature.StatusReducers{
                 await send(.setTimerRunning(count))
             })
         }
-        func setBreakStandBy(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> {
+        func setBreakStandBy(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> {
             if count != nil{ fatalError("여기에 존재하면 안된다!!")}
             state.timerProgressEntity.count = state.timerSettingEntity.breakTime
             return .concatenate(.cancel(id: cancelID))
         }
-        func setFocusStandBy(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> {
+        func setFocusStandBy(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> {
             if count != nil{ fatalError("여기에 존재하면 안된다!!")}
             state.timerProgressEntity.count = state.timerSettingEntity.timeSeconds
             return .concatenate(.cancel(id: cancelID))
         }
         
-        func setCompleted(state: inout MainFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<MainFeature.Action> {
+        func setCompleted(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<PomoTimerFeature.Action> {
             if count != nil{ fatalError("여기에 존재하면 안된다!!")}
             return .concatenate(.cancel(id: cancelID),.run(operation: {[appstate = state.appState] send in
                 switch appstate{

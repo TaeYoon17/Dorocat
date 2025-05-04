@@ -64,7 +64,7 @@ struct DorocatFeature {
         
         //MARK: -- 하위 뷰의 State 들...
         var anylzeState = AnalyzeFeature.State()
-        var timerState = MainFeature.State()
+        var timerState = PomoTimerFeature.State()
         var settingState = SettingFeature.State()
     }
     
@@ -83,7 +83,7 @@ struct DorocatFeature {
         case openRequestIcloudSyncSheet
         case openFailedIcloudSyncSheet
         
-        case timer(MainFeature.Action)
+        case timer(PomoTimerFeature.Action)
         case analyze(AnalyzeFeature.Action)
         case setting(SettingFeature.Action)
         case setGuideStates(Guides)
@@ -184,7 +184,7 @@ struct DorocatFeature {
             AnalyzeFeature()
         }
         Scope(state: \.timerState, action: /DorocatFeature.Action.timer) {
-            MainFeature()
+            PomoTimerFeature()
         }
         Scope(state: \.settingState,action: /DorocatFeature.Action.setting) {
             SettingFeature()

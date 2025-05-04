@@ -10,8 +10,8 @@ import DoroDesignSystem
 import ComposableArchitecture
 
 
-struct MainView: View {
-    @Bindable var store: StoreOf<MainFeature>
+struct PomoTimerView: View {
+    @Bindable var store: StoreOf<PomoTimerFeature>
     @Environment(\.scenePhase) var phase
     var body: some View {
         ZStack {
@@ -96,7 +96,7 @@ struct MainView: View {
 }
 
 fileprivate extension View{
-    func timerViewModifiers(store: StoreOf<MainFeature>) -> some View{
+    func timerViewModifiers(store: StoreOf<PomoTimerFeature>) -> some View{
         self
             .modifier(TimerViewModifiers.Session(store: store))
             .modifier(TimerViewModifiers.Guide.Focus(store: store))
@@ -108,7 +108,7 @@ fileprivate extension View{
     }
 }
 #Preview {
-    MainView(store: Store(initialState: MainFeature.State(), reducer: {
-        MainFeature()
+    PomoTimerView(store: Store(initialState: PomoTimerFeature.State(), reducer: {
+        PomoTimerFeature()
     }))
 }

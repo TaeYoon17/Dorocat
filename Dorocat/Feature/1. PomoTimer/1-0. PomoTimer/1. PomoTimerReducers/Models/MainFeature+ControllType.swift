@@ -8,7 +8,7 @@
 import Foundation
 import ComposableArchitecture
 
-extension MainFeature{
+extension PomoTimerFeature{
     enum HapticType: Equatable {
         case heavy
         case soft

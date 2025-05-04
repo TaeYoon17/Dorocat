@@ -8,7 +8,7 @@
 import Foundation
 import ComposableArchitecture
 // MARK: -- Dorocat Tab과 Feature를 완전히 분리해서 구현해보기
-extension MainFeature {
+extension PomoTimerFeature {
     @CasePathable
     enum ConfirmationDialog {
         case sessionReset
@@ -16,10 +16,11 @@ extension MainFeature {
     }
 }
 
-typealias MainEffect =  Effect<MainFeature.Action>
-typealias MainState = MainFeature.State
+typealias MainEffect =  Effect<PomoTimerFeature.Action>
+typealias MainState = PomoTimerFeature.State
 
-@Reducer struct MainFeature {
+@Reducer
+struct PomoTimerFeature {
     enum CancelID { case timer }
     enum Action: Equatable {
         case viewAction(ControllType)
@@ -62,15 +63,19 @@ typealias MainState = MainFeature.State
                 return self.appStateRedecuer(&state,appState: appState)
             //MARK: -- 화면 전환 Action 처리
             case .timerSetting(.presented(.delegate(.setTimerInfo(let info)))):
-                let progressEntity:TimerProgressEntity = TimerProgressEntity(startDate: Date(),
-                                                         cycle: 0,
-                                                         count: info.timeSeconds,
-                                                         status: state.timerProgressEntity.status,
-                                                         session: state.timerProgressEntity.session)
-                let doroStateEntity:DoroStateEntity = DoroStateEntity(catType: state.catType,
-                                                      isProMode: state.isProUser,
-                                                      progressEntity: progressEntity,
-                                                      settingEntity: info)
+                let progressEntity = TimerProgressEntity(
+                    startDate: Date(),
+                    cycle: 0,
+                    count: info.timeSeconds,
+                    status: state.timerProgressEntity.status,
+                    session: state.timerProgressEntity.session
+                )
+                let doroStateEntity = DoroStateEntity(
+                    catType: state.catType,
+                    isProMode: state.isProUser,
+                    progressEntity: progressEntity,
+                    settingEntity: info
+                )
                 return .run { send in
                     await send(.setDoroStateEntity(doroStateEntity))
                     await doroStateDefaults.setDoroStateEntity(doroStateEntity)

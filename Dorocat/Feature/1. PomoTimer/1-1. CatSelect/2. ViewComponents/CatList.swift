@@ -9,21 +9,21 @@ import SwiftUI
 import DoroDesignSystem
 import ComposableArchitecture
 
-extension CatSelectViewComponents{
+extension CatSelectViewComponents {
     struct CatList: View {
         let store: StoreOf<CatSelectFeature>
         var body: some View {
             HStack(spacing:20) {
-                if store.isProUser{
+                if store.isProUser {
                     ProCatList(store: store)
-                }else{
+                } else {
                     StandartCatList(store: store)
                 }
             }
         }
     }
 }
-extension CatSelectViewComponents{
+extension CatSelectViewComponents {
     struct ProCatList: View {
         let store: StoreOf<CatSelectFeature>
         var body: some View {

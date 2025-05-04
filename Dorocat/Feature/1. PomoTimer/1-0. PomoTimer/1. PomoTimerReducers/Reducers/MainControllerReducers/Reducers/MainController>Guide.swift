@@ -10,9 +10,9 @@ import ComposableArchitecture
 
 
 
-extension MainFeature.Controller{
+extension PomoTimerFeature.Controller{
     struct GuideReducer: MainControllerProtocol{
-        typealias MainConfrimationDialog = MainFeature.ConfirmationDialog
+        typealias MainConfrimationDialog = PomoTimerFeature.ConfirmationDialog
         
         @Dependency(\.guideDefaults) var guideDefaults
         func timerFieldTapped(state: inout MainState) -> MainEffect {
@@ -40,7 +40,7 @@ extension MainFeature.Controller{
             return .none
         }
         
-        func triggerWillTap(state: inout MainState,type: MainFeature.HapticType) -> MainEffect{ .none
+        func triggerWillTap(state: inout MainState,type: PomoTimerFeature.HapticType) -> MainEffect{ .none
         }
     }
 }

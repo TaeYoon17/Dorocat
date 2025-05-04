@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: -- View에서 사용하는 계산 프로퍼티
-extension MainFeature.State {
+extension PomoTimerFeature.State {
     private var count: Int {
         timerProgressEntity.count
     }

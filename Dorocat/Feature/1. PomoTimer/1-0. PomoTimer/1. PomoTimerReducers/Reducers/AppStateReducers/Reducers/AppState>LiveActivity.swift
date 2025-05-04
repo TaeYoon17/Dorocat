@@ -8,12 +8,12 @@
 import Foundation
 import ComposableArchitecture
 
-extension MainFeature.AppStateReducers{
+extension PomoTimerFeature.AppStateReducers{
     struct LiveActivityReducer:AppStateReducerProtocol{
         @Dependency(\.pomoLiveActivity) var liveActivity
-        func makeReducer(capturedState state: MainFeature.State,
+        func makeReducer(capturedState state: PomoTimerFeature.State,
                          prevAppState: DorocatFeature.AppStateType,
-                         nextAppState: DorocatFeature.AppStateType) -> Effect<MainFeature.Action> {
+                         nextAppState: DorocatFeature.AppStateType) -> Effect<PomoTimerFeature.Action> {
             switch nextAppState{
             case .active: return .run{ send in
                 switch state.timerProgressEntity.status{

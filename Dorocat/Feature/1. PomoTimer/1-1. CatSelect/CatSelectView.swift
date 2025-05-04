@@ -8,8 +8,8 @@
 import SwiftUI
 import DoroDesignSystem
 import ComposableArchitecture
-enum CatSelectViewComponents{}
- 
+
+enum CatSelectViewComponents { }
 struct CatSelectView: View {
     @Bindable var store: StoreOf<CatSelectFeature>
     var body: some View {
@@ -27,7 +27,8 @@ struct CatSelectView: View {
                 bottomLeadingRadius: 0,
                 bottomTrailingRadius: 0,
                 topTrailingRadius: 24,
-                style: .circular)
+                style: .circular
+            )
         )
         .padding(.top, 40)
         .padding(.bottom, 26)

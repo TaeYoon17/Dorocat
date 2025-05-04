@@ -7,10 +7,10 @@
 
 import ComposableArchitecture
 
-extension MainFeature.AppStateReducers{
+extension PomoTimerFeature.AppStateReducers{
     struct NotificationReducer:AppStateReducerProtocol{
         @Dependency(\.pomoNotification) var notification
-        func makeReducer(capturedState state: MainFeature.State, prevAppState: DorocatFeature.AppStateType, nextAppState: DorocatFeature.AppStateType) -> Effect<MainFeature.Action> {
+        func makeReducer(capturedState state: PomoTimerFeature.State, prevAppState: DorocatFeature.AppStateType, nextAppState: DorocatFeature.AppStateType) -> Effect<PomoTimerFeature.Action> {
             switch nextAppState {
             case .active:
                     return .run{ _ in try await removeAllNotifications() }
@@ -29,11 +29,11 @@ extension MainFeature.AppStateReducers{
     }
 }
 
-extension MainFeature.AppStateReducers.NotificationReducer{
+extension PomoTimerFeature.AppStateReducers.NotificationReducer{
     fileprivate func removeAllNotifications()async throws{
         try await notification.removeAllNotifications()
     }
-    fileprivate func setNotification(send:Send<MainFeature.Action>,
+    fileprivate func setNotification(send:Send<PomoTimerFeature.Action>,
                                      status: TimerStatus,
                                      value:DoroStateEntity
     ) async throws {

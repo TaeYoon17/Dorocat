@@ -12,7 +12,7 @@ import ComposableArchitecture
 enum TimerViewModifiers{
     enum Guide{
         struct GoLeft:ViewModifier{
-            let store: StoreOf<MainFeature>
+            let store: StoreOf<PomoTimerFeature>
             func body(content: Content) -> some View {
                 content.overlay(alignment: .leading) {
                     if store.timerProgressEntity.status == .standBy && !store.guideInformation.goLeftFinished{
@@ -22,7 +22,7 @@ enum TimerViewModifiers{
             }
         }
         struct GoRight: ViewModifier{
-            let store: StoreOf<MainFeature>
+            let store: StoreOf<PomoTimerFeature>
             func body(content: Content) -> some View {
                 content.overlay(alignment: .trailing) {
                     if store.timerProgressEntity.status == .standBy && !store.guideInformation.goRightFinished{
@@ -32,7 +32,7 @@ enum TimerViewModifiers{
             }
         }
         struct StandBy: ViewModifier{
-            let store: StoreOf<MainFeature>
+            let store: StoreOf<PomoTimerFeature>
             func body(content: Content) -> some View {
                 content.overlay(alignment:.top) {
                     if store.timerProgressEntity.status == .standBy && !store.guideInformation.standByGuide{
@@ -43,7 +43,7 @@ enum TimerViewModifiers{
             }
         }
         struct Focus: ViewModifier{
-            let store: StoreOf<MainFeature>
+            let store: StoreOf<PomoTimerFeature>
             func body(content: Content) -> some View {
                 content.overlay(alignment:.top) {
                     ZStack {
@@ -60,7 +60,7 @@ enum TimerViewModifiers{
         }
     }
     struct Reset: ViewModifier{
-        let store: StoreOf<MainFeature>
+        let store: StoreOf<PomoTimerFeature>
         func body(content: Content) -> some View {
             content.overlay(alignment: .top, content: {
                 switch store.timerProgressEntity.status{
@@ -72,7 +72,7 @@ enum TimerViewModifiers{
         }
     }
     struct Session: ViewModifier{
-        @Bindable var store: StoreOf<MainFeature>
+        @Bindable var store: StoreOf<PomoTimerFeature>
         func body(content: Content) -> some View {
             content.overlay(alignment: .top, content: {
                     TimerViewComponents.FocusSessionButton(store: store).padding(.top,93)
@@ -83,7 +83,7 @@ enum TimerViewModifiers{
         }
     }
     struct Init: ViewModifier{
-        let store: StoreOf<MainFeature>
+        let store: StoreOf<PomoTimerFeature>
         func body(content: Content) -> some View {
             content.onAppear(){
                 store.send(.initAction)
@@ -91,7 +91,7 @@ enum TimerViewModifiers{
         }
     }
     struct SkipBreakInfo: ViewModifier{
-        let store: StoreOf<MainFeature>
+        let store: StoreOf<PomoTimerFeature>
         func body(content: Content) -> some View {
             content.overlay(alignment:.top) {
                 ZStack {

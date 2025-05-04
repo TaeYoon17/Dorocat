@@ -8,27 +8,27 @@
 import Foundation
 import ComposableArchitecture
 
-extension MainFeature.Controller{
+extension PomoTimerFeature.Controller{
     struct NotificationReducer: MainControllerProtocol{
-        func resetDialogTapped(state: inout MainFeature.State,
-                               type: MainFeature.ConfirmationDialog) -> Effect<MainFeature.Action> {
+        func resetDialogTapped(state: inout PomoTimerFeature.State,
+                               type: PomoTimerFeature.ConfirmationDialog) -> Effect<PomoTimerFeature.Action> {
             .none
         }
         
-        func sessionTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {
+        func sessionTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action> {
             .none
         }
         
-        typealias Action = MainFeature.Action
+        typealias Action = PomoTimerFeature.Action
         @Dependency(\.pomoNotification) var notification
-        func timerFieldTapped(state: inout MainFeature.State) -> ComposableArchitecture.Effect<MainFeature.Action> {
+        func timerFieldTapped(state: inout PomoTimerFeature.State) -> ComposableArchitecture.Effect<PomoTimerFeature.Action> {
             .none
         }
-        func catTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> { .none }
+        func catTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action> { .none }
         
-        func resetTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {.none }
+        func resetTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action> {.none }
         
-        func triggerTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {
+        func triggerTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action> {
             switch state.timerProgressEntity.status {
             case .standBy:
                 return .run { send in
@@ -39,7 +39,7 @@ extension MainFeature.Controller{
             default: return .none
             }
         }
-        func triggerWillTap(state: inout MainFeature.State,type: MainFeature.HapticType) -> Effect<MainFeature.Action>{
+        func triggerWillTap(state: inout PomoTimerFeature.State,type: PomoTimerFeature.HapticType) -> Effect<PomoTimerFeature.Action>{
             return .none
         }
     }

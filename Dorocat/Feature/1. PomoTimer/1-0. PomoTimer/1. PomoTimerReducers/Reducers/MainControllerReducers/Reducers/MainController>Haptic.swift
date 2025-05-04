@@ -7,22 +7,22 @@
 
 import Foundation
 import ComposableArchitecture
-extension MainFeature.Controller{
+extension PomoTimerFeature.Controller{
     struct HapticReducer: MainControllerProtocol{
         @Dependency(\.haptic) var haptic
         
-        func resetDialogTapped(state: inout MainFeature.State,
-                               type: MainFeature.ConfirmationDialog) -> Effect<MainFeature.Action> {
+        func resetDialogTapped(state: inout PomoTimerFeature.State,
+                               type: PomoTimerFeature.ConfirmationDialog) -> Effect<PomoTimerFeature.Action> {
             return .run { send in
                 await haptic.impact(style: .soft)
             }
         }
-        func sessionTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {
+        func sessionTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action> {
             .run { send in
                 await haptic.impact(style: .soft)
             }
         }
-        func timerFieldTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {
+        func timerFieldTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action> {
             if !state.guideInformation.onBoardingFinished{
                 return .run { send in await haptic.impact(style: .soft) }
             }
@@ -34,26 +34,26 @@ extension MainFeature.Controller{
             }
         }
         
-        func catTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {
+        func catTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action> {
             return .run { send in
                 await haptic.impact(style: .rigid,intensity: 0.7)
             }
         }
         
-        func resetTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {
+        func resetTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action> {
             return .run { send in
                 await haptic.impact(style: .soft)
             }
         }
         
-        func triggerTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {
-            let hapticEffect: Effect<MainFeature.Action> = .run { send in
+        func triggerTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action> {
+            let hapticEffect: Effect<PomoTimerFeature.Action> = .run { send in
                 await haptic.impact(style: .light)
             }
             return hapticEffect
         }
         
-        func triggerWillTap(state: inout MainFeature.State,type: MainFeature.HapticType) -> ComposableArchitecture.Effect<MainFeature.Action> {
+        func triggerWillTap(state: inout PomoTimerFeature.State,type: PomoTimerFeature.HapticType) -> ComposableArchitecture.Effect<PomoTimerFeature.Action> {
             switch type{
             case .heavy: return .run { send in
                 await haptic.impact(style: .heavy)

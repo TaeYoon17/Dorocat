@@ -9,7 +9,7 @@ import Foundation
 import ComposableArchitecture
 @Reducer
 struct CatSelectFeature{
-    @ObservableState struct State: Equatable{
+    @ObservableState struct State: Equatable {
         var catType: CatType = .doro
         var isProUser: Bool = true
         var tappedCatType: CatType = .doro
@@ -19,27 +19,27 @@ struct CatSelectFeature{
     @Dependency(\.dismiss) var dismiss
     @Dependency(\.store) var store
     @Dependency(\.doroStateDefaults) var doroStateDefaults
-    enum Action:Equatable{
+    enum Action:Equatable {
         case delegate(Delegate)
         case action(ControllType)
         case setProUser(Bool)
         case setCatType(CatType)
         case setSelectedCatType(CatType)
         case launchAction
-        enum Delegate:Equatable{
+        enum Delegate:Equatable {
             case cancel
             case setCatType(CatType)
         }
     }
     enum CancelID{ case purchase }
-    var body: some ReducerOf<Self>{
+    var body: some ReducerOf<Self> {
         Reduce{ state, action in
-            switch action{
+            switch action {
             case .delegate: return .none
             case .action(let controllType):
                 return viewAction(&state, controllType)
             case .launchAction:
-                if !state.isLaunched{
+                if !state.isLaunched {
                     state.isLaunched = true
                     return .run { send in
                         let isPro = store.isProUser

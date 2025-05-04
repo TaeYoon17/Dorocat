@@ -8,21 +8,32 @@
 import SwiftUI
 import DoroDesignSystem
 import UIKit
-import CloudKit
-
 import ComposableArchitecture
 import ActivityKit
 
 
 @main
 struct DorocatApp: App {
+    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @Environment(\.scenePhase) var phase
-    let store = Store(initialState: DorocatFeature.State(), reducer: { DorocatFeature() })
+    
+    let store = Store(
+        initialState: DorocatFeature.State(),
+        reducer: { DorocatFeature() }
+    )
+    
     var body: some Scene {
         WindowGroup {
             
-            let scope = Bindable(store).scope<DorocatFeature.State, DorocatFeature.DoroPath.State, DorocatFeature.DoroPath.Action>(state: \.path, action: \.actionPath)
+            let scope = Bindable(store).scope<
+                DorocatFeature.State,
+                DorocatFeature.DoroPath.State,
+                DorocatFeature.DoroPath.Action
+            >(
+                state: \.path,
+                action: \.actionPath
+            )
             
             NavigationStack(path: scope) {
                 ZStack {

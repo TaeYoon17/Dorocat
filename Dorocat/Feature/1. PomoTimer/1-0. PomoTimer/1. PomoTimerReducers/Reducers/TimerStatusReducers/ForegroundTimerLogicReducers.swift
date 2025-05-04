@@ -7,12 +7,12 @@
 
 import Foundation
 import ComposableArchitecture
-extension MainFeature{
-    func timerTick(state: inout MainFeature.State) -> Effect<MainFeature.Action>{
+extension PomoTimerFeature{
+    func timerTick(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action>{
         return state.timerSettingEntity.isPomoMode ? pomoTick(state: &state) : defaultTick(state: &state)
     }
     // 포모도로 모드일 때 and 타이머에서 1초가 줄어들 때
-    private func pomoTick(state: inout MainFeature.State) -> Effect<MainFeature.Action>{
+    private func pomoTick(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action>{
         return timerCompletedAction(state: &state) { state in
             switch state.timerProgressEntity.status{
             case .focus:
@@ -32,14 +32,14 @@ extension MainFeature{
         }
     }
     // 기본 타이머 모드일 때 타이머에서 1초가 줄어들 때
-    private func defaultTick(state: inout MainFeature.State) -> Effect<MainFeature.Action>{
+    private func defaultTick(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action>{
         guard state.timerProgressEntity.status == .focus else{ return .cancel(id: CancelID.timer) }
         return timerCompletedAction(state: &state) { state in
             return .run{ send in await send(.setStatus(.completed)) }
         }
     }
-    private func timerCompletedAction(state: inout MainFeature.State,
-                                      action: @escaping (inout MainFeature.State)-> Effect<MainFeature.Action>) -> Effect<MainFeature.Action> {
+    private func timerCompletedAction(state: inout PomoTimerFeature.State,
+                                      action: @escaping (inout PomoTimerFeature.State)-> Effect<PomoTimerFeature.Action>) -> Effect<PomoTimerFeature.Action> {
         let num = state.timerProgressEntity.count - 1
         if num > 0{
             state.timerProgressEntity.count = num

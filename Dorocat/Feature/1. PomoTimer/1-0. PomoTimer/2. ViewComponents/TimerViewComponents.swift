@@ -9,10 +9,10 @@ import SwiftUI
 import DoroDesignSystem
 import ComposableArchitecture
 
-fileprivate extension TimerStatus{
-    var text:String{
-        switch self{
-        case .breakTime,.breakSleep: "Skip Break"
+fileprivate extension TimerStatus {
+    var text: String {
+        switch self {
+        case .breakTime, .breakSleep: "Skip Break"
         case .completed: "Complete"
         case .standBy: "Start"
         case .focus,.focusSleep:"Pause"
@@ -22,15 +22,15 @@ fileprivate extension TimerStatus{
         }
     }
 }
-enum TimerViewComponents{
-    struct TriggerBtn: View{
-        @Bindable var store: StoreOf<MainFeature>
-        var body: some View{
+enum TimerViewComponents {
+    struct TriggerBtn: View {
+        @Bindable var store: StoreOf<PomoTimerFeature>
+        var body: some View {
             Group{
-                switch store.timerProgressEntity.status{
+                switch store.timerProgressEntity.status {
                 case .pause:
                     HStack(spacing: 12) {
-                        Button("Reset"){
+                        Button("Reset") {
                             store.send(.viewAction(.resetTapped))
                         }.resetStyle {
                             store.send(.viewAction(.triggerWillTap(.soft)))
@@ -68,7 +68,7 @@ enum TimerViewComponents{
     }
     enum Timer{
         struct NumberField:View{
-            let store: StoreOf<MainFeature>
+            let store: StoreOf<PomoTimerFeature>
             var body: some View{
                 HStack(content: {
                     Spacer()
@@ -93,7 +93,7 @@ enum TimerViewComponents{
         }
     }
     struct TotalFocusTimeView: View {
-        let store: StoreOf<MainFeature>
+        let store: StoreOf<PomoTimerFeature>
         var body: some View {
             HStack{
                 Image(.completeIcon)
@@ -109,7 +109,7 @@ enum TimerViewComponents{
         }
     }
     struct ResetButton: View{
-        let store: StoreOf<MainFeature>
+        let store: StoreOf<PomoTimerFeature>
         var body: some View{
             Button("Reset"){
                 store.send(.viewAction(.resetTapped))
@@ -120,7 +120,7 @@ enum TimerViewComponents{
 
 
 #Preview {
-    MainView(store: Store(initialState: MainFeature.State(), reducer: {
-        MainFeature()
+    PomoTimerView(store: Store(initialState: PomoTimerFeature.State(), reducer: {
+        PomoTimerFeature()
     }))
 }

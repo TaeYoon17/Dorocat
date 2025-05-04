@@ -8,8 +8,8 @@
 import Foundation
 import ComposableArchitecture
 
-extension MainFeature{
-    func awakeTimer(_ send: Send<MainFeature.Action>) async {
+extension PomoTimerFeature{
+    func awakeTimer(_ send: Send<PomoTimerFeature.Action>) async {
         // 시간 설정, 저장해둔 타이머 시간 정보가 없으면 저장한 Status 값 그대로 보존한다.
         guard let prevDate = await timeBackground.date else {
             print("이게 문제")
@@ -58,10 +58,10 @@ extension MainFeature{
 }
 
 //MARK: -- focus 상태일 때 처리
-extension MainFeature{
-    fileprivate typealias Sender = Send<MainFeature.Action>
+extension PomoTimerFeature{
+    fileprivate typealias Sender = Send<PomoTimerFeature.Action>
     // 1. 기본 타이머 집중 상태에서 멈추었다 다시 가져온다.
-    fileprivate func defaultTimerFocus(_ send: Send<MainFeature.Action>,
+    fileprivate func defaultTimerFocus(_ send: Send<PomoTimerFeature.Action>,
                                        doroEntity:DoroStateEntity,
                                        diff:Int) async{
         let restTime = doroEntity.progressEntity.count - diff

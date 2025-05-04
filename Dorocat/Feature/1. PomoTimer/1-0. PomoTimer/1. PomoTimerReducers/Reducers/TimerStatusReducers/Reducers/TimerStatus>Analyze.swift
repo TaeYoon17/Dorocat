@@ -7,21 +7,21 @@
 
 import Foundation
 import ComposableArchitecture
-extension MainFeature.StatusReducers{
+extension PomoTimerFeature.StatusReducers{
     struct AnalyzeReducer:TimerStatusProtocol{
         @Dependency(\.analyzeAPIClients) var analyze
         
-        var cancelID: MainFeature.CancelID
+        var cancelID: PomoTimerFeature.CancelID
         
-        func setStandBy(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> { .none }
+        func setStandBy(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> { .none }
         
-        func setFocus(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> { .none }
+        func setFocus(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> { .none }
         
-        func setPause(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> { .none }
+        func setPause(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> { .none }
         
-        func setSleep(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> { .none }
+        func setSleep(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> { .none }
         
-        func setBreakStandBy(state: inout MainFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<MainFeature.Action> {
+        func setBreakStandBy(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<PomoTimerFeature.Action> {
             let startDate = state.timerProgressEntity.startDate
             let duration = state.timerSettingEntity.timeSeconds / 60
             let session = state.timerProgressEntity.session
@@ -30,12 +30,12 @@ extension MainFeature.StatusReducers{
                 await analyze.append(.init(createdAt: startDate, duration: duration,session: session))
             }
         }
-        func setFocusStandBy(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> {
+        func setFocusStandBy(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> {
             return .none
         }
-        func setBreakTime(state: inout MainFeature.State, count: Int?, startDate: Date?) -> Effect<MainFeature.Action> { .none }
+        func setBreakTime(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> Effect<PomoTimerFeature.Action> { .none }
         
-        func setCompleted(state: inout MainFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<MainFeature.Action> {
+        func setCompleted(state: inout PomoTimerFeature.State, count: Int?, startDate: Date?) -> ComposableArchitecture.Effect<PomoTimerFeature.Action> {
             let startDate = state.timerProgressEntity.startDate
             let duration = state.timerSettingEntity.timeSeconds / 60
             let session = state.timerProgressEntity.session

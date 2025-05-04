@@ -8,15 +8,15 @@
 import Foundation
 import ComposableArchitecture
 import FirebaseAnalytics
-extension MainFeature.Controller{
+extension PomoTimerFeature.Controller{
     struct ActionReducer: MainControllerProtocol{
-        func resetDialogTapped(state: inout MainFeature.State, type: MainFeature.ConfirmationDialog) -> Effect<MainFeature.Action> {
+        func resetDialogTapped(state: inout PomoTimerFeature.State, type: PomoTimerFeature.ConfirmationDialog) -> Effect<PomoTimerFeature.Action> {
             switch type{
             case .sessionReset:
                 switch state.timerProgressEntity.status {
                 case .pause:
                     state.timerProgressEntity.count = state.timerSettingEntity.timeSeconds
-                    return .cancel(id: MainFeature.CancelID.timer)
+                    return .cancel(id: PomoTimerFeature.CancelID.timer)
                 default: return .none
                 }
             case .timerReset:
@@ -29,8 +29,8 @@ extension MainFeature.Controller{
             }
         }
         
-        typealias Action = MainFeature.Action
-        func timerFieldTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {
+        typealias Action = PomoTimerFeature.Action
+        func timerFieldTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action> {
             switch state.timerProgressEntity.status {
             case .standBy: // standby일때 탭하면 세팅하는 화면으로 설정한다.
                 state.timerSetting = TimerSettingFeature.State()
@@ -40,7 +40,7 @@ extension MainFeature.Controller{
             default: return .none
             }
         }
-        func sessionTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {
+        func sessionTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action> {
             switch state.timerProgressEntity.status {
             case .standBy:
                 state.timerSession = TimerSessionFeature.State()
@@ -50,7 +50,7 @@ extension MainFeature.Controller{
             default: return .none
             }
         }
-        func catTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {
+        func catTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action> {
             
             Analytics.logEvent("Timer Feature Cat",parameters: nil)
             
@@ -69,7 +69,7 @@ extension MainFeature.Controller{
             return .none
         }
         
-        func resetTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {
+        func resetTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action> {
             let isPomoMode = state.timerSettingEntity.isPomoMode
             if isPomoMode {
                 state.resetDialog = .init(title: {
@@ -94,7 +94,7 @@ extension MainFeature.Controller{
             return .none
         }
         
-        func triggerTapped(state: inout MainFeature.State) -> Effect<MainFeature.Action> {
+        func triggerTapped(state: inout PomoTimerFeature.State) -> Effect<PomoTimerFeature.Action> {
             switch state.timerProgressEntity.status{
             case .standBy:
                 guard state.timerProgressEntity.count != 0 else {return .none}
@@ -130,7 +130,7 @@ extension MainFeature.Controller{
             case .breakSleep,.focusSleep: return .none
             }
         }
-        func triggerWillTap(state: inout MainFeature.State,type: MainFeature.HapticType) -> Effect<MainFeature.Action>{
+        func triggerWillTap(state: inout PomoTimerFeature.State,type: PomoTimerFeature.HapticType) -> Effect<PomoTimerFeature.Action>{
             return .none
         }
     }

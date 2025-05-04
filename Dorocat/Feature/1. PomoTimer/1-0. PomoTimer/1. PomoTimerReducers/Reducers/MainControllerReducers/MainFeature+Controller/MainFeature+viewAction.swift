@@ -7,7 +7,7 @@
 
 import Foundation
 import ComposableArchitecture
-extension MainFeature{
+extension PomoTimerFeature{
     func viewAction(_ state:inout State,_ act: ControllType) -> Effect<Action>{
         return Controller.makeAllReducers(state: &state, act: act)
     }

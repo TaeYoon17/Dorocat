@@ -7,7 +7,7 @@
 
 import Foundation
 import ComposableArchitecture
-extension MainFeature{
+extension PomoTimerFeature{
     enum Controller: CaseIterable {
         case haptic, guide, action, notification
         private var reducer: MainControllerProtocol {
@@ -18,7 +18,7 @@ extension MainFeature{
                 case .notification: NotificationReducer()
             }
         }
-        static func makeAllReducers(state:inout MainFeature.State,act:ControllType) -> Effect<Action> {
+        static func makeAllReducers(state:inout PomoTimerFeature.State,act:ControllType) -> Effect<Action> {
             Effect.concatenate(
                 notification.reducer.makeReducer(state: &state, act: act),
                 Effect.merge([Self.haptic, .guide, .action].map{

@@ -7,7 +7,7 @@
 
 import Foundation
 import ComposableArchitecture
-extension MainFeature {
+extension PomoTimerFeature {
     
     @ObservableState
     struct State: Equatable {

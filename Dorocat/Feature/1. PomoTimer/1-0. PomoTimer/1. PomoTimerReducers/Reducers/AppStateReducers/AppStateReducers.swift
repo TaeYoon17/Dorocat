@@ -8,8 +8,8 @@
 import Foundation
 import ComposableArchitecture
 
-extension MainFeature{
-    func appStateRedecuer(_ state: inout MainFeature.State,appState: DorocatFeature.AppStateType)-> Effect<Action>{
+extension PomoTimerFeature{
+    func appStateRedecuer(_ state: inout PomoTimerFeature.State,appState: DorocatFeature.AppStateType)-> Effect<Action>{
         let prevState = state.appState
         state.appState = appState
         let state = state
@@ -20,10 +20,10 @@ extension MainFeature{
     }
     
 }
-extension MainFeature{
+extension PomoTimerFeature{
     enum AppStateReducers:CaseIterable{
         typealias AppState = DorocatFeature.AppStateType
-        typealias State = MainFeature.State
+        typealias State = PomoTimerFeature.State
         case notification,pomoTimer,activity
         private var myReducer:AppStateReducerProtocol{
             switch self{
@@ -46,7 +46,7 @@ extension MainFeature{
     }
 }
 protocol AppStateReducerProtocol{
-    func makeReducer(capturedState state: MainFeature.State,
+    func makeReducer(capturedState state: PomoTimerFeature.State,
                      prevAppState:DorocatFeature.AppStateType,
-                     nextAppState:DorocatFeature.AppStateType)->Effect<MainFeature.Action>
+                     nextAppState:DorocatFeature.AppStateType)->Effect<PomoTimerFeature.Action>
 }

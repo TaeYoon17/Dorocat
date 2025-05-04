@@ -7,14 +7,14 @@
 
 import Foundation
 import ComposableArchitecture
-extension MainFeature{
+extension PomoTimerFeature{
     // 앱의 상태가 바뀐 뒤 타이머 구성
     func setTimerStatus(
-        state:inout MainFeature.State,
+        state:inout PomoTimerFeature.State,
         status:TimerStatus,
         count:Int? = nil,
         startDate:Date? = nil
-    ) -> Effect<MainFeature.Action> {
+    ) -> Effect<PomoTimerFeature.Action> {
         state.timerProgressEntity.status = status
         return Effect.merge(
             StatusReducers.makeAllReducers(
@@ -28,11 +28,11 @@ extension MainFeature{
     }
 }
 
-extension MainFeature {
+extension PomoTimerFeature {
     
     enum StatusReducers: CaseIterable {
         case liveActivity, status, analyze
-        private func myReducer(cancelID: MainFeature.CancelID) -> TimerStatusProtocol {
+        private func myReducer(cancelID: PomoTimerFeature.CancelID) -> TimerStatusProtocol {
             switch self {
             case .liveActivity: LiveActivityReducer(cancelID: cancelID)
             case .status: StatusReducer(cancelID: cancelID)
@@ -40,12 +40,12 @@ extension MainFeature {
             }
         }
         static func makeAllReducers(
-            cancelID: MainFeature.CancelID,
-            state: inout MainFeature.State,
+            cancelID: PomoTimerFeature.CancelID,
+            state: inout PomoTimerFeature.State,
             status:TimerStatus,
             count:Int?,
             startDate:Date?
-        ) -> [Effect<MainFeature.Action>] {
+        ) -> [Effect<PomoTimerFeature.Action>] {
             Self.allCases.map { reducer in
                 reducer
                     .myReducer(cancelID: cancelID)
