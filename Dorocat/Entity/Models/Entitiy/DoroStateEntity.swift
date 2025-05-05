@@ -7,9 +7,8 @@
 
 import Foundation
 
-struct DoroStateEntity:Equatable {
+struct DoroStateEntity: Equatable {
     var catType: CatType = .doro
-    var isProMode:Bool = false
     var progressEntity = TimerProgressEntity()
     var settingEntity = TimerSettingEntity()
 }

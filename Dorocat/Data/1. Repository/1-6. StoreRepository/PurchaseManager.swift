@@ -8,16 +8,19 @@
 import Foundation
 import StoreKit
 import Combine
-enum PurchaseError:Error{
+
+enum PurchaseError: Error {
     case noneProItem
     case pending
     case failed
     case cancelled
 }
-enum PurchaseEvent{
+
+enum PurchaseEvent {
     case userProUpdated(Bool)
 }
-final class PurchaseManager:StoreProtocol {
+
+final class PurchaseManager:StoreDependency {
     private static let label:String = "com.tistory.arpple.Dorocat.ProVersion"
     var isProUser: Bool{ UserDefaults.standard.bool(forKey: Self.label) }
     var refundTransactionID: Transaction.ID = 0

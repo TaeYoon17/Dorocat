@@ -19,6 +19,8 @@ extension DorocatFeature{
 }
 fileprivate extension DorocatFeature{
     func liveActivityReducer(state: inout State,prev:TimerActivityType,next:TimerActivityType)->Effect<Action>{
+        @Dependency(\.cat) var cat
+        @Dependency(\.timer) var timer
         return .run { send in
             guard let prevDate = await timerBackground.date else {
                 print("이게 문제")
@@ -47,12 +49,14 @@ fileprivate extension DorocatFeature{
             case .focusSleep:
                 var doroStateEntity = await doroStateDefaults.getDoroStateEntity()
                 doroStateEntity.progressEntity.status = .focus
-                await doroStateDefaults.setTimerProgressEntity(doroStateEntity.progressEntity)
+                await timer.setTimerProgressEntity(doroStateEntity.progressEntity)
                 await timerBackground.set(timerStatus: .focusSleep)
-                await liveActivity.updateActivity(type:.focusSleep,
-                                                  item:doroStateEntity.progressEntity.session,
-                                                  cat: doroStateEntity.catType,
-                                                  restCount: restTime)
+                await liveActivity.updateActivity(
+                    type:.focusSleep,
+                    item:doroStateEntity.progressEntity.session,
+                    cat: await cat.selectedCat,
+                    restCount: restTime
+                )
                 try? await setFocusSleepNotification(entity: doroStateEntity)
             case .pause:
                 var doroStateEntity = await doroStateDefaults.getDoroStateEntity()
@@ -63,10 +67,12 @@ fileprivate extension DorocatFeature{
                 }else{
                     doroStateEntity.progressEntity.count = differenceTime
                     doroStateEntity.progressEntity.status = .pause
-                    await liveActivity.updateActivity(type: .pause,
-                                                      item: sessionItem,
-                                                      cat: doroStateEntity.catType,
-                                                      restCount: differenceTime)
+                    await liveActivity.updateActivity(
+                        type: .pause,
+                        item: sessionItem,
+                        cat: await cat.selectedCat,
+                        restCount: differenceTime
+                    )
                     await doroStateDefaults.setDoroStateEntity(doroStateEntity)
                     try await notification.removeAllNotifications()
                 }
@@ -76,10 +82,12 @@ fileprivate extension DorocatFeature{
                 guard differenceTime > 0 else { return } // 0보다 작으면 이미
                 doroStateEntity.progressEntity.count = timerTotalTime
                 doroStateEntity.progressEntity.status = .standBy
-                await liveActivity.updateActivity(type: .standBy,
-                                                  item: sessionItem,
-                                                  cat: doroStateEntity.catType,
-                                                  restCount: 0)
+                await liveActivity.updateActivity(
+                    type: .standBy,
+                    item: sessionItem,
+                    cat: await cat.selectedCat,
+                    restCount: 0
+                )
                 await doroStateDefaults.setDoroStateEntity(doroStateEntity)
             }
         }

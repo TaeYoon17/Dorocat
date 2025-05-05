@@ -119,6 +119,7 @@ struct DorocatFeature {
                 }
             case .setProUser(let isProUser):
                 state.isProUser = isProUser
+                /// 상위에서 직접 전파한다.
                 return .run { send in
                     await send(.timer(.setProUser(isProUser)))
                     await send(.setting(.setProUser(isProUser)))

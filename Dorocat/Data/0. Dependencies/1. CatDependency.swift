@@ -22,6 +22,9 @@ protocol CatDependency {
 
 fileprivate enum CatClientKey: DependencyKey {
     static let liveValue: CatDependency = CatClient()
+    static let testValue: CatDependency = CatClient(
+        defaults: MockUserDefaultsService()
+    )
 }
 extension DependencyValues {
     var cat: CatDependency {

@@ -102,7 +102,7 @@ struct SettingFeature {
                     }.cancellable(id: CancelID.initial)
                     
                     let catEffect: Effect<Action> = .run { send in
-                        let cat = await doroStateDefaults.getCatType()
+                        let cat = await cat.selectedCat
                         await send(.setCatType(cat))
                         for await catEvent in await self.cat.catEventStream() {
                             switch catEvent {

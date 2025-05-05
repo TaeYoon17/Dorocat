@@ -53,6 +53,7 @@ struct PomoTimerFeature {
     @Dependency(\.analyzeAPIClients) var analyzeAPI
     @Dependency(\.timer) var timer
     @Dependency(\.cat) var cat
+    @Dependency(\.store) var store
     
     var body: some ReducerOf<Self> {
         Reduce{ state, action in
@@ -72,7 +73,6 @@ struct PomoTimerFeature {
                 )
                 let doroStateEntity = DoroStateEntity(
                     catType: state.catType,
-                    isProMode: state.isProUser,
                     progressEntity: progressEntity,
                     settingEntity: info
                 )
@@ -128,7 +128,6 @@ struct PomoTimerFeature {
                 state.timerSettingEntity = doroStateEntity.settingEntity
                 state.timerProgressEntity = doroStateEntity.progressEntity
                 state.catType = doroStateEntity.catType
-                state.isProUser = doroStateEntity.isProMode
                 return .none
             case .setGuideState(let guides):
                 state.guideInformation = guides

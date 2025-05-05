@@ -25,6 +25,8 @@
 		63860A4A2CB415E80058D4EE /* NotificationDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 63860A492CB415E80058D4EE /* NotificationDependency */; };
 		63860A502CB416B50058D4EE /* NotificationDependency in Frameworks */ = {isa = PBXBuildFile; productRef = 63860A4F2CB416B50058D4EE /* NotificationDependency */; };
 		638C92872C52AB5F00F62CA4 /* Dorocat.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 638C92862C52AB5F00F62CA4 /* Dorocat.storekit */; };
+		639BBC832DC8FA8000757B4C /* CatDependencyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639BBC822DC8FA8000757B4C /* CatDependencyTest.swift */; };
+		639BBC852DC8FDBB00757B4C /* CatDepenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639BBC842DC8FDBB00757B4C /* CatDepenTests.swift */; };
 		63CCAFA32BCD1E280045B2A0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 63CCAFA22BCD1E280045B2A0 /* Lottie */; };
 		63D0C3592CA037E300C4D315 /* GreemSwiftPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 63D0C3582CA037E300C4D315 /* GreemSwiftPackage */; };
 /* End PBXBuildFile section */
@@ -91,6 +93,8 @@
 		6352AFC62BF626A900929F47 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		6352AFC82BF626A900929F47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		638C92862C52AB5F00F62CA4 /* Dorocat.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Dorocat.storekit; sourceTree = "<group>"; };
+		639BBC822DC8FA8000757B4C /* CatDependencyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDependencyTest.swift; sourceTree = "<group>"; };
+		639BBC842DC8FDBB00757B4C /* CatDepenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDepenTests.swift; sourceTree = "<group>"; };
 		63C124D02B9EF93D000A6D35 /* Dorocat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dorocat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63F88D332C1B5B2900A712AA /* DorocatMain.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = DorocatMain.storekit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -205,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				633D06412CA0659E00FD9070 /* DorocatTests.swift */,
+				639BBC822DC8FA8000757B4C /* CatDependencyTest.swift */,
+				639BBC842DC8FDBB00757B4C /* CatDepenTests.swift */,
 			);
 			path = DorocatTests;
 			sourceTree = "<group>";
@@ -471,7 +477,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				639BBC852DC8FDBB00757B4C /* CatDepenTests.swift in Sources */,
 				633D06422CA0659E00FD9070 /* DorocatTests.swift in Sources */,
+				639BBC832DC8FA8000757B4C /* CatDependencyTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

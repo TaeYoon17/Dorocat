@@ -17,10 +17,11 @@ extension PomoTimerFeature.AppStateReducers{
             case .inActive: return .none
             case .background:
             let prevStatus = state.timerProgressEntity.status
-            let values: DoroStateEntity = DoroStateEntity(catType: state.catType,
-                                                          isProMode: state.isProUser,
-                                                          progressEntity: state.timerProgressEntity,
-                                                          settingEntity: state.timerSettingEntity)
+            let values: DoroStateEntity = DoroStateEntity(
+
+                progressEntity: state.timerProgressEntity,
+                settingEntity: state.timerSettingEntity
+            )
                 return .run{ send in
                     try await self.setNotification(send: send, status: prevStatus, value: values)
                 }

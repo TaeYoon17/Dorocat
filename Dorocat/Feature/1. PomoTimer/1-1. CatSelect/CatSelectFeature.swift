@@ -19,6 +19,7 @@ struct CatSelectFeature{
     @Dependency(\.dismiss) var dismiss
     @Dependency(\.store) var store
     @Dependency(\.doroStateDefaults) var doroStateDefaults
+    @Dependency(\.cat) var cat
     enum Action:Equatable {
         case delegate(Delegate)
         case action(ControllType)
@@ -43,7 +44,7 @@ struct CatSelectFeature{
                     state.isLaunched = true
                     return .run { send in
                         let isPro = store.isProUser
-                        let selectedCat = await doroStateDefaults.getCatType()
+                        let selectedCat = await cat.selectedCat
                         await send(.setCatType(selectedCat))
                         await send(.setSelectedCatType(selectedCat))
                         await send(.setProUser(isPro))

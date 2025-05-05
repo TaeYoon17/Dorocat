@@ -9,7 +9,8 @@ import Foundation
 import ComposableArchitecture
 import StoreKit
 import StoreKitTest
-protocol StoreProtocol{
+
+protocol StoreDependency {
     var isProUser:Bool{ get }
     var products: [Product] {get} // 상품들이 무엇인지 나타내는 프로토콜
     var purchasedProductIDs:Set<String> { get }
@@ -20,13 +21,15 @@ protocol StoreProtocol{
     func eventAsyncStream() async -> AsyncStream<PurchaseEvent>
     func restore() async -> Bool
 }
-fileprivate enum StoreClientKey: DependencyKey{
-    static let liveValue: StoreProtocol = PurchaseManager.shared
+
+fileprivate enum StoreClientKey: DependencyKey {
+    static let liveValue: StoreDependency = PurchaseManager.shared
 }
-extension DependencyValues{
-    var store: StoreProtocol{
-        get{self[StoreClientKey.self]}
-        set{self[StoreClientKey.self] = newValue}
+
+extension DependencyValues {
+    var store: StoreDependency {
+        get{ self[StoreClientKey.self] }
+        set{ self[StoreClientKey.self] = newValue }
     }
 }
 public extension StoreKit.Transaction {

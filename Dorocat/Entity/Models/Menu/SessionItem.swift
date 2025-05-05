@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SessionItem:Identifiable,Codable,Hashable{
+struct SessionItem: Identifiable, Codable, Hashable {
     var id:String { name }
     var name: String
 }

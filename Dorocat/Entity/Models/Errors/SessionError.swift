@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SessionErrorType: String,Error{
+enum SessionErrorType: String, Error {
     case addFailed_isExistItem
     
     case deleteFailed_isEssentialItem

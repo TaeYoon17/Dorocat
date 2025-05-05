@@ -8,12 +8,12 @@
 import Foundation
 import Combine
 import ComposableArchitecture
-protocol InitialProtocol{
+protocol InitialProtocol {
     var isUsed: Bool { get async } // 앱을 처음 켜는지 확인시켜줌
     func offInitial() async // 앱을 처음 켜고 나서 isUsed를 끄는 메서드
     func eventStream() async ->AsyncStream<()> // isUsed가 꺼진 후 실행하는 메서드
 }
-actor InitialClient: InitialProtocol{
+actor InitialClient: InitialProtocol {
     static let shared = InitialClient()
     private init(){}
     private let usedPassthroughSubject = PassthroughSubject<(),Never>()

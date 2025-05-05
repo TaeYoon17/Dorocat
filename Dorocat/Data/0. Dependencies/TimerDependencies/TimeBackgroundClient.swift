@@ -8,12 +8,12 @@
 import Foundation
 import ComposableArchitecture
 
-actor TimeBackgroundClient:TimeBackgroundProtocol{
+actor TimeBackgroundClient: TimeBackgroundProtocol {
     var date: Date?{
         let interval = UserDefaults.standard.double(forKey: "timerBackground")
         return interval < 0 ? nil : Date(timeIntervalSince1970: interval)
     }
-    var timerStatus: TimerStatus{
+    var timerStatus: TimerStatus {
         let timerBackStatus = UserDefaults.standard.string(forKey: "timerBackStatus") ?? ""
         return TimerStatus.create(name: timerBackStatus)
     }
@@ -21,7 +21,7 @@ actor TimeBackgroundClient:TimeBackgroundProtocol{
         let interval = date.timeIntervalSince1970
         UserDefaults.standard.set(interval,forKey: "timerBackground")
     }
-    func set(timerStatus:TimerStatus) async{
+    func set(timerStatus:TimerStatus) async {
         UserDefaults.standard.set(timerStatus.name, forKey: "timerBackStatus")
     }
 }

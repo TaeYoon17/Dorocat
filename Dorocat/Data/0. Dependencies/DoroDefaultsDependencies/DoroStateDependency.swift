@@ -8,32 +8,23 @@
 import Foundation
 import ComposableArchitecture
 
-protocol DoroDefaults {
-    
-    func setCatType(_ type: CatType) async
-    func getCatType() async -> CatType
-    
-    func setIsPromode(_ isPromode: Bool) async
-    func getIsPromode() async -> Bool
-    
-    func setTimerSettingEntity(_ entity: TimerSettingEntity) async
-    func getTimerSettingEntity() async -> TimerSettingEntity
-    
-    func setTimerProgressEntity(_ entity: TimerProgressEntity) async
-    func getTimerProgressEntity() async -> TimerProgressEntity
-    
+protocol DoroStateDependency {
     func setDoroStateEntity(_ entity: DoroStateEntity) async
     func getDoroStateEntity() async -> DoroStateEntity
-    
 }
 
-
-fileprivate enum DoroDefaultsClientKey: DependencyKey{
-    static let liveValue: DoroDefaults = DoroDefaultsClient()
+fileprivate enum DoroDefaultsClientKey: DependencyKey {
+    static let liveValue: DoroStateDependency = {
+        /// LiveValue 임으로 원래 값을 사용한다.
+        @Dependency(\.cat) var cat
+        @Dependency(\.timer) var timer
+        return DoroStateRepository(cat: cat, timer: timer)
+    }()
 }
-extension DependencyValues{
-    var doroStateDefaults: DoroDefaults{
-        get{self[DoroDefaultsClientKey.self]}
-        set{self[DoroDefaultsClientKey.self] = newValue}
+
+extension DependencyValues {
+    var doroStateDefaults: DoroStateDependency {
+        get{ self[DoroDefaultsClientKey.self] }
+        set{ self[DoroDefaultsClientKey.self] = newValue }
     }
 }

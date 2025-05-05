@@ -34,9 +34,11 @@ extension PomoTimerFeature.AppStateReducers{
                 case .active:
                     let prevStatus = state.timerProgressEntity.status
                     let timerStatus = TimerStatus.getSleep(prevStatus) ?? prevStatus
-                    let entity = DoroStateEntity(catType: state.catType,
-                                                 isProMode: state.isProUser,
-                                                 progressEntity: state.timerProgressEntity, settingEntity: state.timerSettingEntity)
+                    let entity = DoroStateEntity(
+                        catType: state.catType,
+                        progressEntity: state.timerProgressEntity,
+                        settingEntity: state.timerSettingEntity
+                    )
                     return .run { send in
                         await timerBackground.set(date: Date())
                         await timerBackground.set(timerStatus: timerStatus)

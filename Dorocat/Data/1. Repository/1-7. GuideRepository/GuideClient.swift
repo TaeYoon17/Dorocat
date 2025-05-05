@@ -6,31 +6,33 @@
 //
 
 import Foundation
-actor GuideClient:GuideProtocol{
-    var goLeft:Bool{
+actor GuideClient: GuideProtocol {
+    
+    var goLeft: Bool {
         get{ UserDefaults.standard.bool(forKey: "goLeft") }
         set{ UserDefaults.standard.setValue(newValue, forKey: "goLeft") }
     }
     
-    var goRight:Bool{
+    var goRight: Bool {
         get{ UserDefaults.standard.bool(forKey: "goRight") }
         set{ UserDefaults.standard.setValue(newValue, forKey: "goRight") }
     }
     
-    var onBoarding:Bool{
+    var onBoarding: Bool {
         get{ UserDefaults.standard.bool(forKey: "onBoarding") }
         set{UserDefaults.standard.setValue(newValue, forKey: "onBoarding")}
     }
     
-    var standByGuide:Bool{
+    var standByGuide: Bool {
         get{UserDefaults.standard.bool(forKey: "standByGuide")}
         set{UserDefaults.standard.setValue(newValue, forKey: "standByGuide")}
     }
     
-    var startGuide:Bool{
-        get{UserDefaults.standard.bool(forKey: "startGuide")}
+    var startGuide: Bool {
+        get{ UserDefaults.standard.bool(forKey: "startGuide") }
         set{UserDefaults.standard.setValue(newValue, forKey: "startGuide")}
     }
+    
     func set(guide: Guides) async {
         self.goLeft = guide.goLeftFinished
         self.goRight = guide.goRightFinished
@@ -38,7 +40,14 @@ actor GuideClient:GuideProtocol{
         self.standByGuide = guide.standByGuide
         self.startGuide = guide.startGuide
     }
-    func get() async -> Guides{
-        return Guides(onBoardingFinished: onBoarding, goLeftFinished: goLeft, goRightFinished: goRight, standByGuide: standByGuide, startGuide: startGuide)
+    
+    func get() async -> Guides {
+        Guides(
+            onBoardingFinished: onBoarding,
+            goLeftFinished: goLeft,
+            goRightFinished: goRight,
+            standByGuide: standByGuide,
+            startGuide: startGuide
+        )
     }
 }
