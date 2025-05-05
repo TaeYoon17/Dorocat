@@ -61,7 +61,7 @@ struct AnalyzeFeature {
     
     @DBActor @Dependency(\.analyzeAPIClients) var apiClient
     @Dependency(\.haptic) var haptic
-    @Dependency(\.pomoSession) var session
+    @Dependency(\.doroSession) var session
     
     enum CancelID{ case dbCancel }
     

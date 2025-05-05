@@ -8,7 +8,7 @@
 import Foundation
 import ActivityKit
 
-actor PomoLiveActivityClient:PomoLiveActivity{
+actor PomoLiveActivityClient: DoroLiveActivityDependency {
     private var currentID:String = ""
     static let shared = PomoLiveActivityClient()
     private init(){}

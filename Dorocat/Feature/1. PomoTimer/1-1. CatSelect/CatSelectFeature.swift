@@ -15,7 +15,7 @@ struct CatSelectFeature{
         var tappedCatType: CatType = .doro
         var isLaunched:Bool = false
     }
-    @Dependency(\.pomoSession) var session
+    @Dependency(\.doroSession) var session
     @Dependency(\.dismiss) var dismiss
     @Dependency(\.store) var store
     @Dependency(\.doroStateDefaults) var doroStateDefaults

@@ -100,7 +100,7 @@ struct DorocatFeature {
     @Dependency(\.haptic) var haptic
     @Dependency(\.initial) var initial
     @Dependency(\.pomoNotification) var notification
-    @Dependency(\.pomoSession) var session
+    @Dependency(\.doroSession) var session
     @Dependency(\.pomoLiveActivity) var liveActivity
     @Dependency(\.doroStateDefaults) var doroStateDefaults
     @Dependency(\.timer.background) var timerBackground

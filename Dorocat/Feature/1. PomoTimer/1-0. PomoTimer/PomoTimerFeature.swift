@@ -29,7 +29,7 @@ struct PomoTimerFeature {
         case diskInfoToMemory
         
         case setDoroStateEntity(DoroStateEntity)
-        case setPomoSessionValue(SessionItem)
+        case setDoroSessionValue(SessionItem)
         case setTimerRunning(Int)
         case setSkipInfo(Bool)
         case setCatType(CatType)
@@ -48,7 +48,7 @@ struct PomoTimerFeature {
     }
     
     @Dependency(\.doroStateDefaults) var doroStateDefaults
-    @Dependency(\.pomoSession) var pomoSession
+    @Dependency(\.doroSession) var doroSession
     @Dependency(\.timer.background) var timeBackground
     @Dependency(\.analyzeAPIClients) var analyzeAPI
     @Dependency(\.timer) var timer
@@ -133,7 +133,7 @@ struct PomoTimerFeature {
             case .setGuideState(let guides):
                 state.guideInformation = guides
                 return .none
-            case .setPomoSessionValue(let sessionItem):
+            case .setDoroSessionValue(let sessionItem):
                 state.timerProgressEntity.session = sessionItem
                 return .none
             case .setSkipInfo(let skipInfo):

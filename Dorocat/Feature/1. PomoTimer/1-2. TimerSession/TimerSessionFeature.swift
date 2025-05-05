@@ -16,7 +16,7 @@ struct TimerSessionFeature {
         var sessions:[SessionItem] = []
     }
     
-    @Dependency(\.pomoSession) var session
+    @Dependency(\.doroSession) var session
     @Dependency(\.dismiss) var dismiss
     @Dependency(\.haptic) var haptic
     

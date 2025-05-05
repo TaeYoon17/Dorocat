@@ -41,9 +41,6 @@ import CoreData
     }
 }
 
-@DBActor extension CoreDataSessionStore {
-    
-}
 
 @DBActor extension CoreDataSessionStore{
     func updateEssentialItems(essentialItems:[SessionItem.ID],defaultSessionKey:String) async throws {

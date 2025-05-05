@@ -12,12 +12,12 @@ import MessageUI
 protocol FeedbackProtocol{
     var isMailFeedbackAvailable:Bool{ get }
 }
-final class FeedbackClient:FeedbackProtocol{
+final class FeedbackClient:FeedbackProtocol {
     static let shared = FeedbackClient()
     var isMailFeedbackAvailable: Bool{ MFMailComposeViewController.canSendMail() }
     private init(){}
 }
-fileprivate enum FeedbackClientKey: DependencyKey{
+fileprivate enum FeedbackClientKey: DependencyKey {
     static let liveValue: FeedbackProtocol = FeedbackClient.shared
 }
 extension DependencyValues{
