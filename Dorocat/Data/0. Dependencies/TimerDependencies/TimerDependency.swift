@@ -8,7 +8,7 @@
 import Foundation
 import ComposableArchitecture
 
-protocol TimerProtocol{
+protocol TimerProtocol {
     
     var background: TimeBackgroundClient { get } // 앱이 백그라운드 상태에서도 타이머 기능을 작동할 수 있도록 도와주는 인스턴스
     
@@ -24,20 +24,21 @@ protocol TimerProtocol{
     /// 타이머 진행 상황을 가져오는 메서드
     func getTimerProgressEntity() async -> TimerProgressEntity
 }
-protocol TimeBackgroundProtocol{
+
+protocol TimeBackgroundProtocol {
     var date: Date? { get async }
     func set(date:Date) async
     var timerStatus: TimerStatus { get async }
     func set(timerStatus:TimerStatus) async
 }
 
-fileprivate enum TimerClientKey: DependencyKey{
+fileprivate enum TimerClientKey: DependencyKey {
     static let liveValue: TimerClient = TimerClient.shared
 }
 
-extension DependencyValues{
-    var timer: TimerClient{
-        get{ self[TimerClientKey.self]}
-        set{ self[TimerClientKey.self] = newValue}
+extension DependencyValues {
+    var timer: TimerClient {
+        get{ self[ TimerClientKey.self ] }
+        set{ self[ TimerClientKey.self ] = newValue }
     }
 }

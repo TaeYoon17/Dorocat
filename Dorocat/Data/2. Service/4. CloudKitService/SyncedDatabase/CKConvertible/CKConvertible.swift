@@ -16,15 +16,13 @@ protocol CKWritable {
 protocol CKReadable {
     var recordType: CKRecord.RecordType { get }
     
-    
     var ckRecordZoneID: CKRecordZone.ID { get }
     var ckRecordID: CKRecord.ID { get }
 }
 
 protocol CKConvertible: CKReadable, CKWritable {
+    
     init(record: CKRecord)
     
     mutating func mergeFromServerRecord(_ record: CKRecord) -> Bool
-    
-//    func populateRecord(_ record: inout CKRecord)
 }

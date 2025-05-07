@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import CoreData
 import CloudKit
+
 @globalActor actor DBActor: GlobalActor {
     static var shared = DBActor()
 }
@@ -27,16 +28,23 @@ import CloudKit
         return container
     }()
     
-    lazy var managedObjectContext: NSManagedObjectContext =  {
+    lazy var managedObjectContext: NSManagedObjectContext = {
         let context = persistentContainer.newBackgroundContext()
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         context.automaticallyMergesChangesFromParent = true
         return context
     }()
     
-
     init() { }
     
+    func getEntityDescription(key: CoreConstants.Label) -> NSEntityDescription! {
+        NSEntityDescription.entity(
+            forEntityName: key.rawValue,
+            in: managedObjectContext
+        )
+    }
     
     
 }
+
+

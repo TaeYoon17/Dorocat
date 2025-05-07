@@ -12,8 +12,6 @@ import CloudKit
 
 extension AnalyzeCoreDataClient: SyncHandler {
     
-    
-    
     func synchronizeStart() async {
         self.syncrhozieEventContiuation?.yield(.start)
         Task.detached {

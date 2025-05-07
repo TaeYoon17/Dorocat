@@ -16,6 +16,7 @@ enum AnalyzeEvent {
 
 protocol CloudSyncAble {
     
+    /// 최종 동기화 날짜
     var lastSyncedDate: Date { get async }
     
     /// 외부 시스템에 우선 확인을 받아야 하는 것 
@@ -26,12 +27,14 @@ protocol CloudSyncAble {
     func setICloudAccountState(_ state: Bool) async -> iCloudStatusTypeDTO
     func setAutomaticSync(_ state: Bool) async -> Void
     
+    /// 동기화 리프레시
     func refresh() async
+    /// 동기화 이벤트 받기
     func synchronizeEventAsyncStream() async -> AsyncStream<SynchronizeEvent>
     
 }
 
-protocol AnalyzeAPIs: CloudSyncAble {
+protocol AnalyzeAPIs {
     /// 총 시간을 알아온다.
     var totalFocusTime: Double { get async }
     var isEmptyTimerItem: Bool { get async }
@@ -51,14 +54,15 @@ protocol AnalyzeAPIs: CloudSyncAble {
     func eventAsyncStream() async -> AsyncStream<AnalyzeEvent>
 }
 
+typealias TimerRecordDependency = AnalyzeAPIs & CloudSyncAble
 fileprivate enum AnalyzeAPIsClientKey: DependencyKey {
-    @DBActor static let liveValue: AnalyzeAPIs = AnalyzeCoreDataClient()
+    @DBActor static let liveValue: TimerRecordDependency = AnalyzeCoreDataClient()
 }
 
 
 extension DependencyValues{
     
-    var analyzeAPIClients: AnalyzeAPIs {
+    var analyzeAPIClients: TimerRecordDependency {
         get { self[AnalyzeAPIsClientKey.self] }
         set { self[AnalyzeAPIsClientKey.self] = newValue }
     }
