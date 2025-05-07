@@ -1,16 +1,17 @@
 //
-//  AnalyzeCoreDataClient+SyncHandler.swift
+//  TimerRecordRepository+SyncHandler.swift
 //  Dorocat
 //
-//  Created by Greem on 4/30/25.
+//  Created by Greem on 4/16/25.
 //
 
 import Foundation
+import CoreData
 import CloudKit
 
-// MARK: - CKSyncEngineDelegate
+typealias resultAllRecordItems = Result<[TimerRecordItem], Error>
 
-extension AnalyzeCoreDataClient: SyncHandler {
+extension TimerRecordRepository: SyncHandler {
     
     func synchronizeStart() async {
         self.syncrhozieEventContiuation?.yield(.start)

@@ -1,5 +1,5 @@
 //
-//  AnalyzeCoreDataClient+AnalyzeAPIs.swift
+//  TimerRecordRepository+AnalyzeAPIs.swift
 //  Dorocat
 //
 //  Created by Greem on 4/16/25.
@@ -7,36 +7,23 @@
 
 import Foundation
 import CoreData
-enum Constants {
-    static let lastSyncedDate = "lastSyncedDate"
-}
 
-extension AnalyzeCoreDataClient: AnalyzeAPIs {
+extension TimerRecordRepository: AnalyzeAPIs {
     
     func deleteAllItems() async {
         do {
             try await self.timerRecordDeleteAll()
-            print("모든 삭제 성공")
             self.analyzeEventContinuation?.yield(.fetch)
         } catch {
-            print("삭제 에러", error)
+            assertionFailure("삭제가 되지 않았음")
         }
     }
     
     var totalFocusTime: Double {
         get async {
-            await coreDataService.managedObjectContext.perform { [weak self] in
-                guard let self else {return 0}
-                let request = TimerRecordItemEntity.fetchRequest()
-                request.entity = coreDataService.getEntityDescription(key: .timerRecordEntity)
-                do {
-                    let results = try coreDataService.managedObjectContext.fetch(request)
-                    return results.reduce(0, { $0 + Double($1.duration) })
-                } catch {
-                    assertionFailure("전체 시간 변환 실패 \(error)")
-                    return 0
-                }
-            }
+             await Double(
+                self.findAllItems().map((\.duration)).reduce(0, +)
+             )
         }
     }
     
@@ -62,18 +49,6 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
     
     func eventAsyncStream() async -> AsyncStream<AnalyzeEvent> { self.analyzeEvent }
     
-    private func get(date: Date, predicate: NSPredicate) async throws -> [TimerRecordItem] {
-        try await coreDataService.managedObjectContext.perform { [weak self] in
-            guard let self else { return [] }
-            let request = TimerRecordItemEntity.fetchRequest()
-            request.entity = coreDataService.getEntityDescription(key: .timerRecordEntity)
-            request.predicate = predicate
-            request.sortDescriptors = [ TimerRecordItemEntity.dateSortDescriptor ]
-            let results = try coreDataService.managedObjectContext.fetch(request)
-            return results.map { $0.convertToItem }
-        }
-    }
-    
     /// 오늘 기록 아이템들 반환
     func get(day: Date) async throws -> [TimerRecordItem] {
         let predicate = NSPredicate(format: "recordCode == %@", day.convertToRecordCode())
@@ -82,7 +57,8 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
     
     /// 주간 기록 아이템들 반환
     func get(weekDate: Date) async throws -> [TimerRecordItem] {
-        let predicate = NSPredicate(format: "recordCode IN %@", getCode(weekDate: weekDate))
+        let recordCodes = getCode(weekDate: weekDate)
+        let predicate = NSPredicate(format: "%K IN %@", #keyPath(TimerRecordItemEntity.recordCode), recordCodes)
         return try await get(date: weekDate, predicate: predicate)
     }
     
@@ -126,7 +102,7 @@ extension AnalyzeCoreDataClient: AnalyzeAPIs {
 }
 
 
-fileprivate extension AnalyzeCoreDataClient {
+fileprivate extension TimerRecordRepository {
     /// date타입을 CoreData에 저장한 코드로 변환
     func getCode(weekDate date:Date) -> [String] {
         guard let weekDay = Calendar.current.dateComponents([.weekday], from: date).weekday,

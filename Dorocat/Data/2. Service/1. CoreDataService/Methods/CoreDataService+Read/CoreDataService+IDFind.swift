@@ -51,7 +51,26 @@ extension CoreDataService {
             )
         }
     }
+    
+    func fetchWithPredicate<Entity: NSManagedObject & CoreEntityConvertible>(
+        type: Entity.Type,
+        entityDescriptionKey: CoreConstants.Label,
+        predicate: NSPredicate?
+    ) async throws -> [Entity.T] {
+        try await managedObjectContext.perform { [weak self] in
+            guard let self else { return [] }
+            let request = NSFetchRequest<Entity>(entityName: entityDescriptionKey.rawValue)
+            request.entity = self.getEntityDescription(key: entityDescriptionKey)
+            if let predicate {
+                request.predicate = predicate
+            }
+            let results = try self.managedObjectContext.fetch(request)
+            return results.map { $0.convertToItem }
+        }
+    }
 }
+
+
 
 // MARK: - Private Methods
 private extension CoreDataService {
@@ -107,20 +126,5 @@ private extension CoreDataService {
         )
     }
     
-    func fetchWithPredicate<Entity: NSManagedObject & CoreEntityConvertible>(
-        type: Entity.Type,
-        entityDescriptionKey: CoreConstants.Label,
-        predicate: NSPredicate?
-    ) async throws -> [Entity.T] {
-        try await managedObjectContext.perform { [weak self] in
-            guard let self else { return [] }
-            let request = NSFetchRequest<Entity>(entityName: entityDescriptionKey.rawValue)
-            request.entity = self.getEntityDescription(key: entityDescriptionKey)
-            if let predicate {
-                request.predicate = predicate
-            }
-            let results = try self.managedObjectContext.fetch(request)
-            return results.map { $0.convertToItem }
-        }
-    }
+    
 }

@@ -9,8 +9,9 @@ import Foundation
 import CoreData
 
 protocol CoreEntityConvertible {
-    associatedtype T:Identifiable
+    associatedtype T: Identifiable
     
     func applyItem(_ item: T)
     var convertToItem: T { get }
+    static func attributes(key: PartialKeyPath<T>) throws -> String
 }

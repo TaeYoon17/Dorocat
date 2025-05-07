@@ -10,6 +10,8 @@ import CoreData
 
 extension TimerRecordItemEntity: CoreEntityConvertible {
     
+    
+    typealias T = TimerRecordItem
     static var dateSortDescriptor: NSSortDescriptor {
         NSSortDescriptor(key: "createdAt", ascending: false)
     }
@@ -33,4 +35,16 @@ extension TimerRecordItemEntity: CoreEntityConvertible {
             modificationDate: self.userModificationDate
         )
     }
+    
+    static func attributes(key: PartialKeyPath<TimerRecordItem>) throws -> String {
+        switch key {
+        case \.createdAt: return "createdAt"
+        case \.recordCode: return "recordCode"
+        case \.id: return "id"
+        case \.session: return "sessionKey"
+        case \.duration: return "duration"
+        default: throw NSError(domain: "KeyPath Error", code: 1)
+        }
+    }
+    
 }

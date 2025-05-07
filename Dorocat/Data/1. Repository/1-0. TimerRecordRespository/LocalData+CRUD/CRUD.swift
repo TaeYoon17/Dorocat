@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension AnalyzeCoreDataClient {
+extension TimerRecordRepository {
     func findItemByID(_ id: TimerRecordItem.ID) async -> TimerRecordItem? {
         switch await coreDataService.findItemByID(
                 id.uuidString,
@@ -15,7 +15,6 @@ extension AnalyzeCoreDataClient {
                 entityKey: .timerRecordEntity
         ) {
         case .failure(.invalidEntity):
-//            assertionFailure("엔티티를 찾지 못함")
             return nil
         case .failure(.noneFetchResult):
             return nil
@@ -51,10 +50,22 @@ extension AnalyzeCoreDataClient {
         case .failure(.noneFetchResult): return []
         }
     }
+    
+    func get(date: Date, predicate: NSPredicate) async throws -> [TimerRecordItem] {
+        try await coreDataService.managedObjectContext.perform { [weak self] in
+            guard let self else { return [] }
+            let request = TimerRecordItemEntity.fetchRequest()
+            request.entity = coreDataService.getEntityDescription(key: .timerRecordEntity)
+            request.predicate = predicate
+            request.sortDescriptors = [ TimerRecordItemEntity.dateSortDescriptor ]
+            let results = try coreDataService.managedObjectContext.fetch(request)
+            return results.map { $0.convertToItem }
+        }
+    }
 }
 
 
-extension AnalyzeCoreDataClient {
+extension TimerRecordRepository {
     
     
     func timerItemDeletes(items: [TimerRecordItem]) async throws {

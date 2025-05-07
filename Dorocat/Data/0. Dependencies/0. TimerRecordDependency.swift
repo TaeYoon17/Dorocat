@@ -56,7 +56,7 @@ protocol AnalyzeAPIs {
 
 typealias TimerRecordDependency = AnalyzeAPIs & CloudSyncAble
 fileprivate enum AnalyzeAPIsClientKey: DependencyKey {
-    @DBActor static let liveValue: TimerRecordDependency = AnalyzeCoreDataClient()
+    @DBActor static let liveValue: TimerRecordDependency = TimerRecordRepository()
 }
 
 

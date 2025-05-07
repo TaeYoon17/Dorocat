@@ -41,7 +41,7 @@ struct CoreDataServiceTest {
     
     /// 데이터를 넣는게 잘 되는지 확인한다...
     @Test func upsertItemMigrationTest() async throws {
-        let analyzeRepository = await AnalyzeCoreDataClient()
+        let analyzeRepository = await TimerRecordRepository()
         // 1. 데이터를 넣는다
         await analyzeRepository.timerItemUpsert(item: testItem)
         // 2. 데이터를 가져온다.
@@ -59,7 +59,7 @@ extension CoreDataServiceTest {
     /// CoreDataService로 변경한 findByItem 함수가 잘 되는지 확인한다.
     @Test func findByItemMigrationTest() async throws {
         /// 1. 기존 AnalyzeRepository에 값을 넣고 그 값을 가져온다.
-        let analyzeRepository = await AnalyzeCoreDataClient()
+        let analyzeRepository = await TimerRecordRepository()
         let coreDataService = await CoreDataService()
 
         await analyzeRepository.update(testItem)
@@ -82,7 +82,7 @@ extension CoreDataServiceTest {
     }
     
     @Test func fetchAllItemMigrationTest() async throws {
-        let analyzeRepository = await AnalyzeCoreDataClient()
+        let analyzeRepository = await TimerRecordRepository()
         try? await analyzeRepository.timerRecordDeleteAll()
         await analyzeRepository.delete(testItem)
         for dummyItem in dummyItems {
@@ -99,7 +99,7 @@ extension CoreDataServiceTest {
     }
     
     @Test func fetchItemsMigrationTest() async throws {
-        let analyzeRepository = await AnalyzeCoreDataClient()
+        let analyzeRepository = await TimerRecordRepository()
         try? await analyzeRepository.timerRecordDeleteAll()
         await analyzeRepository.timerItemUpsert(item: dummyItems[0])
         await analyzeRepository.timerItemUpsert(item: dummyItems[1])
@@ -107,12 +107,33 @@ extension CoreDataServiceTest {
         let targetItems = try await analyzeRepository.findItemsByID([dummyItems[0],dummyItems[1]].map(\.id))
         #expect(targetItems == [dummyItems[0],dummyItems[1]])
     }
+    
+    
+    @Test
+    func getCounts() async throws {
+        
+        let coreDataService = await CoreDataService()
+        _ = await coreDataService.deleteAllItem(entityKey: .timerRecordEntity)
+        _ = await coreDataService.upsertItem(item: self.testItem, id: self.testItem.id.uuidString, entityKey: .timerRecordEntity)
+        let findValues = try await coreDataService.findWithCondition(
+            type: TimerRecordItem.self,
+            entityKey: .timerRecordEntity,
+            attributes: [\.recordCode, \.duration],
+            predicateFormat: { attributes in
+                /// 포맷 지정자
+                "\(attributes[0]) IN %@ AND \(attributes[1]) <= %d"
+            },
+            args: ["하이요","방가요"], self.testItem.duration
+        )
+        print(findValues.count)
+        #expect(testItem == findValues.first)
+    }
 }
 
 //MARK: -- Delete
 extension CoreDataServiceTest {
     @Test func deleteItemMigrationTest() async throws {
-        let analyzeRepository = await AnalyzeCoreDataClient()
+        let analyzeRepository = await TimerRecordRepository()
         try await self.upsertItemMigrationTest()
         try await self.fetchAllItemMigrationTest()
         let coreDataService = await CoreDataService()
@@ -140,7 +161,7 @@ extension CoreDataServiceTest {
     }
     
     @Test func deleteAllItemMigrationTest() async throws {
-        let analyzeRepository = await AnalyzeCoreDataClient()
+        let analyzeRepository = await TimerRecordRepository()
         let coreDataService = await CoreDataService()
         try await self.upsertItemMigrationTest()
         try await self.fetchAllItemMigrationTest()
@@ -167,7 +188,7 @@ extension CoreDataServiceTest {
     }
     
     @Test func deleteItemsMigrationTest() async throws {
-        let analyzeRepository = await AnalyzeCoreDataClient()
+        let analyzeRepository = await TimerRecordRepository()
         let coreDataService = await CoreDataService()
         let dummies = [dummyItems[0],dummyItems[1]]
         try await self.upsertItemMigrationTest()

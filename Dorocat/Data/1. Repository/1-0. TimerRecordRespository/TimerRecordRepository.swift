@@ -1,5 +1,5 @@
 //
-//  AnalyzeCoreDataClient.swift
+//  TimerRecordRepository.swift
 //  Dorocat
 //
 //  Created by Developer on 6/9/24.
@@ -12,10 +12,12 @@ enum SynchronizeEvent {
     case start
     case end
 }
+
 @DBActor
-final class AnalyzeCoreDataClient {
+final class TimerRecordRepository {
+    
     let coreDataService = CoreDataService()
-    let defaultsService = UserDefaultsService()
+    let defaultsService: UserDefaultsServicing
     lazy var syncedDatabase: SyncedDatabase = SyncedDatabase()
     
     var isInit:Bool = false
@@ -30,4 +32,9 @@ final class AnalyzeCoreDataClient {
     lazy var synchronizeEvent: AsyncStream<SynchronizeEvent> = .init { continuation in
         syncrhozieEventContiuation = continuation
     }
+    
+    init(defaultService: UserDefaultsServicing = UserDefaultsService()) {
+        self.defaultsService = defaultService
+    }
+    
 }

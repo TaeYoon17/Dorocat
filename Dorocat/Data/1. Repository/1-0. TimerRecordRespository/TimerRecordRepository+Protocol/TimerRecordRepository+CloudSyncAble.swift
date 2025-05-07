@@ -1,36 +1,71 @@
 //
-//  AnalyzeCoreData+.swift
+//  TimerRecordRepository+CloudSyncAble.swift
 //  Dorocat
 //
-//  Created by Greem on 5/6/25.
+//  Created by Greem on 4/16/25.
 //
 
 import Foundation
 
-extension AnalyzeCoreDataClient: CloudSyncAble {
+extension TimerRecordRepository: CloudSyncAble {
     
     var lastSyncedDate: Date {
         get {
-            guard let data = UserDefaults.standard.data(forKey: "lastSyncedDate"),
-                  let date = try? JSONDecoder().decode(Date.self, from: data) else {
-                return Date()
+            let dateResult = defaultsService.loadData(
+                type: Date.self,
+                key: .cloudSync(.lastSyncedDate)
+            )
+            
+            switch dateResult {
+            case .success(let result): return result
+            case .failure: return Date()
             }
-            return date
+            
         }
         set {
-            let data = try? JSONEncoder().encode(newValue)
-            UserDefaults.standard.set(data, forKey: "lastSyncedDate")
+            defaultsService.saveData(
+                value: newValue,
+                key: .cloudSync(.lastSyncedDate)
+            )
         }
     }
     
     var isICloudSyncEnabled: Bool {
-        get { UserDefaults.standard.bool(forKey: "isIcloudSyncEnabled") }
-        set { UserDefaults.standard.setValue(newValue, forKey: "isIcloudSyncEnabled") }
+        get {
+            let syncResult = defaultsService.load(
+                type: Bool.self,
+                key: .cloudSync(.cloudSyncEnabled)
+            )
+            switch syncResult {
+            case .success(let result): return result
+            case .failure: return false
+            }
+        }
+        set {
+            defaultsService.save(
+                value: newValue,
+                key: .cloudSync(.cloudSyncEnabled)
+            )
+        }
     }
     
     var isAutomaticallySyncEnabled: Bool {
-        get { UserDefaults.standard.bool(forKey: "isAutomaticallySyncEnabled") }
-        set { UserDefaults.standard.set(newValue, forKey: "isAutomaticallySyncEnabled") }
+        get {
+            let automaticallyResult = defaultsService.load(
+                type: Bool.self,
+                key: .cloudSync(.automaticallySyncEnabled)
+            )
+            switch automaticallyResult {
+            case .success(let result): return result
+            case .failure: return false
+            }
+        }
+        set {
+            defaultsService.save(
+                value: newValue,
+                key: .cloudSync(.automaticallySyncEnabled)
+            )
+        }
     }
     
     func synchronizeEventAsyncStream() async -> AsyncStream<SynchronizeEvent> {

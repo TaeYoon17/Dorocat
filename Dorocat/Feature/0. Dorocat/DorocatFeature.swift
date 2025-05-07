@@ -240,9 +240,6 @@ fileprivate extension AlertState where Action == DorocatFeature.Action.Alert {
             ButtonState(role: .cancel) {
                 TextState("Delete All Existing Data")
             }
-        },
-        message: {
-            TextState("기존 타이머 기록을 덮어쓰시겠습니까?")
         }
     )
 }
