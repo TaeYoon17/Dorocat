@@ -1,4 +1,5 @@
 import Testing
+import Foundation
 @testable import Dorocat
 import ComposableArchitecture
 
@@ -108,7 +109,6 @@ extension CoreDataServiceTest {
         #expect(targetItems == [dummyItems[0],dummyItems[1]])
     }
     
-    
     @Test
     func getCounts() async throws {
         
@@ -119,12 +119,8 @@ extension CoreDataServiceTest {
             type: TimerRecordItem.self,
             entityKey: .timerRecordEntity,
             attributes: [\.recordCode, \.duration],
-            predicateFormat: { attributes in
-                /// 포맷 지정자
-                "\(attributes[0]) IN %@ AND \(attributes[1]) <= %d"
-            },
             args: ["하이요","방가요"], self.testItem.duration
-        )
+        ) { "\($0[0]) IN %@ AND \($0[1]) <= %d" }
         print(findValues.count)
         #expect(testItem == findValues.first)
     }

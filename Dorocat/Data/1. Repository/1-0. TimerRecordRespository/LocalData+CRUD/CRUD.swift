@@ -20,6 +20,7 @@ extension TimerRecordRepository {
             return nil
         case .success(let value):
             return value
+        default: return nil
         }
     }
     
@@ -32,8 +33,8 @@ extension TimerRecordRepository {
         case .failure(.invalidEntity):
             assertionFailure("엔티티를 찾지 못함")
             return []
-        case .failure(.noneFetchResult):
-            return []
+        case .failure(.noneFetchResult): return []
+        default: return []
         }
     }
     
@@ -48,6 +49,7 @@ extension TimerRecordRepository {
             assertionFailure("엔티티를 찾지 못함")
             return []
         case .failure(.noneFetchResult): return []
+        default: return []
         }
     }
     
