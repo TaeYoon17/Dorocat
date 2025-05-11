@@ -6,10 +6,9 @@
 //
 
 import Foundation
-import CoreData
 import CloudKit
 
-typealias resultAllRecordItems = Result<[TimerRecordItem], Error>
+typealias ResultAllRecordItems = Result<[TimerRecordItem], Error>
 
 extension TimerRecordRepository: SyncHandler {
     
@@ -27,11 +26,14 @@ extension TimerRecordRepository: SyncHandler {
     }
     
 
-    func overWriteEntities(type: CKRecord.RecordEntityType, records: [CKRecord]) async -> [CKRecord] {
+    func overWriteEntities(
+        type: CKRecord.RecordEntityType,
+        records: [CKRecord]
+    ) async -> [CKRecord] {
         var failedRecords: [CKRecord] = []
         for record in records {
-            let id = UUID(uuidString: record.recordID.recordName)!
-            guard var timerRecordItem = await findItemByID(id) else {
+            guard let id = UUID(uuidString: record.recordID.recordName),
+                  var timerRecordItem = await findItemByID(id) else {
                 continue
             }
             let serverIsNewer = timerRecordItem.mergeFromServerRecord(record)
@@ -57,15 +59,21 @@ extension TimerRecordRepository: SyncHandler {
     }
     
     // 실제로 서버에서 받은 값들... 여기에 맞게 변경해줘야한다.
-    func handleFetchedRecordZoneChanges(type: CKRecord.RecordEntityType, modifications: [CKRecord], deletions: [CKRecord.ID]) async {
+    func handleFetchedRecordZoneChanges(
+        type: CKRecord.RecordEntityType,
+        modifications: [CKRecord],
+        deletions: [CKRecord.ID]
+    ) async {
         var modificationItems:[TimerRecordItem] = []
         var deletionItems: [TimerRecordItem] = []
             
         for modification in modifications {
             let record:CKRecord = modification
-            guard record.convertIDToRecordType == .timerItem else { continue }
             let id = record.recordID.recordName
-            let uuid = UUID(uuidString: id)!
+            guard record.convertIDToRecordType == .timerItem,
+                  let uuid = UUID(uuidString: id) else {
+                continue
+            }
             if var findItem = await findItemByID(uuid) {
                 let isMerged = findItem.mergeFromServerRecord(record)
                 if isMerged { modificationItems.append(findItem) }
@@ -73,9 +81,8 @@ extension TimerRecordRepository: SyncHandler {
                 let item = TimerRecordItem(record: record)
                 modificationItems.append(item)
             }
-            
         }
-        let deletionIDs: [UUID] = deletions.map { UUID(uuidString: $0.recordName)! }
+        let deletionIDs: [UUID] = deletions.compactMap{ UUID(uuidString: $0.recordName) }
         for deletionId in deletionIDs {
             if let findItem = await findItemByID(deletionId) {
                 deletionItems.append(findItem)

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreData
 
 extension TimerRecordRepository: AnalyzeAPIs {
     
@@ -22,7 +21,7 @@ extension TimerRecordRepository: AnalyzeAPIs {
     var totalFocusTime: Double {
         get async {
              await Double(
-                self.findAllItems().map((\.duration)).reduce(0, +)
+                self.findAllItems().map(\.duration).reduce(0, +)
              )
         }
     }
@@ -38,8 +37,7 @@ extension TimerRecordRepository: AnalyzeAPIs {
     var isEmptyTimerItem: Bool {
         get async {
             do {
-                let request = TimerRecordItemEntity.fetchRequest()
-                let count = try coreDataService.managedObjectContext.count(for: request)
+                let count = try coreDataService.count(entityKey: .timerRecordEntity)
                 return count == 0
             } catch {
                 return true
@@ -51,22 +49,26 @@ extension TimerRecordRepository: AnalyzeAPIs {
     
     /// 오늘 기록 아이템들 반환
     func get(day: Date) async throws -> [TimerRecordItem] {
-        let predicate = NSPredicate(format: "recordCode == %@", day.convertToRecordCode())
-        return try await get(date: day, predicate: predicate)
+        try await get(
+            predicateFormat: { "\($0[0]) == %@" },
+            args: day.convertToRecordCode()
+        )
     }
     
     /// 주간 기록 아이템들 반환
     func get(weekDate: Date) async throws -> [TimerRecordItem] {
-        let recordCodes = getCode(weekDate: weekDate)
-        let predicate = NSPredicate(format: "%K IN %@", #keyPath(TimerRecordItemEntity.recordCode), recordCodes)
-        return try await get(date: weekDate, predicate: predicate)
+        try await get(
+            predicateFormat: { "\($0[0]) IN %@" },
+            args: getCode(weekDate: weekDate)
+        )
     }
     
     /// 월간 기록 아이템들 반환
     func get(monthDate: Date) async throws -> [TimerRecordItem] {
-        let dateCodes = getCode(monthDate: monthDate)
-        let predicate = NSPredicate(format: "recordCode IN %@", dateCodes)
-        return try await get(date: monthDate, predicate: predicate)
+        try await get(
+            predicateFormat: { "\($0[0]) IN %@" },
+            args: getCode(monthDate: monthDate)
+        )
     }
     
     

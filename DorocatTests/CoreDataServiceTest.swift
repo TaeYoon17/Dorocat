@@ -110,12 +110,19 @@ extension CoreDataServiceTest {
     }
     
     @Test
-    func getCounts() async throws {
-        
+    func getItemWithCondition() async throws {
+        let testItem = TimerRecordItem(
+            id: .init(),
+            recordCode: "하이요",
+            createdAt: .now,
+            duration: 12,
+            session: .defaultItem(),
+            modificationDate: .now
+        )
         let coreDataService = await CoreDataService()
         _ = await coreDataService.deleteAllItem(entityKey: .timerRecordEntity)
         _ = await coreDataService.upsertItem(item: self.testItem, id: self.testItem.id.uuidString, entityKey: .timerRecordEntity)
-        let findValues = try await coreDataService.findWithCondition(
+        let findValues: [TimerRecordItem] = try await coreDataService.findWithCondition(
             type: TimerRecordItem.self,
             entityKey: .timerRecordEntity,
             attributes: [\.recordCode, \.duration],

@@ -40,4 +40,39 @@ extension CoreDataService {
             }
         }
     }
+    
+    
+    func count(entityKey: CoreConstants.Label, predicate: NSPredicate? = nil) throws -> Int {
+        switch entityKey {
+        case .timerRecordEntity:
+            let fetchRequest = NSFetchRequest<TimerRecordItemEntity>(entityName: entityKey.rawValue)
+            if let predicate {
+                fetchRequest.predicate = predicate
+            }
+            return try self.managedObjectContext.count(for: fetchRequest)
+        }
+    }
+    
+    func countWithContiditon<Model>(
+        type: Model.Type,
+        entityKey: CoreConstants.Label,
+        attributes: [PartialKeyPath<Model>],
+        args: any CVarArg... ,
+        predicateFormat: (_ attributes: [String]) -> String
+    ) throws ->  Int {
+        switch entityKey {
+        case .timerRecordEntity:
+            let predicateKeys = try attributes.map { attribute in
+                guard let entityAttribute = attribute as? PartialKeyPath<TimerRecordItem> else {
+                    throw CoreError.invalidAttribute(attribute.customDumpDescription)
+                }
+            return try TimerRecordItemEntity.attributes(key: entityAttribute)
+            }
+            let predicateFormatString = predicateFormat(predicateKeys)
+            return try self.count(
+                entityKey: entityKey,
+                predicate: NSPredicate(format: predicateFormatString, args)
+            )
+        }
+    }
 }
