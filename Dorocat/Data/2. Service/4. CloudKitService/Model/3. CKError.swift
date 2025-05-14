@@ -7,6 +7,3 @@
 
 import Foundation
 
-enum CKError: Error {
-    
-}
