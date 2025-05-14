@@ -71,7 +71,7 @@ extension CKTimerRecordDTO {
         let cloudModificationDate = self.userModificationDate ?? .now
         if let localModificationDate = item.userModificationDate {
             guard cloudModificationDate > localModificationDate else {
-                fatalError("이상해요")
+                throw CloudKitError.localIsNewer
             }
         }
         item.id = self.id
@@ -90,7 +90,7 @@ extension CKTimerRecordDTO {
     
     func convertToItem() throws -> TimerRecordItem {
         guard let recordCode, let createdAt, let duration, let session else {
-            fatalError("필요한 게 없어요")
+            throw CloudKitError.failToConvert
         }
         return .init(
             id: self.id,

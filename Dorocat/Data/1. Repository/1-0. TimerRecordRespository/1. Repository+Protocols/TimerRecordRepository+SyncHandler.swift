@@ -46,6 +46,8 @@ extension TimerRecordRepository: CloudKitServicingHandler {
                 do {
                     try modification.applyItem(&item)
                     modificationItems.append(item)
+                } catch(CloudKitError.localIsNewer) {
+                    
                 } catch {
                     assertionFailure(error.localizedDescription)
                 }
@@ -82,29 +84,6 @@ extension TimerRecordRepository: CloudKitServicingHandler {
         self.lastSyncedDate = Date()
         self.syncrhozieEventContiuation?.yield(.end)
     }
-    
-    
-    /// 여긴 Overwrite를 하는게 아니라 그냥 요구하는 CKRecord의 값을 찾아만 주면 된다.
-    //    func overWriteEntities(
-    //        type: CKConstants.Label,
-    //        records: [CKRecord]
-    //    ) async -> [CKRecord] {
-    //        var failedRecords: [CKRecord] = []
-    //        for record in records {
-    //            guard let id = UUID(uuidString: record.recordID.recordName),
-    //                  var timerRecordItem = await findItemByID(id) else {
-    //                continue
-    //            }
-    //            let serverIsNewer = timerRecordItem.mergeFromServerRecord(record)
-    //            if serverIsNewer {
-    //                await timerItemUpsert(item: timerRecordItem)
-    //            } else {
-    //                timerRecordItem.populateRecord(record)
-    //                failedRecords.append(record)
-    //            }
-    //        }
-    //        return failedRecords
-    //    }
     
     func requestCKWritableForPendingRecord(id: String) async -> (any CKWritable)? {
         guard let uuid = UUID(uuidString: id) else {

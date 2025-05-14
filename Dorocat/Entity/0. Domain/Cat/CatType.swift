@@ -12,6 +12,7 @@ enum CatType: String, CaseIterable, Identifiable, Codable {
 }
 
 extension CatType {
+    
     func lottieAssetName(type: LottieAssetType) -> String {
         let name = "\(self.rawValue)_\(type.rawValue)"
         return name
@@ -19,6 +20,7 @@ extension CatType {
     func imageAssetName(type: ImageType) -> String {
         return "\(self.rawValue)_\(type.rawValue)"
     }
+    
     var desc: String {
         switch self {
         case .monet: "Monet is a shy but loving cat who takes time to\nwarm up but then becomes very loyal."

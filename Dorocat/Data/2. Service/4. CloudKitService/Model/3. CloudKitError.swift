@@ -7,3 +7,7 @@
 
 import Foundation
 
+enum CloudKitError: Error {
+    case localIsNewer
+    case failToConvert
+}

@@ -9,7 +9,7 @@ import Foundation
 import AppIntents
 import ActivityKit
 
-struct BreakSleepToStandbyIntent: LiveActivityIntent{
+struct BreakSleepToStandbyIntent: LiveActivityIntent {
     static var title: LocalizedStringResource = "BreakSleepToStandbyIntent"
     static var description = IntentDescription("Change TimerStatus")
     

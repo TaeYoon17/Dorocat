@@ -65,7 +65,7 @@ extension TimerRecordRepository {
         try await coreDataService.findWithCondition(
             type: TimerRecordItem.self,
             entityKey: .timerRecordEntity,
-            attributes: [\.createdAt],
+            attributes: [\.recordCode],
             args: args,
             predicateFormat: predicateFormat
         ).sorted { $0.createdAt < $1.createdAt }

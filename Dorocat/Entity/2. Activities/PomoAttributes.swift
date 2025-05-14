@@ -7,8 +7,9 @@
 
 import Foundation
 import ActivityKit
-struct PomoAttributes:ActivityAttributes {
-    struct ContentState:Codable,Hashable {
+
+struct PomoAttributes: ActivityAttributes {
+    struct ContentState: Codable, Hashable {
         var timerStatus: TimerActivityType = .focusSleep
         var catType: CatType = .doro
         var timerSession: SessionItem = .init(name: "Focus")
@@ -16,6 +17,7 @@ struct PomoAttributes:ActivityAttributes {
         var endTime:Int = 0
     }
 }
+
 enum Status: String, CaseIterable, Codable, Equatable {
     case received = "eraser"
     case progress = "plus.fill"

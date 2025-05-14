@@ -102,10 +102,10 @@
 		630D3E942CDF8C4500561855 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Entity/Models/Menu/SessionItem.swift,
-				Entity/Models/PomoAttributes.swift,
-				Entity/Models/Types/CatType.swift,
-				Entity/Models/Types/TimerActivityType.swift,
+				"Entity/0. Domain/Cat/CatType.swift",
+				"Entity/0. Domain/Session/SessionItem.swift",
+				"Entity/2. Activities/PomoAttributes.swift",
+				"Entity/2. Activities/TimerActivityType.swift",
 				Utility/Cores/ActivityIntentManager.swift,
 				"Utility/Helpers/CustomUIs/Font+/FontCoordinator.swift",
 			);
@@ -114,8 +114,8 @@
 		630D3E952CDF8C4500561855 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Entity/Models/Types/CatType.swift,
-				Entity/Models/Types/TimerActivityType.swift,
+				"Entity/0. Domain/Cat/CatType.swift",
+				"Entity/2. Activities/TimerActivityType.swift",
 				Utility/Cores/ActivityIntentManager.swift,
 				"Utility/Helpers/CustomUIs/Font+/FontCoordinator.swift",
 			);
