@@ -19,21 +19,17 @@ import os.log
 ///     2.1 동기화를 한다면 네트워크 상관없이 할 것인가?
 
 extension CKRecord {
-    enum RecordEntityType: String {
-        case timerItem = "TimerRecordItem"
-        case session
-    }
-    var convertIDToRecordType: RecordEntityType {
-        RecordEntityType(rawValue: self.recordType)!
+    var convertIDToRecordType: CKConstants.Label {
+        CKConstants.Label(rawValue: self.recordType)!
     }
 }
 extension CKRecord.RecordType {
-    var convertToEntityType: CKRecord.RecordEntityType {
-        CKRecord.RecordEntityType(rawValue: self)!
+    var convertToEntityType: CKConstants.Label {
+        CKConstants.Label(rawValue: self)!
     }
 }
 
-final actor SyncedDatabase : Sendable {
+final actor CloudKitService : Sendable {
     private var userDefaultsSerialization: String { "stateSerialization" }
     private static var ckContainerIdentifier: String { "iCloud.com.tistory.arpple.Dorocat" }
 //    private weak var coreDataClient: AnalyzeCoreDataClient!
@@ -51,8 +47,8 @@ final actor SyncedDatabase : Sendable {
         }
     }
     
-    private(set) var syncHandlers: [CKRecord.RecordEntityType : SyncHandler?] = [:]
-    private(set) var pendingItems: [CKRecord.ID : CKRecord.RecordEntityType] = [:]
+    private(set) var syncHandlers: [CKConstants.Label : (any CloudKitServicingHandler)?] = [:]
+    private(set) var pendingItems: [CKRecord.ID : CKConstants.Label] = [:]
     
     var stateSerialization: CKSyncEngine.State.Serialization? {
         get {
@@ -99,7 +95,7 @@ final actor SyncedDatabase : Sendable {
         try? await CKContainer.default().accountStatus()
     }
     
-    func appendSyncHandler(key: CKRecord.RecordEntityType, value: SyncHandler) {
+    func appendSyncHandler(key: CKConstants.Label, value: any CloudKitServicingHandler) {
         self.syncHandlers[key] = value
     }
     
@@ -107,7 +103,7 @@ final actor SyncedDatabase : Sendable {
         self.pendingItems.removeValue(forKey: id)
     }
     
-    func appendTarget(id: CKRecord.ID, entityType: CKRecord.RecordEntityType) {
+    func appendTarget(id: CKRecord.ID, entityType: CKConstants.Label) {
         self.pendingItems[id] = entityType
     }
     
@@ -118,7 +114,7 @@ final actor SyncedDatabase : Sendable {
     }
 }
 
-extension SyncedDatabase {
+extension CloudKitService {
     /// 델리게이트에게 서버로 보낼 다음 레코드 변경 집합을 제공하도록 요청합니다.
     /// 배치 => 한번에 보낼 그릇, 버퍼와 비슷하다.
     func nextRecordZoneChangeBatch(
@@ -132,25 +128,19 @@ extension SyncedDatabase {
         let changes: [CKSyncEngine.PendingRecordZoneChange] = syncEngine.state.pendingRecordZoneChanges.filter {
             scope.contains($0)
         }
-
         let batch = await CKSyncEngine.RecordZoneChangeBatch(pendingChanges: changes) { recordID in
-            
-            guard let type: CKRecord.RecordEntityType = await self.pendingItems[recordID] else { return nil }
+            guard let type = await self.pendingItems[recordID] else {
+                return nil
+            }
             await self.removeTarget(id: recordID)
-            
-            /// Job에서 이 레코드의 로컬 데이터가 있는지 확인한다.
-            guard let writable = await syncHandlers[type]??.requestCKWritableForPendingRecord(id: recordID.recordName) else  {
-                /// 없으면 레코드를 지운다.
+            guard let writable: CKWritable = await syncHandlers[type]??.requestCKWritableForPendingRecord(id: recordID.recordName) else {
                 syncEngine.state.remove(pendingRecordZoneChanges: [ .saveRecord(recordID) ])
                 return nil
             }
             let record = CKRecord(recordType: writable.recordType, recordID: recordID)
-            /// 레코드에 이 로컬 값을 쓴다.
             writable.populateRecord(record)
             return record
         }
-        
-        
         return batch
     }
 }
@@ -159,13 +149,13 @@ extension SyncedDatabase {
 
 
 // MARK: - Data
-extension SyncedDatabase {
+extension CloudKitService {
     
     /// CloudKit에 업로드할 값들을 추가한다.
     func appendPendingSave(items: [CKReadable], directlySend: Bool = false) async {
         var pendingSaves: [CKSyncEngine.PendingRecordZoneChange] = []
         for item in items {
-            let recordEntityType = CKRecord.RecordEntityType(rawValue: item.recordType)!
+            let recordEntityType = CKConstants.Label(rawValue: item.recordType)!
             self.appendTarget(id: item.ckRecordID, entityType: recordEntityType)
             pendingSaves.append(.saveRecord(item.ckRecordID))
         }
@@ -182,10 +172,10 @@ extension SyncedDatabase {
         self.syncEngine.state.add(pendingRecordZoneChanges: pendingDeletions)
     }
     
-    func updateSyncItem(_ item: CKConvertible) async throws {
+    func updateSyncItem(_ item: any CKConvertible) async throws {
         let record = CKRecord(recordType: item.recordType, recordID: item.ckRecordID)
         /// 레코드에 이 로컬 값을 쓴다.
         item.populateRecord(record)
-        let result = try await syncEngine.database.modifyRecords(saving: [record], deleting: [], savePolicy: .allKeys)
+        _ = try await syncEngine.database.modifyRecords(saving: [record], deleting: [], savePolicy: .allKeys)
     }
 }

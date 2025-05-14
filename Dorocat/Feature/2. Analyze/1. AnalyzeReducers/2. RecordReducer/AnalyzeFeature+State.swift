@@ -60,7 +60,7 @@ extension AnalyzeFeature {
             return tommorow
         }
     }
-    @ObservableState struct WeekInformation: Equatable,AnalyzeInformationAble {
+    @ObservableState struct WeekInformation: Equatable, AnalyzeInformationAble {
         var date = Date()
         var timerRecordList: IdentifiedArrayOf<TimerRecordItem> = []
         

@@ -9,7 +9,7 @@ import Foundation
 import CloudKit
 import os.log
 
-extension SyncedDatabase : CKSyncEngineDelegate {
+extension CloudKitService : CKSyncEngineDelegate {
     
     /// CKSyncEngine에서 이벤트가 발생한 것을 알려준다.
     /// CKSyncEngine.Event는 CloudKit에서 동기화 엔진(CKSyncEngine)이 동작 중에 발생하는 이벤트를 나타내는 열거형(enum)
@@ -55,8 +55,8 @@ extension SyncedDatabase : CKSyncEngineDelegate {
         var newPendingDatabaseChanges: [CKSyncEngine.PendingDatabaseChange] = []
         
         /// 서버의 값이 최신이라 로컬 값을 업데이트 해야 하는 대상들
-        var overWriteTargets:[CKRecord.RecordEntityType: Set<CKRecord>] = [:]
-        var removeTargets: [CKRecord.RecordEntityType: [CKRecord]] = [:]
+        var overWriteTargets:[CKConstants.Label: Set<CKRecord>] = [:]
+        var removeTargets: [CKConstants.Label: [CKRecord]] = [:]
         /// 실패한 레코드들을 다룬다.
         for failedRecordSave in event.failedRecordSaves {
             let failedRecord = failedRecordSave.record
@@ -125,11 +125,16 @@ extension SyncedDatabase : CKSyncEngineDelegate {
         // 각각의 정보 타입에 맞게 순회한다.
         for (entityType, records) in overWriteTargets {
             // 로컬 데이터가 더 최신인 경우를 가져온다.
-            guard let localNewerItems = await syncHandlers[entityType]??.overWriteEntities(type: entityType, records: Array(records)) else {
+            guard let handler = syncHandlers[entityType], let handler else {
                 continue
             }
+            let localNewerRecords = await getNewItems(label: entityType, handler: handler, records: records)
             // 엔진에서 직접 변경을 요청한다
-            guard let values = try? await self.syncEngine.database.modifyRecords(saving: localNewerItems, deleting: [], savePolicy: .allKeys) else {
+            guard let values = try? await self.syncEngine.database.modifyRecords(
+                saving: localNewerRecords,
+                deleting: [],
+                savePolicy: .allKeys
+            ) else {
                 continue
             }
             // 즉시 서버 데이터 업데이트에 성공하면 다시 동기화할 레코드에 등록하지 않는다.
@@ -137,6 +142,33 @@ extension SyncedDatabase : CKSyncEngineDelegate {
             let removePendingRecordZoneChanges: [CKSyncEngine.PendingRecordZoneChange] = successedModifyCloudRecords.map { .saveRecord($0.key) }
             self.syncEngine.state.remove(pendingRecordZoneChanges: removePendingRecordZoneChanges)
         }
+    }
+    
+    func getNewItems<Handler: CloudKitServicingHandler>(label: CKConstants.Label, handler: Handler, records: Set<CKRecord>) async -> [CKRecord] {
+        switch label {
+        case .timerItem:
+            guard let dtos = records.map({ CKTimerRecordDTO(record: $0)}) as? [Handler.CKDTO] else {
+                assertionFailure("올바르지 않은 타입 변환")
+                return []
+            }
+            
+            var failedDTOs = Set<Handler.CKDTO>()
+            var failedRecords: [CKRecord] = []
+            await handler.applyRemoteToLocal(dtos: dtos, updateDTOs: &failedDTOs)
+            for record in records {
+                guard let recordID = CKTimerRecordDTO.ID(uuidString: record.recordID.recordName) as? Handler.CKDTO.ID else {
+                    assertionFailure("타입이 맞지 않음!!")
+                    continue
+                }
+                if let failedDTO = failedDTOs.first(where: { $0.id == recordID }) {
+                    failedDTO.populateRecord(record)
+                    failedRecords.append(record)
+                }
+            }
+        case .session:
+            assertionFailure("지정되지 않은 라벨")
+        }
+        return []
     }
     
     /// 로그인 시, 가장 최신에 로그인 한 아이클라우드 계정에 대한 정보를 담아놓는다.
@@ -163,13 +195,13 @@ extension SyncedDatabase : CKSyncEngineDelegate {
     }
 }
 
-extension SyncedDatabase {
+extension CloudKitService {
     /// 레코드존(테이블)이 변화함 => 레코드(튜플)들의 값을 수정함
     func handleFetchedRecordZoneChanges(_ event: CKSyncEngine.Event.FetchedRecordZoneChanges) async {
         
         /// 수정사항 -> 각각의 job들이 알아서 하위 변경 작업을 처리하게 한다.
-        var modifications: [CKRecord.RecordEntityType: [CKRecord] ] = [:]
-        var deletions: [CKRecord.RecordEntityType : [CKRecord.ID]] = [:]
+        var modifications: [CKConstants.Label: [CKRecord] ] = [:]
+        var deletions: [CKConstants.Label: [CKRecord.ID]] = [:]
         
         for modification in event.modifications {
             // 동기화 엔진이 레코드를 가져왔고, 이를 로컬 저장소에 병합하려고 합니다.
@@ -187,7 +219,7 @@ extension SyncedDatabase {
         }
         
         for deletion in event.deletions {
-            guard let type = CKRecord.RecordEntityType(rawValue: deletion.recordType) else {
+            guard let type = CKConstants.Label(rawValue: deletion.recordType) else {
                 continue
             }
             
@@ -200,19 +232,47 @@ extension SyncedDatabase {
         
         for (key, val) in syncHandlers {
             guard let val else { continue }
-            let modificationValues: [CKRecord] = modifications[key] ?? []
-            let deletionValues = deletions[key] ?? []
-            await val.handleFetchedRecordZoneChanges(
-                type: key,
-                modifications: modificationValues,
-                deletions: deletionValues
+            let modificationRecords: [CKRecord] = modifications[key] ?? []
+            let deletionRecordIDs: [CKRecord.ID] = deletions[key] ?? []
+            await sync(
+                label: key,
+                handler: val,
+                modifications: modificationRecords,
+                deletions: deletionRecordIDs
             )
+        }
+    }
+    
+    func sync<Handler: CloudKitServicingHandler>(
+        label: CKConstants.Label,
+        handler: Handler,
+        modifications: [CKRecord],
+        deletions: [CKRecord.ID]
+    ) async {
+        switch label {
+        case .timerItem:
+            guard let modificationDTOs = (modifications.map {
+                CKTimerRecordDTO(record: $0)
+            }) as? [Handler.CKDTO],
+                  let deletionDTOIDs = (deletions.compactMap {
+                      CKTimerRecordDTO.ID(uuidString: $0.recordName)
+                  }) as? [Handler.CKDTO.ID]
+            else {
+                assertionFailure("[SyncedDatabase] 주어진 라벨과 타입 불일치 발생")
+                return
+            }
+            await handler.applyFetchedRemoteValueChanges(
+                modifications: modificationDTOs,
+                deletions: deletionDTOIDs
+            )
+        case .session:
+            assertionFailure("[SyncedDatabase] 정해지지 않은 라벨에 접근")
         }
     }
 }
 
 
-extension SyncedDatabase {
+extension CloudKitService {
     /// 데이터 베이스 자체가 변화함 => 존 (테이블이 영향받음)
     func handleFetchedDatabaseChanges(_ event: CKSyncEngine.Event.FetchedDatabaseChanges) async {
         var zoneNames: Set<String> = .init()

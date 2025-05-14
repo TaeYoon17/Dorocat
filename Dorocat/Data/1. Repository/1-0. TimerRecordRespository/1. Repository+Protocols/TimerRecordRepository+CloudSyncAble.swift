@@ -98,16 +98,14 @@ extension TimerRecordRepository: CloudSyncAble {
             
             switch status {
             case .available:
-                guard let timerItems = try? await findAllItems() else {
-                    assertionFailure("타이머 값이 이상하다!!")
-                    return .errorOccured(type: .unknown)
-                }
+                let timerItems: [TimerRecordItem] = await findAllItems()
+                let dtos = timerItems.map { CKTimerRecordDTO(item: $0) }
                 
                 // 1. 동기화가 가능하면 현재까지 로컬 DB에 있는 데이터를 넣는다.
                 // 2. refresh를 통해 CloudKit에 저장되어 있는 데이터를 불러온다.
                 defer {
                     Task {
-                        await syncedDatabase.appendPendingSave(items: timerItems)
+                        await syncedDatabase.appendPendingSave(items: dtos)
                         await refresh()
                     }
                 }
@@ -130,8 +128,9 @@ extension TimerRecordRepository: CloudSyncAble {
     }
     
     func refresh() async  {
-        let items =  await findAllItems()
-        await syncedDatabase.appendPendingSave(items: items)
+        let items: [TimerRecordItem] =  await findAllItems()
+        let dtos = items.map { CKTimerRecordDTO(item: $0) }
+        await syncedDatabase.appendPendingSave(items: dtos)
         let _ = await syncedDatabase.refresh()
     }
 }

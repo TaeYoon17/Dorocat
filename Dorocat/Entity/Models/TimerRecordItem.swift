@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct TimerRecordItem {
+struct TimerRecordItem: Equatable, Identifiable {
     var id: UUID
     // 기록 코드, 년월일로 구분해서 중복된 것을 모두 가져온다.
     
@@ -29,7 +29,6 @@ struct TimerRecordItem {
     }
     
     init(id: UUID, recordCode: String, createdAt: Date, duration: Int, session: SessionItem, modificationDate: Date?) {
-        
         self.id = id
         self.recordCode = recordCode
         self.createdAt = createdAt

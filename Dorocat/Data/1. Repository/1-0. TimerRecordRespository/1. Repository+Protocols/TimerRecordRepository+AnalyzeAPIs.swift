@@ -77,7 +77,8 @@ extension TimerRecordRepository: AnalyzeAPIs {
         /// 1. 여기 코어데이터에 직접 추가한다.
         await timerItemUpsert(item: item)
         /// 2. 코어 데이터에 추가한 값 ID를 아이 클라우드에 넣는다.
-        await syncedDatabase.appendPendingSave(items: [item], directlySend: true)
+        let dto = CKTimerRecordDTO(item: item)
+        await syncedDatabase.appendPendingSave(items: [dto], directlySend: true)
         self.analyzeEventContinuation?.yield(.append)
     }
     
@@ -85,7 +86,8 @@ extension TimerRecordRepository: AnalyzeAPIs {
     
     func delete(_ item: TimerRecordItem) async {
         try? await self.timerItemDeletes(items: [item])
-        await syncedDatabase.appendPendingDelete(items: [item])
+        let dto = CKTimerRecordDTO(item: item)
+        await syncedDatabase.appendPendingDelete(items: [dto])
         self.analyzeEventContinuation?.yield(.fetch)
     }
     
@@ -96,7 +98,8 @@ extension TimerRecordRepository: AnalyzeAPIs {
         await self.timerItemUpsert(item: item)
         
         if self.isICloudSyncEnabled {
-            await self.syncedDatabase.appendPendingSave(items: [item], directlySend: true)
+            let dto = CKTimerRecordDTO(item: item)
+            await self.syncedDatabase.appendPendingSave(items: [dto], directlySend: true)
         }
         self.analyzeEventContinuation?.yield(.fetch)
     }

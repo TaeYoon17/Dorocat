@@ -21,7 +21,7 @@ final class TimerRecordRepository {
     /// 내부 단순 데이터 접근자
     let defaultsService: UserDefaultsServicing
     /// 외부 데이터베이스 접근자
-    private(set) lazy var syncedDatabase: SyncedDatabase = SyncedDatabase()
+    private(set) lazy var syncedDatabase: CloudKitService = CloudKitService()
     
     /// 초기화 되었는지 확인하는 프로퍼티
     var isInit:Bool = false
