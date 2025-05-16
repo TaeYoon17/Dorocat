@@ -19,7 +19,7 @@ final class DorocatTests: XCTestCase {
     }
 
     func testExample() async throws {
-        let client = PomoNotificationClient()
+        let client = DoroNotificationClient()
         await client.setEnable(true)
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

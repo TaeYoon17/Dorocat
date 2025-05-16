@@ -12,6 +12,7 @@ import CoreData
 
 extension TimerRecordItemEntity {
 
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<TimerRecordItemEntity> {
         return NSFetchRequest<TimerRecordItemEntity>(entityName: "TimerRecordItemEntity")
     }
