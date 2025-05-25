@@ -104,7 +104,7 @@ extension CoreDataServiceTest {
         try? await analyzeRepository.timerRecordDeleteAll()
         await analyzeRepository.timerItemUpsert(item: dummyItems[0])
         await analyzeRepository.timerItemUpsert(item: dummyItems[1])
-        __
+        
         let targetItems = try await analyzeRepository.findItemsByID([dummyItems[0],dummyItems[1]].map(\.id))
         #expect(targetItems == [dummyItems[0],dummyItems[1]])
     }
