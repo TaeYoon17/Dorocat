@@ -376,8 +376,8 @@
 				63CCAFA12BCD1E280045B2A0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				63597A882C843A2C0003E880 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				63D0C3572CA037E300C4D315 /* XCRemoteSwiftPackageReference "GreemSwiftPackage" */,
-				63860A4E2CB416B50058D4EE /* XCLocalSwiftPackageReference "../ProjectPackages/DoroDependencies" */,
 				63085EBC2CB54C9E00F87662 /* XCLocalSwiftPackageReference "DoroDesignSystemPackage" */,
+				63EDCFFD2DE3754900090250 /* XCLocalSwiftPackageReference "DoroDependencies" */,
 			);
 			productRefGroup = 63C124D12B9EF93D000A6D35 /* Products */;
 			projectDirPath = "";
@@ -906,9 +906,9 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = DoroDesignSystemPackage;
 		};
-		63860A4E2CB416B50058D4EE /* XCLocalSwiftPackageReference "../ProjectPackages/DoroDependencies" */ = {
+		63EDCFFD2DE3754900090250 /* XCLocalSwiftPackageReference "DoroDependencies" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = ../ProjectPackages/DoroDependencies;
+			relativePath = DoroDependencies;
 		};
 /* End XCLocalSwiftPackageReference section */
 
